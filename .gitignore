@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 项目特定
+uploads/*
+!uploads/.gitkeep
+exports/*
+!exports/.gitkeep
+static/charts/*
+!static/charts/.gitkeep
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 环境变量
+.env
+.env.local
+
+# 日志
+*.log
+
+# 临时文件
+*.tmp
+*.bak

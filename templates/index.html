@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIFI 智能财报系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .main-container {
+            padding: 40px 20px;
+        }
+        
+        .header-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .header-card h1 {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .header-card .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        
+        .upload-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        .upload-area {
+            border: 3px dashed var(--secondary-color);
+            border-radius: 10px;
+            padding: 60px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #f8f9fa;
+        }
+        
+        .upload-area:hover {
+            background: #e3f2fd;
+            border-color: var(--success-color);
+        }
+        
+        .upload-area.dragover {
+            background: #e3f2fd;
+            border-color: var(--success-color);
+            transform: scale(1.02);
+        }
+        
+        .upload-icon {
+            font-size: 4rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .btn-primary {
+            background: var(--secondary-color);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .progress-container {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+        
+        .alert {
+            border-radius: 10px;
+        }
+        
+        .logs-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .log-item {
+            padding: 10px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .log-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container main-container">
+        <!-- 头部 -->
+        <div class="header-card">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <div></div>
+                <div class="text-end">
+                    {% if user and user.fullname %}
+                    <div class="user-info">
+                        <span class="text-muted">
+                            <i class="bi bi-person-circle"></i> 欢迎，<strong>{{ user.fullname }}</strong>
+                        </span>
+                        <a href="/logout" class="btn btn-sm btn-outline-secondary ms-2">
+                            <i class="bi bi-box-arrow-right"></i> 退出登录
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <h1><i class="bi bi-graph-up-arrow"></i> AIFI 智能财报系统</h1>
+            <p class="subtitle">AI for Financial Insight - 智能财务分析与报告生成平台</p>
+        </div>
+        
+        <!-- 上传区域 -->
+        <div class="upload-card">
+            <h3 class="mb-4"><i class="bi bi-cloud-upload"></i> 上传财务数据</h3>
+            
+            <div class="upload-area" id="uploadArea">
+                <i class="bi bi-file-earmark-excel upload-icon"></i>
+                <h4>点击或拖拽Excel文件到这里</h4>
+                <p class="text-muted mt-3">支持 .xlsx 和 .xls 格式，最大16MB</p>
+                <input type="file" id="fileInput" accept=".xlsx,.xls" style="display: none;">
+                <button class="btn btn-primary mt-3" onclick="document.getElementById('fileInput').click()">
+                    <i class="bi bi-folder2-open"></i> 选择文件
+                </button>
+            </div>
+            
+            <div class="progress-container" id="progressContainer">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">加载中...</span>
+                    </div>
+                    <p class="mt-3" id="progressText">正在分析数据，请稍候...</p>
+                </div>
+            </div>
+            
+            <div id="messageArea" class="mt-3"></div>
+        </div>
+        
+        <!-- 功能特点 -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="feature-card">
+                    <i class="bi bi-lightning-charge feature-icon"></i>
+                    <h5>快速分析</h5>
+                    <p class="text-muted">一键上传，自动生成专业财务分析报告</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="feature-card">
+                    <i class="bi bi-robot feature-icon"></i>
+                    <h5>AI驱动</h5>
+                    <p class="text-muted">基于大语言模型的智能风险解读</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="feature-card">
+                    <i class="bi bi-bar-chart feature-icon"></i>
+                    <h5>多维分析</h5>
+                    <p class="text-muted">盈利、偿债、运营、现金流四维评估</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="feature-card">
+                    <i class="bi bi-download feature-icon"></i>
+                    <h5>一键导出</h5>
+                    <p class="text-muted">支持Word和PDF格式专业报告导出</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 操作日志 -->
+        <div class="logs-card">
+            <h4 class="mb-3"><i class="bi bi-clock-history"></i> 最近操作</h4>
+            <div id="logsArea">
+                <p class="text-muted">暂无操作记录</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const progressContainer = document.getElementById('progressContainer');
+        const messageArea = document.getElementById('messageArea');
+        
+        // 点击上传区域
+        uploadArea.addEventListener('click', function(e) {
+            if (e.target !== fileInput) {
+                fileInput.click();
+            }
+        });
+        
+        // 拖拽上传
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', function(e) {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                handleFileUpload(files[0]);
+            }
+        });
+        
+        // 文件选择
+        fileInput.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                handleFileUpload(e.target.files[0]);
+            }
+        });
+        
+        // 处理文件上传
+        function handleFileUpload(file) {
+            // 验证文件类型
+            const validTypes = ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+            if (!file.name.endsWith('.xlsx') && !file.name.endsWith('.xls')) {
+                showMessage('请上传Excel文件（.xlsx 或 .xls）', 'danger');
+                return;
+            }
+            
+            // 验证文件大小
+            if (file.size > 16 * 1024 * 1024) {
+                showMessage('文件大小不能超过16MB', 'danger');
+                return;
+            }
+            
+            // 显示进度
+            progressContainer.style.display = 'block';
+            messageArea.innerHTML = '';
+            
+            // 创建FormData
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            // 上传文件
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                progressContainer.style.display = 'none';
+                
+                if (data.success) {
+                    showMessage('报告生成成功！正在跳转...', 'success');
+                    setTimeout(() => {
+                        window.location.href = `/report/${data.report_id}`;
+                    }, 1000);
+                } else {
+                    showMessage(`错误: ${data.error}`, 'danger');
+                }
+            })
+            .catch(error => {
+                progressContainer.style.display = 'none';
+                showMessage('上传失败，请稍后重试', 'danger');
+                console.error('Error:', error);
+            });
+        }
+        
+        // 显示消息
+        function showMessage(message, type) {
+            messageArea.innerHTML = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+        }
+        
+        // 加载操作日志
+        function loadLogs() {
+            fetch('/api/logs')
+                .then(response => response.json())
+                .then(data => {
+                    const logsArea = document.getElementById('logsArea');
+                    if (data.success && data.logs.length > 0) {
+                        let html = '';
+                        data.logs.reverse().forEach(log => {
+                            html += `
+                                <div class="log-item">
+                                    <i class="bi bi-check-circle text-success"></i>
+                                    <strong>${log.type}</strong> - ${log.company}
+                                    <span class="text-muted float-end">${log.time}</span>
+                                </div>
+                            `;
+                        });
+                        logsArea.innerHTML = html;
+                    }
+                });
+        }
+        
+        // 页面加载时获取日志
+        loadLogs();
+        
+        // 定期刷新日志
+        setInterval(loadLogs, 10000);
+    </script>
+</body>
+</html>
+
