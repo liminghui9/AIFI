@@ -50,7 +50,7 @@ class ChartGenerator:
     
     def generate_all_charts(self, report_data: Dict) -> Dict[str, str]:
         """
-        生成所有图表
+        生成所有图表（HTML和PNG格式）
         
         Args:
             report_data: 报告数据
@@ -70,32 +70,99 @@ class ChartGenerator:
         
         try:
             # 1. 主要财务指标对比图
-            charts['main_indicators'] = self._generate_main_indicators_chart(years, indicators)
+            html_path, png_path = self._generate_main_indicators_chart(years, indicators)
+            charts['main_indicators'] = html_path
+            charts['main_indicators_png'] = png_path
             
             # 2. 盈利能力趋势图
-            charts['profitability'] = self._generate_profitability_chart(years, indicators)
+            html_path, png_path = self._generate_profitability_chart(years, indicators)
+            charts['profitability'] = html_path
+            charts['profitability_png'] = png_path
             
             # 3. 偿债能力分析图
-            charts['solvency'] = self._generate_solvency_chart(years, indicators)
+            html_path, png_path = self._generate_solvency_chart(years, indicators)
+            charts['solvency'] = html_path
+            charts['solvency_png'] = png_path
             
             # 4. 运营能力分析图
-            charts['operational'] = self._generate_operational_chart(years, indicators)
+            html_path, png_path = self._generate_operational_chart(years, indicators)
+            charts['operational'] = html_path
+            charts['operational_png'] = png_path
             
             # 5. 现金流分析图
-            charts['cashflow'] = self._generate_cashflow_chart(years, indicators)
+            html_path, png_path = self._generate_cashflow_chart(years, indicators)
+            charts['cashflow'] = html_path
+            charts['cashflow_png'] = png_path
             
             # 6. 风险评估雷达图
-            charts['risk_radar'] = self._generate_risk_radar_chart(dimension_analyses)
+            html_path, png_path = self._generate_risk_radar_chart(dimension_analyses)
+            charts['risk_radar'] = html_path
+            charts['risk_radar_png'] = png_path
             
             # 7. 综合财务健康度仪表盘
-            charts['health_dashboard'] = self._generate_health_dashboard(indicators, dimension_analyses)
+            html_path, png_path = self._generate_health_dashboard(indicators, dimension_analyses)
+            charts['health_dashboard'] = html_path
+            charts['health_dashboard_png'] = png_path
             
         except Exception as e:
             print(f"生成图表时出错: {str(e)}")
+            import traceback
+            traceback.print_exc()
         
         return charts
     
-    def _generate_main_indicators_chart(self, years: List[int], indicators: Dict) -> str:
+    def _save_chart_as_png(self, fig, base_filename: str) -> str:
+        """
+        将Plotly图表保存为PNG格式（使用matplotlib作为后备）
+        
+        Args:
+            fig: Plotly图表对象
+            base_filename: 基础文件名（不含扩展名）
+            
+        Returns:
+            str: PNG文件的完整路径
+        """
+        png_filename = f"{base_filename}.png"
+        png_filepath = os.path.join(self.charts_folder, png_filename)
+        
+        try:
+            # 使用kaleido导出（Plotly 6+默认使用kaleido）
+            fig.write_image(
+                png_filepath,
+                width=1200,
+                height=600,
+                scale=2  # 提高分辨率
+            )
+            print(f"✓ 使用kaleido生成PNG: {png_filename}")
+            return png_filepath
+            
+        except Exception as e1:
+            print(f"⚠ PNG导出失败: {str(e1)}")
+            
+            # 使用matplotlib手动绘制简化版本
+            try:
+                print(f"→ 尝试使用matplotlib生成备用图表...")
+                self._create_static_chart_fallback(fig, png_filepath)
+                return png_filepath
+            except Exception as e2:
+                print(f"✗ 所有方法都失败: {str(e2)}")
+                return None
+    
+    def _create_static_chart_fallback(self, plotly_fig, output_path: str):
+        """使用matplotlib创建静态图表作为后备方案"""
+        # 这是一个简化的后备方案，创建基本的图表
+        import matplotlib.pyplot as plt
+        
+        fig, ax = plt.subplots(figsize=(12, 6))
+        ax.text(0.5, 0.5, '图表生成中...\n请安装 kaleido 以显示完整图表\npip install kaleido', 
+                ha='center', va='center', fontsize=14, color='gray')
+        ax.axis('off')
+        
+        plt.savefig(output_path, dpi=200, bbox_inches='tight', facecolor='white')
+        plt.close()
+        print(f"✓ 生成占位图表: {output_path}")
+    
+    def _generate_main_indicators_chart(self, years: List[int], indicators: Dict) -> Tuple[str, str]:
         """生成主要财务指标对比图"""
         fig = make_subplots(
             rows=2, cols=2,
@@ -148,67 +215,118 @@ class ChartGenerator:
                             marker_color=self.color_palette[4]), row=2, col=2)
         
         fig.update_layout(
-            title_text="主要财务指标分析",
-            height=600,
-            showlegend=False,
-            font=dict(family="Microsoft YaHei, Arial", size=12)
+            title=dict(
+                text="主要财务指标分析",
+                x=0.5,
+                xanchor='center'
+            ),
+            height=650,
+            showlegend=True,
+            font=dict(family="Microsoft YaHei, Arial", size=12),
+            margin=dict(l=70, r=90, t=100, b=70),
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=-0.1,
+                xanchor="center",
+                x=0.5,
+                bgcolor='rgba(255,255,255,0.9)',
+                bordercolor='rgba(0,0,0,0.2)',
+                borderwidth=1
+            )
         )
         
-        # 保存图表
-        filename = f"main_indicators_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
-        filepath = os.path.join(self.charts_folder, filename)
-        fig.write_html(filepath)
+        # 设置Y轴自动调整边距
+        fig.update_yaxes(automargin=True)
+        fig.update_xaxes(automargin=True)
         
-        return f"/static/charts/{filename}"
+        # 保存图表
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        base_name = f"main_indicators_{timestamp}"
+        
+        # HTML版本
+        html_filename = f"{base_name}.html"
+        html_filepath = os.path.join(self.charts_folder, html_filename)
+        fig.write_html(html_filepath)
+        
+        # PNG版本
+        png_filepath = self._save_chart_as_png(fig, base_name)
+        
+        return f"/static/charts/{html_filename}", png_filepath
     
-    def _generate_profitability_chart(self, years: List[int], indicators: Dict) -> str:
+    def _generate_profitability_chart(self, years: List[int], indicators: Dict) -> Tuple[str, str]:
         """生成盈利能力趋势图"""
         fig = go.Figure()
         
-        # 提取盈利能力指标
-        metrics = ['净利润率', '毛利率', '净资产收益率']
+        # 提取盈利能力指标（使用简短名称）
+        metrics_mapping = {
+            '净利润率': '净利润率',
+            '毛利率': '毛利率',
+            '净资产收益率': 'ROE'
+        }
+        colors = [self.color_palette[0], self.color_palette[1], self.color_palette[2]]
         
-        for metric in metrics:
+        for i, (full_name, short_name) in enumerate(metrics_mapping.items()):
             values = []
             for year in years:
                 profitability_data = indicators.get(year, {}).get('盈利风险', {})
-                values.append(profitability_data.get(metric, 0))
+                values.append(profitability_data.get(full_name, 0))
             
             fig.add_trace(go.Scatter(
                 x=years, y=values, 
                 mode='lines+markers',
-                name=metric,
-                line=dict(width=3),
-                marker=dict(size=8)
+                name=short_name,
+                line=dict(width=3, color=colors[i]),
+                marker=dict(size=10, color=colors[i]),
+                hovertemplate=f'<b>{full_name}</b><br>年份: %{{x}}<br>比率: %{{y:.2f}}%<extra></extra>'
             ))
         
         fig.update_layout(
-            title='盈利能力趋势分析',
+            title=dict(
+                text='盈利能力趋势分析',
+                x=0.5,
+                xanchor='center',
+                font=dict(size=16)
+            ),
             xaxis_title='年份',
             yaxis_title='比率 (%)',
-            height=400,
+            height=520,
             template='plotly_white',
             font=dict(family="Microsoft YaHei, Arial", size=12),
+            margin=dict(l=80, r=150, t=100, b=80),  # 增加右边距
             legend=dict(
-                orientation="h",
-                yanchor="bottom",
-                y=1.02,
-                xanchor="right",
-                x=1
-            )
+                orientation="v",
+                yanchor="top",
+                y=0.98,
+                xanchor="left",
+                x=1.02,  # 放在图表外部右侧
+                bgcolor='rgba(255,255,255,0.95)',
+                bordercolor='rgba(0,0,0,0.3)',
+                borderwidth=1,
+                font=dict(size=11)
+            ),
+            hovermode='x unified'
         )
+        
+        fig.update_yaxes(automargin=True)
+        fig.update_xaxes(automargin=True)
         
         # 添加参考线
         fig.add_hline(y=0, line_dash="dash", line_color="gray", 
                       annotation_text="盈亏平衡线")
         
-        filename = f"profitability_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
-        filepath = os.path.join(self.charts_folder, filename)
-        fig.write_html(filepath)
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        base_name = f"profitability_{timestamp}"
         
-        return f"/static/charts/{filename}"
+        html_filename = f"{base_name}.html"
+        html_filepath = os.path.join(self.charts_folder, html_filename)
+        fig.write_html(html_filepath)
+        
+        png_filepath = self._save_chart_as_png(fig, base_name)
+        
+        return f"/static/charts/{html_filename}", png_filepath
     
-    def _generate_solvency_chart(self, years: List[int], indicators: Dict) -> str:
+    def _generate_solvency_chart(self, years: List[int], indicators: Dict) -> Tuple[str, str]:
         """生成偿债能力分析图"""
         fig = make_subplots(
             rows=1, cols=2,
@@ -246,58 +364,112 @@ class ChartGenerator:
                       annotation_text="资产负债率警戒线(70%)", row=1, col=2)
         
         fig.update_layout(
-            title_text="偿债能力分析",
-            height=400,
-            font=dict(family="Microsoft YaHei, Arial", size=12)
+            title=dict(
+                text="偿债能力分析",
+                x=0.5,
+                xanchor='center'
+            ),
+            height=500,
+            font=dict(family="Microsoft YaHei, Arial", size=12),
+            margin=dict(l=70, r=70, t=100, b=70),
+            showlegend=True,
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                y=-0.15,
+                xanchor="center",
+                x=0.5,
+                bgcolor='rgba(255,255,255,0.9)',
+                bordercolor='rgba(0,0,0,0.2)',
+                borderwidth=1
+            )
         )
         
-        filename = f"solvency_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
-        filepath = os.path.join(self.charts_folder, filename)
-        fig.write_html(filepath)
+        fig.update_yaxes(automargin=True)
+        fig.update_xaxes(automargin=True)
         
-        return f"/static/charts/{filename}"
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        base_name = f"solvency_{timestamp}"
+        
+        html_filename = f"{base_name}.html"
+        html_filepath = os.path.join(self.charts_folder, html_filename)
+        fig.write_html(html_filepath)
+        
+        png_filepath = self._save_chart_as_png(fig, base_name)
+        
+        return f"/static/charts/{html_filename}", png_filepath
     
-    def _generate_operational_chart(self, years: List[int], indicators: Dict) -> str:
+    def _generate_operational_chart(self, years: List[int], indicators: Dict) -> Tuple[str, str]:
         """生成运营能力分析图"""
         fig = go.Figure()
         
-        # 运营能力指标
+        # 运营能力指标（缩短名称）
         metrics = {
-            '应收账款周转率': '次',
-            '存货周转率': '次', 
-            '总资产周转率': '次'
+            '应收账款周转率': '应收账款',
+            '存货周转率': '存货', 
+            '总资产周转率': '总资产'
         }
         
-        for metric, unit in metrics.items():
+        colors = [self.color_palette[0], self.color_palette[1], self.color_palette[2]]
+        
+        for i, (metric, short_name) in enumerate(metrics.items()):
             values = []
             for year in years:
                 operational_data = indicators.get(year, {}).get('运营风险', {})
                 values.append(operational_data.get(metric, 0))
             
             fig.add_trace(go.Bar(
-                name=f"{metric}({unit})",
+                name=short_name,
                 x=years, y=values,
                 text=[f"{v:.2f}" for v in values],
-                textposition='auto'
+                textposition='auto',
+                marker_color=colors[i],
+                hovertemplate=f'<b>{metric}</b><br>年份: %{{x}}<br>周转率: %{{y:.2f}}次<extra></extra>'
             ))
         
         fig.update_layout(
-            title='运营能力分析',
+            title=dict(
+                text='运营能力分析（周转率：次）',
+                x=0.5,
+                xanchor='center',
+                font=dict(size=16)
+            ),
             xaxis_title='年份',
             yaxis_title='周转率 (次)',
-            height=400,
+            height=520,
             template='plotly_white',
             font=dict(family="Microsoft YaHei, Arial", size=12),
-            barmode='group'
+            barmode='group',
+            margin=dict(l=80, r=150, t=100, b=80),  # 增加右边距
+            legend=dict(
+                orientation="v",
+                yanchor="top",
+                y=0.98,
+                xanchor="left",
+                x=1.02,  # 放在图表外部右侧
+                bgcolor='rgba(255,255,255,0.95)',
+                bordercolor='rgba(0,0,0,0.3)',
+                borderwidth=1,
+                font=dict(size=11),
+                title=dict(text='指标', font=dict(size=10, family="Microsoft YaHei"))
+            )
         )
         
-        filename = f"operational_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
-        filepath = os.path.join(self.charts_folder, filename)
-        fig.write_html(filepath)
+        fig.update_yaxes(automargin=True)
+        fig.update_xaxes(automargin=True)
         
-        return f"/static/charts/{filename}"
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        base_name = f"operational_{timestamp}"
+        
+        html_filename = f"{base_name}.html"
+        html_filepath = os.path.join(self.charts_folder, html_filename)
+        fig.write_html(html_filepath)
+        
+        png_filepath = self._save_chart_as_png(fig, base_name)
+        
+        return f"/static/charts/{html_filename}", png_filepath
     
-    def _generate_cashflow_chart(self, years: List[int], indicators: Dict) -> str:
+    def _generate_cashflow_chart(self, years: List[int], indicators: Dict) -> Tuple[str, str]:
         """生成现金流分析图"""
         fig = go.Figure()
         
@@ -315,36 +487,73 @@ class ChartGenerator:
         
         # 经营性净现金流（柱状图）
         fig.add_trace(
-            go.Bar(name='经营性净现金流(万元)', x=years, y=operating_cashflow,
-                   marker_color=self.color_palette[0]),
+            go.Bar(name='经营现金流', x=years, y=operating_cashflow,
+                   marker_color=self.color_palette[0],
+                   text=[f'{v:,.0f}' for v in operating_cashflow],
+                   textposition='outside',
+                   hovertemplate='<b>经营性净现金流</b><br>年份: %{x}<br>金额: %{y:,.2f}万元<extra></extra>'),
             secondary_y=False,
         )
         
         # 现金利润比（线图）
         fig.add_trace(
-            go.Scatter(name='现金利润比', x=years, y=cash_profit_ratio,
-                      mode='lines+markers', line=dict(color=self.color_palette[1], width=3)),
+            go.Scatter(name='利润比', x=years, y=cash_profit_ratio,
+                      mode='lines+markers', 
+                      line=dict(color=self.color_palette[1], width=3),
+                      marker=dict(size=10),
+                      hovertemplate='<b>现金利润比</b><br>年份: %{x}<br>比率: %{y:.2f}<extra></extra>'),
             secondary_y=True,
         )
         
-        # 设置y轴标题
-        fig.update_yaxes(title_text="现金流(万元)", secondary_y=False)
-        fig.update_yaxes(title_text="现金利润比", secondary_y=True)
-        
-        fig.update_layout(
-            title_text="现金流状况分析",
-            xaxis_title="年份",
-            height=400,
-            font=dict(family="Microsoft YaHei, Arial", size=12)
+        # 设置y轴标题和格式
+        fig.update_yaxes(
+            title_text="现金流(万元)", 
+            secondary_y=False,
+            automargin=True
+        )
+        fig.update_yaxes(
+            title_text="现金利润比", 
+            secondary_y=True,
+            automargin=True
         )
         
-        filename = f"cashflow_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
-        filepath = os.path.join(self.charts_folder, filename)
-        fig.write_html(filepath)
+        fig.update_layout(
+            title=dict(
+                text="现金流状况分析",
+                x=0.5,
+                xanchor='center',
+                font=dict(size=16)
+            ),
+            xaxis_title="年份",
+            height=520,
+            font=dict(family="Microsoft YaHei, Arial", size=12),
+            margin=dict(l=80, r=180, t=100, b=80),  # 增加右边距以容纳右Y轴和图例
+            legend=dict(
+                orientation="v",
+                yanchor="top",
+                y=0.98,
+                xanchor="left",
+                x=1.05,  # 放在右Y轴外侧
+                bgcolor='rgba(255,255,255,0.95)',
+                bordercolor='rgba(0,0,0,0.3)',
+                borderwidth=1,
+                font=dict(size=11)
+            ),
+            hovermode='x'
+        )
         
-        return f"/static/charts/{filename}"
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        base_name = f"cashflow_{timestamp}"
+        
+        html_filename = f"{base_name}.html"
+        html_filepath = os.path.join(self.charts_folder, html_filename)
+        fig.write_html(html_filepath)
+        
+        png_filepath = self._save_chart_as_png(fig, base_name)
+        
+        return f"/static/charts/{html_filename}", png_filepath
     
-    def _generate_risk_radar_chart(self, dimension_analyses: Dict) -> str:
+    def _generate_risk_radar_chart(self, dimension_analyses: Dict) -> Tuple[str, str]:
         """生成风险评估雷达图"""
         # 风险维度和对应的分数
         dimensions = ['盈利风险', '偿债风险', '运营风险', '现金流风险']
@@ -381,18 +590,28 @@ class ChartGenerator:
                     tickvals=[30, 60, 90],
                     ticktext=['高风险', '中等风险', '低风险']
                 )),
-            title="财务风险评估雷达图",
-            height=500,
-            font=dict(family="Microsoft YaHei, Arial", size=12)
+            title=dict(
+                text="财务风险评估雷达图",
+                x=0.5,
+                xanchor='center'
+            ),
+            height=600,
+            font=dict(family="Microsoft YaHei, Arial", size=12),
+            margin=dict(l=100, r=100, t=100, b=80)
         )
         
-        filename = f"risk_radar_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
-        filepath = os.path.join(self.charts_folder, filename)
-        fig.write_html(filepath)
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        base_name = f"risk_radar_{timestamp}"
         
-        return f"/static/charts/{filename}"
+        html_filename = f"{base_name}.html"
+        html_filepath = os.path.join(self.charts_folder, html_filename)
+        fig.write_html(html_filepath)
+        
+        png_filepath = self._save_chart_as_png(fig, base_name)
+        
+        return f"/static/charts/{html_filename}", png_filepath
     
-    def _generate_health_dashboard(self, indicators: Dict, dimension_analyses: Dict) -> str:
+    def _generate_health_dashboard(self, indicators: Dict, dimension_analyses: Dict) -> Tuple[str, str]:
         """生成财务健康度仪表盘"""
         fig = make_subplots(
             rows=2, cols=2,
@@ -437,16 +656,27 @@ class ChartGenerator:
                 row=positions[i][0], col=positions[i][1])
         
         fig.update_layout(
-            title_text="财务健康度仪表盘",
-            height=600,
-            font=dict(family="Microsoft YaHei, Arial", size=10)
+            title=dict(
+                text="财务健康度仪表盘",
+                x=0.5,
+                xanchor='center'
+            ),
+            height=700,
+            font=dict(family="Microsoft YaHei, Arial", size=10),
+            margin=dict(l=50, r=50, t=100, b=50),
+            showlegend=False
         )
         
-        filename = f"health_dashboard_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
-        filepath = os.path.join(self.charts_folder, filename)
-        fig.write_html(filepath)
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        base_name = f"health_dashboard_{timestamp}"
         
-        return f"/static/charts/{filename}"
+        html_filename = f"{base_name}.html"
+        html_filepath = os.path.join(self.charts_folder, html_filename)
+        fig.write_html(html_filepath)
+        
+        png_filepath = self._save_chart_as_png(fig, base_name)
+        
+        return f"/static/charts/{html_filename}", png_filepath
     
     def _extract_risk_level(self, analysis_text: str) -> str:
         """从分析文本中提取风险等级"""

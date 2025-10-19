@@ -10,6 +10,8 @@ class Config:
     # 文件上传配置
     UPLOAD_FOLDER = 'uploads'
     EXPORT_FOLDER = 'exports'
+    DATA_FOLDER = 'data'
+    STATIC_FOLDER = 'static'
     ALLOWED_EXTENSIONS = {'xlsx', 'xls'}
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB
     
@@ -21,7 +23,8 @@ class Config:
     # 确保必要的目录存在
     @staticmethod
     def init_app():
-        for folder in [Config.UPLOAD_FOLDER, Config.EXPORT_FOLDER]:
+        for folder in [Config.UPLOAD_FOLDER, Config.EXPORT_FOLDER, Config.DATA_FOLDER, 
+                      os.path.join(Config.STATIC_FOLDER, 'charts')]:
             if not os.path.exists(folder):
                 os.makedirs(folder)
 

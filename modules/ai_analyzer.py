@@ -320,5 +320,201 @@ class AIAnalyzer:
 """
         
         return assessment
+    
+    def answer_question(self,
+                       question: str,
+                       report_data: Dict,
+                       company_info: Dict[str, any]) -> str:
+        """
+        回答用户关于财务报告的问题
+        
+        Args:
+            question: 用户的问题
+            report_data: 完整的报告数据
+            company_info: 企业基本信息
+            
+        Returns:
+            str: AI的回答
+        """
+        
+        if not Config.OPENAI_API_KEY:
+            return self._get_default_answer(question, report_data, company_info)
+        
+        try:
+            # 构建上下文信息
+            context = self._build_report_context(report_data, company_info)
+            
+            # 构建提示词
+            prompt = f"""你是一位专业的财务分析师助手，现在需要回答用户关于以下财务报告的问题。
+
+企业基本信息：
+{context['basic_info']}
+
+总体风险评估：
+{context['overall_assessment']}
+
+各维度风险分析：
+{context['dimension_analyses']}
+
+主要财务指标：
+{context['key_indicators']}
+
+用户问题：{question}
+
+请基于报告数据给出专业、准确的回答。要求：
+1. 回答要简洁明了，突出重点
+2. 如果问题涉及具体数据，请引用报告中的实际数据
+3. 保持专业的财务分析语气
+4. 如果报告中没有相关信息，请说明无法从当前报告获取该信息
+5. 控制在200字以内
+"""
+            
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": "你是一位专业的财务分析师助手，擅长解读财务报告和回答财务相关问题。"},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.7,
+                max_tokens=500
+            )
+            
+            answer = response.choices[0].message.content.strip()
+            return answer
+            
+        except Exception as e:
+            print(f"AI回答问题失败: {str(e)}")
+            return self._get_default_answer(question, report_data, company_info)
+    
+    def _build_report_context(self, report_data: Dict, company_info: Dict[str, any]) -> Dict[str, str]:
+        """构建报告上下文信息"""
+        
+        context = {}
+        
+        # 基本信息
+        basic_info = []
+        for key, value in company_info.items():
+            basic_info.append(f"- {key}: {value}")
+        context['basic_info'] = '\n'.join(basic_info)
+        
+        # 总体评估
+        context['overall_assessment'] = report_data.get('overall_assessment', '暂无总体评估')
+        
+        # 各维度分析
+        dimension_analyses = []
+        for dimension, analysis in report_data.get('dimension_analyses', {}).items():
+            dimension_analyses.append(f"【{dimension}】\n{analysis}")
+        context['dimension_analyses'] = '\n\n'.join(dimension_analyses)
+        
+        # 主要指标
+        indicators_info = []
+        years = report_data.get('years', [])
+        if years:
+            current_year = years[0]
+            all_indicators = report_data.get('indicators', {}).get(current_year, {})
+            
+            for dimension, indicators in all_indicators.items():
+                indicators_info.append(f"\n{dimension}:")
+                for indicator_name, value in indicators.items():
+                    if value is not None:
+                        unit = '%' if indicator_name in ['净利润率', '毛利率', '净资产收益率', '资产负债率'] else ''
+                        if indicator_name in ['经营性净现金流', '现金净增加额']:
+                            indicators_info.append(f"  - {indicator_name}: {value:,.2f} 万元")
+                        else:
+                            indicators_info.append(f"  - {indicator_name}: {value:.2f}{unit}")
+                    else:
+                        indicators_info.append(f"  - {indicator_name}: 数据缺失")
+        
+        context['key_indicators'] = '\n'.join(indicators_info) if indicators_info else '暂无指标数据'
+        
+        return context
+    
+    def _get_default_answer(self, question: str, report_data: Dict, company_info: Dict[str, any]) -> str:
+        """生成默认答案（当API不可用时）"""
+        
+        question_lower = question.lower()
+        
+        # 根据关键词匹配回答
+        if any(keyword in question_lower for keyword in ['风险', '问题', '隐患']):
+            # 风险相关问题
+            dimension_analyses = report_data.get('dimension_analyses', {})
+            high_risk_areas = []
+            for dimension, analysis in dimension_analyses.items():
+                if '高风险' in analysis or '较差' in analysis:
+                    high_risk_areas.append(dimension)
+            
+            if high_risk_areas:
+                return f"根据报告分析，该企业的主要风险集中在：{' 、'.join(high_risk_areas)}。建议重点关注这些领域，采取针对性的改善措施。详细分析请查看报告中各维度的具体评估。"
+            else:
+                return "根据报告分析，该企业整体财务风险在可控范围内。建议继续保持良好的财务管理，定期监测各项指标变化。"
+        
+        elif any(keyword in question_lower for keyword in ['盈利', '利润', '赚钱']):
+            # 盈利能力相关问题
+            years = report_data.get('years', [])
+            if years:
+                current_year = years[0]
+                indicators = report_data.get('indicators', {}).get(current_year, {}).get('盈利风险', {})
+                net_margin = indicators.get('净利润率')
+                
+                if net_margin is not None:
+                    if net_margin < 0:
+                        return f"该企业{current_year}年净利润率为{net_margin:.2f}%，处于亏损状态。建议深入分析亏损原因，优化成本结构，提升盈利能力。"
+                    elif net_margin < 5:
+                        return f"该企业{current_year}年净利润率为{net_margin:.2f}%，盈利能力偏弱。建议关注成本控制和收入增长策略。"
+                    else:
+                        return f"该企业{current_year}年净利润率为{net_margin:.2f}%，盈利能力表现良好。建议继续保持优势，并寻找新的增长点。"
+            
+            return "盈利能力相关的详细分析请查看报告中的盈利风险维度部分。"
+        
+        elif any(keyword in question_lower for keyword in ['现金流', '资金', '流动性']):
+            # 现金流相关问题
+            years = report_data.get('years', [])
+            if years:
+                current_year = years[0]
+                indicators = report_data.get('indicators', {}).get(current_year, {}).get('现金流风险', {})
+                operating_cf = indicators.get('经营性净现金流')
+                
+                if operating_cf is not None:
+                    if operating_cf < 0:
+                        return f"该企业{current_year}年经营性净现金流为{operating_cf:,.2f}万元，为负值，存在资金压力。建议优化应收账款管理，加快资金回笼。"
+                    else:
+                        return f"该企业{current_year}年经营性净现金流为{operating_cf:,.2f}万元，现金流状况整体稳健。建议继续保持良好的资金管理。"
+            
+            return "现金流相关的详细分析请查看报告中的现金流风险维度部分。"
+        
+        elif any(keyword in question_lower for keyword in ['偿债', '负债', '还款']):
+            # 偿债能力相关问题
+            years = report_data.get('years', [])
+            if years:
+                current_year = years[0]
+                indicators = report_data.get('indicators', {}).get(current_year, {}).get('偿债风险', {})
+                asset_liability = indicators.get('资产负债率')
+                
+                if asset_liability is not None:
+                    if asset_liability > 70:
+                        return f"该企业{current_year}年资产负债率为{asset_liability:.2f}%，负债水平较高，偿债压力较大。建议优化资本结构，控制负债规模。"
+                    elif asset_liability > 50:
+                        return f"该企业{current_year}年资产负债率为{asset_liability:.2f}%，负债水平适中。建议持续关注偿债能力指标。"
+                    else:
+                        return f"该企业{current_year}年资产负债率为{asset_liability:.2f}%，负债水平健康，偿债能力较强。"
+            
+            return "偿债能力相关的详细分析请查看报告中的偿债风险维度部分。"
+        
+        elif any(keyword in question_lower for keyword in ['建议', '改善', '优化', '提升']):
+            # 改善建议相关问题
+            overall = report_data.get('overall_assessment', '')
+            if '建议' in overall:
+                # 提取建议部分
+                suggestions_start = overall.find('建议')
+                if suggestions_start != -1:
+                    suggestions = overall[suggestions_start:]
+                    return f"根据报告分析，给出以下建议：\n{suggestions[:200]}"
+            
+            return "改善建议请参考报告中的总体风险评估和各维度分析部分。主要包括：定期监测财务指标、针对高风险领域制定改善措施、保持良好的财务管理规范等。"
+        
+        else:
+            # 通用回答
+            company_name = company_info.get('企业名称', '该企业')
+            return f"关于{company_name}的这个问题，建议您查看报告中的相关章节。报告包含了企业基本信息、总体风险评估、分维度风险分析（盈利、偿债、运营、现金流）以及详细的财务数据。如有具体问题，可以询问特定维度的情况。"
 
 

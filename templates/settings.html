@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人设置 - AIFI 智能财报系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --sidebar-bg: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+        }
+        
+        /* 侧边栏样式 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: var(--sidebar-bg);
+            padding: 20px 0;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .sidebar-brand {
+            padding: 20px 25px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sidebar-menu li {
+            margin: 5px 15px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+        
+        .sidebar-menu i {
+            font-size: 1.2rem;
+            margin-right: 12px;
+            width: 25px;
+        }
+        
+        /* 顶部导航栏 */
+        .top-navbar {
+            position: fixed;
+            left: 240px;
+            right: 0;
+            top: 0;
+            height: 65px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 999;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .user-info-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--sidebar-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* 主内容区域 */
+        .main-content {
+            margin-left: 240px;
+            margin-top: 65px;
+            padding: 30px;
+            min-height: calc(100vh - 65px);
+        }
+        
+        /* 设置卡片 */
+        .settings-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .settings-card {
+            background: white;
+            border-radius: 15px;
+            padding: 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .card-header i {
+            font-size: 2rem;
+        }
+        
+        .card-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 30px;
+        }
+        
+        /* 个人信息展示 */
+        .profile-section {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        
+        .profile-avatar-section {
+            text-align: center;
+        }
+        
+        .large-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--sidebar-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .avatar-role-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .badge-admin {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .badge-user {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .profile-info-section {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .info-row {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .info-label i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .info-value {
+            color: #2c3e50;
+            font-size: 1.05rem;
+        }
+        
+        /* 表单样式 */
+        .form-section {
+            max-width: 600px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .form-label i {
+            color: var(--primary-color);
+            margin-right: 5px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        /* 编辑模式 */
+        .edit-mode {
+            display: none;
+        }
+        
+        .edit-mode.active {
+            display: block;
+        }
+        
+        .view-mode.hidden {
+            display: none;
+        }
+        
+        /* 密码强度指示器 */
+        .password-strength {
+            margin-top: 5px;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .password-strength.active {
+            display: block;
+        }
+        
+        .strength-bar {
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .strength-weak {
+            width: 33%;
+            background: #e74c3c;
+        }
+        
+        .strength-medium {
+            width: 66%;
+            background: #f39c12;
+        }
+        
+        .strength-strong {
+            width: 100%;
+            background: #27ae60;
+        }
+        
+        .strength-text {
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .strength-text.active {
+            display: block;
+        }
+        
+        /* 提示信息 */
+        .help-text {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        /* 分隔线 */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+            margin: 30px 0;
+        }
+        
+        /* 警告框 */
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+        
+        .warning-box i {
+            color: #f39c12;
+            font-size: 1.3rem;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧侧边栏 -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <i class="bi bi-graph-up-arrow"></i> AIFI 系统
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="/">
+                    <i class="bi bi-house-door"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <i class="bi bi-cloud-upload"></i>
+                    <span>上传数据</span>
+                </a>
+            </li>
+            <li>
+                <a href="/reports">
+                    <i class="bi bi-file-text"></i>
+                    <span>报告列表</span>
+                </a>
+            </li>
+            {% if user.role == 'admin' %}
+            <li>
+                <a href="/admin/users">
+                    <i class="bi bi-people"></i>
+                    <span>用户管理</span>
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="/settings" class="active">
+                    <i class="bi bi-gear"></i>
+                    <span>个人设置</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div style="position: absolute; bottom: 20px; left: 0; right: 0; padding: 0 15px;">
+            <a href="/logout" style="display: block;">
+                <div style="display: flex; align-items: center; padding: 12px 15px; color: rgba(255, 255, 255, 0.8); text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
+                    <i class="bi bi-box-arrow-right" style="font-size: 1.2rem; margin-right: 12px; width: 25px;"></i>
+                    <span>退出登录</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- 顶部导航栏 -->
+    <div class="top-navbar">
+        <div class="page-title">
+            <i class="bi bi-gear"></i> 个人设置
+        </div>
+        <div class="user-info-box">
+            <span class="text-muted">
+                {% if user.role == 'admin' %}
+                <i class="bi bi-shield-check"></i> 管理员: <strong>{{ user.fullname }}</strong>
+                {% else %}
+                <i class="bi bi-person-circle"></i> <strong>{{ user.fullname }}</strong>
+                {% endif %}
+            </span>
+            <div class="user-avatar">
+                {{ user.fullname[0] if user.fullname else 'U' }}
+            </div>
+        </div>
+    </div>
+
+    <!-- 主内容区域 -->
+    <div class="main-content">
+        <div class="settings-container">
+            <!-- 个人信息卡片 -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <i class="bi bi-person-circle"></i>
+                    <h3>个人信息</h3>
+                </div>
+                <div class="card-body">
+                    <!-- 查看模式 -->
+                    <div class="view-mode" id="viewMode">
+                        <div class="profile-section">
+                            <div class="profile-avatar-section">
+                                <div class="large-avatar">
+                                    {{ user_info.fullname[0] if user_info.fullname else 'U' }}
+                                </div>
+                                <div>
+                                    <div class="avatar-role-badge {{ 'badge-admin' if user_info.role == 'admin' else 'badge-user' }}">
+                                        <i class="bi bi-{{ 'shield-check' if user_info.role == 'admin' else 'person' }}"></i>
+                                        {{ '系统管理员' if user_info.role == 'admin' else '普通用户' }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="profile-info-section">
+                                <div class="info-row">
+                                    <div class="info-label">
+                                        <i class="bi bi-person"></i>
+                                        用户名
+                                    </div>
+                                    <div class="info-value">{{ user_info.username }}</div>
+                                </div>
+                                
+                                <div class="info-row">
+                                    <div class="info-label">
+                                        <i class="bi bi-person-badge"></i>
+                                        姓名
+                                    </div>
+                                    <div class="info-value">{{ user_info.fullname }}</div>
+                                </div>
+                                
+                                <div class="info-row">
+                                    <div class="info-label">
+                                        <i class="bi bi-envelope"></i>
+                                        邮箱
+                                    </div>
+                                    <div class="info-value">{{ user_info.email }}</div>
+                                </div>
+                                
+                                <div class="info-row">
+                                    <div class="info-label">
+                                        <i class="bi bi-shield"></i>
+                                        角色
+                                    </div>
+                                    <div class="info-value">
+                                        <span class="avatar-role-badge {{ 'badge-admin' if user_info.role == 'admin' else 'badge-user' }}" style="padding: 5px 15px; font-size: 0.85rem;">
+                                            <i class="bi bi-{{ 'shield-check' if user_info.role == 'admin' else 'person' }}"></i>
+                                            {{ '管理员' if user_info.role == 'admin' else '普通用户' }}
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-row">
+                                    <div class="info-label">
+                                        <i class="bi bi-calendar"></i>
+                                        注册时间
+                                    </div>
+                                    <div class="info-value">{{ user_info.created_at }}</div>
+                                </div>
+                                
+                                <div class="info-row">
+                                    <div class="info-label">
+                                        <i class="bi bi-check-circle"></i>
+                                        账号状态
+                                    </div>
+                                    <div class="info-value">
+                                        <span style="color: {{ '#27ae60' if user_info.status == 'active' else '#e74c3c' }}; font-weight: 600;">
+                                            <i class="bi bi-{{ 'check-circle-fill' if user_info.status == 'active' else 'x-circle-fill' }}"></i>
+                                            {{ '正常' if user_info.status == 'active' else '已禁用' }}
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 20px;">
+                                    <button class="btn btn-primary" onclick="toggleEditMode()">
+                                        <i class="bi bi-pencil"></i> 编辑资料
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 编辑模式 -->
+                    <div class="edit-mode" id="editMode">
+                        <div class="form-section">
+                            <form id="profileForm">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="bi bi-person"></i> 用户名
+                                    </label>
+                                    <input type="text" class="form-control" value="{{ user_info.username }}" disabled>
+                                    <div class="help-text">用户名不可修改</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="bi bi-person-badge"></i> 姓名 *
+                                    </label>
+                                    <input type="text" class="form-control" id="editFullname" value="{{ user_info.fullname }}" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="bi bi-envelope"></i> 邮箱 *
+                                    </label>
+                                    <input type="email" class="form-control" id="editEmail" value="{{ user_info.email }}" required>
+                                </div>
+                                
+                                <div class="divider"></div>
+                                
+                                <div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-check-circle"></i> 保存修改
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" onclick="toggleEditMode()">
+                                        <i class="bi bi-x-circle"></i> 取消
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 修改密码卡片 -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <i class="bi bi-key"></i>
+                    <h3>修改密码</h3>
+                </div>
+                <div class="card-body">
+                    <div class="warning-box">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        <div>
+                            <strong>安全提示：</strong>
+                            <ul style="margin: 5px 0 0 0; padding-left: 20px;">
+                                <li>密码长度至少为6位</li>
+                                <li>建议使用字母、数字和特殊字符的组合</li>
+                                <li>不要使用过于简单的密码</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <form id="passwordForm">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="bi bi-lock"></i> 原密码 *
+                                </label>
+                                <input type="password" class="form-control" id="oldPassword" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="bi bi-lock-fill"></i> 新密码 *
+                                </label>
+                                <input type="password" class="form-control" id="newPassword" required>
+                                <div class="password-strength" id="passwordStrength">
+                                    <div class="strength-bar" id="strengthBar"></div>
+                                </div>
+                                <div class="strength-text" id="strengthText"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="bi bi-lock-fill"></i> 确认新密码 *
+                                </label>
+                                <input type="password" class="form-control" id="confirmPassword" required>
+                            </div>
+                            
+                            <div class="divider"></div>
+                            
+                            <div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-check-circle"></i> 修改密码
+                                </button>
+                                <button type="reset" class="btn btn-secondary">
+                                    <i class="bi bi-arrow-counterclockwise"></i> 重置
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 切换编辑模式
+        function toggleEditMode() {
+            const viewMode = document.getElementById('viewMode');
+            const editMode = document.getElementById('editMode');
+            
+            viewMode.classList.toggle('hidden');
+            editMode.classList.toggle('active');
+        }
+        
+        // 更新个人资料
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullname = document.getElementById('editFullname').value;
+            const email = document.getElementById('editEmail').value;
+            
+            fetch('/api/settings/update_profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ fullname, email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert(data.message, 'success');
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    showAlert(data.error, 'danger');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('更新失败，请稍后重试', 'danger');
+            });
+        });
+        
+        // 密码强度检测
+        document.getElementById('newPassword').addEventListener('input', function(e) {
+            const password = e.target.value;
+            const strengthBar = document.getElementById('strengthBar');
+            const strengthText = document.getElementById('strengthText');
+            const strengthContainer = document.getElementById('passwordStrength');
+            
+            if (password.length === 0) {
+                strengthContainer.classList.remove('active');
+                strengthText.classList.remove('active');
+                return;
+            }
+            
+            strengthContainer.classList.add('active');
+            strengthText.classList.add('active');
+            
+            let strength = 0;
+            
+            // 长度
+            if (password.length >= 6) strength++;
+            if (password.length >= 10) strength++;
+            
+            // 包含数字
+            if (/\d/.test(password)) strength++;
+            
+            // 包含小写字母
+            if (/[a-z]/.test(password)) strength++;
+            
+            // 包含大写字母
+            if (/[A-Z]/.test(password)) strength++;
+            
+            // 包含特殊字符
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+            
+            // 更新强度显示
+            strengthBar.className = 'strength-bar';
+            if (strength <= 2) {
+                strengthBar.classList.add('strength-weak');
+                strengthText.textContent = '弱密码';
+                strengthText.style.color = '#e74c3c';
+            } else if (strength <= 4) {
+                strengthBar.classList.add('strength-medium');
+                strengthText.textContent = '中等强度';
+                strengthText.style.color = '#f39c12';
+            } else {
+                strengthBar.classList.add('strength-strong');
+                strengthText.textContent = '强密码';
+                strengthText.style.color = '#27ae60';
+            }
+        });
+        
+        // 修改密码
+        document.getElementById('passwordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const oldPassword = document.getElementById('oldPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (newPassword !== confirmPassword) {
+                showAlert('两次输入的新密码不一致', 'warning');
+                return;
+            }
+            
+            if (newPassword.length < 6) {
+                showAlert('新密码长度至少为6位', 'warning');
+                return;
+            }
+            
+            fetch('/api/settings/change_password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ old_password: oldPassword, new_password: newPassword, confirm_password: confirmPassword })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert(data.message, 'success');
+                    document.getElementById('passwordForm').reset();
+                    document.getElementById('passwordStrength').classList.remove('active');
+                    document.getElementById('strengthText').classList.remove('active');
+                } else {
+                    showAlert(data.error, 'danger');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('修改失败，请稍后重试', 'danger');
+            });
+        });
+        
+        // 显示提示信息
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3`;
+            alertDiv.style.zIndex = '9999';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
+
+

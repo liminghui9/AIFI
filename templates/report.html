@@ -8,48 +8,139 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --sidebar-bg: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
             --success-color: #27ae60;
             --warning-color: #f39c12;
             --danger-color: #e74c3c;
+            --info-color: #3498db;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
             background: #f5f7fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
         }
         
-        .navbar {
+        /* 侧边栏样式 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: var(--sidebar-bg);
+            padding: 20px 0;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .sidebar-brand {
+            padding: 20px 25px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sidebar-menu li {
+            margin: 5px 15px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+        
+        .sidebar-menu i {
+            font-size: 1.2rem;
+            margin-right: 12px;
+            width: 25px;
+        }
+        
+        /* 顶部导航栏 */
+        .top-navbar {
+            position: fixed;
+            left: 240px;
+            right: 0;
+            top: 0;
+            height: 65px;
             background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 999;
         }
         
-        .main-container {
-            padding: 30px 0;
+        .page-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .top-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        /* 主内容区域 */
+        .main-content {
+            margin-left: 240px;
+            margin-top: 65px;
+            padding: 30px;
+            min-height: calc(100vh - 65px);
         }
         
         .report-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 30px;
             margin-bottom: 25px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
         
         .report-header {
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 35px 20px;
+            background: var(--sidebar-bg);
             color: white;
-            border-radius: 10px;
-            margin-bottom: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
         
         .report-header h1 {
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 10px;
+            font-size: 1.8rem;
         }
         
         .info-table {
@@ -128,15 +219,41 @@
         }
         
         .btn-export {
-            padding: 10px 25px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 8px;
             font-weight: 500;
             transition: all 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
         }
         
         .btn-export:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-outline-secondary {
+            border: 2px solid #6c757d;
+            color: #6c757d;
+            background: transparent;
+        }
+        
+        .btn-outline-secondary:hover {
+            background: #6c757d;
+            color: white;
         }
         
         .section-title {
@@ -240,38 +357,339 @@
             border-radius: 0 8px 8px 8px;
             padding: 20px;
         }
+        
+        /* AI对话插件样式 */
+        .ai-chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .ai-chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+        }
+        
+        .ai-chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 400px;
+            height: 550px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1002;
+            overflow: hidden;
+        }
+        
+        .ai-chat-window.active {
+            display: flex;
+        }
+        
+        .ai-chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .ai-chat-header h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .ai-chat-close {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .ai-chat-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .ai-chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+        
+        .ai-message {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .ai-message.user {
+            flex-direction: row-reverse;
+        }
+        
+        .ai-message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .ai-message.bot .ai-message-avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .ai-message.user .ai-message-avatar {
+            background: #e0e0e0;
+            color: #666;
+        }
+        
+        .ai-message-content {
+            max-width: 75%;
+            padding: 12px 15px;
+            border-radius: 12px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        
+        .ai-message.bot .ai-message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .ai-message.user .ai-message-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .ai-message-time {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        .ai-chat-input-area {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .ai-chat-input-box {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .ai-chat-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+        
+        .ai-chat-input:focus {
+            border-color: var(--primary-color);
+        }
+        
+        .ai-chat-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .ai-chat-send:hover {
+            transform: scale(1.1);
+        }
+        
+        .ai-chat-send:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .ai-typing-indicator {
+            display: none;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 12px;
+            width: fit-content;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .ai-typing-indicator.active {
+            display: block;
+        }
+        
+        .ai-typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #667eea;
+            margin-right: 5px;
+            animation: typing 1.4s infinite;
+        }
+        
+        .ai-typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .ai-typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .ai-quick-questions {
+            padding: 10px 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .ai-quick-question {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .ai-quick-question:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <i class="bi bi-graph-up-arrow"></i> <strong>AIFI 智能财报系统</strong>
-            </a>
-            <div class="d-flex align-items-center">
-                {% if user and user.fullname %}
-                <span class="me-3 text-muted">
-                    <i class="bi bi-person-circle"></i> {{ user.fullname }}
-                </span>
-                {% endif %}
-                <a href="/export/{{ report_id }}/word" class="btn btn-primary btn-export me-2">
-                    <i class="bi bi-file-earmark-word"></i> 导出Word
-                </a>
-                <a href="/export/{{ report_id }}/pdf" class="btn btn-danger btn-export me-2">
-                    <i class="bi bi-file-earmark-pdf"></i> 导出PDF
-                </a>
-                <a href="/" class="btn btn-secondary btn-export me-2">
-                    <i class="bi bi-house"></i> 返回首页
-                </a>
-                <a href="/logout" class="btn btn-outline-secondary btn-export">
-                    <i class="bi bi-box-arrow-right"></i> 退出
-                </a>
-            </div>
+    <!-- 左侧侧边栏 -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <i class="bi bi-graph-up-arrow"></i> AIFI 系统
         </div>
-    </nav>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="/">
+                    <i class="bi bi-house-door"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="#upload" class="active">
+                    <i class="bi bi-file-text"></i>
+                    <span>查看报告</span>
+                </a>
+            </li>
+            <li>
+                <a href="/reports">
+                    <i class="bi bi-folder"></i>
+                    <span>报告列表</span>
+                </a>
+            </li>
+            <li>
+                <a href="#stats">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>数据统计</span>
+                </a>
+            </li>
+            <li>
+                <a href="#settings">
+                    <i class="bi bi-gear"></i>
+                    <span>系统设置</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div style="position: absolute; bottom: 20px; left: 0; right: 0; padding: 0 15px;">
+            <a href="/logout" class="sidebar-menu" style="display: block;">
+                <div style="display: flex; align-items: center; padding: 12px 15px; color: rgba(255, 255, 255, 0.8); text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
+                    <i class="bi bi-box-arrow-right" style="font-size: 1.2rem; margin-right: 12px; width: 25px;"></i>
+                    <span>退出登录</span>
+                </div>
+            </a>
+        </div>
+    </div>
 
-    <div class="container main-container">
+    <!-- 顶部导航栏 -->
+    <div class="top-navbar">
+        <div class="page-title">
+            <i class="bi bi-file-text"></i> 财务分析报告
+        </div>
+        <div class="top-actions">
+            {% if user and user.fullname %}
+            <span class="text-muted me-3">
+                <i class="bi bi-person-circle"></i> {{ user.fullname }}
+            </span>
+            {% endif %}
+            <a href="/export/{{ report_id }}/word" class="btn btn-primary btn-export">
+                <i class="bi bi-file-earmark-word"></i> Word
+            </a>
+            <a href="/export/{{ report_id }}/pdf" class="btn btn-danger btn-export">
+                <i class="bi bi-file-earmark-pdf"></i> PDF
+            </a>
+            <a href="/" class="btn btn-secondary btn-export">
+                <i class="bi bi-house"></i> 首页
+            </a>
+        </div>
+    </div>
+
+    <!-- 主内容区域 -->
+    <div class="main-content">
         <!-- 报告标题 -->
         <div class="report-header">
             <h1><i class="bi bi-file-text"></i> 企业财务分析报告</h1>
@@ -670,13 +1088,206 @@
                 系统不对分析结果的准确性、完整性或稳定性作出保证。
             </p>
         </div>
+        
+        <!-- 页脚 -->
+        <div class="text-center py-4 text-muted">
+            <small>&copy; 2024 AIFI 智能财报系统 v1.0</small>
+        </div>
     </div>
 
-    <footer class="text-center py-4 text-muted">
-        <p>&copy; 2024 AIFI 智能财报系统 v1.0（演示版）</p>
-    </footer>
+    <!-- AI对话插件 -->
+    <button class="ai-chat-button" id="aiChatButton">
+        <i class="bi bi-robot"></i>
+    </button>
+    
+    <div class="ai-chat-window" id="aiChatWindow">
+        <div class="ai-chat-header">
+            <h4>
+                <i class="bi bi-robot"></i>
+                AI 财务助手
+            </h4>
+            <button class="ai-chat-close" id="aiChatClose">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+        
+        <div class="ai-quick-questions" id="quickQuestions">
+            <div class="ai-quick-question" data-question="这份报告的主要风险是什么？">主要风险</div>
+            <div class="ai-quick-question" data-question="企业的盈利能力如何？">盈利能力</div>
+            <div class="ai-quick-question" data-question="现金流状况怎么样？">现金流状况</div>
+            <div class="ai-quick-question" data-question="有哪些改善建议？">改善建议</div>
+        </div>
+        
+        <div class="ai-chat-messages" id="aiChatMessages">
+            <div class="ai-message bot">
+                <div class="ai-message-avatar">
+                    <i class="bi bi-robot"></i>
+                </div>
+                <div>
+                    <div class="ai-message-content">
+                        您好！我是AI财务助手，可以帮您解读这份财务报告。您可以问我关于企业财务状况、风险评估、指标分析等问题。
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ai-chat-input-area">
+            <div class="ai-chat-input-box">
+                <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="输入您的问题...">
+                <button class="ai-chat-send" id="aiChatSend">
+                    <i class="bi bi-send-fill"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // AI聊天插件功能
+        const chatButton = document.getElementById('aiChatButton');
+        const chatWindow = document.getElementById('aiChatWindow');
+        const chatClose = document.getElementById('aiChatClose');
+        const chatMessages = document.getElementById('aiChatMessages');
+        const chatInput = document.getElementById('aiChatInput');
+        const chatSend = document.getElementById('aiChatSend');
+        const quickQuestions = document.querySelectorAll('.ai-quick-question');
+        
+        // 报告ID
+        const reportId = '{{ report_id }}';
+        
+        // 打开/关闭聊天窗口
+        chatButton.addEventListener('click', function() {
+            chatWindow.classList.toggle('active');
+            if (chatWindow.classList.contains('active')) {
+                chatInput.focus();
+            }
+        });
+        
+        chatClose.addEventListener('click', function() {
+            chatWindow.classList.remove('active');
+        });
+        
+        // 快捷问题点击
+        quickQuestions.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const question = this.getAttribute('data-question');
+                chatInput.value = question;
+                sendMessage();
+            });
+        });
+        
+        // 发送消息
+        chatSend.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // 显示用户消息
+            addMessage(message, 'user');
+            chatInput.value = '';
+            
+            // 禁用输入
+            chatInput.disabled = true;
+            chatSend.disabled = true;
+            
+            // 显示输入指示器
+            showTypingIndicator();
+            
+            // 发送到后端
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    report_id: reportId,
+                    question: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideTypingIndicator();
+                if (data.success) {
+                    addMessage(data.answer, 'bot');
+                } else {
+                    addMessage('抱歉，我暂时无法回答这个问题。错误：' + (data.error || '未知错误'), 'bot');
+                }
+            })
+            .catch(error => {
+                hideTypingIndicator();
+                addMessage('抱歉，连接服务器时出现错误，请稍后重试。', 'bot');
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                // 恢复输入
+                chatInput.disabled = false;
+                chatSend.disabled = false;
+                chatInput.focus();
+            });
+        }
+        
+        function addMessage(content, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'ai-message ' + type;
+            
+            const time = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+            
+            if (type === 'bot') {
+                messageDiv.innerHTML = `
+                    <div class="ai-message-avatar">
+                        <i class="bi bi-robot"></i>
+                    </div>
+                    <div>
+                        <div class="ai-message-content">${content}</div>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="ai-message-avatar">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <div>
+                        <div class="ai-message-content">${content}</div>
+                    </div>
+                `;
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function showTypingIndicator() {
+            const indicator = document.createElement('div');
+            indicator.id = 'typingIndicator';
+            indicator.className = 'ai-message bot';
+            indicator.innerHTML = `
+                <div class="ai-message-avatar">
+                    <i class="bi bi-robot"></i>
+                </div>
+                <div class="ai-typing-indicator active">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            `;
+            chatMessages.appendChild(indicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+    </script>
 </body>
 </html>
 
