@@ -120,7 +120,7 @@ class ChartGenerator:
             base_filename: 基础文件名（不含扩展名）
             
         Returns:
-            str: PNG文件的完整路径
+            str: PNG文件的绝对路径
         """
         png_filename = f"{base_filename}.png"
         png_filepath = os.path.join(self.charts_folder, png_filename)
@@ -134,7 +134,8 @@ class ChartGenerator:
                 scale=2  # 提高分辨率
             )
             print(f"✓ 使用kaleido生成PNG: {png_filename}")
-            return png_filepath
+            # 返回绝对路径，供PDF生成使用
+            return os.path.abspath(png_filepath)
             
         except Exception as e1:
             print(f"⚠ PNG导出失败: {str(e1)}")
@@ -143,7 +144,8 @@ class ChartGenerator:
             try:
                 print(f"→ 尝试使用matplotlib生成备用图表...")
                 self._create_static_chart_fallback(fig, png_filepath)
-                return png_filepath
+                # 返回绝对路径
+                return os.path.abspath(png_filepath)
             except Exception as e2:
                 print(f"✗ 所有方法都失败: {str(e2)}")
                 return None
@@ -563,8 +565,18 @@ class ChartGenerator:
         risk_levels = []
         
         for dimension in dimensions:
-            analysis = dimension_analyses.get(dimension, {})
-            risk_level = analysis.get('risk_level', '中等风险')
+            # dimension_analyses 的值是字符串（AI分析文字），需要从中提取风险等级
+            analysis_text = dimension_analyses.get(dimension, '')
+            
+            # 从分析文字中提取风险等级
+            risk_level = '中等风险'  # 默认值
+            if '高风险' in analysis_text:
+                risk_level = '高风险'
+            elif '低风险' in analysis_text:
+                risk_level = '低风险'
+            elif '中等风险' in analysis_text:
+                risk_level = '中等风险'
+            
             risk_levels.append(risk_level)
             
             # 风险等级转分数 (分数越高风险越低)
@@ -626,7 +638,29 @@ class ChartGenerator:
         
         for i, dimension in enumerate(dimensions):
             analysis = dimension_analyses.get(dimension, {})
-            risk_level = analysis.get('risk_level', '中等风险')
+            
+            # 处理分析结果可能是字符串的情况
+            if isinstance(analysis, str):
+                # 从字符串中精确提取风险等级（格式：风险等级：低风险/中等风险/高风险）
+                import re
+                match = re.search(r'风险等级[：:]\s*(低风险|中等风险|高风险)', analysis)
+                if match:
+                    risk_level = match.group(1)
+                else:
+                    # 如果没有找到标准格式，尝试简单匹配
+                    if '低风险' in analysis:
+                        risk_level = '低风险'
+                    elif '高风险' in analysis:
+                        risk_level = '高风险'
+                    else:
+                        risk_level = '中等风险'
+                print(f"🎯 {dimension} 风险等级: {risk_level}")  # 调试信息
+            elif isinstance(analysis, dict):
+                risk_level = analysis.get('risk_level', '中等风险')
+                print(f"🎯 {dimension} 风险等级: {risk_level} (字典)")  # 调试信息
+            else:
+                risk_level = '中等风险'
+                print(f"⚠️ {dimension} 无法识别分析结果类型，使用默认: {risk_level}")
             
             # 转换为健康度分数
             score_map = {'低风险': 85, '中等风险': 65, '高风险': 35}
@@ -641,10 +675,9 @@ class ChartGenerator:
                 color = "red"
             
             fig.add_trace(go.Indicator(
-                mode = "gauge+number+delta",
+                mode = "gauge+number",
                 value = score,
                 domain = {'x': [0, 1], 'y': [0, 1]},
-                title = {'text': dimension.replace('风险', '能力')},
                 gauge = {'axis': {'range': [None, 100]},
                         'bar': {'color': color},
                         'steps' : [

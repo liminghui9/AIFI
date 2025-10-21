@@ -327,6 +327,67 @@
             height: 3rem;
         }
         
+        /* 加载遮罩层 */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 9998;
+            backdrop-filter: blur(2px);
+        }
+        
+        .loading-overlay.active {
+            display: block;
+        }
+        
+        .loading-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            text-align: center;
+        }
+        
+        .loading-content .spinner-border {
+            color: var(--primary-color);
+        }
+        
+        .loading-content h5 {
+            margin-top: 20px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .loading-content p {
+            color: #7f8c8d;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .loading-content .cancel-btn {
+            background: #e0e0e0;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            color: #555;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .loading-content .cancel-btn:hover {
+            background: #d0d0d0;
+        }
+        
         .alert {
             border-radius: 10px;
         }
@@ -361,9 +422,9 @@
                 </a>
             </li>
             <li>
-                <a href="#upload">
-                    <i class="bi bi-cloud-upload"></i>
-                    <span>上传数据</span>
+                <a href="/mysql_enterprises">
+                    <i class="bi bi-database"></i>
+                    <span>MySQL企业</span>
                 </a>
             </li>
             <li>
@@ -423,6 +484,20 @@
         </div>
     </div>
 
+    <!-- 加载遮罩层 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">加载中...</span>
+            </div>
+            <h5>正在生成财务分析报告</h5>
+            <p>这可能需要几秒钟，请耐心等待...</p>
+            <button class="cancel-btn" onclick="cancelUpload()">
+                <i class="bi bi-x-circle"></i> 取消并返回
+            </button>
+        </div>
+    </div>
+
     <!-- 主内容区域 -->
     <div class="main-content">
         <!-- 信息卡片组 -->
@@ -469,11 +544,49 @@
             </div>
         </div>
         
+        <!-- 数据源选择 -->
+        <div class="upload-section" style="margin-bottom: 25px;">
+            <div class="section-header">
+                <i class="bi bi-box-arrow-in-down"></i>
+                选择数据源
+            </div>
+            
+            <div class="row g-3">
+                <!-- MySQL直连 -->
+                <div class="col-md-6">
+                    <div class="info-card" style="cursor: pointer; height: auto;" onclick="window.location.href='/mysql_enterprises'">
+                        <div class="info-card-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                            <i class="bi bi-database"></i>
+                        </div>
+                        <h5 style="color: #2c3e50; font-weight: 600; margin-bottom: 10px;">MySQL数据库直连</h5>
+                        <p class="text-muted mb-3">直接从MySQL数据库读取企业财务数据</p>
+                        <button class="btn btn-primary" style="width: 100%;">
+                            <i class="bi bi-arrow-right-circle"></i> 查看企业列表
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Excel上传 -->
+                <div class="col-md-6">
+                    <div class="info-card" style="cursor: pointer; height: auto;" onclick="document.getElementById('uploadSection').scrollIntoView({behavior: 'smooth'})">
+                        <div class="info-card-icon" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white;">
+                            <i class="bi bi-file-earmark-excel"></i>
+                        </div>
+                        <h5 style="color: #2c3e50; font-weight: 600; margin-bottom: 10px;">Excel文件上传</h5>
+                        <p class="text-muted mb-3">上传Excel格式的企业财务报表文件</p>
+                        <button class="btn btn-success" style="width: 100%;">
+                            <i class="bi bi-cloud-upload"></i> 上传Excel文件
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- 上传区域 -->
-        <div class="upload-section" id="upload">
+        <div class="upload-section" id="uploadSection">
             <div class="section-header">
                 <i class="bi bi-cloud-upload"></i>
-                上传财务数据
+                上传Excel财务数据
             </div>
             
             <div class="upload-area" id="uploadArea">
@@ -535,6 +648,9 @@
         const fileInput = document.getElementById('fileInput');
         const progressContainer = document.getElementById('progressContainer');
         const messageArea = document.getElementById('messageArea');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        
+        let uploadAbortController = null;
         
         // 点击上传区域
         uploadArea.addEventListener('click', function(e) {
@@ -586,22 +702,26 @@
                 return;
             }
             
-            // 显示进度
-            progressContainer.style.display = 'block';
+            // 显示加载遮罩层（不阻止用户点击其他区域）
+            loadingOverlay.classList.add('active');
             messageArea.innerHTML = '';
             
             // 创建FormData
             const formData = new FormData();
             formData.append('file', file);
             
+            // 创建AbortController用于取消请求
+            uploadAbortController = new AbortController();
+            
             // 上传文件
             fetch('/upload', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                signal: uploadAbortController.signal
             })
             .then(response => response.json())
             .then(data => {
-                progressContainer.style.display = 'none';
+                loadingOverlay.classList.remove('active');
                 
                 if (data.success) {
                     showMessage('报告生成成功！正在跳转...', 'success');
@@ -613,11 +733,35 @@
                 }
             })
             .catch(error => {
-                progressContainer.style.display = 'none';
-                showMessage('上传失败，请稍后重试', 'danger');
-                console.error('Error:', error);
+                loadingOverlay.classList.remove('active');
+                
+                if (error.name === 'AbortError') {
+                    showMessage('上传已取消', 'warning');
+                } else {
+                    showMessage('上传失败，请稍后重试', 'danger');
+                    console.error('Error:', error);
+                }
             });
         }
+        
+        // 取消上传
+        function cancelUpload() {
+            if (uploadAbortController) {
+                uploadAbortController.abort();
+                uploadAbortController = null;
+            }
+            loadingOverlay.classList.remove('active');
+        }
+        
+        // 点击遮罩层外部关闭（可选，如果希望用户可以点击其他地方）
+        loadingOverlay.addEventListener('click', function(e) {
+            // 如果点击的是遮罩层本身（不是内容区域），则允许关闭
+            if (e.target === loadingOverlay) {
+                // 这里可以选择是否允许点击外部取消上传
+                // 如果想允许，取消下面这行的注释：
+                // cancelUpload();
+            }
+        });
         
         // 显示消息
         function showMessage(message, type) {
@@ -627,6 +771,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             `;
+            
+            // 滚动到消息区域
+            messageArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     </script>
 </body>

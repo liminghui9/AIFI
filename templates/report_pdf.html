@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>财务分析报告 - {{ report.basic_info.get('企业名称', '企业') }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SimSun', 'Microsoft YaHei', serif;
+            font-size: 11pt;
+            line-height: 1.8;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* 封面 */
+        .cover-page {
+            page-break-after: always;
+            height: 27cm;
+            background: #667eea;
+            color: white;
+            text-align: center;
+            padding-top: 8cm;
+        }
+        
+        .cover-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .cover-subtitle {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .cover-company {
+            font-size: 32px;
+            margin: 40px 0;
+            padding: 20px 40px;
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+        
+        .cover-date {
+            font-size: 18px;
+            margin-top: 40px;
+        }
+        
+        /* 页眉页脚 */
+        @page {
+            margin: 2cm 1.5cm;
+            @top-center {
+                content: "企业财务分析报告";
+                font-size: 10px;
+                color: #666;
+            }
+            @bottom-center {
+                content: counter(page);
+                font-size: 10px;
+                color: #666;
+            }
+        }
+        
+        /* 标题样式 */
+        h1 {
+            font-size: 18pt;
+            color: #667eea;
+            margin: 20pt 0 15pt;
+            padding-bottom: 8pt;
+            border-bottom: 2pt solid #667eea;
+            page-break-after: avoid;
+            font-weight: bold;
+        }
+        
+        h2 {
+            font-size: 16pt;
+            color: #764ba2;
+            margin: 18pt 0 12pt;
+            page-break-after: avoid;
+            font-weight: bold;
+        }
+        
+        h3 {
+            font-size: 14pt;
+            color: #333;
+            margin: 15pt 0 10pt;
+            page-break-after: avoid;
+            font-weight: bold;
+        }
+        
+        h4 {
+            font-size: 12pt;
+            color: #555;
+            margin: 12pt 0 8pt;
+            font-weight: bold;
+            page-break-after: avoid;
+        }
+        
+        h5 {
+            font-size: 11pt;
+            color: #666;
+            margin: 10pt 0 6pt;
+            font-weight: bold;
+        }
+        
+        /* 卡片样式 */
+        .report-card {
+            background: white;
+            padding: 15pt;
+            margin-bottom: 15pt;
+            border: 1pt solid #e0e0e0;
+            page-break-inside: avoid;
+        }
+        
+        .overall-assessment {
+            background: #f5f7ff;
+            border-left: 3pt solid #667eea;
+            padding: 15pt;
+        }
+        
+        .dimension-card {
+            border-left: 3pt solid #764ba2;
+            margin-top: 12pt;
+            padding: 12pt;
+            background: #fafafa;
+            page-break-inside: auto;  /* 允许跨页 */
+        }
+        
+        .dimension-card h2 {
+            page-break-after: avoid;  /* 标题后不分页 */
+        }
+        
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10pt 0;
+            font-size: 10pt;
+            page-break-inside: auto;
+        }
+        
+        thead {
+            background: #667eea;
+            color: white;
+        }
+        
+        th {
+            padding: 8pt;
+            text-align: left;
+            font-weight: bold;
+            border: 1pt solid #ddd;
+        }
+        
+        td {
+            padding: 6pt 8pt;
+            border: 1pt solid #e0e0e0;
+        }
+        
+        tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .info-table td:first-child {
+            background: #f5f7ff;
+            font-weight: bold;
+            width: 35%;
+        }
+        
+        /* AI分析文本 */
+        .analysis-text {
+            background: #f0f5ff;
+            border-left: 3pt solid #667eea;
+            padding: 12pt;
+            margin: 10pt 0;
+            line-height: 1.8;
+        }
+        
+        .analysis-text strong {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        /* 图表容器 */
+        .chart-container {
+            margin: 12pt 0;
+            padding: 10pt;
+            background: white;
+            border: 1pt solid #e0e0e0;
+            page-break-inside: avoid;
+            text-align: center;
+        }
+        
+        .chart-container h4 {
+            margin: 0 0 8pt 0;
+            color: #764ba2;
+            font-size: 11pt;
+        }
+        
+        .chart-container img {
+            width: 95%;
+            max-width: 550pt;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .chart-container p {
+            margin: 40pt 0;
+            color: #999;
+            font-size: 10pt;
+        }
+        
+        /* 文本颜色 */
+        .text-success {
+            color: #27ae60;
+            font-weight: 600;
+        }
+        
+        .text-danger {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        
+        .text-muted {
+            color: #999;
+        }
+        
+        /* 图标替代 */
+        .icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        /* 分页控制 */
+        .page-break {
+            page-break-after: always;
+        }
+        
+        .avoid-break {
+            page-break-inside: avoid;
+        }
+        
+        /* 目录样式 */
+        .toc {
+            page-break-after: always;
+        }
+        
+        .toc-item {
+            padding: 10px 0;
+            border-bottom: 1px dotted #ddd;
+        }
+        
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 封面页 -->
+    <div class="cover-page">
+        <div class="cover-title">企业财务分析报告</div>
+        <div class="cover-subtitle">Financial Analysis Report</div>
+        <div class="cover-company">{{ report.basic_info.get('企业名称', '企业名称') }}</div>
+        <div class="cover-date">生成日期：{{ report.generated_at }}</div>
+        <div class="cover-date" style="margin-top: 10px;">AIFI 智能财报系统</div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 一、企业基本信息 -->
+        <div class="report-card">
+            <h1>一、企业基本信息</h1>
+            <table class="info-table">
+                {% for key, value in report.basic_info.items() %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <!-- 二、总体风险评估 -->
+        <div class="report-card overall-assessment">
+            <h1>二、总体风险评估</h1>
+            <div style="white-space: pre-line; line-height: 1.8;">{{ report.overall_assessment }}</div>
+            
+            <!-- 总览图表 -->
+            {% if report.charts %}
+                {% if report.charts.get('health_dashboard_png') %}
+                <div class="avoid-break">
+                    <h3>财务健康度总览</h3>
+                    <div class="chart-container">
+                        <img src="file:///{{ report.charts.get('health_dashboard_png')|replace('\\', '/') }}" alt="财务健康度仪表盘">
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if report.charts.get('main_indicators_png') %}
+                <div class="avoid-break">
+                    <h3>主要指标对比</h3>
+                    <div class="chart-container">
+                        <img src="file:///{{ report.charts.get('main_indicators_png')|replace('\\', '/') }}" alt="主要指标对比">
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if report.charts.get('risk_radar_png') %}
+                <div class="avoid-break">
+                    <h3>风险雷达图</h3>
+                    <div class="chart-container">
+                        <img src="file:///{{ report.charts.get('risk_radar_png')|replace('\\', '/') }}" alt="风险雷达图">
+                    </div>
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <!-- 三、分维度风险分析 -->
+        <div class="report-card">
+            <h1>三、分维度风险分析</h1>
+            
+            {% set dimensions = ['盈利风险', '偿债风险', '运营风险', '现金流风险'] %}
+            {% set chart_keys = ['profitability', 'solvency', 'operational', 'cashflow'] %}
+            
+            {% for dimension in dimensions %}
+            {% if loop.index == 3 %}
+            <!-- 第三个维度前建议分页 -->
+            <div style="page-break-before: always;"></div>
+            {% endif %}
+            
+            <div class="dimension-card">
+                <h2>3.{{ loop.index }} {{ dimension }}</h2>
+                
+                <!-- 指标表格 -->
+                {% if report.years %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>指标名称</th>
+                            <th>{{ report.years[0] }}年</th>
+                            {% if report.years|length >= 2 %}
+                            <th>{{ report.years[1] }}年</th>
+                            <th>变化</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set current_year = report.years[0] %}
+                        {% set indicators = report.indicators[current_year][dimension] %}
+                        
+                        {% for indicator_name, value in indicators.items() %}
+                        <tr>
+                            <td><strong>{{ indicator_name }}</strong></td>
+                            <td>
+                                {% if value is not none %}
+                                    {% if indicator_name in ['净利润率', '毛利率', '净资产收益率', '资产负债率'] %}
+                                        {{ "%.2f"|format(value) }}%
+                                    {% elif indicator_name in ['经营性净现金流', '现金净增加额'] %}
+                                        {{ "{:,.2f}".format(value) }} 万元
+                                    {% else %}
+                                        {{ "%.2f"|format(value) }}
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">数据缺失</span>
+                                {% endif %}
+                            </td>
+                            
+                            {% if report.years|length >= 2 %}
+                            {% set prev_year = report.years[1] %}
+                            {% set prev_value = report.indicators[prev_year][dimension][indicator_name] %}
+                            <td>
+                                {% if prev_value is not none %}
+                                    {% if indicator_name in ['净利润率', '毛利率', '净资产收益率', '资产负债率'] %}
+                                        {{ "%.2f"|format(prev_value) }}%
+                                    {% elif indicator_name in ['经营性净现金流', '现金净增加额'] %}
+                                        {{ "{:,.2f}".format(prev_value) }} 万元
+                                    {% else %}
+                                        {{ "%.2f"|format(prev_value) }}
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">数据缺失</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if value is not none and prev_value is not none %}
+                                    {% set change = value - prev_value %}
+                                    {% if change > 0 %}
+                                        <span class="text-success">↑ {{ "%.2f"|format(change) }}</span>
+                                    {% elif change < 0 %}
+                                        <span class="text-danger">↓ {{ "%.2f"|format(change) }}</span>
+                                    {% else %}
+                                        <span class="text-muted">-</span>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+                
+                <!-- AI分析 -->
+                <div class="analysis-text">
+                    <strong>🤖 AI分析：</strong><br>
+                    {{ report.dimension_analyses[dimension] }}
+                </div>
+                
+                <!-- 维度图表 -->
+                {% if report.charts %}
+                    {% set chart_key = chart_keys[loop.index0] + '_png' %}
+                    {% if report.charts.get(chart_key) %}
+                    <div class="chart-container">
+                        <h4>数据可视化</h4>
+                        <img src="file:///{{ report.charts.get(chart_key)|replace('\\', '/') }}" alt="{{ dimension }}可视化图表">
+                    </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+            
+            {% if not loop.last %}
+            <div style="margin: 30px 0;"></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- 四、财务报表数据 -->
+        <div class="report-card page-break">
+            <h1>四、财务报表数据（精简版）</h1>
+            
+            <!-- 资产负债表 -->
+            <h2>4.1 资产负债表</h2>
+            {% if report.years %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>{{ report.years[0] }}年（万元）</th>
+                        {% if report.years|length >= 2 %}
+                        <th>{{ report.years[1] }}年（万元）</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set balance_data = report.financial_data[report.years[0]]['资产负债表'] %}
+                    {% for item, value in balance_data.items() %}
+                    <tr>
+                        <td>{{ item }}</td>
+                        <td>{{ "{:,.2f}".format(value) if value is not none else '-' }}</td>
+                        {% if report.years|length >= 2 %}
+                        {% set prev_value = report.financial_data[report.years[1]]['资产负债表'].get(item) %}
+                        <td>{{ "{:,.2f}".format(prev_value) if prev_value is not none else '-' }}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            
+            <!-- 利润表 -->
+            <h2>4.2 利润表</h2>
+            {% if report.years %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>{{ report.years[0] }}年（万元）</th>
+                        {% if report.years|length >= 2 %}
+                        <th>{{ report.years[1] }}年（万元）</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set income_data = report.financial_data[report.years[0]]['利润表'] %}
+                    {% for item, value in income_data.items() %}
+                    <tr>
+                        <td>{{ item }}</td>
+                        <td>{{ "{:,.2f}".format(value) if value is not none else '-' }}</td>
+                        {% if report.years|length >= 2 %}
+                        {% set prev_value = report.financial_data[report.years[1]]['利润表'].get(item) %}
+                        <td>{{ "{:,.2f}".format(prev_value) if prev_value is not none else '-' }}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            
+            <!-- 现金流量表 -->
+            <h2>4.3 现金流量表</h2>
+            {% if report.years %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>{{ report.years[0] }}年（万元）</th>
+                        {% if report.years|length >= 2 %}
+                        <th>{{ report.years[1] }}年（万元）</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set cashflow_data = report.financial_data[report.years[0]]['现金流量表'] %}
+                    {% for item, value in cashflow_data.items() %}
+                    <tr>
+                        <td>{{ item }}</td>
+                        <td>{{ "{:,.2f}".format(value) if value is not none else '-' }}</td>
+                        {% if report.years|length >= 2 %}
+                        {% set prev_value = report.financial_data[report.years[1]]['现金流量表'].get(item) %}
+                        <td>{{ "{:,.2f}".format(prev_value) if prev_value is not none else '-' }}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+
+        <!-- 报告说明 -->
+        <div class="report-card" style="margin-top: 40px; background: #f8f9fa;">
+            <h3>报告说明</h3>
+            <p style="line-height: 1.8; color: #666; margin: 10px 0;">
+                1. 本报告由 AIFI 智能财报系统自动生成<br>
+                2. 报告数据来源于上传的企业财务报表<br>
+                3. AI分析基于大语言模型进行风险评估，仅供参考<br>
+                4. 完整的交互式图表请访问在线版本查看<br>
+                5. 如有疑问，请联系系统管理员
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+

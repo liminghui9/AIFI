@@ -10,7 +10,7 @@
   },
   "user": {
     "username": "user",
-    "password": "scrypt:32768:8:1$boMHF3rjEuLX3By7$10846dea6baccf7192f94e601e1d7a08a019bd2277317af404dd66f07f5a48481518253f8a5a542003da4ffdbf088397d4fe5539e8badbac4adff6683d5e196c",
+    "password": "scrypt:32768:8:1$MJ0EFWxf3fEGZMSj$a48627dea6b5c431e9540a001a104af4aa64f0eae0b14230a08f615c1ef9155a806b38d02dbd1fca7ae86f5bdd89599a5195285fdce1307aa95f5b79773c4a1a",
     "email": "user@aifi.com",
     "fullname": "",
     "role": "user",

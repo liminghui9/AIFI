@@ -145,10 +145,11 @@
         
         .info-table {
             width: 100%;
+            border-collapse: collapse;
         }
         
         .info-table td {
-            padding: 12px;
+            padding: 12px 15px;
             border-bottom: 1px solid #ecf0f1;
         }
         
@@ -156,6 +157,21 @@
             font-weight: bold;
             color: #7f8c8d;
             width: 200px;
+        }
+        
+        .label-cell {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+            width: 150px;
+            min-width: 150px;
+            white-space: nowrap;
+        }
+        
+        .value-cell {
+            background-color: #ffffff;
+            color: #2c3e50;
+            word-break: break-word;
         }
         
         .risk-badge {
@@ -679,8 +695,11 @@
             <a href="/export/{{ report_id }}/word" class="btn btn-primary btn-export">
                 <i class="bi bi-file-earmark-word"></i> Word
             </a>
-            <a href="/export/{{ report_id }}/pdf" class="btn btn-danger btn-export">
-                <i class="bi bi-file-earmark-pdf"></i> PDF
+            <a href="/export/{{ report_id }}/pdf_html" class="btn btn-danger btn-export" title="基于HTML模板的专业PDF">
+                <i class="bi bi-file-earmark-pdf"></i> PDF（推荐）
+            </a>
+            <a href="/export/{{ report_id }}/pdf" class="btn btn-outline-danger btn-export" title="基础PDF导出">
+                <i class="bi bi-file-earmark-pdf"></i> PDF（基础版）
             </a>
             <a href="/" class="btn btn-secondary btn-export">
                 <i class="bi bi-house"></i> 首页
@@ -700,140 +719,125 @@
         <!-- 一、企业基本信息 -->
         <div class="report-card">
             <h3 class="section-title"><i class="bi bi-building"></i> 一、企业基本信息</h3>
-            <table class="info-table">
-                {% for key, value in report.basic_info.items() %}
-                <tr>
-                    <td>{{ key }}</td>
-                    <td>{{ value }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="info-table">
+                        <tr>
+                            <td class="label-cell">企业名称</td>
+                            <td class="value-cell">{{ report.basic_info.get('企业名称', '-') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">统一社会信用代码</td>
+                            <td class="value-cell">{{ report.basic_info.get('统一社会信用代码', '-') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">法定代表人</td>
+                            <td class="value-cell">{{ report.basic_info.get('法定代表人', '-') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">注册日期</td>
+                            <td class="value-cell">{{ report.basic_info.get('注册日期', report.basic_info.get('成立日期', '-')) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">注册资本</td>
+                            <td class="value-cell">
+                                {{ "%.2f"|format(report.basic_info.get('注册资本（万元）', 0)) }} 万元
+                                {% if report.basic_info.get('注册资本币种') and report.basic_info.get('注册资本币种') != '-' %}
+                                ({{ report.basic_info.get('注册资本币种') }})
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">所属行业</td>
+                            <td class="value-cell">{{ report.basic_info.get('行业类别', '-') }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table class="info-table">
+                        <tr>
+                            <td class="label-cell">企业类型</td>
+                            <td class="value-cell">{{ report.basic_info.get('企业类型', '-') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">纳税人类型</td>
+                            <td class="value-cell">{{ report.basic_info.get('纳税人类型', '-') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">登记状态</td>
+                            <td class="value-cell">
+                                <span class="badge bg-success">{{ report.basic_info.get('登记状态', '-') }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">登记机关</td>
+                            <td class="value-cell">{{ report.basic_info.get('登记机关', report.basic_info.get('税务局', '-')) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">注册地址</td>
+                            <td class="value-cell">{{ report.basic_info.get('完整注册地址', report.basic_info.get('注册地址', '-')) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">从业人数</td>
+                            <td class="value-cell">
+                                {% if report.basic_info.get('从业人数') and report.basic_info.get('从业人数') != '-' %}
+                                {{ report.basic_info.get('从业人数') }} 人
+                                {% else %}
+                                -
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            {% if report.basic_info.get('经营范围') and report.basic_info.get('经营范围') != '-' %}
+            <div class="mt-3">
+                <table class="info-table">
+                    <tr>
+                        <td class="label-cell" style="width: 150px;">经营范围</td>
+                        <td class="value-cell">{{ report.basic_info.get('经营范围') }}</td>
+                    </tr>
+                </table>
+            </div>
+            {% endif %}
         </div>
 
         <!-- 二、总体风险评估 -->
         <div class="report-card overall-assessment">
             <h3><i class="bi bi-shield-check"></i> 二、总体风险评估</h3>
             <div style="white-space: pre-line;">{{ report.overall_assessment }}</div>
-        </div>
-
-        <!-- 数据可视化图表 -->
-        {% if report.charts %}
-        <div class="report-card">
-            <h3 class="section-title"><i class="bi bi-graph-up"></i> 数据可视化分析</h3>
             
-            <!-- 图表导航标签 -->
-            <ul class="nav nav-tabs mb-4" id="chartTabs" role="tablist">
-                {% if report.charts.health_dashboard %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="health-tab" data-bs-toggle="tab" data-bs-target="#health-chart" type="button" role="tab">
-                        <i class="bi bi-speedometer2"></i> 财务健康度
-                    </button>
-                </li>
-                {% endif %}
-                {% if report.charts.main_indicators %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link {% if not report.charts.health_dashboard %}active{% endif %}" id="main-tab" data-bs-toggle="tab" data-bs-target="#main-chart" type="button" role="tab">
-                        <i class="bi bi-bar-chart"></i> 主要指标
-                    </button>
-                </li>
-                {% endif %}
-                {% if report.charts.profitability %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profit-tab" data-bs-toggle="tab" data-bs-target="#profit-chart" type="button" role="tab">
-                        <i class="bi bi-trending-up"></i> 盈利能力
-                    </button>
-                </li>
-                {% endif %}
-                {% if report.charts.solvency %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="solvency-tab" data-bs-toggle="tab" data-bs-target="#solvency-chart" type="button" role="tab">
-                        <i class="bi bi-shield"></i> 偿债能力
-                    </button>
-                </li>
-                {% endif %}
-                {% if report.charts.operational %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="operational-tab" data-bs-toggle="tab" data-bs-target="#operational-chart" type="button" role="tab">
-                        <i class="bi bi-gear"></i> 运营能力
-                    </button>
-                </li>
-                {% endif %}
-                {% if report.charts.cashflow %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="cashflow-tab" data-bs-toggle="tab" data-bs-target="#cashflow-chart" type="button" role="tab">
-                        <i class="bi bi-cash-stack"></i> 现金流
-                    </button>
-                </li>
-                {% endif %}
-                {% if report.charts.risk_radar %}
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="risk-tab" data-bs-toggle="tab" data-bs-target="#risk-chart" type="button" role="tab">
-                        <i class="bi bi-radar"></i> 风险雷达
-                    </button>
-                </li>
-                {% endif %}
-            </ul>
-            
-            <!-- 图表内容 -->
-            <div class="tab-content" id="chartTabsContent">
-                {% if report.charts.health_dashboard %}
-                <div class="tab-pane fade show active" id="health-chart" role="tabpanel">
-                    <div class="chart-container">
-                        <iframe src="{{ report.charts.health_dashboard }}" width="100%" height="650" frameborder="0"></iframe>
-                    </div>
+            <!-- 财务健康度总览图表 -->
+            {% if report.charts and report.charts.health_dashboard %}
+            <div class="mt-4">
+                <h5 class="mb-3"><i class="bi bi-speedometer2"></i> 财务健康度总览</h5>
+                <div class="chart-container">
+                    <iframe src="{{ report.charts.health_dashboard }}" width="100%" height="600" frameborder="0"></iframe>
                 </div>
-                {% endif %}
-                
-                {% if report.charts.main_indicators %}
-                <div class="tab-pane fade {% if not report.charts.health_dashboard %}show active{% endif %}" id="main-chart" role="tabpanel">
-                    <div class="chart-container">
-                        <iframe src="{{ report.charts.main_indicators }}" width="100%" height="650" frameborder="0"></iframe>
-                    </div>
-                </div>
-                {% endif %}
-                
-                {% if report.charts.profitability %}
-                <div class="tab-pane fade" id="profit-chart" role="tabpanel">
-                    <div class="chart-container">
-                        <iframe src="{{ report.charts.profitability }}" width="100%" height="450" frameborder="0"></iframe>
-                    </div>
-                </div>
-                {% endif %}
-                
-                {% if report.charts.solvency %}
-                <div class="tab-pane fade" id="solvency-chart" role="tabpanel">
-                    <div class="chart-container">
-                        <iframe src="{{ report.charts.solvency }}" width="100%" height="450" frameborder="0"></iframe>
-                    </div>
-                </div>
-                {% endif %}
-                
-                {% if report.charts.operational %}
-                <div class="tab-pane fade" id="operational-chart" role="tabpanel">
-                    <div class="chart-container">
-                        <iframe src="{{ report.charts.operational }}" width="100%" height="450" frameborder="0"></iframe>
-                    </div>
-                </div>
-                {% endif %}
-                
-                {% if report.charts.cashflow %}
-                <div class="tab-pane fade" id="cashflow-chart" role="tabpanel">
-                    <div class="chart-container">
-                        <iframe src="{{ report.charts.cashflow }}" width="100%" height="450" frameborder="0"></iframe>
-                    </div>
-                </div>
-                {% endif %}
-                
-                {% if report.charts.risk_radar %}
-                <div class="tab-pane fade" id="risk-chart" role="tabpanel">
-                    <div class="chart-container">
-                        <iframe src="{{ report.charts.risk_radar }}" width="100%" height="550" frameborder="0"></iframe>
-                    </div>
-                </div>
-                {% endif %}
             </div>
+            {% endif %}
+            
+            <!-- 主要指标对比图表 -->
+            {% if report.charts and report.charts.main_indicators %}
+            <div class="mt-4">
+                <h5 class="mb-3"><i class="bi bi-bar-chart"></i> 主要指标对比</h5>
+                <div class="chart-container">
+                    <iframe src="{{ report.charts.main_indicators }}" width="100%" height="600" frameborder="0"></iframe>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- 风险雷达图 -->
+            {% if report.charts and report.charts.risk_radar %}
+            <div class="mt-4">
+                <h5 class="mb-3"><i class="bi bi-radar"></i> 风险雷达图</h5>
+                <div class="chart-container">
+                    <iframe src="{{ report.charts.risk_radar }}" width="100%" height="550" frameborder="0"></iframe>
+                </div>
+            </div>
+            {% endif %}
         </div>
-        {% endif %}
 
         <!-- 三、分维度风险分析 -->
         <div class="report-card">
@@ -841,6 +845,7 @@
             
             {% set dimensions = ['盈利风险', '偿债风险', '运营风险', '现金流风险'] %}
             {% set icons = ['bi-cash-coin', 'bi-credit-card', 'bi-gear', 'bi-water'] %}
+            {% set chart_keys = ['profitability', 'solvency', 'operational', 'cashflow'] %}
             
             {% for dimension in dimensions %}
             <div class="report-card dimension-card">
@@ -922,6 +927,19 @@
                     <strong><i class="bi bi-robot"></i> AI分析：</strong><br>
                     {{ report.dimension_analyses[dimension] }}
                 </div>
+                
+                <!-- 对应维度的可视化图表 -->
+                {% if report.charts %}
+                    {% set chart_key = chart_keys[loop.index0] %}
+                    {% if chart_key in report.charts and report.charts[chart_key] %}
+                    <div class="mt-4">
+                        <h5 class="mb-3"><i class="bi bi-graph-up"></i> 数据可视化</h5>
+                        <div class="chart-container">
+                            <iframe src="{{ report.charts[chart_key] }}" width="100%" height="450" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
             </div>
             {% endfor %}
         </div>

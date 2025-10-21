@@ -425,12 +425,6 @@
                 </a>
             </li>
             <li>
-                <a href="/">
-                    <i class="bi bi-cloud-upload"></i>
-                    <span>上传数据</span>
-                </a>
-            </li>
-            <li>
                 <a href="/reports">
                     <i class="bi bi-file-text"></i>
                     <span>报告列表</span>
@@ -615,6 +609,40 @@
                     </div>
                 </div>
             </div>
+
+            {% if user.role == 'admin' %}
+            <!-- 系统管理卡片 -->
+            <div class="settings-card">
+                <div class="card-header">
+                    <i class="bi bi-gear-fill"></i>
+                    <h3>系统管理</h3>
+                </div>
+                <div class="card-body">
+                    <div class="warning-box" style="background: #ffe6e6; border-color: #e74c3c;">
+                        <i class="bi bi-exclamation-triangle" style="color: #e74c3c;"></i>
+                        <div>
+                            <strong>危险操作：</strong>
+                            <p style="margin: 5px 0 0 0;">以下操作仅限管理员使用，执行后无法恢复，请谨慎操作！</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="bi bi-trash"></i> 清理上传文件
+                            </label>
+                            <p class="help-text" style="margin-bottom: 15px;">
+                                删除 uploads 文件夹中的所有上传文件。此操作不会删除已生成的报告数据，只会清理原始上传的 Excel 文件。
+                            </p>
+                            <button type="button" class="btn btn-primary" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);" onclick="clearUploads()">
+                                <i class="bi bi-trash"></i> 清理上传文件
+                            </button>
+                            <span id="uploadFileCount" class="ms-3 text-muted"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
 
             <!-- 修改密码卡片 -->
             <div class="settings-card">
@@ -829,6 +857,57 @@
                 alertDiv.remove();
             }, 3000);
         }
+        
+        // 清理上传文件
+        function clearUploads() {
+            if (!confirm('确定要删除所有上传文件吗？\n\n此操作将清空 uploads 文件夹中的所有文件，但不会影响已生成的报告数据。\n\n此操作无法撤销！')) {
+                return;
+            }
+            
+            fetch('/api/admin/clear_uploads', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert(`成功删除 ${data.count} 个文件`, 'success');
+                    updateUploadFileCount();
+                } else {
+                    showAlert(data.error || '操作失败', 'danger');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('操作失败，请稍后重试', 'danger');
+            });
+        }
+        
+        // 更新上传文件数量
+        function updateUploadFileCount() {
+            fetch('/api/admin/upload_file_count')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const countSpan = document.getElementById('uploadFileCount');
+                    if (countSpan) {
+                        countSpan.textContent = `当前文件数：${data.count}`;
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        
+        // 页面加载时更新文件数量
+        {% if user.role == 'admin' %}
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUploadFileCount();
+        });
+        {% endif %}
     </script>
 </body>
 </html>

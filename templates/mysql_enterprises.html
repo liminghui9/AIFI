@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL企业列表 - AIFI系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --sidebar-bg: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+        }
+        
+        /* 侧边栏样式 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: var(--sidebar-bg);
+            padding: 20px 0;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .sidebar-brand {
+            padding: 20px 25px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sidebar-menu li {
+            margin: 5px 15px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+        
+        .sidebar-menu i {
+            font-size: 1.2rem;
+            margin-right: 12px;
+            width: 25px;
+        }
+        
+        /* 顶部导航 */
+        .top-navbar {
+            position: fixed;
+            left: 240px;
+            right: 0;
+            top: 0;
+            height: 65px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 999;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--sidebar-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* 主内容 */
+        .main-content {
+            margin-left: 240px;
+            margin-top: 65px;
+            padding: 30px;
+            min-height: calc(100vh - 65px);
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section-header {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .section-header i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-success {
+            border-radius: 20px;
+            padding: 8px 20px;
+        }
+        
+        .badge {
+            padding: 6px 12px;
+            border-radius: 12px;
+        }
+        
+        /* DataTable样式优化 */
+        table.dataTable {
+            border-collapse: separate !important;
+            border-spacing: 0;
+        }
+        
+        table.dataTable thead th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 15px 10px;
+        }
+        
+        table.dataTable thead th:first-child {
+            border-top-left-radius: 8px;
+        }
+        
+        table.dataTable thead th:last-child {
+            border-top-right-radius: 8px;
+        }
+        
+        table.dataTable tbody tr {
+            transition: all 0.2s ease;
+        }
+        
+        table.dataTable tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        table.dataTable tbody td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: 20px;
+        }
+        
+        .dataTables_wrapper .dataTables_filter input {
+            border-radius: 20px;
+            padding: 6px 15px;
+            border: 1px solid #ddd;
+        }
+        
+        .dataTables_wrapper .dataTables_length select {
+            border-radius: 15px;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+        }
+        
+        /* 加载状态 */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 9998;
+            backdrop-filter: blur(2px);
+        }
+        
+        .loading-overlay.active {
+            display: block;
+        }
+        
+        .loading-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            text-align: center;
+        }
+        
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧边栏 -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <i class="bi bi-graph-up-arrow"></i> AIFI 系统
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="/">
+                    <i class="bi bi-house-door"></i>
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="/mysql_enterprises" class="active">
+                    <i class="bi bi-database"></i>
+                    <span>MySQL企业</span>
+                </a>
+            </li>
+            <li>
+                <a href="/reports">
+                    <i class="bi bi-file-text"></i>
+                    <span>报告列表</span>
+                </a>
+            </li>
+            {% if user.role == 'admin' %}
+            <li>
+                <a href="/admin/users">
+                    <i class="bi bi-people"></i>
+                    <span>用户管理</span>
+                </a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="/settings">
+                    <i class="bi bi-gear"></i>
+                    <span>个人设置</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div style="position: absolute; bottom: 20px; left: 0; right: 0; padding: 0 15px;">
+            <a href="/logout" class="sidebar-menu" style="display: block;">
+                <div style="display: flex; align-items: center; padding: 12px 15px; color: rgba(255, 255, 255, 0.8); text-decoration: none; border-radius: 8px;">
+                    <i class="bi bi-box-arrow-right" style="font-size: 1.2rem; margin-right: 12px; width: 25px;"></i>
+                    <span>退出登录</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- 顶部导航 -->
+    <div class="top-navbar">
+        <div class="page-title">
+            <i class="bi bi-database"></i> MySQL企业数据
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <span class="text-muted">
+                {% if user.role == 'admin' %}
+                <i class="bi bi-shield-check"></i> 管理员: <strong>{{ user.fullname }}</strong>
+                {% else %}
+                <i class="bi bi-person-circle"></i> <strong>{{ user.fullname }}</strong>
+                {% endif %}
+            </span>
+            <div class="user-avatar">
+                {{ user.fullname[0] if user.fullname else 'U' }}
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载遮罩 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">加载中...</span>
+            </div>
+            <h5 class="mt-3">正在生成财务分析报告</h5>
+            <p class="text-muted">这可能需要几秒钟，请耐心等待...</p>
+        </div>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="main-content">
+        <div class="content-card">
+            <div class="section-header">
+                <div>
+                    <i class="bi bi-building"></i>
+                    企业列表
+                </div>
+                <div>
+                    <button class="btn btn-primary" onclick="loadEnterprises()">
+                        <i class="bi bi-arrow-clockwise"></i> 刷新数据
+                    </button>
+                </div>
+            </div>
+
+            <!-- 统计信息 -->
+            <div class="alert alert-info mb-4">
+                <i class="bi bi-info-circle"></i>
+                <strong>数据来源：</strong>MySQL数据库 (jinrongai) - 
+                <span id="enterpriseCount">正在加载...</span>
+            </div>
+
+            <!-- 企业表格 -->
+            <div class="table-responsive">
+                <table id="enterprisesTable" class="table table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>企业名称</th>
+                            <th>纳税人识别号</th>
+                            <th>行业类别</th>
+                            <th>注册资本(万元)</th>
+                            <th>成立日期</th>
+                            <th>数据年份</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="enterprisesBody">
+                        <tr>
+                            <td colspan="8" class="text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-2 text-muted">正在加载企业数据...</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    
+    <script>
+        let dataTable = null;
+        
+        // 页面加载时获取企业数据
+        $(document).ready(function() {
+            loadEnterprises();
+        });
+        
+        // 加载企业列表
+        function loadEnterprises() {
+            fetch('/api/mysql/enterprises')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayEnterprises(data.enterprises);
+                        $('#enterpriseCount').text(`共找到 ${data.count} 家企业（包含至少2年财务数据）`);
+                    } else {
+                        $('#enterprisesBody').html(`
+                            <tr>
+                                <td colspan="8" class="text-center text-danger">
+                                    <i class="bi bi-exclamation-triangle"></i> ${data.error}
+                                </td>
+                            </tr>
+                        `);
+                        $('#enterpriseCount').text('数据加载失败');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    $('#enterprisesBody').html(`
+                        <tr>
+                            <td colspan="8" class="text-center text-danger">
+                                <i class="bi bi-exclamation-triangle"></i> 网络错误，请稍后重试
+                            </td>
+                        </tr>
+                    `);
+                    $('#enterpriseCount').text('连接失败');
+                });
+        }
+        
+        // 显示企业数据
+        function displayEnterprises(enterprises) {
+            if (dataTable) {
+                dataTable.destroy();
+            }
+            
+            const tbody = $('#enterprisesBody');
+            tbody.empty();
+            
+            enterprises.forEach((enterprise, index) => {
+                const row = `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td><strong>${enterprise.taxpayer_name || '未知企业'}</strong></td>
+                        <td><code>${enterprise.taxpayer_id}</code></td>
+                        <td>${enterprise.industry_type || '未分类'}</td>
+                        <td>${enterprise.register_capital ? enterprise.register_capital.toFixed(2) : '-'}</td>
+                        <td>${enterprise.registered_date || '-'}</td>
+                        <td>
+                            <span class="badge bg-success">
+                                ${enterprise.years_count} 年
+                            </span>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="generateReport('${enterprise.taxpayer_id}', '${enterprise.taxpayer_name}')">
+                                <i class="bi bi-file-earmark-text"></i> 生成报告
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                tbody.append(row);
+            });
+            
+            // 初始化DataTable
+            dataTable = $('#enterprisesTable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/zh-Hans.json'
+                },
+                pageLength: 25,
+                order: [[1, 'asc']],
+                columnDefs: [
+                    { orderable: false, targets: 7 }
+                ]
+            });
+        }
+        
+        // 生成报告
+        function generateReport(taxpayerId, companyName) {
+            if (!confirm(`确认为 ${companyName} 生成财务分析报告吗？`)) {
+                return;
+            }
+            
+            // 显示加载遮罩
+            $('#loadingOverlay').addClass('active');
+            
+            // 调用API生成报告
+            fetch(`/api/mysql/generate_report/${taxpayerId}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                $('#loadingOverlay').removeClass('active');
+                
+                if (data.success) {
+                    alert('报告生成成功！正在跳转...');
+                    window.location.href = `/report/${data.report_id}`;
+                } else {
+                    alert(`报告生成失败：${data.error}`);
+                }
+            })
+            .catch(error => {
+                $('#loadingOverlay').removeClass('active');
+                console.error('Error:', error);
+                alert('网络错误，请稍后重试');
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+

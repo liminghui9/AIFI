@@ -13,6 +13,15 @@ from config import Config
 from modules.report_generator import ReportGenerator
 from modules.export_generator import ExportGenerator
 
+# MySQL数据库配置
+DB_CONFIG = {
+    'host': 'localhost',
+    'port': 3306,
+    'user': 'root',
+    'password': '123456',
+    'database': 'simulated_data',
+}
+
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -46,11 +55,28 @@ def load_reports():
 def save_reports():
     """保存报告到文件"""
     try:
+        # 自定义JSON编码器，处理numpy类型
+        import numpy as np
+        
+        class NumpyEncoder(json.JSONEncoder):
+            def default(self, obj):
+                if isinstance(obj, (np.int_, np.intc, np.intp, np.int8,
+                    np.int16, np.int32, np.int64, np.uint8,
+                    np.uint16, np.uint32, np.uint64)):
+                    return int(obj)
+                elif isinstance(obj, (np.float_, np.float16, np.float32, np.float64)):
+                    return float(obj)
+                elif isinstance(obj, (np.ndarray,)):
+                    return obj.tolist()
+                return super(NumpyEncoder, self).default(obj)
+        
         with open(REPORTS_STORAGE_FILE, 'w', encoding='utf-8') as f:
-            json.dump(report_storage, f, ensure_ascii=False, indent=2)
+            json.dump(report_storage, f, ensure_ascii=False, indent=2, cls=NumpyEncoder)
         return True
     except Exception as e:
         print(f"✗ 保存报告失败: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return False
 
 # 用户数据存储（实际生产环境应使用数据库）
@@ -384,7 +410,7 @@ def export_report(report_id, format):
     if session.get('role') != 'admin' and report_data.get('created_by') != session.get('username'):
         return "无权导出此报告", 403
     
-    if format not in ['word', 'pdf']:
+    if format not in ['word', 'pdf', 'pdf_html']:
         return "不支持的导出格式", 400
     
     try:
@@ -399,7 +425,18 @@ def export_report(report_id, format):
             exporter = ExportGenerator()
             success = exporter.export_to_word(report_data, filepath)
             
-        else:  # PDF
+        elif format == 'pdf_html':
+            # 新方案：基于HTML的PDF导出
+            from modules.pdf_export import PDFExporter
+            
+            pdf_exporter = PDFExporter()
+            filename = pdf_exporter.get_pdf_filename(report_data, report_id)
+            filepath = os.path.join(Config.EXPORT_FOLDER, filename)
+            
+            # 导出PDF
+            success = pdf_exporter.export_to_pdf(report_data, filepath)
+            
+        else:  # PDF（旧方案，使用ReportLab）
             filename = f"{company_name}_财务分析报告_{report_id}.pdf"
             filepath = os.path.join(Config.EXPORT_FOLDER, filename)
             
@@ -428,6 +465,8 @@ def export_report(report_id, format):
         )
         
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return f"导出失败: {str(e)}", 500
 
 
@@ -780,6 +819,70 @@ def toggle_user_status(username):
     return jsonify({'success': True, 'message': f'用户已{"禁用" if new_status == "inactive" else "启用"}'})
 
 
+@app.route('/api/admin/clear_uploads', methods=['POST'])
+@login_required
+@admin_required
+def clear_uploads():
+    """清理上传文件夹（仅管理员）"""
+    try:
+        import glob
+        
+        # 获取所有上传文件
+        upload_files = glob.glob(os.path.join(Config.UPLOAD_FOLDER, '*'))
+        
+        # 删除所有文件
+        deleted_count = 0
+        for file_path in upload_files:
+            if os.path.isfile(file_path):
+                try:
+                    os.remove(file_path)
+                    deleted_count += 1
+                except Exception as e:
+                    print(f"删除文件失败: {file_path}, 错误: {str(e)}")
+        
+        # 记录操作
+        operation_logs.append({
+            'type': '清理上传文件',
+            'operator': session.get('username'),
+            'count': deleted_count,
+            'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        })
+        
+        return jsonify({
+            'success': True,
+            'message': f'成功删除 {deleted_count} 个文件',
+            'count': deleted_count
+        })
+        
+    except Exception as e:
+        print(f"清理上传文件失败: {str(e)}")
+        return jsonify({'success': False, 'error': f'操作失败: {str(e)}'})
+
+
+@app.route('/api/admin/upload_file_count')
+@login_required
+@admin_required
+def get_upload_file_count():
+    """获取上传文件数量（仅管理员）"""
+    try:
+        import glob
+        
+        # 获取所有上传文件
+        upload_files = glob.glob(os.path.join(Config.UPLOAD_FOLDER, '*'))
+        
+        # 只统计文件，不包括文件夹
+        file_count = sum(1 for f in upload_files if os.path.isfile(f))
+        
+        return jsonify({
+            'success': True,
+            'count': file_count
+        })
+        
+    except Exception as e:
+        print(f"获取文件数量失败: {str(e)}")
+        return jsonify({'success': False, 'error': f'获取失败: {str(e)}'})
+
+
 # ========== 用户设置路由 ==========
 
 @app.route('/settings')
@@ -876,6 +979,428 @@ def update_profile():
     })
     
     return jsonify({'success': True, 'message': '个人资料更新成功'})
+
+
+@app.route('/mysql_enterprises')
+@login_required
+def mysql_enterprises():
+    """MySQL企业列表页面"""
+    return render_template('mysql_enterprises.html', user=session)
+
+
+@app.route('/api/mysql/enterprises')
+@login_required
+def get_mysql_enterprises():
+    """获取MySQL数据库中的企业列表"""
+    try:
+        import mysql.connector
+        
+        # 连接数据库
+        conn = mysql.connector.connect(**DB_CONFIG)
+        cursor = conn.cursor(dictionary=True)
+        
+        # 方案1：优先使用企业信息表关联（不过滤invalid_mark，因为数据中都不是NULL）
+        sql_with_info = """
+        SELECT DISTINCT 
+            e.taxpayer_id,
+            e.taxpayer_name,
+            e.industry_type,
+            e.register_capital,
+            e.registered_date,
+            COUNT(DISTINCT YEAR(b.end_date)) as years_count
+        FROM syx_enterprise_info e
+        INNER JOIN syx_tax_finance_balance_year b ON e.taxpayer_id = b.taxpayer_id
+        GROUP BY e.taxpayer_id, e.taxpayer_name, e.industry_type, 
+                 e.register_capital, e.registered_date
+        HAVING years_count >= 2
+        ORDER BY e.taxpayer_name
+        LIMIT 100
+        """
+        
+        cursor.execute(sql_with_info)
+        results = cursor.fetchall()
+        
+        # 如果没有找到结果，尝试直接从财务表读取
+        if not results:
+            print("⚠️ 企业信息表关联失败，尝试直接从财务表读取...")
+            sql_direct = """
+            SELECT 
+                b.taxpayer_id,
+                b.taxpayer_id as taxpayer_name,
+                '未知' as industry_type,
+                NULL as register_capital,
+                NULL as registered_date,
+                COUNT(DISTINCT YEAR(b.end_date)) as years_count
+            FROM syx_tax_finance_balance_year b
+            GROUP BY b.taxpayer_id
+            HAVING years_count >= 2
+            ORDER BY b.taxpayer_id
+            LIMIT 100
+            """
+            
+            cursor.execute(sql_direct)
+            results = cursor.fetchall()
+            
+            # 尝试从企业信息表补充名称
+            for row in results:
+                try:
+                    cursor.execute(
+                        "SELECT taxpayer_name, industry_type, register_capital, registered_date "
+                        "FROM syx_enterprise_info WHERE taxpayer_id = %s",
+                        (row['taxpayer_id'],)
+                    )
+                    info = cursor.fetchone()
+                    if info:
+                        row['taxpayer_name'] = info['taxpayer_name'] or row['taxpayer_id']
+                        row['industry_type'] = info['industry_type'] or '未知'
+                        row['register_capital'] = info['register_capital']
+                        row['registered_date'] = info['registered_date']
+                except:
+                    pass
+        
+        # 处理日期格式
+        for row in results:
+            if row.get('registered_date'):
+                row['registered_date'] = row['registered_date'].strftime('%Y-%m-%d')
+            if row.get('register_capital'):
+                row['register_capital'] = float(row['register_capital'])
+        
+        cursor.close()
+        conn.close()
+        
+        return jsonify({
+            'success': True,
+            'enterprises': results,
+            'count': len(results)
+        })
+        
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            'success': False,
+            'error': f'数据库查询失败: {str(e)}'
+        })
+
+
+@app.route('/api/mysql/generate_report/<taxpayer_id>', methods=['POST'])
+@login_required
+def generate_mysql_report(taxpayer_id):
+    """从MySQL直接生成报告"""
+    try:
+        # 生成报告ID
+        report_id = datetime.now().strftime('%Y%m%d%H%M%S')
+        
+        # 使用税务数据适配器读取MySQL数据
+        import sys
+        import os
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        
+        # 动态导入快速开始脚本中的函数
+        import mysql.connector
+        
+        # 连接数据库
+        conn = mysql.connector.connect(**DB_CONFIG)
+        
+        # 获取企业基本信息
+        basic_info = get_basic_info_from_db(conn, taxpayer_id)
+        if not basic_info:
+            conn.close()
+            return jsonify({'success': False, 'error': '未找到该企业的数据'})
+        
+        # 获取财务数据
+        years = [2023, 2022]
+        financial_data = {}
+        
+        for year in years:
+            balance_data = get_balance_sheet_from_db(conn, taxpayer_id, year)
+            profit_data = get_profit_statement_from_db(conn, taxpayer_id, year)
+            cashflow_data = get_cashflow_statement_from_db(conn, taxpayer_id, year)
+            
+            financial_data[year] = {
+                '资产负债表': balance_data,
+                '利润表': profit_data,
+                '现金流量表': cashflow_data
+            }
+        
+        conn.close()
+        
+        # 使用ReportGenerator生成分析报告
+        from modules.indicator_calculator import IndicatorCalculator
+        from modules.ai_analyzer import AIAnalyzer
+        from modules.chart_generator import ChartGenerator
+        
+        # 计算财务指标
+        indicator_calculator = IndicatorCalculator(financial_data)
+        all_indicators = indicator_calculator.calculate_all_indicators()
+        
+        # 生成AI分析
+        ai_analyzer = AIAnalyzer()
+        dimension_analyses = {}
+        dimensions = ['盈利风险', '偿债风险', '运营风险', '现金流风险']
+        
+        for dimension in dimensions:
+            current_year = years[0]
+            indicators = all_indicators.get(current_year, {}).get(dimension, {})
+            
+            year_data = {}
+            for year in years:
+                year_data[year] = all_indicators.get(year, {}).get(dimension, {})
+            
+            analysis = ai_analyzer.analyze_dimension_risk(
+                dimension, indicators, year_data, basic_info
+            )
+            dimension_analyses[dimension] = analysis
+        
+        # 生成总体风险评估
+        overall_assessment = ai_analyzer.generate_overall_risk_assessment(
+            dimension_analyses, all_indicators.get(years[0], {}), basic_info
+        )
+        
+        # 生成图表
+        chart_generator = ChartGenerator()
+        temp_report_data = {
+            'years': years,
+            'indicators': all_indicators,
+            'dimension_analyses': dimension_analyses,
+            'basic_info': basic_info
+        }
+        charts = chart_generator.generate_all_charts(temp_report_data)
+        
+        # 组装报告数据
+        report_data = {
+            'report_id': report_id,
+            'generated_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'basic_info': basic_info,
+            'years': years,
+            'financial_data': financial_data,
+            'indicators': all_indicators,
+            'dimension_analyses': dimension_analyses,
+            'overall_assessment': overall_assessment,
+            'charts': charts,
+            'created_by': session.get('username'),
+            'created_by_name': session.get('fullname'),
+            'filename': f'MySQL直连_{taxpayer_id}',
+            'data_source': 'mysql'
+        }
+        
+        # 存储报告
+        report_storage[report_id] = report_data
+        save_reports()
+        
+        # 记录操作
+        operation_logs.append({
+            'type': 'MySQL直连报告',
+            'report_id': report_id,
+            'company': basic_info.get('企业名称', '未知'),
+            'username': session.get('username'),
+            'fullname': session.get('fullname'),
+            'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        })
+        
+        return jsonify({
+            'success': True,
+            'report_id': report_id,
+            'message': '报告生成成功'
+        })
+        
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            'success': False,
+            'error': f'报告生成失败: {str(e)}'
+        })
+
+
+def get_basic_info_from_db(conn, taxpayer_id):
+    """从数据库获取企业基本信息"""
+    cursor = conn.cursor(dictionary=True)
+    
+    sql = """
+    SELECT 
+        taxpayer_name AS '企业名称',
+        taxpayer_id AS '统一社会信用代码',
+        tax_no AS '税号',
+        legal_person_name AS '法定代表人',
+        register_capital AS '注册资本（万元）',
+        register_currencies AS '注册资本币种',
+        COALESCE(registered_date, start_business_date) AS '成立日期',
+        registered_date AS '注册日期',
+        start_business_date AS '开业日期',
+        registered_type AS '企业类型',
+        industry_type AS '行业类别',
+        taxpayer_type AS '纳税人类型',
+        nsrztmc AS '登记状态',
+        bureau AS '税务局',
+        bureau_detail AS '登记机关',
+        register_province AS '注册省份',
+        register_city AS '注册城市',
+        register_county AS '注册区县',
+        register_address AS '注册地址',
+        business_address AS '经营地址',
+        business_scope AS '经营范围',
+        employees_number AS '从业人数',
+        hydm AS '行业代码'
+    FROM syx_enterprise_info
+    WHERE taxpayer_id = %s
+    LIMIT 1
+    """
+    
+    cursor.execute(sql, (taxpayer_id,))
+    result = cursor.fetchone()
+    cursor.close()
+    
+    if not result:
+        return None
+    
+    # 处理注册资本
+    if result.get('注册资本（万元）'):
+        result['注册资本（万元）'] = float(result['注册资本（万元）'])
+    
+    # 处理日期格式
+    date_fields = ['成立日期', '注册日期', '开业日期']
+    for field in date_fields:
+        if result.get(field):
+            result[field] = result[field].strftime('%Y-%m-%d')
+    
+    # 处理None值
+    for key in result:
+        if result[key] is None:
+            result[key] = "-"
+    
+    # 组合完整注册地址
+    if result.get('注册省份') and result['注册省份'] != '-':
+        address_parts = []
+        if result.get('注册省份') and result['注册省份'] != '-':
+            address_parts.append(result['注册省份'])
+        if result.get('注册城市') and result['注册城市'] != '-':
+            address_parts.append(result['注册城市'])
+        if result.get('注册区县') and result['注册区县'] != '-':
+            address_parts.append(result['注册区县'])
+        if result.get('注册地址') and result['注册地址'] != '-':
+            address_parts.append(result['注册地址'])
+        
+        if address_parts:
+            result['完整注册地址'] = ''.join(address_parts)
+        else:
+            result['完整注册地址'] = result.get('注册地址', '-')
+    else:
+        result['完整注册地址'] = result.get('注册地址', '-')
+    
+    return result
+
+
+def get_balance_sheet_from_db(conn, taxpayer_id, year):
+    """从数据库获取资产负债表"""
+    cursor = conn.cursor()
+    
+    sql = """
+    SELECT 
+        project_name,
+        ending_balance
+    FROM syx_tax_finance_balance_year
+    WHERE taxpayer_id = %s
+      AND YEAR(end_date) = %s
+    ORDER BY sequence
+    """
+    
+    cursor.execute(sql, (taxpayer_id, year))
+    results = cursor.fetchall()
+    cursor.close()
+    
+    # 项目映射
+    BALANCE_SHEET_PROJECTS = {
+        '总资产': '资产总计',
+        '流动资产': '流动资产合计',
+        '非流动资产': '非流动资产合计',
+        '总负债': '负债合计',
+        '流动负债': '流动负债合计',
+        '非流动负债': '非流动负债合计',
+        '所有者权益': '所有者权益合计',
+        '应收账款': '应收账款',
+        '存货': '存货',
+    }
+    
+    data = {}
+    for project_name, value in results:
+        for std_name, tax_name in BALANCE_SHEET_PROJECTS.items():
+            if project_name == tax_name:
+                data[std_name] = float(value) if value else None
+                break
+    
+    return data
+
+
+def get_profit_statement_from_db(conn, taxpayer_id, year):
+    """从数据库获取利润表"""
+    cursor = conn.cursor()
+    
+    sql = """
+    SELECT 
+        project_name,
+        current_year_accumulative_amount
+    FROM syx_tax_finance_profit_year
+    WHERE taxpayer_id = %s
+      AND YEAR(end_date) = %s
+    ORDER BY sequence
+    """
+    
+    cursor.execute(sql, (taxpayer_id, year))
+    results = cursor.fetchall()
+    cursor.close()
+    
+    PROFIT_PROJECTS = {
+        '营业收入': '营业收入',
+        '营业成本': '营业成本',
+        '营业利润': '营业利润',
+        '利润总额': '利润总额',
+        '净利润': '净利润',
+    }
+    
+    data = {}
+    for project_name, value in results:
+        for std_name, tax_name in PROFIT_PROJECTS.items():
+            if project_name == tax_name:
+                data[std_name] = float(value) if value else None
+                break
+    
+    return data
+
+
+def get_cashflow_statement_from_db(conn, taxpayer_id, year):
+    """从数据库获取现金流量表"""
+    cursor = conn.cursor()
+    
+    sql = """
+    SELECT 
+        project_name,
+        bnljje
+    FROM syx_cash_flow
+    WHERE taxpayer_id = %s
+      AND YEAR(end_date) = %s
+    ORDER BY sequence
+    """
+    
+    cursor.execute(sql, (taxpayer_id, year))
+    results = cursor.fetchall()
+    cursor.close()
+    
+    CASHFLOW_PROJECTS = {
+        '经营活动现金流量净额': '经营活动产生的现金流量净额',
+        '投资活动现金流量净额': '投资活动产生的现金流量净额',
+        '筹资活动现金流量净额': '筹资活动产生的现金流量净额',
+        '现金及现金等价物净增加额': '现金及现金等价物净增加额',
+    }
+    
+    data = {}
+    for project_name, value in results:
+        for std_name, tax_name in CASHFLOW_PROJECTS.items():
+            if project_name == tax_name:
+                data[std_name] = float(value) if value else None
+                break
+    
+    return data
 
 
 @app.route('/api/chat', methods=['POST'])
