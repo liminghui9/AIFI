@@ -248,6 +248,7 @@ def register():
             'fullname': fullname,
             'role': 'user',  # 默认角色为普通用户
             'status': 'active',
+            'ai_model': 'gpt-4-turbo',  # 默认AI模型
             'created_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }
         
@@ -296,7 +297,29 @@ def logout():
 @login_required
 def index():
     """首页"""
-    return render_template('index.html', user=session)
+    # 统计已生成的报告数量
+    reports_count = 0
+    companies_count = 0
+    
+    try:
+        if os.path.exists(REPORTS_STORAGE_FILE):
+            with open(REPORTS_STORAGE_FILE, 'r', encoding='utf-8') as f:
+                reports_data = json.load(f)
+                reports_count = len(reports_data)
+                # 统计不同企业数量
+                companies = set()
+                for report in reports_data.values():
+                    company_name = report.get('basic_info', {}).get('企业名称', '')
+                    if company_name:
+                        companies.add(company_name)
+                companies_count = len(companies)
+    except Exception as e:
+        print(f"读取报告统计失败: {str(e)}")
+    
+    return render_template('index.html', 
+                         user=session,
+                         reports_count=reports_count,
+                         companies_count=companies_count)
 
 
 @app.route('/upload', methods=['POST'])
@@ -323,8 +346,12 @@ def upload_file():
             # 生成报告ID
             report_id = timestamp
             
+            # 获取用户的AI模型设置
+            username = session.get('username')
+            user_ai_model = users_db.get(username, {}).get('ai_model', None)
+            
             # 生成报告
-            generator = ReportGenerator()
+            generator = ReportGenerator(ai_model=user_ai_model)
             report_data = generator.generate_report(filepath)
             
             if 'error' in report_data:
@@ -646,6 +673,7 @@ def add_user():
         'fullname': fullname,
         'role': role,
         'status': 'active',
+        'ai_model': 'gpt-4-turbo',  # 默认AI模型
         'created_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     }
     
@@ -981,6 +1009,42 @@ def update_profile():
     return jsonify({'success': True, 'message': '个人资料更新成功'})
 
 
+@app.route('/api/update_ai_model', methods=['POST'])
+@login_required
+def update_ai_model():
+    """更新用户的AI模型设置"""
+    data = request.get_json()
+    username = session.get('username')
+    
+    ai_model = data.get('ai_model')
+    
+    # 验证AI模型选择
+    valid_models = ['gpt-3.5-turbo', 'gpt-4', 'gpt-4-turbo', 'gpt-4o', 'gpt-4o-mini']
+    if ai_model not in valid_models:
+        return jsonify({'success': False, 'error': '无效的AI模型选择'})
+    
+    # 更新用户的AI模型设置
+    if username not in users_db:
+        return jsonify({'success': False, 'error': '用户不存在'})
+    
+    users_db[username]['ai_model'] = ai_model
+    
+    # 保存用户数据
+    save_users()
+    
+    # 记录操作
+    operation_logs.append({
+        'type': 'AI模型设置',
+        'username': username,
+        'model': ai_model,
+        'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    })
+    
+    print(f"✓ 用户 {username} 更新AI模型为: {ai_model}")
+    
+    return jsonify({'success': True, 'message': f'AI模型已更新为 {ai_model}'})
+
+
 @app.route('/mysql_enterprises')
 @login_required
 def mysql_enterprises():
@@ -1134,8 +1198,12 @@ def generate_mysql_report(taxpayer_id):
         indicator_calculator = IndicatorCalculator(financial_data)
         all_indicators = indicator_calculator.calculate_all_indicators()
         
+        # 获取用户的AI模型设置
+        username = session.get('username')
+        user_ai_model = users_db.get(username, {}).get('ai_model', None)
+        
         # 生成AI分析
-        ai_analyzer = AIAnalyzer()
+        ai_analyzer = AIAnalyzer(model=user_ai_model)
         dimension_analyses = {}
         dimensions = ['盈利风险', '偿债风险', '运营风险', '现金流风险']
         

@@ -13,11 +13,16 @@ from .chart_generator import ChartGenerator
 class ReportGenerator:
     """财务报告生成器"""
     
-    def __init__(self):
-        """初始化报告生成器"""
+    def __init__(self, ai_model: str = None):
+        """
+        初始化报告生成器
+        
+        Args:
+            ai_model: 指定使用的AI模型，如果为None则使用配置文件中的默认模型
+        """
         self.data_processor = None
         self.indicator_calculator = None
-        self.ai_analyzer = AIAnalyzer()
+        self.ai_analyzer = AIAnalyzer(model=ai_model)
         self.chart_generator = ChartGenerator()
         self.report_data = {}
     

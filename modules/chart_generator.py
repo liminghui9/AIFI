@@ -634,37 +634,42 @@ class ChartGenerator:
         
         # 计算各维度健康度分数
         dimensions = ['盈利风险', '偿债风险', '运营风险', '现金流风险']
+        dimension_names = ['盈利能力', '偿债能力', '运营能力', '现金流状况']
         positions = [(1,1), (1,2), (2,1), (2,2)]
         
         for i, dimension in enumerate(dimensions):
             analysis = dimension_analyses.get(dimension, {})
             
-            # 处理分析结果可能是字符串的情况
+            # 方法1：从分析文本中提取风险等级
             if isinstance(analysis, str):
-                # 从字符串中精确提取风险等级（格式：风险等级：低风险/中等风险/高风险）
-                import re
-                match = re.search(r'风险等级[：:]\s*(低风险|中等风险|高风险)', analysis)
-                if match:
-                    risk_level = match.group(1)
-                else:
-                    # 如果没有找到标准格式，尝试简单匹配
-                    if '低风险' in analysis:
-                        risk_level = '低风险'
-                    elif '高风险' in analysis:
-                        risk_level = '高风险'
-                    else:
-                        risk_level = '中等风险'
-                print(f"🎯 {dimension} 风险等级: {risk_level}")  # 调试信息
+                risk_level = self._extract_risk_level_advanced(analysis)
+                print(f"🎯 {dimension} 风险等级(文本提取): {risk_level}")
             elif isinstance(analysis, dict):
                 risk_level = analysis.get('risk_level', '中等风险')
-                print(f"🎯 {dimension} 风险等级: {risk_level} (字典)")  # 调试信息
+                print(f"🎯 {dimension} 风险等级(字典): {risk_level}")
             else:
                 risk_level = '中等风险'
-                print(f"⚠️ {dimension} 无法识别分析结果类型，使用默认: {risk_level}")
             
-            # 转换为健康度分数
-            score_map = {'低风险': 85, '中等风险': 65, '高风险': 35}
-            score = score_map.get(risk_level, 65)
+            # 方法2：基于实际指标数据计算分数（更准确）
+            if indicators:
+                # 获取最新年度的数据
+                latest_year = max(indicators.keys())
+                year_indicators = indicators[latest_year].get(dimension, {})
+                
+                # 基于指标计算健康度分数
+                calculated_score = self._calculate_dimension_score(dimension, year_indicators)
+                if calculated_score is not None:
+                    score = calculated_score
+                    print(f"✅ {dimension} 使用计算分数: {score}")
+                else:
+                    # 如果无法计算，使用文本提取的风险等级
+                    score_map = {'低风险': 85, '中等风险': 65, '高风险': 35}
+                    score = score_map.get(risk_level, 65)
+                    print(f"📝 {dimension} 使用文本分数: {score}")
+            else:
+                # 没有指标数据，使用文本提取的风险等级
+                score_map = {'低风险': 85, '中等风险': 65, '高风险': 35}
+                score = score_map.get(risk_level, 65)
             
             # 确定颜色
             if score >= 80:
@@ -712,7 +717,7 @@ class ChartGenerator:
         return f"/static/charts/{html_filename}", png_filepath
     
     def _extract_risk_level(self, analysis_text: str) -> str:
-        """从分析文本中提取风险等级"""
+        """从分析文本中提取风险等级（简单版本）"""
         if '高风险' in analysis_text:
             return '高风险'
         elif '低风险' in analysis_text:
@@ -721,6 +726,161 @@ class ChartGenerator:
             return '中等风险'
         else:
             return '中等风险'
+    
+    def _calculate_dimension_score(self, dimension: str, indicators: Dict[str, Optional[float]]) -> Optional[float]:
+        """
+        基于实际指标数据计算维度健康度分数
+        
+        Args:
+            dimension: 维度名称
+            indicators: 该维度的指标数据
+            
+        Returns:
+            float: 健康度分数 (0-100)，None表示无法计算
+        """
+        if not indicators:
+            return None
+        
+        scores = []
+        
+        if dimension == '盈利风险':
+            # 盈利能力评分
+            net_margin = indicators.get('净利润率')
+            if net_margin is not None:
+                if net_margin >= 15:
+                    scores.append(95)
+                elif net_margin >= 10:
+                    scores.append(85)
+                elif net_margin >= 5:
+                    scores.append(70)
+                elif net_margin >= 0:
+                    scores.append(50)
+                else:
+                    scores.append(25)
+            
+            roe = indicators.get('净资产收益率')
+            if roe is not None:
+                if roe >= 15:
+                    scores.append(95)
+                elif roe >= 10:
+                    scores.append(80)
+                elif roe >= 5:
+                    scores.append(60)
+                else:
+                    scores.append(35)
+        
+        elif dimension == '偿债风险':
+            # 偿债能力评分（风险越低，分数越高）
+            asset_liability = indicators.get('资产负债率')
+            if asset_liability is not None:
+                if asset_liability <= 40:
+                    scores.append(95)
+                elif asset_liability <= 60:
+                    scores.append(80)
+                elif asset_liability <= 70:
+                    scores.append(60)
+                elif asset_liability <= 80:
+                    scores.append(40)
+                else:
+                    scores.append(20)
+            
+            current_ratio = indicators.get('流动比率')
+            if current_ratio is not None:
+                if current_ratio >= 2.0:
+                    scores.append(95)
+                elif current_ratio >= 1.5:
+                    scores.append(85)
+                elif current_ratio >= 1.0:
+                    scores.append(65)
+                else:
+                    scores.append(35)
+        
+        elif dimension == '运营风险':
+            # 运营能力评分
+            total_turnover = indicators.get('总资产周转率')
+            if total_turnover is not None:
+                if total_turnover >= 1.5:
+                    scores.append(95)
+                elif total_turnover >= 1.0:
+                    scores.append(85)
+                elif total_turnover >= 0.6:
+                    scores.append(70)
+                else:
+                    scores.append(50)
+            
+            receivable_turnover = indicators.get('应收账款周转率')
+            if receivable_turnover is not None:
+                if receivable_turnover >= 8:
+                    scores.append(95)
+                elif receivable_turnover >= 5:
+                    scores.append(80)
+                elif receivable_turnover >= 3:
+                    scores.append(60)
+                else:
+                    scores.append(40)
+        
+        elif dimension == '现金流风险':
+            # 现金流评分
+            operating_cf = indicators.get('经营性净现金流')
+            if operating_cf is not None:
+                if operating_cf >= 100000:  # 10万以上
+                    scores.append(95)
+                elif operating_cf >= 50000:  # 5万以上
+                    scores.append(85)
+                elif operating_cf >= 0:     # 正现金流
+                    scores.append(65)
+                elif operating_cf >= -50000: # 轻微负
+                    scores.append(40)
+                else:
+                    scores.append(20)
+            
+            cash_flow_ratio = indicators.get('现金流量比率')
+            if cash_flow_ratio is not None:
+                if cash_flow_ratio >= 1.5:
+                    scores.append(95)
+                elif cash_flow_ratio >= 1.0:
+                    scores.append(85)
+                elif cash_flow_ratio >= 0.5:
+                    scores.append(65)
+                else:
+                    scores.append(40)
+        
+        # 计算平均分
+        if scores:
+            return sum(scores) / len(scores)
+        else:
+            return None
+    
+    def _extract_risk_level_advanced(self, analysis_text: str) -> str:
+        """从分析文本中提取风险等级（增强版本）"""
+        import re
+        
+        # 方法1：优先匹配标准格式 "风险等级：XXX"
+        match = re.search(r'风险等级[：:]\s*(低风险|中等风险|高风险)', analysis_text)
+        if match:
+            return match.group(1)
+        
+        # 方法2：匹配最后出现的风险等级
+        risk_patterns = [
+            (r'(低风险)(?!.*风险)', '低风险'),
+            (r'(高风险)(?!.*风险)', '高风险'),
+            (r'(中等风险)(?!.*风险)', '中等风险'),
+        ]
+        
+        for pattern, level in risk_patterns:
+            if re.search(pattern, analysis_text):
+                return level
+        
+        # 方法3：简单包含匹配（优先级：高 > 低 > 中等）
+        if '高风险' in analysis_text:
+            return '高风险'
+        elif '低风险' in analysis_text:
+            return '低风险'
+        elif '中等风险' in analysis_text:
+            return '中等风险'
+        
+        # 默认返回中等风险
+        return '中等风险'
     
     def cleanup_old_charts(self, keep_recent: int = 10):
         """清理旧的图表文件"""

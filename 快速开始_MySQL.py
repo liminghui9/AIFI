@@ -21,7 +21,7 @@ DB_CONFIG = {
     'port': 3306,             # MySQL端口
     'user': 'root',           # 数据库用户名
     'password': '123456',     # 数据库密码
-    'database': 'bill_tax_fusion_dwd_standrad',  # 数据库名称（从建表语句中看到的）
+    'database': 'jinrongai',  # 数据库名称（从建表语句中看到的）
 }
 
 # ============================================================================
@@ -358,4 +358,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
 

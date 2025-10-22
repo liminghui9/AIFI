@@ -10,15 +10,22 @@ from config import Config
 class AIAnalyzer:
     """AI风险分析器"""
     
-    def __init__(self):
-        """初始化AI分析器"""
+    def __init__(self, model: str = None):
+        """
+        初始化AI分析器
+        
+        Args:
+            model: 指定使用的AI模型，如果为None则使用配置文件中的默认模型
+        """
         self.client = None
         if Config.OPENAI_API_KEY:
             self.client = OpenAI(
                 api_key=Config.OPENAI_API_KEY,
                 base_url=Config.OPENAI_API_BASE
             )
-        self.model = Config.OPENAI_MODEL
+        # 使用传入的模型或配置文件中的默认模型
+        self.model = model if model else Config.OPENAI_MODEL
+        print(f"✓ AI分析器初始化，使用模型: {self.model}")
     
     def analyze_dimension_risk(self, 
                                dimension_name: str,
@@ -213,13 +220,13 @@ class AIAnalyzer:
     
     def generate_overall_risk_assessment(self,
                                         dimension_analyses: Dict[str, str],
-                                        all_indicators: Dict[str, Dict[str, Optional[float]]],
-                                        company_info: Dict[str, any]) -> str:
+                                        all_indicators: Dict[str, Dict],
+                                        company_info: Dict[str, str]) -> str:
         """
         生成整体风险评估
         
         Args:
-            dimension_analyses: 各维度分析结果
+            dimension_analyses: 各维度风险分析
             all_indicators: 所有维度的指标数据
             company_info: 企业基本信息
             
@@ -228,39 +235,61 @@ class AIAnalyzer:
         """
         
         if not Config.OPENAI_API_KEY:
-            return self._get_default_overall_assessment(dimension_analyses)
+            return self._get_default_overall_assessment(dimension_analyses, all_indicators, company_info)
         
         try:
+            # 提取关键财务指标数据
+            key_indicators_text = self._format_key_indicators(all_indicators)
+            
             # 构建综合评估提示词
-            prompt = f"""基于以下各维度的财务风险分析，请给出企业整体财务健康状况的综合评估。
+            prompt = f"""基于以下财务数据和各维度分析，请给出企业整体财务健康状况的综合评估。
 
+【企业基本信息】
 企业名称：{company_info.get('企业名称', '该企业')}
 行业类别：{company_info.get('行业类别', '相关行业')}
+统一社会信用代码：{company_info.get('统一社会信用代码', '未提供')}
 
-各维度分析结果：
+【关键财务指标】
+{key_indicators_text}
 
+【各维度风险分析】
 """
             for dimension, analysis in dimension_analyses.items():
-                prompt += f"【{dimension}】\n{analysis}\n\n"
+                prompt += f"{dimension}：\n{analysis}\n\n"
             
             prompt += """
-请给出：
-1. 整体财务健康状况评级（优秀/良好/一般/较差/风险较高）
-2. 主要风险点总结（2-3点）
-3. 核心优势（如有）
-4. 整体建议
+请结合以上具体数据，给出详细的综合评估：
 
-要求：分析应简洁明了，控制在300字以内。
+1. **整体财务健康状况评级**（优秀/良好/一般/较差/高风险）
+   - 说明评级理由，引用具体数据支撑
+
+2. **主要风险点分析**（3-4点）
+   - 每个风险点需结合具体指标数据说明
+   - 量化风险程度（如：资产负债率达XX%，超出安全线XX%）
+
+3. **核心优势识别**（2-3点，如有）
+   - 基于数据指出企业的亮点指标
+   - 与行业标准对比说明优势
+
+4. **战略建议**（3-4条）
+   - 针对性的、可操作的改善建议
+   - 优先级排序
+
+要求：
+- 分析必须数据化、具体化，引用实际指标值
+- 避免模糊表述，多用定量描述
+- 控制在500字以内
+- 语言专业但易懂
 """
             
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": "你是一位资深的财务分析专家，擅长综合评估企业财务状况。"},
+                    {"role": "system", "content": "你是一位资深的财务分析专家，擅长综合评估企业财务状况，并善于用具体数据支撑分析结论。"},
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0.7,
-                max_tokens=600
+                max_tokens=1200  # 增加token限制以支持更详细的分析
             )
             
             assessment = response.choices[0].message.content.strip()
@@ -268,53 +297,155 @@ class AIAnalyzer:
             
         except Exception as e:
             print(f"整体评估生成失败: {str(e)}")
-            return self._get_default_overall_assessment(dimension_analyses)
+            return self._get_default_overall_assessment(dimension_analyses, all_indicators, company_info)
     
-    def _get_default_overall_assessment(self, dimension_analyses: Dict[str, str]) -> str:
-        """生成默认的整体评估"""
+    def _format_key_indicators(self, all_indicators: Dict[str, Dict]) -> str:
+        """格式化关键财务指标为文本"""
+        if not all_indicators:
+            return "暂无指标数据"
+        
+        # 获取最新年度
+        latest_year = max(all_indicators.keys())
+        indicators_by_dim = all_indicators[latest_year]
+        
+        text = f"【{latest_year}年度】\n\n"
+        
+        # 盈利能力
+        if '盈利风险' in indicators_by_dim:
+            text += "盈利能力：\n"
+            for name, value in indicators_by_dim['盈利风险'].items():
+                if value is not None:
+                    if name in ['净利润率', '毛利率', '净资产收益率', '总资产报酬率']:
+                        text += f"  • {name}: {value:.2f}%\n"
+                    elif name in ['营业收入增长率', '净利润增长率']:
+                        text += f"  • {name}: {value:+.2f}%\n"
+                    else:
+                        text += f"  • {name}: {value:.2f}\n"
+            text += "\n"
+        
+        # 偿债能力
+        if '偿债风险' in indicators_by_dim:
+            text += "偿债能力：\n"
+            for name, value in indicators_by_dim['偿债风险'].items():
+                if value is not None:
+                    if name == '资产负债率':
+                        text += f"  • {name}: {value:.2f}%\n"
+                    else:
+                        text += f"  • {name}: {value:.2f}\n"
+            text += "\n"
+        
+        # 运营能力
+        if '运营风险' in indicators_by_dim:
+            text += "运营能力：\n"
+            for name, value in indicators_by_dim['运营风险'].items():
+                if value is not None:
+                    if name == '营业周期':
+                        text += f"  • {name}: {value:.0f}天\n"
+                    else:
+                        text += f"  • {name}: {value:.2f}\n"
+            text += "\n"
+        
+        # 现金流状况
+        if '现金流风险' in indicators_by_dim:
+            text += "现金流状况：\n"
+            for name, value in indicators_by_dim['现金流风险'].items():
+                if value is not None:
+                    if name in ['经营性净现金流', '现金净增加额']:
+                        text += f"  • {name}: {value:,.2f}万元\n"
+                    else:
+                        text += f"  • {name}: {value:.2f}\n"
+        
+        return text
+    
+    def _get_default_overall_assessment(self, dimension_analyses: Dict[str, str], 
+                                       all_indicators: Dict[str, Dict] = None,
+                                       company_info: Dict[str, str] = None) -> str:
+        """生成默认的整体评估（结合具体数据）"""
+        
+        company_name = company_info.get('企业名称', '该企业') if company_info else '该企业'
         
         # 统计风险等级
         risk_counts = {'高风险': 0, '中等风险': 0, '低风险': 0}
-        for analysis in dimension_analyses.values():
+        risk_details = {'高风险': [], '低风险': []}
+        
+        for dimension, analysis in dimension_analyses.items():
             if '高风险' in analysis:
                 risk_counts['高风险'] += 1
+                risk_details['高风险'].append(dimension)
             elif '低风险' in analysis:
                 risk_counts['低风险'] += 1
+                risk_details['低风险'].append(dimension)
             else:
                 risk_counts['中等风险'] += 1
         
         # 判断整体风险水平
         if risk_counts['高风险'] >= 2:
-            overall_level = "风险较高"
-            conclusion = "企业存在多个高风险维度，需要重点关注和改善。"
+            overall_level = "风险较高 ⚠️"
+            conclusion = f"{company_name}存在{risk_counts['高风险']}个高风险维度，财务状况需要重点关注和改善。"
         elif risk_counts['低风险'] >= 3:
-            overall_level = "良好"
-            conclusion = "企业整体财务状况健康，各项指标表现较好。"
+            overall_level = "良好 ✓"
+            conclusion = f"{company_name}整体财务状况健康，{risk_counts['低风险']}个维度表现优异。"
         else:
-            overall_level = "稳定"
-            conclusion = "企业财务状况整体稳定，但仍有改善空间。"
+            overall_level = "稳定 ○"
+            conclusion = f"{company_name}财务状况整体稳定，但存在{risk_counts['中等风险']}个维度需要改善。"
+        
+        # 提取关键指标数据
+        key_data = ""
+        if all_indicators:
+            latest_year = max(all_indicators.keys())
+            indicators_by_dim = all_indicators[latest_year]
+            
+            # 提取最关键的几个指标
+            if '盈利风险' in indicators_by_dim:
+                net_margin = indicators_by_dim['盈利风险'].get('净利润率')
+                if net_margin is not None:
+                    key_data += f"\n• 净利润率：{net_margin:.2f}%"
+            
+            if '偿债风险' in indicators_by_dim:
+                asset_liability = indicators_by_dim['偿债风险'].get('资产负债率')
+                if asset_liability is not None:
+                    key_data += f"\n• 资产负债率：{asset_liability:.2f}%"
+            
+            if '运营风险' in indicators_by_dim:
+                total_turnover = indicators_by_dim['运营风险'].get('总资产周转率')
+                if total_turnover is not None:
+                    key_data += f"\n• 总资产周转率：{total_turnover:.2f}"
+            
+            if '现金流风险' in indicators_by_dim:
+                operating_cf = indicators_by_dim['现金流风险'].get('经营性净现金流')
+                if operating_cf is not None:
+                    key_data += f"\n• 经营性净现金流：{operating_cf:,.2f}万元"
         
         assessment = f"""【整体财务健康状况评估】
 
-综合评级：{overall_level}
+📊 综合评级：{overall_level}
 
 {conclusion}
+{key_data}
 
-主要发现：
+🔍 主要风险点：
 """
         
-        # 提取各维度关键信息
-        for dimension, analysis in dimension_analyses.items():
-            if '高风险' in analysis:
-                assessment += f"- {dimension}需要重点关注\n"
-            elif '低风险' in analysis:
-                assessment += f"- {dimension}表现良好\n"
+        # 详细列出风险点
+        if risk_details['高风险']:
+            for dimension in risk_details['高风险']:
+                assessment += f"• {dimension}：需要立即采取改善措施\n"
+        else:
+            assessment += "• 暂无重大风险点\n"
+        
+        assessment += "\n✨ 核心优势：\n"
+        if risk_details['低风险']:
+            for dimension in risk_details['低风险']:
+                assessment += f"• {dimension}：表现优异，保持当前水平\n"
+        else:
+            assessment += "• 各维度处于稳定状态\n"
         
         assessment += """
-建议：
-1. 定期监测财务指标变化趋势
-2. 针对风险较高的维度制定改善措施
-3. 保持良好的财务管理规范
+💡 战略建议：
+1. 定期监测财务指标变化趋势，建立预警机制
+2. 针对高风险维度制定针对性改善计划
+3. 优化资本结构，提升资金使用效率
+4. 加强财务管理规范，保持稳健经营
 
 （注：本评估基于简化模型，建议结合具体业务情况进行深入分析）
 """

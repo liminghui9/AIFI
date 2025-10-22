@@ -6,15 +6,18 @@
     <title>财务分析报告 - AIFI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --sidebar-bg: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-            --success-color: #27ae60;
-            --warning-color: #f39c12;
-            --danger-color: #e74c3c;
-            --info-color: #3498db;
+            --primary-color: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --secondary-color: #06b6d4;
+            --sidebar-bg: linear-gradient(180deg, #1e3a8a 0%, #3b82f6 100%);
+            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #06b6d4;
         }
         
         * {
@@ -24,9 +27,10 @@
         }
         
         body {
-            background: #f5f7fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
             overflow-x: hidden;
+            min-height: 100vh;
         }
         
         /* 侧边栏样式 */
@@ -34,75 +38,143 @@
             position: fixed;
             left: 0;
             top: 0;
-            width: 240px;
+            width: 260px;
             height: 100vh;
             background: var(--sidebar-bg);
-            padding: 20px 0;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            box-shadow: 4px 0 20px rgba(30, 58, 138, 0.15);
             z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
         }
         
         .sidebar-brand {
-            padding: 20px 25px;
+            padding: 30px 25px;
             color: white;
-            font-size: 1.3rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 700;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-brand i {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+            animation: brandPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes brandPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
         .sidebar-menu {
             list-style: none;
-            padding: 0;
+            padding: 10px 0;
         }
         
         .sidebar-menu li {
-            margin: 5px 15px;
+            margin: 3px 15px;
         }
         
         .sidebar-menu a {
             display: flex;
             align-items: center;
-            padding: 12px 15px;
-            color: rgba(255, 255, 255, 0.8);
+            padding: 14px 18px;
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+        }
+
+        .sidebar-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: white;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
         }
         
-        .sidebar-menu a:hover,
-        .sidebar-menu a.active {
-            background: rgba(255, 255, 255, 0.15);
+        .sidebar-menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
             color: white;
+            transform: translateX(5px);
+        }
+
+        .sidebar-menu a.active {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar-menu a.active::before {
+            transform: scaleY(1);
         }
         
         .sidebar-menu i {
-            font-size: 1.2rem;
-            margin-right: 12px;
-            width: 25px;
+            font-size: 1.3rem;
+            margin-right: 15px;
+            width: 28px;
+            text-align: center;
+        }
+
+        .sidebar a[href="/logout"]:hover {
+            background: rgba(255, 255, 255, 0.15) !important;
+            color: white !important;
+            transform: translateX(5px);
         }
         
         /* 顶部导航栏 */
         .top-navbar {
             position: fixed;
-            left: 240px;
+            left: 260px;
             right: 0;
             top: 0;
-            height: 65px;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            padding: 0 30px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(30, 58, 138, 0.08);
+            padding: 0 35px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             z-index: 999;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
         }
         
         .page-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #2c3e50;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-title i {
+            color: var(--primary-color);
         }
         
         .top-actions {
@@ -113,34 +185,48 @@
         
         /* 主内容区域 */
         .main-content {
-            margin-left: 240px;
-            margin-top: 65px;
-            padding: 30px;
-            min-height: calc(100vh - 65px);
+            margin-left: 260px;
+            margin-top: 70px;
+            padding: 35px;
+            min-height: calc(100vh - 70px);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .report-card {
             background: white;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-radius: 18px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.08);
         }
         
         .report-header {
             text-align: center;
-            padding: 35px 20px;
-            background: var(--sidebar-bg);
+            padding: 50px 30px;
+            background: var(--gradient-primary);
             color: white;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
         }
         
         .report-header h1 {
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .report-header p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 15px 0;
         }
         
         .info-table {
@@ -198,32 +284,92 @@
         }
         
         .dimension-card {
-            border-left: 4px solid var(--secondary-color);
-            margin-bottom: 25px;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 30px;
             transition: all 0.3s ease;
         }
         
         .dimension-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transform: translateX(8px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.15);
+            border-left-color: var(--secondary-color);
         }
         
         .indicator-table {
             width: 100%;
             margin: 20px 0;
+            border-collapse: separate;
+            border-spacing: 0;
         }
         
         .indicator-table th {
-            background: #f8f9fa;
-            padding: 12px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 15px 12px;
+            text-align: center;
+            font-weight: 700;
+            border-bottom: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .indicator-table th:first-child {
+            border-top-left-radius: 12px;
             text-align: left;
-            font-weight: 600;
-            border-bottom: 2px solid #dee2e6;
+        }
+
+        .indicator-table th:last-child {
+            border-top-right-radius: 12px;
         }
         
         .indicator-table td {
-            padding: 12px;
-            border-bottom: 1px solid #ecf0f1;
+            padding: 14px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+
+        .indicator-table td:first-child {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .indicator-table tbody tr:hover {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .indicator-table .alert-value {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .indicator-table .alert-note {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .indicator-table .alert-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        .indicator-table .alert-badge.warning {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+        }
+
+        .indicator-table .alert-badge.danger {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: #991b1b;
+        }
+
+        .indicator-table .alert-badge.success {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
         }
         
         .analysis-text {
@@ -235,63 +381,103 @@
         }
         
         .btn-export {
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 500;
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-weight: 600;
             transition: all 0.3s ease;
             border: none;
             font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
         
         .btn-export:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
         }
         
         .btn-danger {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-danger:hover {
+            box-shadow: 0 6px 25px rgba(239, 68, 68, 0.4);
         }
         
         .btn-secondary {
-            background: #6c757d;
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 6px 25px rgba(100, 116, 139, 0.4);
         }
         
-        .btn-outline-secondary {
-            border: 2px solid #6c757d;
-            color: #6c757d;
+        .btn-outline-danger {
+            border: 2px solid #ef4444;
+            color: #ef4444;
             background: transparent;
+            font-weight: 600;
         }
         
-        .btn-outline-secondary:hover {
-            background: #6c757d;
+        .btn-outline-danger:hover {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
             color: white;
+            border-color: transparent;
         }
         
         .section-title {
+            color: var(--primary-dark);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 12px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
             color: var(--primary-color);
-            border-bottom: 3px solid var(--secondary-color);
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-            font-weight: bold;
         }
         
         .financial-table {
             width: 100%;
-            margin: 15px 0;
+            margin: 20px 0;
             font-size: 0.95rem;
+            border-collapse: separate;
+            border-spacing: 0;
         }
         
         .financial-table th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             color: white;
-            padding: 12px;
+            padding: 15px 12px;
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .financial-table th:first-child {
+            border-top-left-radius: 12px;
+        }
+
+        .financial-table th:last-child {
+            border-top-right-radius: 12px;
         }
         
         .financial-table td {
@@ -306,16 +492,25 @@
         }
         
         .overall-assessment {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: var(--gradient-primary);
             color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
+            padding: 40px;
+            border-radius: 18px;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
         }
         
         .overall-assessment h3 {
-            margin-bottom: 20px;
-            font-weight: bold;
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .overall-assessment h5 {
+            font-weight: 600;
         }
         
         .tab-content {
@@ -369,9 +564,77 @@
         }
         
         .tab-content {
-            background: #f8f9fa;
-            border-radius: 0 8px 8px 8px;
-            padding: 20px;
+            background: transparent;
+            padding: 0;
+        }
+        
+        /* 报告Tab导航样式 */
+        .report-tabs {
+            border-bottom: none;
+            background: white;
+            padding: 20px 25px 0 25px;
+            margin: 0;
+        }
+        
+        .report-tabs .nav-link {
+            border: none;
+            background: transparent;
+            color: #64748b;
+            margin-right: 8px;
+            padding: 14px 26px;
+            border-radius: 12px 12px 0 0;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .report-tabs .nav-link:hover {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: var(--primary-color);
+        }
+        
+        .report-tabs .nav-link.active {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+        
+        .report-tabs .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .report-tabs .nav-link i {
+            margin-right: 6px;
+        }
+        
+        #reportTabContent {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 35px;
+            min-height: 500px;
+            border-radius: 0 0 18px 18px;
+        }
+        
+        #reportTabContent .tab-pane {
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* AI对话插件样式 */
@@ -379,25 +642,25 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             color: white;
             border: none;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             transition: all 0.3s ease;
             z-index: 1001;
         }
         
         .ai-chat-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+            transform: scale(1.15);
+            box-shadow: 0 8px 35px rgba(59, 130, 246, 0.5);
         }
         
         .ai-chat-window {
@@ -420,9 +683,9 @@
         }
         
         .ai-chat-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             color: white;
-            padding: 20px;
+            padding: 22px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -485,7 +748,7 @@
         }
         
         .ai-message.bot .ai-message-avatar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             color: white;
         }
         
@@ -509,7 +772,7 @@
         }
         
         .ai-message.user .ai-message-content {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             color: white;
         }
         
@@ -545,10 +808,10 @@
         }
         
         .ai-chat-send {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             color: white;
             border: none;
             cursor: pointer;
@@ -556,6 +819,11 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+        }
+
+        .ai-chat-send:hover {
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
         }
         
         .ai-chat-send:hover {
@@ -672,11 +940,9 @@
         </ul>
         
         <div style="position: absolute; bottom: 20px; left: 0; right: 0; padding: 0 15px;">
-            <a href="/logout" class="sidebar-menu" style="display: block;">
-                <div style="display: flex; align-items: center; padding: 12px 15px; color: rgba(255, 255, 255, 0.8); text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
-                    <i class="bi bi-box-arrow-right" style="font-size: 1.2rem; margin-right: 12px; width: 25px;"></i>
-                    <span>退出登录</span>
-                </div>
+            <a href="/logout" style="display: flex; align-items: center; padding: 14px 18px; color: rgba(255, 255, 255, 0.85); text-decoration: none; border-radius: 10px; transition: all 0.3s ease; margin: 0 15px; font-weight: 500;">
+                <i class="bi bi-box-arrow-right" style="font-size: 1.3rem; margin-right: 15px; width: 28px; text-align: center;"></i>
+                <span>退出登录</span>
             </a>
         </div>
     </div>
@@ -716,7 +982,47 @@
             <small>生成时间: {{ report.generated_at }}</small>
         </div>
 
-        <!-- 一、企业基本信息 -->
+        <!-- Tab导航栏 -->
+        <div class="report-card" style="padding: 0; overflow: hidden;">
+            <ul class="nav nav-tabs report-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-content" type="button" role="tab">
+                        <i class="bi bi-speedometer2"></i> 总览
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profit-tab" data-bs-toggle="tab" data-bs-target="#profit-content" type="button" role="tab">
+                        <i class="bi bi-cash-coin"></i> 盈利风险
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="debt-tab" data-bs-toggle="tab" data-bs-target="#debt-content" type="button" role="tab">
+                        <i class="bi bi-credit-card"></i> 偿债风险
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="operation-tab" data-bs-toggle="tab" data-bs-target="#operation-content" type="button" role="tab">
+                        <i class="bi bi-gear"></i> 运营风险
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="cashflow-tab" data-bs-toggle="tab" data-bs-target="#cashflow-content" type="button" role="tab">
+                        <i class="bi bi-water"></i> 现金流风险
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="financial-tab" data-bs-toggle="tab" data-bs-target="#financial-content" type="button" role="tab">
+                        <i class="bi bi-table"></i> 财务三表
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Tab内容区域 -->
+        <div class="tab-content" id="reportTabContent">
+            <!-- 总览Tab -->
+            <div class="tab-pane fade show active" id="overview-content" role="tabpanel">
+                <!-- 一、企业基本信息 -->
         <div class="report-card">
             <h3 class="section-title"><i class="bi bi-building"></i> 一、企业基本信息</h3>
             <div class="row">
@@ -838,18 +1144,13 @@
             </div>
             {% endif %}
         </div>
+            </div>
+            <!-- 总览Tab结束 -->
 
-        <!-- 三、分维度风险分析 -->
-        <div class="report-card">
-            <h3 class="section-title"><i class="bi bi-bar-chart-line"></i> 三、分维度风险分析</h3>
-            
-            {% set dimensions = ['盈利风险', '偿债风险', '运营风险', '现金流风险'] %}
-            {% set icons = ['bi-cash-coin', 'bi-credit-card', 'bi-gear', 'bi-water'] %}
-            {% set chart_keys = ['profitability', 'solvency', 'operational', 'cashflow'] %}
-            
-            {% for dimension in dimensions %}
-            <div class="report-card dimension-card">
-                <h4><i class="bi {{ icons[loop.index0] }}"></i> {{ dimension }}</h4>
+            <!-- 盈利风险Tab -->
+            <div class="tab-pane fade" id="profit-content" role="tabpanel">
+                <div class="report-card">
+                    <h3 class="section-title"><i class="bi bi-cash-coin"></i> 盈利风险分析</h3>
                 
                 <!-- 指标表格 -->
                 {% if report.years %}
@@ -862,11 +1163,13 @@
                             <th>{{ report.years[1] }}年</th>
                             <th>变化</th>
                             {% endif %}
+                            <th>预警值</th>
+                            <th>预警说明</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% set current_year = report.years[0] %}
-                        {% set indicators = report.indicators[current_year][dimension] %}
+                        {% set indicators = report.indicators[current_year]['盈利风险'] %}
                         
                         {% for indicator_name, value in indicators.items() %}
                         <tr>
@@ -887,7 +1190,7 @@
                             
                             {% if report.years|length >= 2 %}
                             {% set prev_year = report.years[1] %}
-                            {% set prev_value = report.indicators[prev_year][dimension][indicator_name] %}
+                            {% set prev_value = report.indicators[prev_year]['盈利风险'][indicator_name] %}
                             <td>
                                 {% if prev_value is not none %}
                                     {% if indicator_name in ['净利润率', '毛利率', '净资产收益率', '资产负债率'] %}
@@ -916,6 +1219,74 @@
                                 {% endif %}
                             </td>
                             {% endif %}
+                            
+                            <!-- 预警值列 -->
+                            <td style="text-align: center;">
+                                {% if indicator_name == '净利润率' %}
+                                    <span class="alert-value">≥ 5%</span>
+                                {% elif indicator_name == '毛利率' %}
+                                    <span class="alert-value">≥ 20%</span>
+                                {% elif indicator_name == '净资产收益率' %}
+                                    <span class="alert-value">≥ 8%</span>
+                                {% elif indicator_name == '总资产报酬率' %}
+                                    <span class="alert-value">≥ 6%</span>
+                                {% elif indicator_name == '营业收入增长率' %}
+                                    <span class="alert-value">≥ 0%</span>
+                                {% elif indicator_name == '净利润增长率' %}
+                                    <span class="alert-value">≥ 0%</span>
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            
+                            <!-- 预警说明列 -->
+                            <td>
+                                {% if indicator_name == '净利润率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 5 %}danger{% elif value and value < 10 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 5 %}高风险{% elif value and value < 10 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于5%表明盈利能力较弱，可能存在经营风险；建议优化成本结构，提高运营效率
+                                    </span>
+                                {% elif indicator_name == '毛利率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 20 %}danger{% elif value and value < 30 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 20 %}高风险{% elif value and value < 30 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于20%表明产品附加值较低或成本控制不佳；需关注定价策略和成本管理
+                                    </span>
+                                {% elif indicator_name == '净资产收益率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 8 %}danger{% elif value and value < 15 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 8 %}高风险{% elif value and value < 15 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于8%说明股东投资回报率不足，企业盈利能力需改善；优秀企业应保持15%以上
+                                    </span>
+                                {% elif indicator_name == '总资产报酬率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 6 %}danger{% elif value and value < 10 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 6 %}高风险{% elif value and value < 10 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于6%表明资产利用效率偏低，需优化资产配置和提高资金使用效率
+                                    </span>
+                                {% elif indicator_name == '营业收入增长率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 0 %}danger{% elif value and value < 10 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 0 %}高风险{% elif value and value < 10 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        负增长表明市场份额萎缩或行业下行，需关注市场拓展和产品竞争力
+                                    </span>
+                                {% elif indicator_name == '净利润增长率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 0 %}danger{% elif value and value < 10 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 0 %}高风险{% elif value and value < 10 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        负增长说明盈利能力下降，需分析成本费用变化和经营策略调整
+                                    </span>
+                                {% else %}
+                                    <span class="text-muted">暂无预警标准</span>
+                                {% endif %}
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -925,31 +1296,479 @@
                 <!-- AI分析 -->
                 <div class="analysis-text">
                     <strong><i class="bi bi-robot"></i> AI分析：</strong><br>
-                    {{ report.dimension_analyses[dimension] }}
+                    {{ report.dimension_analyses['盈利风险'] }}
                 </div>
                 
-                <!-- 对应维度的可视化图表 -->
-                {% if report.charts %}
-                    {% set chart_key = chart_keys[loop.index0] %}
-                    {% if chart_key in report.charts and report.charts[chart_key] %}
-                    <div class="mt-4">
-                        <h5 class="mb-3"><i class="bi bi-graph-up"></i> 数据可视化</h5>
-                        <div class="chart-container">
-                            <iframe src="{{ report.charts[chart_key] }}" width="100%" height="450" frameborder="0"></iframe>
-                        </div>
+                <!-- 可视化图表 -->
+                {% if report.charts and report.charts.profitability %}
+                <div class="mt-4">
+                    <h5 class="mb-3"><i class="bi bi-graph-up"></i> 数据可视化</h5>
+                    <div class="chart-container">
+                        <iframe src="{{ report.charts.profitability }}" width="100%" height="450" frameborder="0"></iframe>
                     </div>
-                    {% endif %}
+                </div>
                 {% endif %}
+                </div>
             </div>
-            {% endfor %}
-        </div>
+            <!-- 盈利风险Tab结束 -->
 
-        <!-- 四、财务报表数据 -->
-        <div class="report-card">
-            <h3 class="section-title"><i class="bi bi-table"></i> 四、财务报表数据（精简版）</h3>
-            
-            <!-- 标签页 -->
-            <ul class="nav nav-pills mb-3" role="tablist">
+            <!-- 偿债风险Tab -->
+            <div class="tab-pane fade" id="debt-content" role="tabpanel">
+                <div class="report-card">
+                    <h3 class="section-title"><i class="bi bi-credit-card"></i> 偿债风险分析</h3>
+                
+                <!-- 指标表格 -->
+                {% if report.years %}
+                <table class="indicator-table">
+                    <thead>
+                        <tr>
+                            <th>指标名称</th>
+                            <th>{{ report.years[0] }}年</th>
+                            {% if report.years|length >= 2 %}
+                            <th>{{ report.years[1] }}年</th>
+                            <th>变化</th>
+                            {% endif %}
+                            <th>预警值</th>
+                            <th>预警说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set current_year = report.years[0] %}
+                        {% set indicators = report.indicators[current_year]['偿债风险'] %}
+                        
+                        {% for indicator_name, value in indicators.items() %}
+                        <tr>
+                            <td><strong>{{ indicator_name }}</strong></td>
+                            <td>
+                                {% if value is not none %}
+                                    {% if indicator_name in ['净利润率', '毛利率', '净资产收益率', '资产负债率'] %}
+                                        {{ "%.2f"|format(value) }}%
+                                    {% elif indicator_name in ['经营性净现金流', '现金净增加额'] %}
+                                        {{ "{:,.2f}".format(value) }} 万元
+                                    {% else %}
+                                        {{ "%.2f"|format(value) }}
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">数据缺失</span>
+                                {% endif %}
+                            </td>
+                            
+                            {% if report.years|length >= 2 %}
+                            {% set prev_year = report.years[1] %}
+                            {% set prev_value = report.indicators[prev_year]['偿债风险'][indicator_name] %}
+                            <td>
+                                {% if prev_value is not none %}
+                                    {% if indicator_name in ['净利润率', '毛利率', '净资产收益率', '资产负债率'] %}
+                                        {{ "%.2f"|format(prev_value) }}%
+                                    {% elif indicator_name in ['经营性净现金流', '现金净增加额'] %}
+                                        {{ "{:,.2f}".format(prev_value) }} 万元
+                                    {% else %}
+                                        {{ "%.2f"|format(prev_value) }}
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">数据缺失</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if value is not none and prev_value is not none %}
+                                    {% set change = value - prev_value %}
+                                    {% if change > 0 %}
+                                        <span class="text-success"><i class="bi bi-arrow-up"></i> {{ "%.2f"|format(change) }}</span>
+                                    {% elif change < 0 %}
+                                        <span class="text-danger"><i class="bi bi-arrow-down"></i> {{ "%.2f"|format(change) }}</span>
+                                    {% else %}
+                                        <span class="text-muted">-</span>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            {% endif %}
+                            
+                            <!-- 预警值列 -->
+                            <td style="text-align: center;">
+                                {% if indicator_name == '资产负债率' %}
+                                    <span class="alert-value">≤ 70%</span>
+                                {% elif indicator_name == '流动比率' %}
+                                    <span class="alert-value">≥ 1.5</span>
+                                {% elif indicator_name == '速动比率' %}
+                                    <span class="alert-value">≥ 1.0</span>
+                                {% elif indicator_name == '现金比率' %}
+                                    <span class="alert-value">≥ 0.5</span>
+                                {% elif indicator_name == '利息保障倍数' %}
+                                    <span class="alert-value">≥ 3</span>
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            
+                            <!-- 预警说明列 -->
+                            <td>
+                                {% if indicator_name == '资产负债率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value > 70 %}danger{% elif value and value > 60 %}warning{% else %}success{% endif %}">
+                                            {% if value and value > 70 %}高风险{% elif value and value > 60 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        超过70%表明负债过重，偿债压力大；需关注债务结构和现金流状况
+                                    </span>
+                                {% elif indicator_name == '流动比率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 1 %}danger{% elif value and value < 1.5 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 1 %}高风险{% elif value and value < 1.5 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于1.5说明短期偿债能力不足，可能出现流动性风险
+                                    </span>
+                                {% elif indicator_name == '速动比率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 0.8 %}danger{% elif value and value < 1 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 0.8 %}高风险{% elif value and value < 1 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于1表明即时偿债能力较弱，需增强现金储备和变现能力
+                                    </span>
+                                {% elif indicator_name == '现金比率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 0.3 %}danger{% elif value and value < 0.5 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 0.3 %}高风险{% elif value and value < 0.5 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于0.5显示现金支付能力不足，应加强现金流管理
+                                    </span>
+                                {% elif indicator_name == '利息保障倍数' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 2 %}danger{% elif value and value < 3 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 2 %}高风险{% elif value and value < 3 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于3说明盈利对利息支付的保障程度较低，存在债务违约风险
+                                    </span>
+                                {% else %}
+                                    <span class="text-muted">暂无预警标准</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+                
+                <!-- AI分析 -->
+                <div class="analysis-text">
+                    <strong><i class="bi bi-robot"></i> AI分析：</strong><br>
+                    {{ report.dimension_analyses['偿债风险'] }}
+                </div>
+                
+                <!-- 可视化图表 -->
+                {% if report.charts and report.charts.solvency %}
+                <div class="mt-4">
+                    <h5 class="mb-3"><i class="bi bi-graph-up"></i> 数据可视化</h5>
+                    <div class="chart-container">
+                        <iframe src="{{ report.charts.solvency }}" width="100%" height="450" frameborder="0"></iframe>
+                    </div>
+                </div>
+                {% endif %}
+                </div>
+            </div>
+            <!-- 偿债风险Tab结束 -->
+
+            <!-- 运营风险Tab -->
+            <div class="tab-pane fade" id="operation-content" role="tabpanel">
+                <div class="report-card">
+                    <h3 class="section-title"><i class="bi bi-gear"></i> 运营风险分析</h3>
+                
+                <!-- 指标表格 -->
+                {% if report.years %}
+                <table class="indicator-table">
+                    <thead>
+                        <tr>
+                            <th>指标名称</th>
+                            <th>{{ report.years[0] }}年</th>
+                            {% if report.years|length >= 2 %}
+                            <th>{{ report.years[1] }}年</th>
+                            <th>变化</th>
+                            {% endif %}
+                            <th>预警值</th>
+                            <th>预警说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set current_year = report.years[0] %}
+                        {% set indicators = report.indicators[current_year]['运营风险'] %}
+                        
+                        {% for indicator_name, value in indicators.items() %}
+                        <tr>
+                            <td><strong>{{ indicator_name }}</strong></td>
+                            <td>
+                                {% if value is not none %}
+                                    {% if indicator_name in ['净利润率', '毛利率', '净资产收益率', '资产负债率'] %}
+                                        {{ "%.2f"|format(value) }}%
+                                    {% elif indicator_name in ['经营性净现金流', '现金净增加额'] %}
+                                        {{ "{:,.2f}".format(value) }} 万元
+                                    {% else %}
+                                        {{ "%.2f"|format(value) }}
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">数据缺失</span>
+                                {% endif %}
+                            </td>
+                            
+                            {% if report.years|length >= 2 %}
+                            {% set prev_year = report.years[1] %}
+                            {% set prev_value = report.indicators[prev_year]['运营风险'][indicator_name] %}
+                            <td>
+                                {% if prev_value is not none %}
+                                    {% if indicator_name in ['净利润率', '毛利率', '净资产收益率', '资产负债率'] %}
+                                        {{ "%.2f"|format(prev_value) }}%
+                                    {% elif indicator_name in ['经营性净现金流', '现金净增加额'] %}
+                                        {{ "{:,.2f}".format(prev_value) }} 万元
+                                    {% else %}
+                                        {{ "%.2f"|format(prev_value) }}
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">数据缺失</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if value is not none and prev_value is not none %}
+                                    {% set change = value - prev_value %}
+                                    {% if change > 0 %}
+                                        <span class="text-success"><i class="bi bi-arrow-up"></i> {{ "%.2f"|format(change) }}</span>
+                                    {% elif change < 0 %}
+                                        <span class="text-danger"><i class="bi bi-arrow-down"></i> {{ "%.2f"|format(change) }}</span>
+                                    {% else %}
+                                        <span class="text-muted">-</span>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            {% endif %}
+                            
+                            <!-- 预警值列 -->
+                            <td style="text-align: center;">
+                                {% if indicator_name == '总资产周转率' %}
+                                    <span class="alert-value">≥ 0.8</span>
+                                {% elif indicator_name == '应收账款周转率' %}
+                                    <span class="alert-value">≥ 5</span>
+                                {% elif indicator_name == '存货周转率' %}
+                                    <span class="alert-value">≥ 3</span>
+                                {% elif indicator_name == '营业周期' %}
+                                    <span class="alert-value">≤ 120天</span>
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            
+                            <!-- 预警说明列 -->
+                            <td>
+                                {% if indicator_name == '总资产周转率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 0.5 %}danger{% elif value and value < 0.8 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 0.5 %}高风险{% elif value and value < 0.8 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于0.8说明资产利用效率低，应优化资产配置和提高资产周转速度
+                                    </span>
+                                {% elif indicator_name == '应收账款周转率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 3 %}danger{% elif value and value < 5 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 3 %}高风险{% elif value and value < 5 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于5表明账款回收慢，可能存在坏账风险；应加强信用管理和催收力度
+                                    </span>
+                                {% elif indicator_name == '存货周转率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 2 %}danger{% elif value and value < 3 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 2 %}高风险{% elif value and value < 3 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于3显示存货积压严重，占用资金过多；需优化库存管理和销售策略
+                                    </span>
+                                {% elif indicator_name == '营业周期' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value > 150 %}danger{% elif value and value > 120 %}warning{% else %}success{% endif %}">
+                                            {% if value and value > 150 %}高风险{% elif value and value > 120 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        超过120天说明资金周转慢，运营效率低；应加快资金周转速度
+                                    </span>
+                                {% else %}
+                                    <span class="text-muted">暂无预警标准</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+                
+                <!-- AI分析 -->
+                <div class="analysis-text">
+                    <strong><i class="bi bi-robot"></i> AI分析：</strong><br>
+                    {{ report.dimension_analyses['运营风险'] }}
+                </div>
+                
+                <!-- 可视化图表 -->
+                {% if report.charts and report.charts.operational %}
+                <div class="mt-4">
+                    <h5 class="mb-3"><i class="bi bi-graph-up"></i> 数据可视化</h5>
+                    <div class="chart-container">
+                        <iframe src="{{ report.charts.operational }}" width="100%" height="450" frameborder="0"></iframe>
+                    </div>
+                </div>
+                {% endif %}
+                </div>
+            </div>
+            <!-- 运营风险Tab结束 -->
+
+            <!-- 现金流风险Tab -->
+            <div class="tab-pane fade" id="cashflow-content" role="tabpanel">
+                <div class="report-card">
+                    <h3 class="section-title"><i class="bi bi-water"></i> 现金流风险分析</h3>
+                
+                <!-- 指标表格 -->
+                {% if report.years %}
+                <table class="indicator-table">
+                    <thead>
+                        <tr>
+                            <th>指标名称</th>
+                            <th>{{ report.years[0] }}年</th>
+                            {% if report.years|length >= 2 %}
+                            <th>{{ report.years[1] }}年</th>
+                            <th>变化</th>
+                            {% endif %}
+                            <th>预警值</th>
+                            <th>预警说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set current_year = report.years[0] %}
+                        {% set indicators = report.indicators[current_year]['现金流风险'] %}
+                        
+                        {% for indicator_name, value in indicators.items() %}
+                        <tr>
+                            <td><strong>{{ indicator_name }}</strong></td>
+                            <td>
+                                {% if value is not none %}
+                                    {% if indicator_name in ['净利润率', '毛利率', '净资产收益率', '资产负债率'] %}
+                                        {{ "%.2f"|format(value) }}%
+                                    {% elif indicator_name in ['经营性净现金流', '现金净增加额'] %}
+                                        {{ "{:,.2f}".format(value) }} 万元
+                                    {% else %}
+                                        {{ "%.2f"|format(value) }}
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">数据缺失</span>
+                                {% endif %}
+                            </td>
+                            
+                            {% if report.years|length >= 2 %}
+                            {% set prev_year = report.years[1] %}
+                            {% set prev_value = report.indicators[prev_year]['现金流风险'][indicator_name] %}
+                            <td>
+                                {% if prev_value is not none %}
+                                    {% if indicator_name in ['净利润率', '毛利率', '净资产收益率', '资产负债率'] %}
+                                        {{ "%.2f"|format(prev_value) }}%
+                                    {% elif indicator_name in ['经营性净现金流', '现金净增加额'] %}
+                                        {{ "{:,.2f}".format(prev_value) }} 万元
+                                    {% else %}
+                                        {{ "%.2f"|format(prev_value) }}
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">数据缺失</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if value is not none and prev_value is not none %}
+                                    {% set change = value - prev_value %}
+                                    {% if change > 0 %}
+                                        <span class="text-success"><i class="bi bi-arrow-up"></i> {{ "%.2f"|format(change) }}</span>
+                                    {% elif change < 0 %}
+                                        <span class="text-danger"><i class="bi bi-arrow-down"></i> {{ "%.2f"|format(change) }}</span>
+                                    {% else %}
+                                        <span class="text-muted">-</span>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            {% endif %}
+                            
+                            <!-- 预警值列 -->
+                            <td style="text-align: center;">
+                                {% if indicator_name == '经营性净现金流' %}
+                                    <span class="alert-value">> 0万元</span>
+                                {% elif indicator_name == '现金净增加额' %}
+                                    <span class="alert-value">≥ 0万元</span>
+                                {% elif indicator_name == '现金流量比率' %}
+                                    <span class="alert-value">≥ 1.0</span>
+                                {% elif indicator_name == '销售现金比率' %}
+                                    <span class="alert-value">≥ 0.5</span>
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
+                            
+                            <!-- 预警说明列 -->
+                            <td>
+                                {% if indicator_name == '经营性净现金流' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 0 %}danger{% elif value and value < 50000 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 0 %}高风险{% elif value and value < 50000 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        为负表明经营现金流入不足，存在资金链断裂风险；应加强现金回收管理
+                                    </span>
+                                {% elif indicator_name == '现金净增加额' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < -10000 %}danger{% elif value and value < 0 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < -10000 %}高风险{% elif value and value < 0 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        持续负值说明现金持续减少，企业资金状况恶化；需关注资金流动性
+                                    </span>
+                                {% elif indicator_name == '现金流量比率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 0.8 %}danger{% elif value and value < 1 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 0.8 %}高风险{% elif value and value < 1 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于1表明经营现金流不足以支付流动负债，存在短期偿债风险
+                                    </span>
+                                {% elif indicator_name == '销售现金比率' %}
+                                    <span class="alert-note">
+                                        <span class="alert-badge {% if value and value < 0.3 %}danger{% elif value and value < 0.5 %}warning{% else %}success{% endif %}">
+                                            {% if value and value < 0.3 %}高风险{% elif value and value < 0.5 %}中风险{% else %}正常{% endif %}
+                                        </span>
+                                        低于0.5显示销售现金回收不足，可能存在赖账问题；应优化账期管理
+                                    </span>
+                                {% else %}
+                                    <span class="text-muted">暂无预警标准</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+                
+                <!-- AI分析 -->
+                <div class="analysis-text">
+                    <strong><i class="bi bi-robot"></i> AI分析：</strong><br>
+                    {{ report.dimension_analyses['现金流风险'] }}
+                </div>
+                
+                <!-- 可视化图表 -->
+                {% if report.charts and report.charts.cashflow %}
+                <div class="mt-4">
+                    <h5 class="mb-3"><i class="bi bi-graph-up"></i> 数据可视化</h5>
+                    <div class="chart-container">
+                        <iframe src="{{ report.charts.cashflow }}" width="100%" height="450" frameborder="0"></iframe>
+                    </div>
+                </div>
+                {% endif %}
+                </div>
+            </div>
+            <!-- 现金流风险Tab结束 -->
+
+            <!-- 财务三表Tab -->
+            <div class="tab-pane fade" id="financial-content" role="tabpanel">
+                <div class="report-card">
+                    <h3 class="section-title"><i class="bi bi-table"></i> 财务报表数据（精简版）</h3>
+                    
+                    <!-- 标签页 -->
+                    <ul class="nav nav-pills mb-3" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#balance-sheet" type="button">
                         资产负债表
@@ -1094,7 +1913,11 @@
                     {% endif %}
                 </div>
             </div>
+                </div>
+            </div>
+            <!-- 财务三表Tab结束 -->
         </div>
+        <!-- Tab内容区域结束 -->
 
         <!-- 免责声明 -->
         <div class="report-card" style="background: #f8f9fa;">

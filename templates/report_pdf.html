@@ -24,38 +24,108 @@
             padding: 20px;
         }
         
-        /* 封面 */
+        /* 封面 - 专业蓝色科技风 */
         .cover-page {
             page-break-after: always;
-            height: 27cm;
-            background: #667eea;
+            height: 29.7cm;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 80px 60px;
+        }
+        
+        .cover-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.03) 35px, rgba(255,255,255,.03) 70px);
+            z-index: 0;
+        }
+        
+        .cover-logo {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cover-logo-sub {
+            font-size: 12px;
+            letter-spacing: 6px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cover-main {
             text-align: center;
-            padding-top: 8cm;
+            position: relative;
+            z-index: 1;
+            padding: 60px 0;
         }
         
         .cover-title {
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 20px;
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 6px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
         
         .cover-subtitle {
-            font-size: 24px;
-            margin-bottom: 40px;
+            font-size: 20px;
+            letter-spacing: 8px;
+            opacity: 0.9;
+            margin-bottom: 60px;
+            text-transform: uppercase;
         }
         
         .cover-company {
-            font-size: 32px;
-            margin: 40px 0;
-            padding: 20px 40px;
-            border: 3px solid white;
-            border-radius: 10px;
+            font-size: 38px;
+            font-weight: 700;
+            margin: 50px auto;
+            padding: 35px 60px;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            letter-spacing: 3px;
+        }
+        
+        .cover-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            position: relative;
+            z-index: 1;
         }
         
         .cover-date {
-            font-size: 18px;
-            margin-top: 40px;
+            font-size: 14px;
+            opacity: 0.9;
+            margin: 6px 0;
+        }
+        
+        .cover-watermark {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            font-size: 140px;
+            opacity: 0.04;
+            font-weight: 900;
+            letter-spacing: 10px;
+            transform: rotate(-12deg);
+            z-index: 0;
         }
         
         /* 页眉页脚 */
@@ -75,29 +145,33 @@
         
         /* 标题样式 */
         h1 {
-            font-size: 18pt;
-            color: #667eea;
-            margin: 20pt 0 15pt;
-            padding-bottom: 8pt;
-            border-bottom: 2pt solid #667eea;
+            font-size: 20pt;
+            color: #1e3a8a;
+            margin: 25pt 0 18pt;
+            padding: 15pt 20pt;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 5pt solid #3b82f6;
+            border-radius: 0 8pt 8pt 0;
             page-break-after: avoid;
-            font-weight: bold;
+            font-weight: 700;
         }
         
         h2 {
             font-size: 16pt;
-            color: #764ba2;
-            margin: 18pt 0 12pt;
+            color: #0f172a;
+            margin: 20pt 0 14pt;
+            padding-left: 15pt;
+            border-left: 4pt solid #06b6d4;
             page-break-after: avoid;
-            font-weight: bold;
+            font-weight: 700;
         }
         
         h3 {
             font-size: 14pt;
-            color: #333;
-            margin: 15pt 0 10pt;
+            color: #0f172a;
+            margin: 18pt 0 12pt;
             page-break-after: avoid;
-            font-weight: bold;
+            font-weight: 700;
         }
         
         h4 {
@@ -118,28 +192,66 @@
         /* 卡片样式 */
         .report-card {
             background: white;
-            padding: 15pt;
-            margin-bottom: 15pt;
-            border: 1pt solid #e0e0e0;
-            page-break-inside: avoid;
+            padding: 20pt;
+            margin-bottom: 20pt;
+            border: 1pt solid #e2e8f0;
+            border-radius: 10pt;
+            box-shadow: 0 2pt 8pt rgba(0, 0, 0, 0.05);
+            page-break-inside: auto;  /* 允许分页 */
         }
         
         .overall-assessment {
-            background: #f5f7ff;
-            border-left: 3pt solid #667eea;
-            padding: 15pt;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 25pt;
+            border-radius: 12pt;
+            box-shadow: 0 4pt 20pt rgba(59, 130, 246, 0.3);
+            page-break-inside: auto;  /* 允许内部分页 */
+        }
+        
+        .overall-assessment h1 {
+            color: white;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-bottom: 20pt;
+        }
+        
+        .overall-assessment h3 {
+            color: white;
+        }
+        
+        .overall-assessment h5 {
+            color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .overall-assessment .chart-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .overall-assessment .chart-container h3,
+        .overall-assessment .chart-container h5 {
+            color: white;
         }
         
         .dimension-card {
-            border-left: 3pt solid #764ba2;
-            margin-top: 12pt;
-            padding: 12pt;
-            background: #fafafa;
+            border-left: 5pt solid #3b82f6;
+            margin: 20pt 0;
+            padding: 20pt;
+            background: white;
+            border-radius: 10pt;
+            box-shadow: 0 2pt 8pt rgba(59, 130, 246, 0.1);
             page-break-inside: auto;  /* 允许跨页 */
         }
         
         .dimension-card h2 {
             page-break-after: avoid;  /* 标题后不分页 */
+            color: #1e3a8a;
+            border-left: none;
+            padding-left: 0;
+            margin-top: 0;
         }
         
         /* 表格样式 */
@@ -152,7 +264,7 @@
         }
         
         thead {
-            background: #667eea;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
         }
         
@@ -180,32 +292,43 @@
         
         /* AI分析文本 */
         .analysis-text {
-            background: #f0f5ff;
-            border-left: 3pt solid #667eea;
-            padding: 12pt;
-            margin: 10pt 0;
-            line-height: 1.8;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4pt solid #3b82f6;
+            padding: 15pt 18pt;
+            margin: 15pt 0;
+            line-height: 2;
+            border-radius: 0 8pt 8pt 0;
         }
         
         .analysis-text strong {
-            color: #667eea;
-            font-weight: bold;
+            color: #1e3a8a;
+            font-weight: 700;
+            font-size: 11pt;
         }
         
         /* 图表容器 */
         .chart-container {
-            margin: 12pt 0;
-            padding: 10pt;
-            background: white;
-            border: 1pt solid #e0e0e0;
-            page-break-inside: avoid;
+            margin: 18pt 0;
+            padding: 15pt;
+            background: #f8fafc;
+            border: 1pt solid #e2e8f0;
+            border-radius: 8pt;
+            page-break-inside: auto;  /* 允许图表分页 */
             text-align: center;
         }
         
         .chart-container h4 {
-            margin: 0 0 8pt 0;
-            color: #764ba2;
+            margin: 0 0 12pt 0;
+            color: #1e3a8a;
+            font-size: 12pt;
+            font-weight: 700;
+        }
+        
+        .chart-container h5 {
+            margin: 0 0 10pt 0;
+            color: #0f172a;
             font-size: 11pt;
+            font-weight: 600;
         }
         
         .chart-container img {
@@ -224,17 +347,58 @@
         
         /* 文本颜色 */
         .text-success {
-            color: #27ae60;
+            color: #10b981;
             font-weight: 600;
         }
         
         .text-danger {
-            color: #e74c3c;
+            color: #ef4444;
+            font-weight: 600;
+        }
+        
+        .text-warning {
+            color: #f59e0b;
             font-weight: 600;
         }
         
         .text-muted {
-            color: #999;
+            color: #94a3b8;
+        }
+        
+        /* 预警徽章样式 */
+        .alert-badge {
+            display: inline-block;
+            padding: 3pt 10pt;
+            border-radius: 12pt;
+            font-size: 8pt;
+            font-weight: 700;
+            margin-right: 6pt;
+        }
+        
+        .alert-badge.success {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+        }
+        
+        .alert-badge.warning {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+        }
+        
+        .alert-badge.danger {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: #991b1b;
+        }
+        
+        .alert-value {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        
+        .alert-note {
+            color: #64748b;
+            font-size: 9pt;
+            line-height: 1.6;
         }
         
         /* 图标替代 */
@@ -251,8 +415,12 @@
             page-break-after: always;
         }
         
+        .page-break-before {
+            page-break-before: always;
+        }
+        
         .avoid-break {
-            page-break-inside: avoid;
+            page-break-inside: auto;  /* 允许分页，避免大段空白 */
         }
         
         /* 目录样式 */
@@ -273,11 +441,31 @@
 <body>
     <!-- 封面页 -->
     <div class="cover-page">
-        <div class="cover-title">企业财务分析报告</div>
-        <div class="cover-subtitle">Financial Analysis Report</div>
-        <div class="cover-company">{{ report.basic_info.get('企业名称', '企业名称') }}</div>
-        <div class="cover-date">生成日期：{{ report.generated_at }}</div>
-        <div class="cover-date" style="margin-top: 10px;">AIFI 智能财报系统</div>
+        <div class="cover-pattern"></div>
+        <div class="cover-watermark">AIFI</div>
+        
+        <div style="position: relative; z-index: 1;">
+            <div class="cover-logo">⚡ AIFI</div>
+            <div class="cover-logo-sub">FINANCIAL INTELLIGENCE SYSTEM</div>
+        </div>
+        
+        <div class="cover-main">
+            <div class="cover-title">企业财务分析报告</div>
+            <div class="cover-subtitle">Financial Analysis Report</div>
+            <div class="cover-company">{{ report.basic_info.get('企业名称', '企业名称') }}</div>
+        </div>
+        
+        <div class="cover-footer">
+            <div>
+                <div class="cover-date">📅 生成日期：{{ report.generated_at }}</div>
+                <div class="cover-date">📊 分析年度：{{ report.years[0] if report.years else '-' }}年</div>
+                <div class="cover-date">📈 报告类型：综合财务分析</div>
+            </div>
+            <div style="text-align: right; font-size: 11px; opacity: 0.85;">
+                <div>Powered by AI Technology</div>
+                <div style="margin-top: 5px;">智能财务分析系统</div>
+            </div>
+        </div>
     </div>
 
     <!-- 主要内容 -->
@@ -303,29 +491,23 @@
             <!-- 总览图表 -->
             {% if report.charts %}
                 {% if report.charts.get('health_dashboard_png') %}
-                <div class="avoid-break">
-                    <h3>财务健康度总览</h3>
-                    <div class="chart-container">
-                        <img src="file:///{{ report.charts.get('health_dashboard_png')|replace('\\', '/') }}" alt="财务健康度仪表盘">
-                    </div>
+                <h3>财务健康度总览</h3>
+                <div class="chart-container">
+                    <img src="file:///{{ report.charts.get('health_dashboard_png')|replace('\\', '/') }}" alt="财务健康度仪表盘">
                 </div>
                 {% endif %}
                 
                 {% if report.charts.get('main_indicators_png') %}
-                <div class="avoid-break">
-                    <h3>主要指标对比</h3>
-                    <div class="chart-container">
-                        <img src="file:///{{ report.charts.get('main_indicators_png')|replace('\\', '/') }}" alt="主要指标对比">
-                    </div>
+                <h3>主要指标对比</h3>
+                <div class="chart-container">
+                    <img src="file:///{{ report.charts.get('main_indicators_png')|replace('\\', '/') }}" alt="主要指标对比">
                 </div>
                 {% endif %}
                 
                 {% if report.charts.get('risk_radar_png') %}
-                <div class="avoid-break">
-                    <h3>风险雷达图</h3>
-                    <div class="chart-container">
-                        <img src="file:///{{ report.charts.get('risk_radar_png')|replace('\\', '/') }}" alt="风险雷达图">
-                    </div>
+                <h3>风险雷达图</h3>
+                <div class="chart-container">
+                    <img src="file:///{{ report.charts.get('risk_radar_png')|replace('\\', '/') }}" alt="风险雷达图">
                 </div>
                 {% endif %}
             {% endif %}
@@ -339,11 +521,6 @@
             {% set chart_keys = ['profitability', 'solvency', 'operational', 'cashflow'] %}
             
             {% for dimension in dimensions %}
-            {% if loop.index == 3 %}
-            <!-- 第三个维度前建议分页 -->
-            <div style="page-break-before: always;"></div>
-            {% endif %}
-            
             <div class="dimension-card">
                 <h2>3.{{ loop.index }} {{ dimension }}</h2>
                 
@@ -352,12 +529,14 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>指标名称</th>
-                            <th>{{ report.years[0] }}年</th>
+                            <th style="width: 25%;">指标名称</th>
+                            <th style="width: 18%;">{{ report.years[0] }}年</th>
                             {% if report.years|length >= 2 %}
-                            <th>{{ report.years[1] }}年</th>
-                            <th>变化</th>
+                            <th style="width: 18%;">{{ report.years[1] }}年</th>
+                            <th style="width: 15%;">变化</th>
                             {% endif %}
+                            <th style="width: 12%;">预警值</th>
+                            <th style="width: 12%;">风险等级</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -412,6 +591,92 @@
                                 {% endif %}
                             </td>
                             {% endif %}
+                            
+                            <!-- 预警值列 -->
+                            <td style="text-align: center; font-size: 9pt;">
+                                <span class="alert-value">
+                                {% if dimension == '盈利风险' %}
+                                    {% if indicator_name == '净利润率' %}≥5%
+                                    {% elif indicator_name == '毛利率' %}≥20%
+                                    {% elif indicator_name == '净资产收益率' %}≥8%
+                                    {% elif indicator_name in ['营业收入增长率', '净利润增长率'] %}≥0%
+                                    {% else %}-{% endif %}
+                                {% elif dimension == '偿债风险' %}
+                                    {% if indicator_name == '资产负债率' %}≤70%
+                                    {% elif indicator_name == '流动比率' %}≥1.5
+                                    {% elif indicator_name == '速动比率' %}≥1.0
+                                    {% elif indicator_name == '现金比率' %}≥0.5
+                                    {% elif indicator_name == '利息保障倍数' %}≥3
+                                    {% else %}-{% endif %}
+                                {% elif dimension == '运营风险' %}
+                                    {% if indicator_name == '总资产周转率' %}≥0.8
+                                    {% elif indicator_name == '应收账款周转率' %}≥5
+                                    {% elif indicator_name == '存货周转率' %}≥3
+                                    {% elif indicator_name == '营业周期' %}≤120天
+                                    {% else %}-{% endif %}
+                                {% elif dimension == '现金流风险' %}
+                                    {% if indicator_name == '经营性净现金流' %}>0
+                                    {% elif indicator_name == '现金净增加额' %}≥0
+                                    {% elif indicator_name == '现金流量比率' %}≥1.0
+                                    {% elif indicator_name == '销售现金比率' %}≥0.5
+                                    {% else %}-{% endif %}
+                                {% else %}-{% endif %}
+                                </span>
+                            </td>
+                            
+                            <!-- 风险等级列 -->
+                            <td style="text-align: center;">
+                                {% if value is not none %}
+                                    {% set risk_class = 'success' %}
+                                    {% set risk_text = '正常' %}
+                                    {% if dimension == '盈利风险' %}
+                                        {% if indicator_name == '净利润率' and value < 5 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '净利润率' and value < 10 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '毛利率' and value < 20 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '毛利率' and value < 30 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '净资产收益率' and value < 8 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '净资产收益率' and value < 15 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name in ['营业收入增长率', '净利润增长率'] and value < 0 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name in ['营业收入增长率', '净利润增长率'] and value < 10 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% endif %}
+                                    {% elif dimension == '偿债风险' %}
+                                        {% if indicator_name == '资产负债率' and value > 70 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '资产负债率' and value > 60 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '流动比率' and value < 1 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '流动比率' and value < 1.5 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '速动比率' and value < 0.8 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '速动比率' and value < 1 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '现金比率' and value < 0.3 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '现金比率' and value < 0.5 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '利息保障倍数' and value < 2 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '利息保障倍数' and value < 3 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% endif %}
+                                    {% elif dimension == '运营风险' %}
+                                        {% if indicator_name == '总资产周转率' and value < 0.5 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '总资产周转率' and value < 0.8 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '应收账款周转率' and value < 3 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '应收账款周转率' and value < 5 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '存货周转率' and value < 2 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '存货周转率' and value < 3 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '营业周期' and value > 150 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '营业周期' and value > 120 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% endif %}
+                                    {% elif dimension == '现金流风险' %}
+                                        {% if indicator_name == '经营性净现金流' and value < 0 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '经营性净现金流' and value < 50000 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '现金净增加额' and value < -10000 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '现金净增加额' and value < 0 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '现金流量比率' and value < 0.8 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '现金流量比率' and value < 1 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% elif indicator_name == '销售现金比率' and value < 0.3 %}{% set risk_class = 'danger' %}{% set risk_text = '高风险' %}
+                                        {% elif indicator_name == '销售现金比率' and value < 0.5 %}{% set risk_class = 'warning' %}{% set risk_text = '中风险' %}
+                                        {% endif %}
+                                    {% endif %}
+                                    <span class="alert-badge {{ risk_class }}">{{ risk_text }}</span>
+                                {% else %}
+                                    <span class="text-muted">-</span>
+                                {% endif %}
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -443,7 +708,7 @@
         </div>
 
         <!-- 四、财务报表数据 -->
-        <div class="report-card page-break">
+        <div class="report-card">
             <h1>四、财务报表数据（精简版）</h1>
             
             <!-- 资产负债表 -->

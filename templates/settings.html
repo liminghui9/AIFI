@@ -6,13 +6,17 @@
     <title>个人设置 - AIFI 智能财报系统</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --sidebar-bg: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-            --success-color: #27ae60;
-            --warning-color: #f39c12;
+            --primary-color: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --secondary-color: #06b6d4;
+            --sidebar-bg: linear-gradient(180deg, #1e3a8a 0%, #3b82f6 100%);
+            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
         }
         
         * {
@@ -22,8 +26,9 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fa;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
         }
         
         /* 侧边栏样式 */
@@ -31,72 +36,146 @@
             position: fixed;
             left: 0;
             top: 0;
-            width: 240px;
+            width: 260px;
             height: 100vh;
             background: var(--sidebar-bg);
-            padding: 20px 0;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            box-shadow: 4px 0 20px rgba(30, 58, 138, 0.15);
             z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
         }
         
         .sidebar-brand {
-            padding: 20px 25px;
+            padding: 30px 25px;
             color: white;
-            font-size: 1.3rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 700;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-brand i {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+            animation: brandPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes brandPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
         .sidebar-menu {
             list-style: none;
-            padding: 0;
+            padding: 10px 0;
         }
         
         .sidebar-menu li {
-            margin: 5px 15px;
+            margin: 3px 15px;
         }
         
         .sidebar-menu a {
             display: flex;
             align-items: center;
-            padding: 12px 15px;
-            color: rgba(255, 255, 255, 0.8);
+            padding: 14px 18px;
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+        }
+
+        .sidebar-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: white;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
         }
         
-        .sidebar-menu a:hover,
-        .sidebar-menu a.active {
-            background: rgba(255, 255, 255, 0.15);
+        .sidebar-menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
             color: white;
+            transform: translateX(5px);
+        }
+
+        .sidebar-menu a.active {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar-menu a.active::before {
+            transform: scaleY(1);
         }
         
         .sidebar-menu i {
-            font-size: 1.2rem;
-            margin-right: 12px;
-            width: 25px;
+            font-size: 1.3rem;
+            margin-right: 15px;
+            width: 28px;
+            text-align: center;
+        }
+
+        .sidebar a[href="/logout"]:hover {
+            background: rgba(255, 255, 255, 0.15) !important;
+            color: white !important;
+            transform: translateX(5px);
         }
         
         /* 顶部导航栏 */
         .top-navbar {
             position: fixed;
-            left: 240px;
+            left: 260px;
             right: 0;
             top: 0;
-            height: 65px;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            padding: 0 30px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(30, 58, 138, 0.08);
+            padding: 0 35px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             z-index: 999;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
         }
         
         .page-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .page-title i {
+            color: var(--primary-color);
+        }
+
+        .old-page-title {
             font-size: 1.5rem;
             font-weight: 600;
             color: #2c3e50;
@@ -122,10 +201,16 @@
         
         /* 主内容区域 */
         .main-content {
-            margin-left: 240px;
-            margin-top: 65px;
-            padding: 30px;
-            min-height: calc(100vh - 65px);
+            margin-left: 260px;
+            margin-top: 70px;
+            padding: 35px;
+            min-height: calc(100vh - 70px);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         /* 设置卡片 */
@@ -136,17 +221,23 @@
         
         .settings-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 18px;
             padding: 0;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.1);
+            margin-bottom: 30px;
             overflow: hidden;
+            border: 1px solid rgba(59, 130, 246, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .settings-card:hover {
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.15);
         }
         
         .card-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             color: white;
-            padding: 25px 30px;
+            padding: 28px 35px;
             display: flex;
             align-items: center;
             gap: 15px;
@@ -181,8 +272,8 @@
         .large-avatar {
             width: 150px;
             height: 150px;
-            border-radius: 50%;
-            background: var(--sidebar-bg);
+            border-radius: 25px;
+            background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -190,7 +281,12 @@
             font-size: 4rem;
             font-weight: bold;
             margin: 0 auto 20px;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .large-avatar:hover {
+            transform: scale(1.05) rotate(5deg);
         }
         
         .avatar-role-badge {
@@ -203,12 +299,12 @@
         }
         
         .badge-admin {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
             color: white;
         }
         
         .badge-user {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: var(--gradient-primary);
             color: white;
         }
         
@@ -271,24 +367,28 @@
         
         .form-control {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            background: #f8fafc;
         }
         
         .form-control:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             border: none;
-            padding: 12px 30px;
-            border-radius: 10px;
+            padding: 14px 35px;
+            border-radius: 12px;
             color: white;
             font-weight: 600;
             font-size: 1rem;
@@ -297,30 +397,134 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
         
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
         
         .btn-secondary {
-            background: #6c757d;
+            background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
             border: none;
-            padding: 12px 30px;
-            border-radius: 10px;
+            padding: 14px 35px;
+            border-radius: 12px;
             color: white;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-left: 10px;
+            box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(100, 116, 139, 0.4);
         }
         
         .btn-secondary:hover {
             background: #5a6268;
         }
         
+        /* Tab导航样式 */
+        .settings-tabs {
+            background: white;
+            border-radius: 18px 18px 0 0;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.08);
+            border-bottom: none;
+            overflow-x: auto;
+            margin-bottom: 0;
+        }
+
+        .settings-tabs::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .settings-tabs::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .tab-nav {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            gap: 5px;
+            padding: 20px 30px 0 30px;
+        }
+
+        .tab-nav li {
+            flex-shrink: 0;
+        }
+
+        .tab-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: #64748b;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab-button i {
+            font-size: 1.3rem;
+        }
+
+        .tab-button:hover {
+            color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+        }
+
+        .tab-button.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+
+        .tab-content {
+            background: white;
+            border-radius: 0 0 18px 18px;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.08);
+            border-top: none;
+            padding: 40px;
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* 编辑模式 */
         .edit-mode {
             display: none;
@@ -447,11 +651,9 @@
         </ul>
         
         <div style="position: absolute; bottom: 20px; left: 0; right: 0; padding: 0 15px;">
-            <a href="/logout" style="display: block;">
-                <div style="display: flex; align-items: center; padding: 12px 15px; color: rgba(255, 255, 255, 0.8); text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
-                    <i class="bi bi-box-arrow-right" style="font-size: 1.2rem; margin-right: 12px; width: 25px;"></i>
-                    <span>退出登录</span>
-                </div>
+            <a href="/logout" style="display: flex; align-items: center; padding: 14px 18px; color: rgba(255, 255, 255, 0.85); text-decoration: none; border-radius: 10px; transition: all 0.3s ease; margin: 0 15px; font-weight: 500;">
+                <i class="bi bi-box-arrow-right" style="font-size: 1.3rem; margin-right: 15px; width: 28px; text-align: center;"></i>
+                <span>退出登录</span>
             </a>
         </div>
     </div>
@@ -478,7 +680,38 @@
     <!-- 主内容区域 -->
     <div class="main-content">
         <div class="settings-container">
-            <!-- 个人信息卡片 -->
+            <!-- Tab导航栏 -->
+            <div class="settings-tabs">
+                <ul class="tab-nav">
+                    <li>
+                        <button class="tab-button active" onclick="switchTab('profile')">
+                            <i class="bi bi-person-circle"></i>
+                            <span>个人信息</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="tab-button" onclick="switchTab('password')">
+                            <i class="bi bi-key-fill"></i>
+                            <span>修改密码</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="tab-button" onclick="switchTab('ai')">
+                            <i class="bi bi-robot"></i>
+                            <span>AI设置</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tab内容区域 -->
+            <div class="tab-content">
+                <!-- 个人信息Tab -->
+                <div id="profileTab" class="tab-pane active">
+                    <h4 style="margin-bottom: 25px; color: #1e293b; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                        <i class="bi bi-person-badge" style="color: var(--primary-color);"></i>
+                        我的资料
+                    </h4>
             <div class="settings-card">
                 <div class="card-header">
                     <i class="bi bi-person-circle"></i>
@@ -609,65 +842,26 @@
                     </div>
                 </div>
             </div>
+                </div>
+                <!-- 个人信息Tab结束 -->
 
-            {% if user.role == 'admin' %}
-            <!-- 系统管理卡片 -->
-            <div class="settings-card">
-                <div class="card-header">
-                    <i class="bi bi-gear-fill"></i>
-                    <h3>系统管理</h3>
-                </div>
-                <div class="card-body">
-                    <div class="warning-box" style="background: #ffe6e6; border-color: #e74c3c;">
-                        <i class="bi bi-exclamation-triangle" style="color: #e74c3c;"></i>
-                        <div>
-                            <strong>危险操作：</strong>
-                            <p style="margin: 5px 0 0 0;">以下操作仅限管理员使用，执行后无法恢复，请谨慎操作！</p>
-                        </div>
-                    </div>
+                <!-- 修改密码Tab -->
+                <div id="passwordTab" class="tab-pane">
+                    <h4 style="margin-bottom: 25px; color: #1e293b; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                        <i class="bi bi-key-fill" style="color: var(--primary-color);"></i>
+                        修改密码
+                    </h4>
                     
-                    <div class="form-section">
-                        <div class="form-group">
-                            <label class="form-label">
-                                <i class="bi bi-trash"></i> 清理上传文件
-                            </label>
-                            <p class="help-text" style="margin-bottom: 15px;">
-                                删除 uploads 文件夹中的所有上传文件。此操作不会删除已生成的报告数据，只会清理原始上传的 Excel 文件。
-                            </p>
-                            <button type="button" class="btn btn-primary" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);" onclick="clearUploads()">
-                                <i class="bi bi-trash"></i> 清理上传文件
-                            </button>
-                            <span id="uploadFileCount" class="ms-3 text-muted"></span>
+                    <div class="form-section" style="max-width: 600px;">
+                        <div class="alert alert-info" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); color: #1e40af; border: none;">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            为了账号安全，建议定期更换密码。密码长度至少8位，包含字母和数字。
                         </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-
-            <!-- 修改密码卡片 -->
-            <div class="settings-card">
-                <div class="card-header">
-                    <i class="bi bi-key"></i>
-                    <h3>修改密码</h3>
-                </div>
-                <div class="card-body">
-                    <div class="warning-box">
-                        <i class="bi bi-exclamation-triangle"></i>
-                        <div>
-                            <strong>安全提示：</strong>
-                            <ul style="margin: 5px 0 0 0; padding-left: 20px;">
-                                <li>密码长度至少为6位</li>
-                                <li>建议使用字母、数字和特殊字符的组合</li>
-                                <li>不要使用过于简单的密码</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="form-section">
+                        
                         <form id="passwordForm">
                             <div class="form-group">
                                 <label class="form-label">
-                                    <i class="bi bi-lock"></i> 原密码 *
+                                    <i class="bi bi-lock"></i> 当前密码 *
                                 </label>
                                 <input type="password" class="form-control" id="oldPassword" required>
                             </div>
@@ -676,25 +870,142 @@
                                 <label class="form-label">
                                     <i class="bi bi-lock-fill"></i> 新密码 *
                                 </label>
-                                <input type="password" class="form-control" id="newPassword" required>
+                                <input type="password" class="form-control" id="newPassword" required minlength="6">
                                 <div class="password-strength" id="passwordStrength">
                                     <div class="strength-bar" id="strengthBar"></div>
                                 </div>
-                                <div class="strength-text" id="strengthText"></div>
+                                <div class="strength-text" id="strengthText" style="font-size: 0.85rem; margin-top: 5px;"></div>
                             </div>
                             
                             <div class="form-group">
                                 <label class="form-label">
-                                    <i class="bi bi-lock-fill"></i> 确认新密码 *
+                                    <i class="bi bi-shield-check"></i> 确认新密码 *
                                 </label>
                                 <input type="password" class="form-control" id="confirmPassword" required>
+                            </div>
+                            
+                            <div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-check-circle"></i> 确认修改
+                                </button>
+                                <button type="reset" class="btn btn-secondary">
+                                    <i class="bi bi-arrow-clockwise"></i> 重置
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- 修改密码Tab结束 -->
+
+                <!-- AI设置Tab -->
+                <div id="aiTab" class="tab-pane">
+                    <h4 style="margin-bottom: 25px; color: #1e293b; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                        <i class="bi bi-robot" style="color: var(--primary-color);"></i>
+                        AI模型配置
+                    </h4>
+
+            <!-- AI模型设置卡片 -->
+            <div style="margin-top: 0;">
+                <div class="card-header">
+                    <i class="bi bi-robot"></i>
+                    <h3>AI模型设置</h3>
+                </div>
+                <div class="card-body">
+                    <div class="info-box" style="background: #e8f4fd; border-color: #3498db;">
+                        <i class="bi bi-info-circle" style="color: #3498db;"></i>
+                        <div>
+                            <strong>模型说明：</strong>
+                            <p style="margin: 5px 0 0 0;">选择用于财务分析的AI模型。不同模型在性能和成本上有所差异。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <form id="aiModelForm">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="bi bi-cpu"></i> 选择AI模型 *
+                                </label>
+                                <select class="form-control" id="aiModel" required>
+                                    <option value="gpt-3.5-turbo" {{ 'selected' if user_info.ai_model == 'gpt-3.5-turbo' else '' }}>
+                                        GPT-3.5 Turbo (快速、经济)
+                                    </option>
+                                    <option value="gpt-4" {{ 'selected' if user_info.ai_model == 'gpt-4' else '' }}>
+                                        GPT-4 (高质量、较慢)
+                                    </option>
+                                    <option value="gpt-4-turbo" {{ 'selected' if user_info.ai_model == 'gpt-4-turbo' or not user_info.ai_model else '' }}>
+                                        GPT-4 Turbo (推荐：高质量、较快)
+                                    </option>
+                                    <option value="gpt-4o" {{ 'selected' if user_info.ai_model == 'gpt-4o' else '' }}>
+                                        GPT-4o (最新：高性能、多模态)
+                                    </option>
+                                    <option value="gpt-4o-mini" {{ 'selected' if user_info.ai_model == 'gpt-4o-mini' else '' }}>
+                                        GPT-4o Mini (经济实惠、高效)
+                                    </option>
+                                </select>
+                                <div class="help-text">
+                                    <strong>当前选择：</strong><span id="currentModel">{{ user_info.ai_model or 'gpt-4-turbo' }}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="model-comparison-table" style="margin-top: 20px;">
+                                <h6 style="color: #555; margin-bottom: 15px;">
+                                    <i class="bi bi-graph-up"></i> 模型对比
+                                </h6>
+                                <table class="table table-sm table-bordered" style="font-size: 0.9rem;">
+                                    <thead style="background: #f8f9fa;">
+                                        <tr>
+                                            <th>模型</th>
+                                            <th>速度</th>
+                                            <th>质量</th>
+                                            <th>成本</th>
+                                            <th>适用场景</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>GPT-3.5 Turbo</strong></td>
+                                            <td><span class="badge bg-success">快</span></td>
+                                            <td><span class="badge bg-warning">良好</span></td>
+                                            <td><span class="badge bg-success">低</span></td>
+                                            <td>快速分析</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>GPT-4</strong></td>
+                                            <td><span class="badge bg-warning">较慢</span></td>
+                                            <td><span class="badge bg-success">优秀</span></td>
+                                            <td><span class="badge bg-danger">高</span></td>
+                                            <td>深度分析</td>
+                                        </tr>
+                                        <tr style="background: #f0f8ff;">
+                                            <td><strong>GPT-4 Turbo</strong></td>
+                                            <td><span class="badge bg-success">较快</span></td>
+                                            <td><span class="badge bg-success">优秀</span></td>
+                                            <td><span class="badge bg-warning">中等</span></td>
+                                            <td>推荐使用</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>GPT-4o</strong></td>
+                                            <td><span class="badge bg-success">快</span></td>
+                                            <td><span class="badge bg-success">优秀</span></td>
+                                            <td><span class="badge bg-warning">中等</span></td>
+                                            <td>全能型</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>GPT-4o Mini</strong></td>
+                                            <td><span class="badge bg-success">很快</span></td>
+                                            <td><span class="badge bg-success">良好</span></td>
+                                            <td><span class="badge bg-success">很低</span></td>
+                                            <td>高性价比</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                             
                             <div class="divider"></div>
                             
                             <div>
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-check-circle"></i> 修改密码
+                                    <i class="bi bi-check-circle"></i> 保存设置
                                 </button>
                                 <button type="reset" class="btn btn-secondary">
                                     <i class="bi bi-arrow-counterclockwise"></i> 重置
@@ -703,12 +1014,40 @@
                         </form>
                     </div>
                 </div>
+                </div>
+                <!-- AI设置Tab结束 -->
+
             </div>
+            <!-- Tab内容区域结束 -->
         </div>
+        <!-- settings-container结束 -->
     </div>
+    <!-- main-content结束 -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Tab切换功能
+        function switchTab(tabName) {
+            // 移除所有Tab按钮的active类
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // 隐藏所有Tab面板
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+            
+            // 激活对应的Tab按钮和面板
+            const activeButton = document.querySelector(`button[onclick*="${tabName}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+            
+            const activePane = document.getElementById(tabName + 'Tab');
+            if (activePane) {
+                activePane.classList.add('active');
+            }
+        }
+
         // 切换编辑模式
         function toggleEditMode() {
             const viewMode = document.getElementById('viewMode');
@@ -800,6 +1139,41 @@
             }
         });
         
+        // AI模型设置
+        document.getElementById('aiModelForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const aiModel = document.getElementById('aiModel').value;
+            
+            fetch('/api/update_ai_model', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ai_model: aiModel
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert('AI模型设置已更新！', 'success');
+                    document.getElementById('currentModel').textContent = aiModel;
+                } else {
+                    showAlert(data.error || '更新失败', 'danger');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('网络错误，请稍后重试', 'danger');
+            });
+        });
+        
+        // AI模型选择变化时更新当前显示
+        document.getElementById('aiModel').addEventListener('change', function(e) {
+            document.getElementById('currentModel').textContent = e.target.value;
+        });
+        
         // 修改密码
         document.getElementById('passwordForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -857,57 +1231,6 @@
                 alertDiv.remove();
             }, 3000);
         }
-        
-        // 清理上传文件
-        function clearUploads() {
-            if (!confirm('确定要删除所有上传文件吗？\n\n此操作将清空 uploads 文件夹中的所有文件，但不会影响已生成的报告数据。\n\n此操作无法撤销！')) {
-                return;
-            }
-            
-            fetch('/api/admin/clear_uploads', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showAlert(`成功删除 ${data.count} 个文件`, 'success');
-                    updateUploadFileCount();
-                } else {
-                    showAlert(data.error || '操作失败', 'danger');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showAlert('操作失败，请稍后重试', 'danger');
-            });
-        }
-        
-        // 更新上传文件数量
-        function updateUploadFileCount() {
-            fetch('/api/admin/upload_file_count')
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const countSpan = document.getElementById('uploadFileCount');
-                    if (countSpan) {
-                        countSpan.textContent = `当前文件数：${data.count}`;
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-        
-        // 页面加载时更新文件数量
-        {% if user.role == 'admin' %}
-        document.addEventListener('DOMContentLoaded', function() {
-            updateUploadFileCount();
-        });
-        {% endif %}
     </script>
 </body>
 </html>
