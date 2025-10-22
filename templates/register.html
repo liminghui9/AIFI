@@ -6,34 +6,94 @@
     <title>注册 - AIFI 智能财报系统</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary-color: #06b6d4;
+            --accent-color: #fbbf24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', 'Microsoft YaHei', sans-serif;
             min-height: 100vh;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 40px 20px;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 背景装饰元素 */
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 20s infinite;
+        }
+
+        body::before {
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            left: -200px;
+        }
+
+        body::after {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            right: -150px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(180deg); }
         }
         
         .register-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 950px;
+            position: relative;
+            z-index: 10;
         }
         
         .register-card {
-            background: white;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            animation: slideUp 0.5s ease-out;
+            animation: slideUp 0.6s ease-out;
+            display: flex;
+            flex-direction: row;
         }
         
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -41,113 +101,209 @@
             }
         }
         
-        .register-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* 左侧信息区 */
+        .register-info {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            padding: 60px 50px;
             color: white;
-            padding: 30px;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .register-header h1 {
+
+        .register-info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.5); opacity: 0.3; }
+        }
+
+        .register-info-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .register-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
             font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-weight: 700;
         }
-        
-        .register-icon {
+
+        .register-logo i {
             font-size: 2.5rem;
-            margin-bottom: 10px;
+        }
+
+        .register-info h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .register-info p {
+            font-size: 1rem;
+            opacity: 0.95;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .info-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .info-features i {
+            font-size: 1.3rem;
+            color: var(--accent-color);
         }
         
-        .register-body {
-            padding: 35px 30px;
+        /* 右侧表单区 */
+        .register-form-section {
+            flex: 1.2;
+            padding: 50px 45px;
+            background: white;
+        }
+
+        .form-header {
+            margin-bottom: 2rem;
+        }
+
+        .form-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: #6b7280;
+            font-size: 0.95rem;
         }
         
         .form-label {
             font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
         
         .form-control {
-            border-radius: 10px;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
             transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
         
         .form-control:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            outline: none;
         }
         
-        .input-group-text {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-right: none;
-            border-radius: 10px 0 0 10px;
-            color: #667eea;
+        .input-group {
+            position: relative;
         }
-        
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-light);
+            font-size: 1.1rem;
+            z-index: 3;
+        }
+
         .input-group .form-control {
-            border-left: none;
-            border-radius: 0 10px 10px 0;
-        }
-        
-        .input-group:focus-within .input-group-text {
-            border-color: #667eea;
+            padding-left: 2.8rem;
         }
         
         .btn-register {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
             border: none;
-            border-radius: 25px;
-            padding: 14px;
+            border-radius: 12px;
+            padding: 0.9rem 2rem;
             font-size: 1rem;
             font-weight: 600;
             color: white;
             width: 100%;
             transition: all 0.3s ease;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+            cursor: pointer;
         }
         
         .btn-register:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+        }
+
+        .btn-register:active {
+            transform: translateY(0);
         }
         
         .alert {
-            border-radius: 10px;
+            border-radius: 12px;
             border: none;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
         }
         
         .login-link {
             text-align: center;
-            margin-top: 20px;
-            color: #666;
+            margin-top: 1.5rem;
+            color: #6b7280;
+            font-size: 0.95rem;
         }
         
         .login-link a {
-            color: #667eea;
+            color: var(--primary-light);
             font-weight: 600;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         
         .login-link a:hover {
+            color: var(--primary-color);
             text-decoration: underline;
         }
         
         .password-strength {
-            margin-top: 5px;
+            margin-top: 0.5rem;
             font-size: 0.85rem;
+            font-weight: 500;
         }
         
         .strength-meter {
             height: 4px;
-            background: #e0e0e0;
+            background: #e5e7eb;
             border-radius: 2px;
-            margin-top: 5px;
+            margin-top: 0.5rem;
             overflow: hidden;
         }
         
@@ -155,32 +311,142 @@
             height: 100%;
             transition: all 0.3s ease;
             width: 0%;
+            border-radius: 2px;
         }
         
-        .strength-weak { width: 33%; background: #e74c3c; }
-        .strength-medium { width: 66%; background: #f39c12; }
-        .strength-strong { width: 100%; background: #27ae60; }
-        
-        .footer-text {
-            text-align: center;
+        .strength-weak { width: 33%; background: #ef4444; }
+        .strength-medium { width: 66%; background: #f59e0b; }
+        .strength-strong { width: 100%; background: #10b981; }
+
+        .form-check-input:checked {
+            background-color: var(--primary-light);
+            border-color: var(--primary-light);
+        }
+
+        .form-check-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .form-check-label a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        .form-check-label a:hover {
+            text-decoration: underline;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .back-to-home a {
             color: white;
-            margin-top: 20px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-home a:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(-5px);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .register-card {
+                flex-direction: column;
+            }
+
+            .register-info {
+                padding: 40px 30px;
+            }
+
+            .register-info h1 {
+                font-size: 1.8rem;
+            }
+
+            .register-form-section {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
+
+            .register-info,
+            .register-form-section {
+                padding: 30px 20px;
+            }
+
+            .form-header h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 返回首页按钮 -->
+    <div class="back-to-home">
+        <a href="/">
+            <i class="bi bi-arrow-left"></i>
+            <span>返回首页</span>
+        </a>
+    </div>
+
     <div class="register-container">
         <div class="register-card">
-            <div class="register-header">
-                <div class="register-icon">
-                    <i class="bi bi-person-plus"></i>
+            <!-- 左侧信息区 -->
+            <div class="register-info">
+                <div class="register-info-content">
+                    <div class="register-logo">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <span>AIFI</span>
+                    </div>
+                    <h1>开启您的<br>智能财务之旅</h1>
+                    <p>加入AIFI智能财报系统，体验AI驱动的财务分析新时代。让数据分析变得简单高效。</p>
+                    
+                    <ul class="info-features">
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>秒级生成专业财务报告</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>AI深度风险分析与预警</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>多维度数据可视化展示</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>智能问答助手随时在线</span>
+                        </li>
+                    </ul>
                 </div>
-                <h1>创建新账户</h1>
-                <p class="mb-0">加入AIFI智能财报系统</p>
             </div>
-            
-            <div class="register-body">
+
+            <!-- 右侧表单区 -->
+            <div class="register-form-section">
+                <div class="form-header">
+                    <h2>创建新账户</h2>
+                    <p>填写以下信息开始使用</p>
+                </div>
+
                 {% if error %}
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
@@ -191,13 +457,9 @@
                 
                 <form method="POST" action="/register" id="registerForm">
                     <div class="mb-3">
-                        <label for="username" class="form-label">
-                            <i class="bi bi-person me-1"></i>用户名
-                        </label>
+                        <label for="username" class="form-label">用户名</label>
                         <div class="input-group">
-                            <span class="input-group-text">
-                                <i class="bi bi-person"></i>
-                            </span>
+                            <i class="bi bi-person input-icon"></i>
                             <input type="text" 
                                    class="form-control" 
                                    id="username" 
@@ -208,17 +470,12 @@
                                    minlength="3"
                                    maxlength="20">
                         </div>
-                        <small class="text-muted">用户名只能包含字母、数字和下划线</small>
                     </div>
                     
                     <div class="mb-3">
-                        <label for="email" class="form-label">
-                            <i class="bi bi-envelope me-1"></i>邮箱地址
-                        </label>
+                        <label for="email" class="form-label">邮箱地址</label>
                         <div class="input-group">
-                            <span class="input-group-text">
-                                <i class="bi bi-envelope"></i>
-                            </span>
+                            <i class="bi bi-envelope input-icon"></i>
                             <input type="email" 
                                    class="form-control" 
                                    id="email" 
@@ -229,13 +486,9 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="fullname" class="form-label">
-                            <i class="bi bi-person-badge me-1"></i>真实姓名
-                        </label>
+                        <label for="fullname" class="form-label">真实姓名</label>
                         <div class="input-group">
-                            <span class="input-group-text">
-                                <i class="bi bi-person-badge"></i>
-                            </span>
+                            <i class="bi bi-person-badge input-icon"></i>
                             <input type="text" 
                                    class="form-control" 
                                    id="fullname" 
@@ -246,13 +499,9 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="password" class="form-label">
-                            <i class="bi bi-lock me-1"></i>密码
-                        </label>
+                        <label for="password" class="form-label">密码</label>
                         <div class="input-group">
-                            <span class="input-group-text">
-                                <i class="bi bi-key"></i>
-                            </span>
+                            <i class="bi bi-lock input-icon"></i>
                             <input type="password" 
                                    class="form-control" 
                                    id="password" 
@@ -270,13 +519,9 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="confirm_password" class="form-label">
-                            <i class="bi bi-lock-fill me-1"></i>确认密码
-                        </label>
+                        <label for="confirm_password" class="form-label">确认密码</label>
                         <div class="input-group">
-                            <span class="input-group-text">
-                                <i class="bi bi-key-fill"></i>
-                            </span>
+                            <i class="bi bi-lock-fill input-icon"></i>
                             <input type="password" 
                                    class="form-control" 
                                    id="confirm_password" 
@@ -293,12 +538,12 @@
                                name="agree" 
                                required>
                         <label class="form-check-label" for="agree">
-                            我已阅读并同意<a href="#" class="text-decoration-none">用户协议</a>和<a href="#" class="text-decoration-none">隐私政策</a>
+                            我已阅读并同意<a href="#">用户协议</a>和<a href="#">隐私政策</a>
                         </label>
                     </div>
                     
                     <button type="submit" class="btn btn-register">
-                        <i class="bi bi-person-check me-2"></i>立即注册
+                        <i class="bi bi-rocket-takeoff me-2"></i>立即注册
                     </button>
                 </form>
                 
@@ -306,10 +551,6 @@
                     已有账号？<a href="/login">立即登录</a>
                 </div>
             </div>
-        </div>
-        
-        <div class="footer-text">
-            <p>&copy; 2024 AIFI 智能财报系统 v1.0</p>
         </div>
     </div>
 

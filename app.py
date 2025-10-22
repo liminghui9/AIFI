@@ -294,9 +294,19 @@ def logout():
 # ========== 主要功能路由 ==========
 
 @app.route('/')
+def landing():
+    """着陆页 - 公开访问"""
+    # 如果用户已登录，重定向到仪表板
+    if 'username' in session:
+        return redirect(url_for('index'))
+    return render_template('landing.html')
+
+
+@app.route('/index')
+@app.route('/dashboard')
 @login_required
 def index():
-    """首页"""
+    """仪表板首页"""
     # 统计已生成的报告数量
     reports_count = 0
     companies_count = 0
@@ -601,6 +611,32 @@ def delete_report(report_id):
     })
     
     return jsonify({'success': True, 'message': '报告已删除'})
+
+
+@app.route('/downloads')
+@login_required
+def download_records_page():
+    """下载记录页面"""
+    return render_template('download_records.html', user=session)
+
+
+@app.route('/api/downloads')
+@login_required
+def get_download_records():
+    """获取下载记录API"""
+    username = session.get('username')
+    role = session.get('role')
+    
+    # 管理员可以看到所有下载记录，普通用户只能看到自己的
+    if role == 'admin':
+        filtered_records = download_records
+    else:
+        filtered_records = [r for r in download_records if r.get('username') == username]
+    
+    return jsonify({
+        'success': True,
+        'data': filtered_records
+    })
 
 
 # ========== 管理员功能路由 ==========

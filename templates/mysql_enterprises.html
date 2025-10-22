@@ -9,14 +9,27 @@
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --sidebar-bg: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            --primary-color: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --secondary-color: #06b6d4;
+            --sidebar-bg: linear-gradient(180deg, #1e3a8a 0%, #3b82f6 100%);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fa;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
         
         /* 侧边栏样式 */
@@ -138,7 +151,7 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             border: none;
             padding: 10px 25px;
             border-radius: 25px;
@@ -147,7 +160,7 @@
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(30, 58, 138, 0.4);
         }
         
         .btn-success {
@@ -167,7 +180,7 @@
         }
         
         table.dataTable thead th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             color: white;
             font-weight: 600;
             border: none;
@@ -257,21 +270,27 @@
         </div>
         <ul class="sidebar-menu">
             <li>
-                <a href="/">
-                    <i class="bi bi-house-door"></i>
-                    <span>首页</span>
-                </a>
-            </li>
-            <li>
-                <a href="/mysql_enterprises" class="active">
-                    <i class="bi bi-database"></i>
-                    <span>MySQL企业</span>
+                <a href="/index">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>仪表板</span>
                 </a>
             </li>
             <li>
                 <a href="/reports">
-                    <i class="bi bi-file-text"></i>
+                    <i class="bi bi-file-earmark-text"></i>
                     <span>报告列表</span>
+                </a>
+            </li>
+            <li>
+                <a href="/downloads">
+                    <i class="bi bi-download"></i>
+                    <span>下载记录</span>
+                </a>
+            </li>
+            <li>
+                <a href="/mysql_enterprises" class="active">
+                    <i class="bi bi-building"></i>
+                    <span>企业数据</span>
                 </a>
             </li>
             {% if user.role == 'admin' %}
@@ -285,19 +304,16 @@
             <li>
                 <a href="/settings">
                     <i class="bi bi-gear"></i>
-                    <span>个人设置</span>
+                    <span>系统设置</span>
+                </a>
+            </li>
+            <li>
+                <a href="/logout">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>退出登录</span>
                 </a>
             </li>
         </ul>
-        
-        <div style="position: absolute; bottom: 20px; left: 0; right: 0; padding: 0 15px;">
-            <a href="/logout" class="sidebar-menu" style="display: block;">
-                <div style="display: flex; align-items: center; padding: 12px 15px; color: rgba(255, 255, 255, 0.8); text-decoration: none; border-radius: 8px;">
-                    <i class="bi bi-box-arrow-right" style="font-size: 1.2rem; margin-right: 12px; width: 25px;"></i>
-                    <span>退出登录</span>
-                </div>
-            </a>
-        </div>
     </div>
 
     <!-- 顶部导航 -->
