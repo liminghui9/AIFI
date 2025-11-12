@@ -12,15 +12,15 @@
             --primary-color: #3b82f6;
             --primary-dark: #1e3a8a;
             --secondary-color: #06b6d4;
-            --sidebar-bg: linear-gradient(180deg, #1e3a8a 0%, #3b82f6 100%);
+            --sidebar-bg: #1e40af;
             --success-color: #10b981;
             --danger-color: #ef4444;
             --warning-color: #f59e0b;
             --info-color: #06b6d4;
-            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            --gradient-success: linear-gradient(135deg, #059669 0%, #10b981 100%);
-            --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
-            --gradient-info: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+            --gradient-primary: #1e40af;
+            --gradient-success: #059669;
+            --gradient-warning: #f59e0b;
+            --gradient-info: #0891b2;
         }
         
         * {
@@ -31,7 +31,7 @@
         
         body {
             font-family: 'Poppins', 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            background: #ffffff;
             overflow-x: hidden;
             min-height: 100vh;
         }
@@ -78,12 +78,6 @@
             font-size: 2rem;
             display: block;
             margin-bottom: 10px;
-            animation: brandPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes brandPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
         
         .sidebar-menu {
@@ -102,7 +96,6 @@
             color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
             border-radius: 10px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             font-weight: 500;
@@ -117,13 +110,12 @@
             width: 4px;
             background: white;
             transform: scaleY(0);
-            transition: transform 0.3s ease;
         }
         
         .sidebar-menu a:hover {
             background: rgba(255, 255, 255, 0.2);
             color: white;
-            transform: translateX(5px);
+            
         }
 
         .sidebar-menu a.active {
@@ -147,7 +139,7 @@
         .sidebar a[href="/logout"]:hover {
             background: rgba(255, 255, 255, 0.15) !important;
             color: white !important;
-            transform: translateX(5px);
+            
         }
         
         /* 顶部导航栏 */
@@ -199,11 +191,10 @@
             font-weight: 700;
             font-size: 1.1rem;
             box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
-            transition: all 0.3s ease;
         }
 
         .user-info-box .user-avatar:hover {
-            transform: scale(1.05);
+            
             box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
         }
         
@@ -213,17 +204,9 @@
             margin-top: 70px;
             padding: 35px;
             min-height: calc(100vh - 70px);
-            animation: fadeIn 0.5s ease-in;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
         }
         
@@ -233,7 +216,6 @@
             border-radius: 16px;
             padding: 28px;
             box-shadow: 0 4px 12px rgba(30, 58, 138, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             height: 100%;
             border: 1px solid rgba(59, 130, 246, 0.08);
             position: relative;
@@ -249,11 +231,10 @@
             height: 4px;
             background: var(--gradient-primary);
             transform: scaleX(0);
-            transition: transform 0.3s ease;
         }
         
         .info-card:hover {
-            transform: translateY(-8px);
+            
             box-shadow: 0 12px 30px rgba(30, 58, 138, 0.15);
         }
 
@@ -271,7 +252,6 @@
             font-size: 2rem;
             margin-bottom: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
         }
 
         .info-card:hover .info-card-icon {
@@ -328,7 +308,6 @@
             box-shadow: 0 4px 15px rgba(30, 58, 138, 0.1);
             margin-top: 30px;
             border: 1px solid rgba(59, 130, 246, 0.08);
-            transition: all 0.3s ease;
         }
 
         .upload-section:hover {
@@ -357,9 +336,8 @@
             border-radius: 16px;
             padding: 70px 30px;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            background: #f8fafc;
             position: relative;
             overflow: hidden;
         }
@@ -371,15 +349,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+            background: rgba(59, 130, 246, 0.05);
             opacity: 0;
-            transition: opacity 0.3s ease;
         }
         
         .upload-area:hover {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            background: #eff6ff;
             border-color: var(--primary-color);
-            transform: translateY(-5px);
+            
             box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
         }
 
@@ -388,26 +365,16 @@
         }
         
         .upload-area.dragover {
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            background: #dbeafe;
             border-color: var(--primary-color);
             border-style: solid;
-            transform: scale(1.02);
             box-shadow: 0 15px 40px rgba(59, 130, 246, 0.3);
         }
         
         .upload-icon {
             font-size: 5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--gradient-primary);
             margin-bottom: 25px;
-            animation: iconBounce 2s ease-in-out infinite;
-        }
-
-        @keyframes iconBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
         
         .upload-area h4 {
@@ -425,7 +392,6 @@
             padding: 14px 35px;
             font-size: 1rem;
             border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             color: white;
             font-weight: 600;
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
@@ -440,8 +406,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .btn-primary:hover::before {
@@ -449,7 +414,7 @@
         }
         
         .btn-primary:hover {
-            transform: translateY(-3px);
+            
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
 
@@ -462,11 +427,10 @@
             color: white;
             font-weight: 600;
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-            transition: all 0.3s ease;
         }
 
         .btn-success:hover {
-            transform: translateY(-3px);
+            
             box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
         }
         
@@ -475,7 +439,6 @@
             color: white;
             padding: 8px 20px;
             border-radius: 20px;
-            transition: all 0.3s ease;
         }
         
         .btn-outline-light:hover {
@@ -498,7 +461,6 @@
             padding: 35px 28px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(30, 58, 138, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(59, 130, 246, 0.08);
             position: relative;
             overflow: hidden;
@@ -513,11 +475,10 @@
             height: 4px;
             background: var(--gradient-primary);
             transform: scaleX(0);
-            transition: transform 0.3s ease;
         }
         
         .feature-card:hover {
-            transform: translateY(-10px);
+            
             box-shadow: 0 12px 35px rgba(30, 58, 138, 0.15);
         }
 
@@ -533,7 +494,6 @@
             background-clip: text;
             margin-bottom: 20px;
             display: inline-block;
-            transition: all 0.3s ease;
         }
 
         .feature-card:hover .feature-icon {
@@ -568,7 +528,6 @@
             background: rgba(30, 58, 138, 0.4);
             z-index: 9998;
             backdrop-filter: blur(8px);
-            animation: fadeIn 0.3s ease;
         }
         
         .loading-overlay.active {
@@ -587,14 +546,7 @@
             z-index: 9999;
             text-align: center;
             border: 1px solid rgba(59, 130, 246, 0.1);
-            animation: slideIn 0.4s ease-out;
         }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -40%);
-            }
             to {
                 opacity: 1;
                 transform: translate(-50%, -50%);
@@ -630,13 +582,12 @@
             color: #475569;
             font-size: 0.95rem;
             font-weight: 600;
-            transition: all 0.3s ease;
         }
         
         .loading-content .cancel-btn:hover {
             background: #e2e8f0;
             border-color: #94a3b8;
-            transform: translateY(-2px);
+            
         }
         
         .alert {
@@ -648,17 +599,17 @@
         }
 
         .alert-success {
-            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            background: #d1fae5;
             color: #065f46;
         }
 
         .alert-danger {
-            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            background: #fee2e2;
             color: #991b1b;
         }
 
         .alert-warning {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            background: #fef3c7;
             color: #92400e;
         }
         
@@ -676,6 +627,131 @@
             text-align: center;
             padding: 40px;
             color: #95a5a6;
+        }
+        
+        /* 操作步骤引导样式 */
+        .steps-guide-section {
+            background: white;
+            border-radius: 18px;
+            padding: 50px 40px;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.1);
+            margin-top: 30px;
+            border: 1px solid rgba(59, 130, 246, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .steps-guide-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
+        
+        .steps-title {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .steps-title h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        
+        .steps-title p {
+            color: #64748b;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        /* 连接线 */
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 20%;
+            right: 20%;
+            height: 3px;
+            background: rgba(59, 130, 246, 0.5);
+            z-index: 0;
+        }
+        
+        .step-item {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-number {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+            position: relative;
+        }
+        
+        .step-icon {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+        
+        .step-description {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+        
+        @media (max-width: 992px) {
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .steps-container::before {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -774,48 +850,88 @@
 
     <!-- 主内容区域 -->
     <div class="main-content">
-        <!-- 信息卡片组 -->
-        <div class="row g-3 mb-4">
-            <div class="col-md-3">
-                <div class="info-card">
-                    <div class="info-card-icon icon-primary">
-                        <i class="bi bi-file-text"></i>
+        <!-- 操作步骤引导 -->
+        <div class="steps-guide-section">
+            <div class="steps-title">
+                <h2>简单三步，生成专业报告</h2>
+                <p>我们简化设计每个环节，只需三步即可生成专业财务分析报告</p>
+            </div>
+            
+            <div class="steps-container">
+                <!-- 第一步 -->
+                <div class="step-item">
+                    <div class="step-number">
+                        1
+                        <div class="step-icon">
+                            <i class="bi bi-check-lg"></i>
+                        </div>
                     </div>
-                    <div class="info-card-title">已生成报告</div>
-                    <div class="info-card-value">{{ reports_count | default(0) }}</div>
-                    <div class="info-card-subtitle">Total Reports</div>
+                    <h3 class="step-title">选择模板</h3>
+                    <p class="step-description">
+                        从多种专业模板中选择适合的业务和服务场景的财务报告模板
+                    </p>
+                </div>
+                
+                <!-- 第二步 -->
+                <div class="step-item">
+                    <div class="step-number">
+                        2
+                        <div class="step-icon">
+                            <i class="bi bi-check-lg"></i>
+                        </div>
+                    </div>
+                    <h3 class="step-title">导入数据</h3>
+                    <p class="step-description">
+                        上传您的财务数据文件，系统将自动抽取并整理数据信息库中
+                    </p>
+                </div>
+                
+                <!-- 第三步 -->
+                <div class="step-item">
+                    <div class="step-number">
+                        3
+                        <div class="step-icon">
+                            <i class="bi bi-check-lg"></i>
+                        </div>
+                    </div>
+                    <h3 class="step-title">生成报告</h3>
+                    <p class="step-description">
+                        一键生成业务报告，支持多种格式导出和分享给对应节点导出分享
+                    </p>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="info-card">
-                    <div class="info-card-icon icon-success">
-                        <i class="bi bi-building"></i>
+        </div>
+        
+        <!-- 上传区域 -->
+        <div class="upload-section" id="uploadSection">
+            <div class="section-header">
+                <i class="bi bi-cloud-upload"></i>
+                上传Excel财务数据
+            </div>
+            
+            <div class="upload-area" id="uploadArea">
+                <i class="bi bi-file-earmark-excel upload-icon"></i>
+                <h4>点击或拖拽 Excel 文件到这里</h4>
+                <p class="text-muted mt-3" style="font-size: 1rem; position: relative; z-index: 1;">
+                    支持 <strong>.xlsx</strong> 和 <strong>.xls</strong> 格式 · 最大 16MB<br>
+                    <small style="opacity: 0.8;">自动解析财务数据，智能生成分析报告</small>
+                </p>
+                <input type="file" id="fileInput" accept=".xlsx,.xls" style="display: none;">
+                <button class="btn btn-primary mt-4" onclick="document.getElementById('fileInput').click()">
+                    <i class="bi bi-folder2-open me-2"></i> 选择文件
+                </button>
+            </div>
+            
+            <div class="progress-container" id="progressContainer">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">加载中...</span>
                     </div>
-                    <div class="info-card-title">分析企业</div>
-                    <div class="info-card-value">{{ companies_count | default(0) }}</div>
-                    <div class="info-card-subtitle">Companies Analyzed</div>
+                    <p class="mt-3" id="progressText">正在分析数据，请稍候...</p>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="info-card">
-                    <div class="info-card-icon icon-warning">
-                        <i class="bi bi-speedometer2"></i>
-                    </div>
-                    <div class="info-card-title">系统状态</div>
-                    <div class="info-card-value">正常</div>
-                    <div class="info-card-subtitle">System Status</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="info-card">
-                    <div class="info-card-icon icon-info">
-                        <i class="bi bi-robot"></i>
-                    </div>
-                    <div class="info-card-title">AI 服务</div>
-                    <div class="info-card-value">就绪</div>
-                    <div class="info-card-subtitle">AI Ready</div>
-                </div>
-            </div>
+            
+            <div id="messageArea" class="mt-3"></div>
         </div>
         
         <!-- 数据源选择 -->
@@ -854,38 +970,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- 上传区域 -->
-        <div class="upload-section" id="uploadSection">
-            <div class="section-header">
-                <i class="bi bi-cloud-upload"></i>
-                上传Excel财务数据
-            </div>
-            
-            <div class="upload-area" id="uploadArea">
-                <i class="bi bi-file-earmark-excel upload-icon"></i>
-                <h4>点击或拖拽 Excel 文件到这里</h4>
-                <p class="text-muted mt-3" style="font-size: 1rem; position: relative; z-index: 1;">
-                    支持 <strong>.xlsx</strong> 和 <strong>.xls</strong> 格式 · 最大 16MB<br>
-                    <small style="opacity: 0.8;">自动解析财务数据，智能生成分析报告</small>
-                </p>
-                <input type="file" id="fileInput" accept=".xlsx,.xls" style="display: none;">
-                <button class="btn btn-primary mt-4" onclick="document.getElementById('fileInput').click()">
-                    <i class="bi bi-folder2-open me-2"></i> 选择文件
-                </button>
-            </div>
-            
-            <div class="progress-container" id="progressContainer">
-                <div class="text-center">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">加载中...</span>
-                    </div>
-                    <p class="mt-3" id="progressText">正在分析数据，请稍候...</p>
-                </div>
-            </div>
-            
-            <div id="messageArea" class="mt-3"></div>
         </div>
         
         <!-- 功能特点 -->

@@ -36,16 +36,63 @@ class ChartGenerator:
         if not os.path.exists(self.charts_folder):
             os.makedirs(self.charts_folder, exist_ok=True)
             
-        # 图表样式配置
+        # 现代化图表样式配置
         self.color_palette = [
-            '#3498db', '#e74c3c', '#2ecc71', '#f39c12', 
-            '#9b59b6', '#1abc9c', '#34495e', '#95a5a6'
+            '#3b82f6',  # 蓝色
+            '#8b5cf6',  # 紫色
+            '#06b6d4',  # 青色
+            '#10b981',  # 绿色
+            '#f59e0b',  # 橙色
+            '#ef4444',  # 红色
+            '#6366f1',  # 靛蓝
+            '#ec4899'   # 粉色
         ]
         
         self.risk_colors = {
-            '低风险': '#2ecc71',    # 绿色
-            '中等风险': '#f39c12',  # 橙色  
-            '高风险': '#e74c3c'     # 红色
+            '低风险': '#10b981',    # 绿色
+            '中等风险': '#f59e0b',  # 橙色  
+            '高风险': '#ef4444'     # 红色
+        }
+        
+        # 统一的图表布局配置
+        self.layout_config = {
+            'template': 'plotly_white',
+            'font': {
+                'family': 'Microsoft YaHei, SimHei, Arial',
+                'size': 12,
+                'color': '#1e293b'
+            },
+            'plot_bgcolor': '#ffffff',
+            'paper_bgcolor': '#ffffff',
+            'margin': {'l': 60, 'r': 40, 't': 80, 'b': 60},
+            'hoverlabel': {
+                'bgcolor': '#1e40af',
+                'font': {'size': 13, 'color': 'white', 'family': 'Microsoft YaHei'},
+                'bordercolor': '#1e40af'
+            },
+            'xaxis': {
+                'showgrid': True,
+                'gridcolor': '#f1f5f9',
+                'gridwidth': 1,
+                'showline': True,
+                'linecolor': '#cbd5e1',
+                'linewidth': 2,
+                'tickfont': {'size': 11, 'color': '#64748b'}
+            },
+            'yaxis': {
+                'showgrid': True,
+                'gridcolor': '#f1f5f9',
+                'gridwidth': 1,
+                'showline': True,
+                'linecolor': '#cbd5e1',
+                'linewidth': 2,
+                'tickfont': {'size': 11, 'color': '#64748b'}
+            },
+            'title': {
+                'font': {'size': 16, 'color': '#1e3a8a', 'family': 'Microsoft YaHei'},
+                'x': 0.5,
+                'xanchor': 'center'
+            }
         }
     
     def generate_all_charts(self, report_data: Dict) -> Dict[str, str]:
@@ -126,11 +173,19 @@ class ChartGenerator:
         png_filepath = os.path.join(self.charts_folder, png_filename)
         
         try:
+            # 根据图表类型动态设置尺寸
+            if 'health_dashboard' in base_filename:
+                width, height = 1200, 900  # 仪表盘使用更大尺寸
+            elif 'risk_radar' in base_filename:
+                width, height = 1100, 650  # 雷达图
+            else:
+                width, height = 1100, 600  # 其他图表（增加高度以容纳底部图例）
+            
             # 使用kaleido导出（Plotly 6+默认使用kaleido）
             fig.write_image(
                 png_filepath,
-                width=1200,
-                height=600,
+                width=width,
+                height=height,
                 scale=2  # 提高分辨率
             )
             print(f"✓ 使用kaleido生成PNG: {png_filename}")
@@ -216,26 +271,32 @@ class ChartGenerator:
         fig.add_trace(go.Bar(name='流动比率', x=years, y=current_ratio, 
                             marker_color=self.color_palette[4]), row=2, col=2)
         
+        # 移除layout_config中的title，避免冲突
+        layout_config = self.layout_config.copy()
+        layout_config.pop('title', None)
+        
         fig.update_layout(
+            **layout_config,
             title=dict(
-                text="主要财务指标分析",
+                text="<b>主要财务指标分析</b>",
                 x=0.5,
-                xanchor='center'
+                xanchor='center',
+                font=dict(size=18, color='#1e3a8a', family='Microsoft YaHei')
             ),
-            height=650,
+            height=700,
             showlegend=True,
-            font=dict(family="Microsoft YaHei, Arial", size=12),
-            margin=dict(l=70, r=90, t=100, b=70),
             legend=dict(
                 orientation="h",
                 yanchor="bottom",
-                y=-0.1,
+                y=-0.15,
                 xanchor="center",
                 x=0.5,
-                bgcolor='rgba(255,255,255,0.9)',
-                bordercolor='rgba(0,0,0,0.2)',
-                borderwidth=1
-            )
+                bgcolor='rgba(255,255,255,0.95)',
+                bordercolor='#e2e8f0',
+                borderwidth=2,
+                font=dict(size=11)
+            ),
+            hovermode='x unified'
         )
         
         # 设置Y轴自动调整边距
@@ -278,34 +339,35 @@ class ChartGenerator:
                 x=years, y=values, 
                 mode='lines+markers',
                 name=short_name,
-                line=dict(width=3, color=colors[i]),
-                marker=dict(size=10, color=colors[i]),
-                hovertemplate=f'<b>{full_name}</b><br>年份: %{{x}}<br>比率: %{{y:.2f}}%<extra></extra>'
+                line=dict(width=4, color=colors[i], shape='spline'),
+                marker=dict(size=12, color=colors[i], line=dict(width=2, color='white')),
+                hovertemplate=f'<b>{full_name}</b><br>年份: %{{x}}<br>比率: %{{y:.2f}}%<extra></extra>',
+                fill='tonexty' if i > 0 else None,
+                fillcolor=f'rgba{tuple(list(int(colors[i][j:j+2], 16) for j in (1, 3, 5)) + [0.1])}'.replace('[', '(').replace(']', ')')
             ))
         
         fig.update_layout(
+            **self.layout_config,
             title=dict(
-                text='盈利能力趋势分析',
+                text='<b>📈 盈利能力趋势分析</b>',
                 x=0.5,
                 xanchor='center',
-                font=dict(size=16)
+                font=dict(size=18, color='#1e3a8a')
             ),
-            xaxis_title='年份',
-            yaxis_title='比率 (%)',
-            height=520,
-            template='plotly_white',
-            font=dict(family="Microsoft YaHei, Arial", size=12),
-            margin=dict(l=80, r=150, t=100, b=80),  # 增加右边距
+            xaxis_title='<b>年份</b>',
+            yaxis_title='<b>比率 (%)</b>',
+            height=600,  # 增加高度
+            margin=dict(l=80, r=80, t=100, b=120),  # 增加底部边距
             legend=dict(
-                orientation="v",
-                yanchor="top",
-                y=0.98,
-                xanchor="left",
-                x=1.02,  # 放在图表外部右侧
-                bgcolor='rgba(255,255,255,0.95)',
-                bordercolor='rgba(0,0,0,0.3)',
-                borderwidth=1,
-                font=dict(size=11)
+                orientation="h",
+                yanchor="bottom",
+                y=-0.18,  # 调整图例位置
+                xanchor="center",
+                x=0.5,
+                bgcolor='rgba(255,255,255,0.98)',
+                bordercolor='#e2e8f0',
+                borderwidth=2,
+                font=dict(size=12)
             ),
             hovermode='x unified'
         )
@@ -366,25 +428,28 @@ class ChartGenerator:
                       annotation_text="资产负债率警戒线(70%)", row=1, col=2)
         
         fig.update_layout(
+            **self.layout_config,
             title=dict(
-                text="偿债能力分析",
+                text="<b>💰 偿债能力分析</b>",
                 x=0.5,
-                xanchor='center'
+                xanchor='center',
+                font=dict(size=18, color='#1e3a8a')
             ),
-            height=500,
-            font=dict(family="Microsoft YaHei, Arial", size=12),
-            margin=dict(l=70, r=70, t=100, b=70),
+            height=600,  # 增加高度
+            margin=dict(l=80, r=80, t=100, b=120),  # 增加底部边距
             showlegend=True,
             legend=dict(
                 orientation="h",
                 yanchor="bottom",
-                y=-0.15,
+                y=-0.18,  # 调整图例位置
                 xanchor="center",
                 x=0.5,
-                bgcolor='rgba(255,255,255,0.9)',
-                bordercolor='rgba(0,0,0,0.2)',
-                borderwidth=1
-            )
+                bgcolor='rgba(255,255,255,0.98)',
+                bordercolor='#e2e8f0',
+                borderwidth=2,
+                font=dict(size=12)
+            ),
+            hovermode='x unified'
         )
         
         fig.update_yaxes(automargin=True)
@@ -430,31 +495,30 @@ class ChartGenerator:
             ))
         
         fig.update_layout(
+            **self.layout_config,
             title=dict(
-                text='运营能力分析（周转率：次）',
+                text='<b>⚡ 运营能力分析</b>',
                 x=0.5,
                 xanchor='center',
-                font=dict(size=16)
+                font=dict(size=18, color='#1e3a8a')
             ),
-            xaxis_title='年份',
-            yaxis_title='周转率 (次)',
-            height=520,
-            template='plotly_white',
-            font=dict(family="Microsoft YaHei, Arial", size=12),
+            xaxis_title='<b>年份</b>',
+            yaxis_title='<b>周转率 (次)</b>',
+            height=600,  # 增加高度为图例留空间
             barmode='group',
-            margin=dict(l=80, r=150, t=100, b=80),  # 增加右边距
+            margin=dict(l=80, r=80, t=100, b=120),  # 增加底部边距
             legend=dict(
-                orientation="v",
-                yanchor="top",
-                y=0.98,
-                xanchor="left",
-                x=1.02,  # 放在图表外部右侧
-                bgcolor='rgba(255,255,255,0.95)',
-                bordercolor='rgba(0,0,0,0.3)',
-                borderwidth=1,
-                font=dict(size=11),
-                title=dict(text='指标', font=dict(size=10, family="Microsoft YaHei"))
-            )
+                orientation="h",
+                yanchor="bottom",
+                y=-0.18,  # 调整图例位置
+                xanchor="center",
+                x=0.5,
+                bgcolor='rgba(255,255,255,0.98)',
+                bordercolor='#e2e8f0',
+                borderwidth=2,
+                font=dict(size=12)
+            ),
+            hovermode='x unified'
         )
         
         fig.update_yaxes(automargin=True)
@@ -520,28 +584,28 @@ class ChartGenerator:
         )
         
         fig.update_layout(
+            **self.layout_config,
             title=dict(
-                text="现金流状况分析",
+                text="<b>💵 现金流状况分析</b>",
                 x=0.5,
                 xanchor='center',
-                font=dict(size=16)
+                font=dict(size=18, color='#1e3a8a')
             ),
-            xaxis_title="年份",
-            height=520,
-            font=dict(family="Microsoft YaHei, Arial", size=12),
-            margin=dict(l=80, r=180, t=100, b=80),  # 增加右边距以容纳右Y轴和图例
+            xaxis_title="<b>年份</b>",
+            height=600,  # 增加高度
+            margin=dict(l=80, r=80, t=100, b=120),  # 增加底部边距
             legend=dict(
-                orientation="v",
-                yanchor="top",
-                y=0.98,
-                xanchor="left",
-                x=1.05,  # 放在右Y轴外侧
-                bgcolor='rgba(255,255,255,0.95)',
-                bordercolor='rgba(0,0,0,0.3)',
-                borderwidth=1,
-                font=dict(size=11)
+                orientation="h",
+                yanchor="bottom",
+                y=-0.18,  # 调整图例位置
+                xanchor="center",
+                x=0.5,
+                bgcolor='rgba(255,255,255,0.98)',
+                bordercolor='#e2e8f0',
+                borderwidth=2,
+                font=dict(size=12)
             ),
-            hovermode='x'
+            hovermode='x unified'
         )
         
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -590,26 +654,38 @@ class ChartGenerator:
             theta=dimensions,
             fill='toself',
             name='风险评估',
-            line_color='rgb(46, 204, 113)',
-            fillcolor='rgba(46, 204, 113, 0.3)'
+            line=dict(color='#3b82f6', width=3),
+            fillcolor='rgba(59, 130, 246, 0.25)',
+            marker=dict(size=10, color='#3b82f6', line=dict(width=2, color='white'))
         ))
         
         fig.update_layout(
+            **self.layout_config,
             polar=dict(
+                bgcolor='#fafbfc',
                 radialaxis=dict(
                     visible=True,
                     range=[0, 100],
                     tickvals=[30, 60, 90],
-                    ticktext=['高风险', '中等风险', '低风险']
-                )),
-            title=dict(
-                text="财务风险评估雷达图",
-                x=0.5,
-                xanchor='center'
+                    ticktext=['<b>高风险</b>', '<b>中等风险</b>', '<b>低风险</b>'],
+                    tickfont=dict(size=11, color='#64748b'),
+                    gridcolor='#e2e8f0',
+                    gridwidth=2
+                ),
+                angularaxis=dict(
+                    gridcolor='#cbd5e1',
+                    gridwidth=2,
+                    tickfont=dict(size=13, color='#1e293b', family='Microsoft YaHei')
+                )
             ),
-            height=600,
-            font=dict(family="Microsoft YaHei, Arial", size=12),
-            margin=dict(l=100, r=100, t=100, b=80)
+            title=dict(
+                text="<b>🎯 财务风险评估雷达图</b>",
+                x=0.5,
+                xanchor='center',
+                font=dict(size=18, color='#1e3a8a')
+            ),
+            height=650,
+            showlegend=False
         )
         
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -627,9 +703,11 @@ class ChartGenerator:
         """生成财务健康度仪表盘"""
         fig = make_subplots(
             rows=2, cols=2,
-            subplot_titles=('盈利能力', '偿债能力', '运营能力', '现金流状况'),
+            subplot_titles=('', '', '', ''),  # 使用空标题，后面用annotations添加
             specs=[[{"type": "indicator"}, {"type": "indicator"}],
-                   [{"type": "indicator"}, {"type": "indicator"}]]
+                   [{"type": "indicator"}, {"type": "indicator"}]],
+            vertical_spacing=0.25,  # 增加垂直间距
+            horizontal_spacing=0.15  # 增加水平间距
         )
         
         # 计算各维度健康度分数
@@ -679,30 +757,93 @@ class ChartGenerator:
             else:
                 color = "red"
             
+            # 现代化配色方案
+            if score >= 80:
+                bar_color = "#10b981"  # 绿色
+                bg_colors = [
+                    {'range': [0, 40], 'color': "#fee2e2"},    # 浅红
+                    {'range': [40, 70], 'color': "#fef3c7"},   # 浅黄
+                    {'range': [70, 100], 'color': "#d1fae5"}   # 浅绿
+                ]
+            elif score >= 60:
+                bar_color = "#f59e0b"  # 橙色
+                bg_colors = [
+                    {'range': [0, 40], 'color': "#fee2e2"},
+                    {'range': [40, 70], 'color': "#fef3c7"},
+                    {'range': [70, 100], 'color': "#d1fae5"}
+                ]
+            else:
+                bar_color = "#ef4444"  # 红色
+                bg_colors = [
+                    {'range': [0, 40], 'color': "#fee2e2"},
+                    {'range': [40, 70], 'color': "#fef3c7"},
+                    {'range': [70, 100], 'color': "#d1fae5"}
+                ]
+            
             fig.add_trace(go.Indicator(
-                mode = "gauge+number",
+                mode = "gauge+number+delta",
                 value = score,
-                domain = {'x': [0, 1], 'y': [0, 1]},
-                gauge = {'axis': {'range': [None, 100]},
-                        'bar': {'color': color},
-                        'steps' : [
-                            {'range': [0, 40], 'color': "lightgray"},
-                            {'range': [40, 70], 'color': "gray"},
-                            {'range': [70, 100], 'color': "lightgreen"}],
-                        'threshold' : {'line': {'color': "red", 'width': 4},
-                                      'thickness': 0.75, 'value': 90}}),
-                row=positions[i][0], col=positions[i][1])
+                domain = {'x': [0.05, 0.95], 'y': [0.1, 0.9]},  # 调整domain防止裁剪
+                number = {
+                    'font': {'size': 42, 'color': '#1e293b', 'family': 'Microsoft YaHei'},
+                    'suffix': "",
+                    'valueformat': '.1f'
+                },
+                delta = {
+                    'reference': 70, 
+                    'increasing': {'color': "#10b981"}, 
+                    'decreasing': {'color': "#ef4444"},
+                    'font': {'size': 14}
+                },
+                gauge = {
+                    'axis': {
+                        'range': [None, 100],
+                        'tickwidth': 2,
+                        'tickcolor': "#cbd5e1",
+                        'tickfont': {'size': 12, 'color': '#64748b'},
+                        'tickmode': 'linear',
+                        'tick0': 0,
+                        'dtick': 20
+                    },
+                    'bar': {'color': bar_color, 'thickness': 0.7},
+                    'bgcolor': "white",
+                    'borderwidth': 2,
+                    'bordercolor': "#e2e8f0",
+                    'steps': bg_colors,
+                    'threshold': {
+                        'line': {'color': "#dc2626", 'width': 3},
+                        'thickness': 0.75,
+                        'value': 85
+                    }
+                }
+            ), row=positions[i][0], col=positions[i][1])
         
         fig.update_layout(
+            **self.layout_config,
             title=dict(
-                text="财务健康度仪表盘",
+                text="<b>💎 财务健康度仪表盘</b>",
                 x=0.5,
-                xanchor='center'
+                xanchor='center',
+                font=dict(size=20, color='#1e3a8a', family='Microsoft YaHei'),
+                y=0.98,
+                yanchor='top'
             ),
-            height=700,
-            font=dict(family="Microsoft YaHei, Arial", size=10),
-            margin=dict(l=50, r=50, t=100, b=50),
-            showlegend=False
+            height=900,  # 增加高度以完整显示所有仪表
+            width=1200,  # 固定宽度
+            showlegend=False,
+            margin=dict(l=80, r=80, t=120, b=80),  # 调整边距
+            annotations=[
+                dict(
+                    text=f"<b>{dimension_names[i]}</b>",
+                    x=0.22 if i % 2 == 0 else 0.78,  # 调整标题位置
+                    y=0.88 if i < 2 else 0.38,
+                    xref='paper',
+                    yref='paper',
+                    showarrow=False,
+                    font=dict(size=15, color='#1e3a8a', family='Microsoft YaHei'),
+                    xanchor='center'
+                ) for i in range(4)
+            ]
         )
         
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')

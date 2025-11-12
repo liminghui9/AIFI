@@ -27,6 +27,170 @@ class AIAnalyzer:
         self.model = model if model else Config.OPENAI_MODEL
         print(f"✓ AI分析器初始化，使用模型: {self.model}")
     
+    def _clean_markdown(self, text: str) -> str:
+        """
+        清理文本中的Markdown格式标记
+        
+        Args:
+            text: 原始文本
+            
+        Returns:
+            str: 清理后的文本
+        """
+        import re
+        
+        # 移除加粗标记 **text**
+        text = re.sub(r'\*\*([^*]+)\*\*', r'\1', text)
+        
+        # 移除斜体标记 *text* 或 _text_
+        text = re.sub(r'(?<!\*)\*(?!\*)([^*]+)\*(?!\*)', r'\1', text)
+        text = re.sub(r'_([^_]+)_', r'\1', text)
+        
+        # 移除标题标记 # ## ###
+        text = re.sub(r'^#+\s+', '', text, flags=re.MULTILINE)
+        
+        # 移除代码块标记 ```
+        text = re.sub(r'```[\s\S]*?```', '', text)
+        text = re.sub(r'`([^`]+)`', r'\1', text)
+        
+        # 移除链接 [text](url)
+        text = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', text)
+        
+        return text.strip()
+    
+    def _format_analysis_text(self, text: str) -> str:
+        """
+        格式化AI分析文本，添加段落分隔和层次，并高亮重要数据
+        
+        Args:
+            text: 原始分析文本
+            
+        Returns:
+            str: 格式化后的文本（包含HTML标记）
+        """
+        import re
+        
+        # 先清理Markdown
+        text = self._clean_markdown(text)
+        
+        # 1. 高亮百分比数据（加粗显红）
+        # 匹配如：22.15%、-5.3%、10%等
+        text = re.sub(
+            r'([-+]?\d+\.?\d*%)',
+            r'<span class="highlight-number">\1</span>',
+            text
+        )
+        
+        # 2. 高亮货币金额（加粗显红）
+        # 匹配如：28000.00万元、1000万元、5000.5万元等
+        text = re.sub(
+            r'(\d+\.?\d*万元)',
+            r'<span class="highlight-number">\1</span>',
+            text
+        )
+        
+        # 3. 高亮倍数/比率（加粗显红）
+        # 匹配如：1.56倍、2.98倍、1.43倍等
+        text = re.sub(
+            r'(\d+\.?\d*倍)',
+            r'<span class="highlight-number">\1</span>',
+            text
+        )
+        
+        # 4. 高亮年份数据对比
+        # 匹配如：2023年、2022年
+        text = re.sub(
+            r'(20\d{2}年)',
+            r'<strong>\1</strong>',
+            text
+        )
+        
+        # 5. 高亮风险等级关键词
+        # 高风险 - 红色加粗
+        text = re.sub(
+            r'(高风险|严重|显著下降|大幅下降|明显恶化)',
+            r'<span class="risk-high">\1</span>',
+            text
+        )
+        
+        # 中等风险 - 橙色加粗
+        text = re.sub(
+            r'(中等风险|需关注|有所下降|略有下降)',
+            r'<span class="risk-medium">\1</span>',
+            text
+        )
+        
+        # 低风险/良好 - 绿色加粗
+        text = re.sub(
+            r'(低风险|良好|优秀|显著提升|大幅提升|明显改善|表现良好)',
+            r'<span class="risk-low">\1</span>',
+            text
+        )
+        
+        # 6. 格式化段落和换行
+        # 只在句号后换行，但要保留完整句子
+        lines = text.split('\n')
+        formatted_lines = []
+        for line in lines:
+            # 在句号后添加换行，但保持在同一个段落内的紧凑性
+            line = re.sub(r'([。])(?!\s*$)', r'\1<br>', line)
+            if line.strip():
+                formatted_lines.append(line.strip())
+        
+        text = '\n'.join(formatted_lines)
+        
+        # 7. 处理列表项前添加段落间隔
+        text = re.sub(r'(?<=[。])\s*(?=[-–—])', '<br>', text)
+        
+        # 8. 移除多余的空行
+        text = re.sub(r'\n{3,}', '\n\n', text)
+        
+        # 9. 移除开头和结尾的空白
+        return text.strip()
+    
+    def _strip_html_tags(self, text: str) -> str:
+        """
+        移除文本中的HTML标签，用于PDF等纯文本输出
+        
+        Args:
+            text: 包含HTML标签的文本
+            
+        Returns:
+            str: 纯文本（移除所有HTML标签）
+        """
+        import re
+        
+        # 先将<br>转换为换行（在移除其他标签之前）
+        text = re.sub(r'<br\s*/?>', '\n', text)
+        
+        # 移除所有HTML标签（包括span, strong等）
+        text = re.sub(r'<[^>]+>', '', text)
+        
+        # 清理多余的空白和换行
+        text = re.sub(r'\n{3,}', '\n\n', text)
+        text = re.sub(r'  +', ' ', text)  # 多个空格替换为单个空格
+        
+        return text.strip()
+    
+    def format_for_pdf(self, text: str) -> str:
+        """
+        格式化文本用于PDF输出（纯文本，无HTML标签）
+        
+        Args:
+            text: 原始或带HTML标签的文本
+            
+        Returns:
+            str: 适合PDF显示的纯文本
+        """
+        # 如果文本中包含HTML标签，先移除
+        if '<' in text and '>' in text:
+            text = self._strip_html_tags(text)
+        
+        # 确保换行格式正确
+        text = text.replace('<br>', '\n')
+        
+        return text
+    
     def analyze_dimension_risk(self, 
                                dimension_name: str,
                                indicators: Dict[str, Optional[float]],
@@ -66,6 +230,8 @@ class AIAnalyzer:
             )
             
             analysis = response.choices[0].message.content.strip()
+            # 格式化分析文本（包含清理Markdown）
+            analysis = self._format_analysis_text(analysis)
             return analysis
             
         except Exception as e:
@@ -113,16 +279,31 @@ class AIAnalyzer:
                     prompt += f"- {indicator_name}：{trend}（{change:+.2f}）\n"
         
         prompt += f"""
-请从以下角度进行分析：
-1. 当前{dimension_name}水平评价（与行业标准对比）
-2. 指标变化趋势及其含义
-3. 潜在风险点识别
-4. 简要建议
+请从以下角度进行分析，并在分析中引用具体的指标数值：
 
-要求：
-- 分析应专业、客观，控制在200字以内
-- 如遇数据缺失，说明其影响
-- 给出明确的风险等级判断（低风险/中等风险/高风险）
+1. 当前{dimension_name}水平评价：
+   - 必须引用上述具体指标值进行说明
+   - 与{industry}行业标准对比（如：净利润率9.00%，略低于行业平均水平10%）
+
+2. 指标变化趋势及其含义：
+   - 引用具体数值变化（如：净利润率从8.57%上升至9.00%，上升0.43个百分点）
+   - 说明变化的业务含义
+
+3. 潜在风险点识别：
+   - 用数据说明风险点（如：资产负债率达XX%，超出安全线XX%）
+   - 量化风险程度
+
+4. 简要建议：
+   - 每条建议单独一行
+   - 针对具体指标给出可操作建议
+   - 格式：每条建议另起一行，用"；"或换行分隔
+
+输出格式要求：
+- 纯文本格式，不使用Markdown标记（不要用**、#、-、*等符号）
+- 建议部分每条另起一行
+- 必须引用具体数值，避免空泛描述
+- 最后给出风险等级（低风险/中等风险/高风险）
+- 控制在300字以内
 """
         
         return prompt
@@ -260,26 +441,40 @@ class AIAnalyzer:
             prompt += """
 请结合以上具体数据，给出详细的综合评估：
 
-1. **整体财务健康状况评级**（优秀/良好/一般/较差/高风险）
-   - 说明评级理由，引用具体数据支撑
+1. 整体财务健康状况评级：良好/一般/较差
+理由：必须引用3-5个关键指标的具体数值来支撑评级（如：净利润率9.00%，资产负债率XX%，流动比率XX等）
 
-2. **主要风险点分析**（3-4点）
-   - 每个风险点需结合具体指标数据说明
-   - 量化风险程度（如：资产负债率达XX%，超出安全线XX%）
+2. 主要风险点总结：
+必须列举3-4个具体风险点，每个风险点要：
+- 指出具体指标和数值
+- 说明偏离标准的程度
+- 每个风险点单独一行
+示例格式：
+盈利能力受行业竞争影响，净利润率9.00%低于行业平均10%，需关注利润率波动；
+资产负债率XX%高于行业平均水平XX%，需加强长期偿债能力；
+运营效率下降，应收账款周转率从XX降至XX，需优化库存管理。
 
-3. **核心优势识别**（2-3点，如有）
-   - 基于数据指出企业的亮点指标
-   - 与行业标准对比说明优势
+3. 核心优势：
+列举2-3个优势指标（如有），每个优势单独一行：
+- 引用具体数值
+- 与行业对比
+示例：净资产收益率22.50%表现良好，高于行业平均15%；短期偿债能力较强，流动比率XX高于行业标准。
 
-4. **战略建议**（3-4条）
-   - 针对性的、可操作的改善建议
-   - 优先级排序
+4. 整体建议：
+给出3-5条可操作建议，每条建议必须：
+- 单独一行
+- 针对具体指标
+- 可量化、可执行
+示例格式：
+关注行业竞争，优化成本控制，力争将净利润率提升至10%以上；
+加强应收账款管理，将应收账款周转率从XX提升至行业平均XX；
+优化负债结构，降低资产负债率至60%以下。
 
-要求：
-- 分析必须数据化、具体化，引用实际指标值
-- 避免模糊表述，多用定量描述
-- 控制在500字以内
-- 语言专业但易懂
+输出格式要求：
+- 纯文本，不使用Markdown标记（不要用**、#、-、*等符号）
+- 所有要点必须引用具体数值
+- 风险点和建议各占一行，用"；"或换行分隔
+- 控制在600字以内
 """
             
             response = self.client.chat.completions.create(
@@ -293,6 +488,8 @@ class AIAnalyzer:
             )
             
             assessment = response.choices[0].message.content.strip()
+            # 格式化评估文本（包含清理Markdown）
+            assessment = self._format_analysis_text(assessment)
             return assessment
             
         except Exception as e:

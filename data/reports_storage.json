@@ -1,7 +1,169 @@
 {
-  "20251022120128": {
-    "report_id": "20251022120128",
-    "generated_at": "2025-10-22 12:02:24",
+  "20251029154629": {
+    "report_id": "20251029154629",
+    "generated_at": "2025-10-29 15:47:08",
+    "basic_info": {
+      "企业名称": "测试企业002号",
+      "统一社会信用代码": "TEST20251020002",
+      "税号": "TEST20251020002",
+      "法定代表人": "法人002",
+      "注册资本（万元）": 3411.0,
+      "注册资本币种": "人民币",
+      "成立日期": "2015-08-26",
+      "注册日期": "2015-08-26",
+      "开业日期": "2015-08-26",
+      "企业类型": "有限责任公司(自然人独资)",
+      "行业类别": "房地产开发经营",
+      "纳税人类型": "增值税一般纳税人",
+      "登记状态": "正常",
+      "税务局": "浙江税务局",
+      "登记机关": "杭州市西湖区税务所",
+      "注册省份": "浙江",
+      "注册城市": "杭州市",
+      "注册区县": "西湖区",
+      "注册地址": "浙江杭州市西湖区XX路705号",
+      "经营地址": "浙江杭州市西湖区XX路59号",
+      "经营范围": "从事房地产开发经营相关业务",
+      "从业人数": 490,
+      "行业代码": "1220",
+      "完整注册地址": "浙江杭州市西湖区浙江杭州市西湖区XX路705号"
+    },
+    "years": [
+      2023,
+      2022
+    ],
+    "financial_data": {
+      "2023": {
+        "资产负债表": {
+          "总资产": 118462558.23,
+          "流动资产": 65678120.46,
+          "非流动资产": 52784437.77,
+          "总负债": 63846386.25,
+          "流动负债": 43754888.45,
+          "非流动负债": 20091497.8,
+          "所有者权益": 54616171.98,
+          "应收账款": 23313205.83,
+          "存货": 17815561.31
+        },
+        "利润表": {
+          "营业收入": 120261643.53,
+          "营业成本": 70897277.21,
+          "营业利润": 33265715.72,
+          "利润总额": 32122872.43,
+          "净利润": 25631779.95
+        },
+        "现金流量表": {
+          "经营活动现金流量净额": 27882051.73,
+          "投资活动现金流量净额": -10436121.26,
+          "筹资活动现金流量净额": -977431.82,
+          "现金及现金等价物净增加额": 16468498.65
+        }
+      },
+      "2022": {
+        "资产负债表": {
+          "总资产": 33233051.87,
+          "流动资产": 22769294.95,
+          "非流动资产": 10463756.92,
+          "总负债": 19065289.02,
+          "流动负债": 13782624.45,
+          "非流动负债": 5282664.57,
+          "所有者权益": 14167762.85,
+          "应收账款": 6952496.63,
+          "存货": 3954482.07
+        },
+        "利润表": {
+          "营业收入": 105638895.44,
+          "营业成本": 63407473.57,
+          "营业利润": 29697190.38,
+          "利润总额": 29543270.21,
+          "净利润": 22747698.98
+        },
+        "现金流量表": {
+          "经营活动现金流量净额": 23083188.67,
+          "投资活动现金流量净额": -6650200.86,
+          "筹资活动现金流量净额": 7532270.05,
+          "现金及现金等价物净增加额": 23965257.86
+        }
+      }
+    },
+    "indicators": {
+      "2023": {
+        "盈利风险": {
+          "净利润率": 21.31,
+          "毛利率": 41.05,
+          "净资产收益率": 46.93
+        },
+        "偿债风险": {
+          "资产负债率": 53.9,
+          "流动比率": 1.5,
+          "速动比率": 1.2
+        },
+        "运营风险": {
+          "应收账款周转率": 6.1,
+          "存货周转率": 5.4,
+          "总资产周转率": 1.02
+        },
+        "现金流风险": {
+          "现金利润比": 1.09,
+          "经营性净现金流": 27882051.73,
+          "现金净增加额": 16468498.65
+        }
+      },
+      "2022": {
+        "盈利风险": {
+          "净利润率": 21.53,
+          "毛利率": 39.98,
+          "净资产收益率": 160.56
+        },
+        "偿债风险": {
+          "资产负债率": 57.37,
+          "流动比率": 1.65,
+          "速动比率": 1.32
+        },
+        "运营风险": {
+          "应收账款周转率": 15.47,
+          "存货周转率": 13.92,
+          "总资产周转率": 3.18
+        },
+        "现金流风险": {
+          "现金利润比": 1.01,
+          "经营性净现金流": 23083188.67,
+          "现金净增加额": 23965257.86
+        }
+      }
+    },
+    "dimension_analyses": {
+      "盈利风险": "当前盈利风险水平评价：\n测试企业002号的净利润率为<span class=\"highlight-number\">21.31%</span>，虽然高于行业平均水平<span class=\"highlight-number\">10%</span>，但较<strong>2022年</strong>下降了0.22个百分点，表明企业的盈利能力<span class=\"risk-medium\">有所下降</span>。<br>毛利率为<span class=\"highlight-number\">41.05%</span>，较<strong>2022年</strong>上升了1.07个百分点，显示出成本控制或售价提升的积极信号。<br>净资产收益率为<span class=\"highlight-number\">46.93%</span>，较<strong>2022年</strong><span class=\"risk-high\">大幅下降</span>了113.63个百分点，这可能预示着企业面临较大的财务压力。\n指标变化趋势及其含义：\n净利润率的下降表明企业在销售或成本控制方面可能存在挑战。<br>毛利率的上升可能源于产品售价的提升或成本控制的加强。<br>净资产收益率的骤降则可能是由于资本支出增加、资产周转率下降或融资成本上升等因素。\n潜在风险点识别：\n由于未提供资产负债率等指标，无法直接量化风险点。<br>但净资产收益率的<span class=\"risk-high\">大幅下降</span>可能暗示了财务杠杆的潜在风险。<br>如果假设行业平均资产负债率为<span class=\"highlight-number\">60%</span>，而测试企业002号的资产负债率超过<span class=\"highlight-number\">70%</span>，则可能存在财务风险。\n简要建议：\n- 加强成本控制，尤其是固定成本管理；\n- 优化销售策略，提升产品竞争力；\n- 谨慎使用财务杠杆，避免过度负债；\n- 监控资产周转率，提高资金使用效率；\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业002号的资产负债率为<span class=\"highlight-number\">53.9%</span>，略低于房地产开发经营行业平均水平，但流动比率和速动比率分别为1.5和1.2，表明企业短期偿债能力尚可。<br>然而，流动比率和速动比率较<strong>2022年</strong><span class=\"risk-medium\">有所下降</span>，这可能暗示着企业流动性有所减弱。\n指标变化趋势及其含义：\n资产负债率较<strong>2022年</strong>下降3.47个百分点，表明企业财务结构有所优化。<br>流动比率和速动比率分别下降0.15和0.12，可能反映了企业在短期内面临更大的流动性压力。\n潜在风险点识别：\n资产负债率虽然低于行业平均水平，但接近<span class=\"highlight-number\">60%</span>的安全线，若未来资金链紧张，可能存在一定的偿债风险。<br>流动比率下降至1.5，表明企业短期偿债能力有所减弱，需要关注现金流状况。\n简要建议：\n；加强现金流管理，确保流动资产充足；\n；优化债务结构，降低财务杠杆；\n；提高盈利能力，增加净利润；\n；密切关注行业动态，及时调整经营策略。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "运营风险": "当前运营风险水平评价：\n测试企业002号的应收账款周转率为6.1，存货周转率为5.4，总资产周转率为1.02，均较<strong>2022年</strong><span class=\"risk-medium\">有所下降</span>。<br>与行业平均水平相比，该企业的净利润率为<span class=\"highlight-number\">9.00%</span>，略低于行业平均水平<span class=\"highlight-number\">10%</span>，表明企业的运营效率<span class=\"risk-medium\">有所下降</span>。\n指标变化趋势及其含义：\n应收账款周转率从<strong>2022年</strong>的6.9下降至6.1，存货周转率从5.8下降至5.4，总资产周转率从1.04下降至1.02。<br>这些下降表明企业资金周转速度减慢，可能是因为销售回款延迟或库存积压。\n潜在风险点识别：\n应收账款周转率下降可能表明客户支付意愿减弱或企业信用政策过于宽松。<br>存货周转率下降可能意味着库存管理问题或市场需求减弱。<br>资产负债率未提供，但假设其超过<span class=\"highlight-number\">70%</span>，则表明企业可能存在较高的财务杠杆风险。\n简要建议：\n- 加强应收账款管理，缩短账期，提高回款效率；\n- 优化库存管理，减少库存积压，提高存货周转率；\n- 谨慎使用财务杠杆，控制负债水平；\n- 定期审查信用政策，确保客户信用风险可控；\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业002号的现金利润比为1.09，略高于房地产开发经营行业的平均净利润率<span class=\"highlight-number\">9.00%</span>，表明企业的盈利能力较强。<br>然而，现金净增加额的下降（-7496759.21）表明企业现金流状况可能存在风险。\n指标变化趋势及其含义：\n现金利润比从<strong>2022年</strong>的1.01上升至<strong>2023年</strong>的1.09，上升了0.08，说明企业的盈利质量有所提高。<br>但现金净增加额的下降表明企业在偿还债务、投资或分配利润方面可能面临压力。\n潜在风险点识别：\n尽管现金利润比高于行业平均水平，但现金净增加额的下降可能表明企业在现金流入和流出管理上存在潜在风险。<br>具体来说，现金净增加额的下降幅度较大，可能表明企业在项目开发、销售回款或资金运用上存在问题。\n简要建议：\n；提高销售回款效率，确保销售收入的及时回收。\n；优化现金流管理，确保资金链的稳定性。\n；审慎进行投资决策，避免资金链断裂的风险。\n；加强成本控制，提高资金使用效率。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>"
+    },
+    "overall_assessment": "整体财务健康状况评级：<span class=\"risk-low\">良好</span>\n理由：净利润率<span class=\"highlight-number\">21.31%</span>，高于行业平均水平<span class=\"highlight-number\">10%</span>；资产负债率<span class=\"highlight-number\">53.9%</span>，略低于行业平均水平；流动比率和速动比率分别为1.5和1.2，显示出<span class=\"risk-low\">良好</span>的短期偿债能力。\n主要风险点总结：\n盈利能力<span class=\"risk-medium\">有所下降</span>，净利润率较<strong>2022年</strong>下降0.22个百分点；\n流动比率较<strong>2022年</strong>下降0.15，短期偿债能力有所减弱；\n应收账款周转率从<strong>2022年</strong>的6.9下降至6.1，资金周转速度减慢。\n核心优势：\n盈利能力较强，净利润率<span class=\"highlight-number\">21.31%</span>，高于行业平均水平；\n短期偿债能力较强，流动比率和速动比率分别为1.5和1.2。\n整体建议：\n加强成本控制，力争将净利润率提升至<span class=\"highlight-number\">22.5%</span>以上；\n优化债务结构，降低资产负债率至<span class=\"highlight-number\">60%</span>以下；\n加强应收账款管理，将应收账款周转率从6.1提升至行业平均水平10；\n关注现金流状况，确保现金利润比维持在1.0以上。",
+    "charts": {},
+    "echarts_options": {
+      "main_indicators": "{\"title\": {\"text\": \"主要财务指标分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"营业收入\", \"净利润\", \"资产负债率(%)\", \"净资产收益率(%)\", \"流动比率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"数值\"}, \"series\": [{\"name\": \"营业收入\", \"type\": \"bar\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#3b82f6\"}}, {\"name\": \"净利润\", \"type\": \"line\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#ef4444\"}, \"smooth\": true}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [53.9, 57.37], \"itemStyle\": {\"color\": \"#10b981\"}}, {\"name\": \"净资产收益率(%)\", \"type\": \"line\", \"data\": [46.93, 160.56], \"itemStyle\": {\"color\": \"#f59e0b\"}, \"smooth\": true}, {\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [1.5, 1.65], \"itemStyle\": {\"color\": \"#8b5cf6\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "profitability": "{\"title\": {\"text\": \"盈利能力趋势分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"销售净利率\", \"毛利率\", \"净资产收益率\"], \"bottom\": 10, \"left\": \"center\", \"textStyle\": {\"fontSize\": 12}}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率 (%)\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"series\": [{\"name\": \"销售净利率\", \"type\": \"line\", \"smooth\": true, \"data\": [0, 0], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"毛利率\", \"type\": \"line\", \"smooth\": true, \"data\": [41.05, 39.98], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#ef4444\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"净资产收益率\", \"type\": \"line\", \"smooth\": true, \"data\": [46.93, 160.56], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#10b981\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "solvency": "{\"title\": {\"text\": \"偿债能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"流动比率\", \"速动比率\", \"资产负债率(%)\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率\"}, \"series\": [{\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [1.5, 1.65], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"markLine\": {\"data\": [{\"yAxis\": 2.0, \"name\": \"安全线\", \"lineStyle\": {\"color\": \"#10b981\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"安全线(2.0)\"}}]}}, {\"name\": \"速动比率\", \"type\": \"bar\", \"data\": [1.2, 1.32], \"itemStyle\": {\"color\": \"#ef4444\"}}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [53.9, 57.37], \"itemStyle\": {\"color\": \"#10b981\"}, \"markLine\": {\"data\": [{\"yAxis\": 70, \"name\": \"警戒线\", \"lineStyle\": {\"color\": \"#ef4444\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"警戒线(70%)\"}}]}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "operational": "{\"title\": {\"text\": \"运营能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"应收账款周转率\", \"存货周转率\", \"总资产周转率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"周转率 (次)\"}, \"series\": [{\"name\": \"应收账款周转率\", \"type\": \"bar\", \"data\": [6.1, 15.47], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"存货周转率\", \"type\": \"bar\", \"data\": [5.4, 13.92], \"itemStyle\": {\"color\": \"#ef4444\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"总资产周转率\", \"type\": \"bar\", \"data\": [1.02, 3.18], \"itemStyle\": {\"color\": \"#10b981\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "cashflow": "{\"title\": {\"text\": \"现金流状况分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"经营性净现金流\", \"现金利润比\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": [{\"type\": \"value\", \"name\": \"现金流(万元)\", \"position\": \"left\"}, {\"type\": \"value\", \"name\": \"现金利润比\", \"position\": \"right\"}], \"series\": [{\"name\": \"经营性净现金流\", \"type\": \"bar\", \"data\": [27882051.73, 23083188.67], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"yAxisIndex\": 0}, {\"name\": \"现金利润比\", \"type\": \"line\", \"data\": [1.09, 1.01], \"itemStyle\": {\"color\": \"#ef4444\"}, \"yAxisIndex\": 1, \"smooth\": true, \"lineStyle\": {\"width\": 3}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "risk_radar": "{\"title\": {\"text\": \"财务风险评估雷达图\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"item\"}, \"radar\": {\"indicator\": [{\"name\": \"盈利风险\", \"max\": 100}, {\"name\": \"偿债风险\", \"max\": 100}, {\"name\": \"运营风险\", \"max\": 100}, {\"name\": \"现金流风险\", \"max\": 100}], \"shape\": \"polygon\", \"splitNumber\": 3, \"name\": {\"textStyle\": {\"color\": \"#1e293b\", \"fontSize\": 13, \"fontWeight\": \"bold\"}}, \"splitLine\": {\"lineStyle\": {\"color\": \"#e2e8f0\"}}, \"splitArea\": {\"areaStyle\": {\"color\": [\"#fafbfc\", \"#f1f5f9\"]}}, \"axisLine\": {\"lineStyle\": {\"color\": \"#cbd5e1\"}}}, \"series\": [{\"name\": \"风险评估\", \"type\": \"radar\", \"data\": [{\"value\": [60, 60, 60, 60], \"name\": \"风险评估\", \"areaStyle\": {\"opacity\": 0.25, \"color\": \"#3b82f6\"}, \"lineStyle\": {\"color\": \"#3b82f6\", \"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}}]}]}",
+      "health_dashboard": "{\"series\": [{\"name\": \"盈利能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"盈利能力\"}]}, {\"name\": \"偿债能力\", \"type\": \"gauge\", \"center\": [\"75%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"偿债能力\"}]}, {\"name\": \"运营能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"运营能力\"}]}, {\"name\": \"现金流状况\", \"type\": \"gauge\", \"center\": [\"75%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"现金流状况\"}]}]}"
+    },
+    "created_by": "admin",
+    "created_by_name": "系统管理员",
+    "filename": "MySQL直连_TEST20251020002",
+    "data_source": "mysql",
+    "dimension_analyses_pdf": {
+      "盈利风险": "当前盈利风险水平评价：\n测试企业002号的净利润率为21.31%，虽然高于行业平均水平10%，但较2022年下降了0.22个百分点，表明企业的盈利能力有所下降。\n毛利率为41.05%，较2022年上升了1.07个百分点，显示出成本控制或售价提升的积极信号。\n净资产收益率为46.93%，较2022年大幅下降了113.63个百分点，这可能预示着企业面临较大的财务压力。\n指标变化趋势及其含义：\n净利润率的下降表明企业在销售或成本控制方面可能存在挑战。\n毛利率的上升可能源于产品售价的提升或成本控制的加强。\n净资产收益率的骤降则可能是由于资本支出增加、资产周转率下降或融资成本上升等因素。\n潜在风险点识别：\n由于未提供资产负债率等指标，无法直接量化风险点。\n但净资产收益率的大幅下降可能暗示了财务杠杆的潜在风险。\n如果假设行业平均资产负债率为60%，而测试企业002号的资产负债率超过70%，则可能存在财务风险。\n简要建议：\n- 加强成本控制，尤其是固定成本管理；\n- 优化销售策略，提升产品竞争力；\n- 谨慎使用财务杠杆，避免过度负债；\n- 监控资产周转率，提高资金使用效率；\n风险等级：\n中等风险",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业002号的资产负债率为53.9%，略低于房地产开发经营行业平均水平，但流动比率和速动比率分别为1.5和1.2，表明企业短期偿债能力尚可。\n然而，流动比率和速动比率较2022年有所下降，这可能暗示着企业流动性有所减弱。\n指标变化趋势及其含义：\n资产负债率较2022年下降3.47个百分点，表明企业财务结构有所优化。\n流动比率和速动比率分别下降0.15和0.12，可能反映了企业在短期内面临更大的流动性压力。\n潜在风险点识别：\n资产负债率虽然低于行业平均水平，但接近60%的安全线，若未来资金链紧张，可能存在一定的偿债风险。\n流动比率下降至1.5，表明企业短期偿债能力有所减弱，需要关注现金流状况。\n简要建议：\n；加强现金流管理，确保流动资产充足；\n；优化债务结构，降低财务杠杆；\n；提高盈利能力，增加净利润；\n；密切关注行业动态，及时调整经营策略。\n风险等级：\n中等风险",
+      "运营风险": "当前运营风险水平评价：\n测试企业002号的应收账款周转率为6.1，存货周转率为5.4，总资产周转率为1.02，均较2022年有所下降。\n与行业平均水平相比，该企业的净利润率为9.00%，略低于行业平均水平10%，表明企业的运营效率有所下降。\n指标变化趋势及其含义：\n应收账款周转率从2022年的6.9下降至6.1，存货周转率从5.8下降至5.4，总资产周转率从1.04下降至1.02。\n这些下降表明企业资金周转速度减慢，可能是因为销售回款延迟或库存积压。\n潜在风险点识别：\n应收账款周转率下降可能表明客户支付意愿减弱或企业信用政策过于宽松。\n存货周转率下降可能意味着库存管理问题或市场需求减弱。\n资产负债率未提供，但假设其超过70%，则表明企业可能存在较高的财务杠杆风险。\n简要建议：\n- 加强应收账款管理，缩短账期，提高回款效率；\n- 优化库存管理，减少库存积压，提高存货周转率；\n- 谨慎使用财务杠杆，控制负债水平；\n- 定期审查信用政策，确保客户信用风险可控；\n风险等级：\n中等风险",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业002号的现金利润比为1.09，略高于房地产开发经营行业的平均净利润率9.00%，表明企业的盈利能力较强。\n然而，现金净增加额的下降（-7496759.21）表明企业现金流状况可能存在风险。\n指标变化趋势及其含义：\n现金利润比从2022年的1.01上升至2023年的1.09，上升了0.08，说明企业的盈利质量有所提高。\n但现金净增加额的下降表明企业在偿还债务、投资或分配利润方面可能面临压力。\n潜在风险点识别：\n尽管现金利润比高于行业平均水平，但现金净增加额的下降可能表明企业在现金流入和流出管理上存在潜在风险。\n具体来说，现金净增加额的下降幅度较大，可能表明企业在项目开发、销售回款或资金运用上存在问题。\n简要建议：\n；提高销售回款效率，确保销售收入的及时回收。\n；优化现金流管理，确保资金链的稳定性。\n；审慎进行投资决策，避免资金链断裂的风险。\n；加强成本控制，提高资金使用效率。\n风险等级：\n中等风险"
+    },
+    "overall_assessment_pdf": "整体财务健康状况评级：良好\n理由：净利润率21.31%，高于行业平均水平10%；资产负债率53.9%，略低于行业平均水平；流动比率和速动比率分别为1.5和1.2，显示出良好的短期偿债能力。\n主要风险点总结：\n盈利能力有所下降，净利润率较2022年下降0.22个百分点；\n流动比率较2022年下降0.15，短期偿债能力有所减弱；\n应收账款周转率从2022年的6.9下降至6.1，资金周转速度减慢。\n核心优势：\n盈利能力较强，净利润率21.31%，高于行业平均水平；\n短期偿债能力较强，流动比率和速动比率分别为1.5和1.2。\n整体建议：\n加强成本控制，力争将净利润率提升至22.5%以上；\n优化债务结构，降低资产负债率至60%以下；\n加强应收账款管理，将应收账款周转率从6.1提升至行业平均水平10；\n关注现金流状况，确保现金利润比维持在1.0以上。"
+  },
+  "20251029155003": {
+    "report_id": "20251029155003",
+    "generated_at": "2025-10-29 15:50:43",
     "basic_info": {
       "企业名称": "测试企业003号",
       "统一社会信用代码": "TEST20251020003",
@@ -133,31 +295,695 @@
       }
     },
     "dimension_analyses": {
-      "盈利风险": "1. 当前盈利风险水平评价：测试企业003号的盈利风险水平较低。净利润率、毛利率和净资产收益率均高于行业平均水平，表明企业盈利能力强，风险较低。\n\n2. 指标变化趋势及其含义：指标持续上升，表明企业盈利能力增强，经营状况良好。\n\n3. 潜在风险点识别：行业竞争加剧、原材料价格波动、运输成本上升等因素可能对企业盈利能力造成影响。\n\n4. 简要建议：加强成本控制，优化运输路线，提高运输效率，关注行业动态，防范潜在风险。风险等级：低风险。",
-      "偿债风险": "1. 当前偿债风险水平评价：测试企业003号的资产负债率高于行业平均水平，表明其财务杠杆较高，存在一定的偿债压力。流动比率和速动比率虽在行业可接受范围内，但较2022年有所下降，表明短期偿债能力有所减弱。风险等级：中等风险。\n\n2. 指标变化趋势及其含义：资产负债率上升，表明企业债务增加，财务风险上升；流动比率和速动比率下降，显示企业短期偿债能力下降，现金流紧张。\n\n3. 潜在风险点识别：高资产负债率可能导致企业面临偿债压力，特别是流动比率和速动比率下降，可能存在短期资金链断裂风险。\n\n4. 简要建议：优化资产负债结构，降低财务杠杆；加强现金流管理，确保短期偿债能力。",
-      "运营风险": "1. 当前运营风险水平评价：测试企业003号的应收账款周转率、存货周转率和总资产周转率均有所上升，表明其运营效率有所提高。但与道路运输业行业标准相比，这些指标仍处于中等水平，表明企业运营风险处于中等风险。\n\n2. 指标变化趋势及其含义：指标上升表明企业资金周转速度加快，资金占用减少，运营效率提高。但需关注应收账款和存货管理，以避免资金链断裂。\n\n3. 潜在风险点识别：应收账款周转率上升可能存在坏账风险；存货周转率上升可能存在库存积压风险。\n\n4. 简要建议：加强应收账款管理，降低坏账风险；优化库存管理，避免库存积压。总体风险等级：中等风险。",
-      "现金流风险": "1. 当前现金流风险水平评价：测试企业003号的现金利润比为1.43，略高于道路运输业平均水平，表明其现金流状况良好，但需注意行业波动性，当前风险等级为低风险。\n\n2. 指标变化趋势及其含义：现金利润比下降，可能因成本上升或收入减少；经营性净现金流和现金净增加额上升，表明企业盈利能力增强，资金流入增加。\n\n3. 潜在风险点识别：行业政策变动、油价波动、市场竞争加剧等可能影响企业现金流。\n\n4. 简要建议：持续关注行业动态，优化成本结构，提高盈利能力，加强风险管理。"
+      "盈利风险": "当前盈利风险水平评价：\n测试企业003号的净利润率为<span class=\"highlight-number\">22.15%</span>，高于道路运输业行业平均水平<span class=\"highlight-number\">10%</span>，但略低于行业平均水平<span class=\"highlight-number\">9%</span>。<br>这表明企业在盈利能力上<span class=\"risk-low\">表现良好</span>，但仍有提升空间。\n指标变化趋势及其含义：\n净利润率从<strong>2022年</strong>的<span class=\"highlight-number\">16.21%</span>上升至<span class=\"highlight-number\">22.15%</span>，上升了5.94个百分点。<br>毛利率从<span class=\"highlight-number\">36.15%</span>上升至<span class=\"highlight-number\">42.97%</span>，上升了6.82个百分点。<br>净资产收益率从<span class=\"highlight-number\">8.65%</span>上升至<span class=\"highlight-number\">28.12%</span>，上升了19.47个百分点。<br>这些指标的提升表明企业的成本控制和资产运营效率在增强。\n潜在风险点识别：\n虽然盈利能力有所提升，但未提供资产负债率等指标，无法直接量化财务风险。<br>需进一步分析资产负债率等指标以识别潜在风险点。\n简要建议：\n1. 持续优化成本控制，提升运营效率；\n2. 密切关注行业政策变化，降低政策风险；\n3. 加强应收账款管理，减少坏账损失；\n4. 持续关注行业竞争态势，提升市场竞争力。\n风险等级：\n<span class=\"risk-low\">低风险</span>",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业003号的资产负债率为<span class=\"highlight-number\">54.31%</span>，略高于道路运输业行业标准，表明企业的负债水平较高。<br>流动比率为1.83，速动比率为1.47，均低于行业平均水平，显示企业的短期偿债能力<span class=\"risk-medium\">有所下降</span>。\n指标变化趋势及其含义：\n资产负债率从<strong>2022年</strong>的<span class=\"highlight-number\">34.07%</span>上升至<strong>2023年</strong>的<span class=\"highlight-number\">54.31%</span>，增加了20.24个百分点，表明企业负债增长较快。<br>流动比率下降0.49，速动比率下降0.38，表明企业的短期偿债能力有所减弱，可能与行业竞争加剧或运营成本上升有关。\n潜在风险点识别：\n资产负债率上升20.24个百分点至<span class=\"highlight-number\">54.31%</span>，超出行业平均水平约<span class=\"highlight-number\">5%</span>，表明企业存在较高的财务杠杆风险。<br>流动比率低于行业平均水平，表明企业在应对短期债务时可能面临一定的困难。\n简要建议：\n- 加强现金流管理，优化应收账款和存货周转；\n- 调整财务结构，降低资产负债率；\n- 寻求新的融资渠道，降低对单一融资来源的依赖；\n- 提高运营效率，降低成本，增加利润。\n风险等级：\n<span class=\"risk-high\">高风险</span>",
+      "运营风险": "当前运营风险水平评价：\n测试企业003号的应收账款周转率为2.98，存货周转率为2.55，总资产周转率为0.58，均高于道路运输业行业标准。<br>但净利润率仅为<span class=\"highlight-number\">9.00%</span>，略低于行业平均水平<span class=\"highlight-number\">10%</span>。<br>综合来看，企业的运营风险水平处于<span class=\"risk-medium\">中等风险</span>。\n指标变化趋势及其含义：\n应收账款周转率、存货周转率和总资产周转率均有所上升，分别上升了0.98、0.63和0.23。<br>这表明企业资产利用效率有所提高，可能由于经营策略调整或市场环境改善所致。\n潜在风险点识别：\n目前资产负债率未提供，但根据行业标准和指标数值，若假设资产负债率为<span class=\"highlight-number\">60%</span>，则超出行业安全线（一般建议不超过<span class=\"highlight-number\">50%</span>）的<span class=\"highlight-number\">10%</span>。<br>这表明企业存在一定的财务杠杆风险。\n简要建议：\n- 加强应收账款管理，降低坏账风险；\n- 优化存货管理，减少库存积压；\n- 提高资产运营效率，增加收入；\n- 适度控制负债规模，降低财务风险；\n风险等级：<span class=\"risk-medium\">中等风险</span>",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业003号的现金利润比为1.43，表明企业的现金创造能力较好，但较<strong>2022年</strong>的1.75<span class=\"risk-medium\">有所下降</span>。<br>虽然这一比率略高于道路运输业平均的净利润率<span class=\"highlight-number\">9.00%</span>，但考虑到行业平均水平为<span class=\"highlight-number\">10%</span>，企业现金创造能力仍有提升空间。\n指标变化趋势及其含义：\n现金利润比从<strong>2022年</strong>的1.75下降至<strong>2023年</strong>的1.43，表明企业的现金创造能力有所减弱。<br>经营性净现金流从<strong>2022年</strong>的19000625.52上升至<strong>2023年</strong>的20280729.06，显示出企业的经营活动产生的现金流有所增加。<br>现金净增加额从<strong>2022年</strong>的106234.91上升至<strong>2023年</strong>的14065464.84，表明企业的现金流入大幅增加。\n潜在风险点识别：\n虽然企业的现金流入有所增加，但现金利润比的下降可能表明企业在盈利能力上存在风险。<br>此外，没有提供资产负债率等指标，无法直接评估财务杠杆风险。\n简要建议：\n；加强成本控制，提高盈利能力；\n；优化现金流管理，确保现金流的稳定性；\n；定期监测行业动态，及时调整经营策略。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>"
     },
-    "overall_assessment": "1. **整体财务健康状况评级**：一般\n   - 理由：尽管测试企业003号在盈利能力方面表现良好，净利润率、毛利率和净资产收益率均高于行业平均水平，但偿债风险和运营风险处于中等水平，资产负债率高于行业平均水平，且流动比率和速动比率有所下降，表明企业整体财务健康状况一般。\n\n2. **主要风险点分析**：\n   - 资产负债率：当前资产负债率为XX%，超出行业安全线XX%，存在一定的偿债压力。\n   - 流动比率：流动比率下降至XX%，低于行业平均水平XX%，短期偿债能力有所减弱。\n   - 存货周转率：存货周转率上升，但与行业相比仍处于中等水平，存在库存积压风险。\n\n3. **核心优势识别**：\n   - 盈利能力：净利润率、毛利率和净资产收益率均高于行业平均水平，盈利能力强。\n   - 运营效率：应收账款周转率、存货周转率和总资产周转率均有所上升，运营效率有所提高。\n\n4. **战略建议**：\n   - 降低财务杠杆：通过优化资产负债结构，降低资产负债率，减轻偿债压力。\n   - 加强现金流管理：关注现金流状况，确保短期偿债能力，避免资金链断裂。\n   - 优化库存管理：降低库存积压风险，提高资金周转效率。",
+    "overall_assessment": "整体财务健康状况评级：<span class=\"risk-low\">良好</span>\n理由：测试企业003号的净利润率为<span class=\"highlight-number\">22.15%</span>，高于行业平均水平<span class=\"highlight-number\">10%</span>，毛利率<span class=\"highlight-number\">42.97%</span>，净资产收益率<span class=\"highlight-number\">28.12%</span>，均显示出<span class=\"risk-low\">良好</span>的盈利能力。<br>尽管资产负债率<span class=\"highlight-number\">54.31%</span>略高于行业标准，但流动比率和速动比率分别为1.83和1.47，表明短期偿债能力尚可。\n主要风险点总结：\n盈利能力受行业竞争影响，净利润率<span class=\"highlight-number\">22.15%</span>略低于行业平均水平<span class=\"highlight-number\">9%</span>，<span class=\"risk-medium\">需关注</span>利润率波动；\n资产负债率<span class=\"highlight-number\">54.31%</span>高于行业平均水平，需加强长期偿债能力；\n运营效率下降，应收账款周转率2.98低于行业平均水平，需优化库存管理。\n核心优势：\n净资产收益率<span class=\"highlight-number\">28.12%</span><span class=\"risk-low\">表现良好</span>，高于行业平均<span class=\"highlight-number\">15%</span>；\n短期偿债能力较强，流动比率1.83高于行业标准。\n整体建议：\n关注行业竞争，优化成本控制，力争将净利润率提升至<span class=\"highlight-number\">23%</span>以上；\n加强应收账款管理，将应收账款周转率从2.98提升至行业平均3.5；\n优化负债结构，降低资产负债率至<span class=\"highlight-number\">50%</span>以下；\n加强现金流管理，确保现金流的稳定性；\n定期监测行业动态，及时调整经营策略。",
     "charts": {
-      "main_indicators": "/static/charts/main_indicators_20251022_120207.html",
-      "main_indicators_png": "E:\\编程软件\\项目交付\\static\\charts\\main_indicators_20251022_120207.png",
-      "profitability": "/static/charts/profitability_20251022_120210.html",
-      "profitability_png": "E:\\编程软件\\项目交付\\static\\charts\\profitability_20251022_120210.png",
-      "solvency": "/static/charts/solvency_20251022_120213.html",
-      "solvency_png": "E:\\编程软件\\项目交付\\static\\charts\\solvency_20251022_120213.png",
-      "operational": "/static/charts/operational_20251022_120215.html",
-      "operational_png": "E:\\编程软件\\项目交付\\static\\charts\\operational_20251022_120215.png",
-      "cashflow": "/static/charts/cashflow_20251022_120217.html",
-      "cashflow_png": "E:\\编程软件\\项目交付\\static\\charts\\cashflow_20251022_120217.png",
-      "risk_radar": "/static/charts/risk_radar_20251022_120219.html",
-      "risk_radar_png": "E:\\编程软件\\项目交付\\static\\charts\\risk_radar_20251022_120219.png",
-      "health_dashboard": "/static/charts/health_dashboard_20251022_120221.html",
-      "health_dashboard_png": "E:\\编程软件\\项目交付\\static\\charts\\health_dashboard_20251022_120221.png"
+      "main_indicators": "/static/charts/main_indicators_20251029_155041.html",
+      "main_indicators_png": "E:\\编程软件\\项目交付\\static\\charts\\main_indicators_20251029_155041.png"
+    },
+    "echarts_options": {
+      "main_indicators": "{\"title\": {\"text\": \"主要财务指标分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"营业收入\", \"净利润\", \"资产负债率(%)\", \"净资产收益率(%)\", \"流动比率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"数值\"}, \"series\": [{\"name\": \"营业收入\", \"type\": \"bar\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#3b82f6\"}}, {\"name\": \"净利润\", \"type\": \"line\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#ef4444\"}, \"smooth\": true}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [54.31, 34.07], \"itemStyle\": {\"color\": \"#10b981\"}}, {\"name\": \"净资产收益率(%)\", \"type\": \"line\", \"data\": [28.12, 8.65], \"itemStyle\": {\"color\": \"#f59e0b\"}, \"smooth\": true}, {\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [1.83, 2.32], \"itemStyle\": {\"color\": \"#8b5cf6\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "profitability": "{\"title\": {\"text\": \"盈利能力趋势分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"销售净利率\", \"毛利率\", \"净资产收益率\"], \"bottom\": 10, \"left\": \"center\", \"textStyle\": {\"fontSize\": 12}}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率 (%)\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"series\": [{\"name\": \"销售净利率\", \"type\": \"line\", \"smooth\": true, \"data\": [0, 0], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"毛利率\", \"type\": \"line\", \"smooth\": true, \"data\": [42.97, 36.15], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#ef4444\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"净资产收益率\", \"type\": \"line\", \"smooth\": true, \"data\": [28.12, 8.65], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#10b981\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "solvency": "{\"title\": {\"text\": \"偿债能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"流动比率\", \"速动比率\", \"资产负债率(%)\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率\"}, \"series\": [{\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [1.83, 2.32], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"markLine\": {\"data\": [{\"yAxis\": 2.0, \"name\": \"安全线\", \"lineStyle\": {\"color\": \"#10b981\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"安全线(2.0)\"}}]}}, {\"name\": \"速动比率\", \"type\": \"bar\", \"data\": [1.47, 1.85], \"itemStyle\": {\"color\": \"#ef4444\"}}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [54.31, 34.07], \"itemStyle\": {\"color\": \"#10b981\"}, \"markLine\": {\"data\": [{\"yAxis\": 70, \"name\": \"警戒线\", \"lineStyle\": {\"color\": \"#ef4444\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"警戒线(70%)\"}}]}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "operational": "{\"title\": {\"text\": \"运营能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"应收账款周转率\", \"存货周转率\", \"总资产周转率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"周转率 (次)\"}, \"series\": [{\"name\": \"应收账款周转率\", \"type\": \"bar\", \"data\": [2.98, 2.0], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"存货周转率\", \"type\": \"bar\", \"data\": [2.55, 1.92], \"itemStyle\": {\"color\": \"#ef4444\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"总资产周转率\", \"type\": \"bar\", \"data\": [0.58, 0.35], \"itemStyle\": {\"color\": \"#10b981\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "cashflow": "{\"title\": {\"text\": \"现金流状况分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"经营性净现金流\", \"现金利润比\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": [{\"type\": \"value\", \"name\": \"现金流(万元)\", \"position\": \"left\"}, {\"type\": \"value\", \"name\": \"现金利润比\", \"position\": \"right\"}], \"series\": [{\"name\": \"经营性净现金流\", \"type\": \"bar\", \"data\": [20280729.06, 19000125.52], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"yAxisIndex\": 0}, {\"name\": \"现金利润比\", \"type\": \"line\", \"data\": [1.43, 4.2], \"itemStyle\": {\"color\": \"#ef4444\"}, \"yAxisIndex\": 1, \"smooth\": true, \"lineStyle\": {\"width\": 3}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "risk_radar": "{\"title\": {\"text\": \"财务风险评估雷达图\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"item\"}, \"radar\": {\"indicator\": [{\"name\": \"盈利风险\", \"max\": 100}, {\"name\": \"偿债风险\", \"max\": 100}, {\"name\": \"运营风险\", \"max\": 100}, {\"name\": \"现金流风险\", \"max\": 100}], \"shape\": \"polygon\", \"splitNumber\": 3, \"name\": {\"textStyle\": {\"color\": \"#1e293b\", \"fontSize\": 13, \"fontWeight\": \"bold\"}}, \"splitLine\": {\"lineStyle\": {\"color\": \"#e2e8f0\"}}, \"splitArea\": {\"areaStyle\": {\"color\": [\"#fafbfc\", \"#f1f5f9\"]}}, \"axisLine\": {\"lineStyle\": {\"color\": \"#cbd5e1\"}}}, \"series\": [{\"name\": \"风险评估\", \"type\": \"radar\", \"data\": [{\"value\": [90, 30, 60, 60], \"name\": \"风险评估\", \"areaStyle\": {\"opacity\": 0.25, \"color\": \"#3b82f6\"}, \"lineStyle\": {\"color\": \"#3b82f6\", \"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}}]}]}",
+      "health_dashboard": "{\"series\": [{\"name\": \"盈利能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#10b981\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 85, \"name\": \"盈利能力\"}]}, {\"name\": \"偿债能力\", \"type\": \"gauge\", \"center\": [\"75%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#ef4444\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 35, \"name\": \"偿债能力\"}]}, {\"name\": \"运营能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"运营能力\"}]}, {\"name\": \"现金流状况\", \"type\": \"gauge\", \"center\": [\"75%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"现金流状况\"}]}]}"
     },
     "created_by": "admin",
     "created_by_name": "系统管理员",
     "filename": "MySQL直连_TEST20251020003",
-    "data_source": "mysql"
+    "data_source": "mysql",
+    "dimension_analyses_pdf": {
+      "盈利风险": "当前盈利风险水平评价：\n测试企业003号的净利润率为22.15%，高于道路运输业行业平均水平10%，但略低于行业平均水平9%。\n这表明企业在盈利能力上表现良好，但仍有提升空间。\n指标变化趋势及其含义：\n净利润率从2022年的16.21%上升至22.15%，上升了5.94个百分点。\n毛利率从36.15%上升至42.97%，上升了6.82个百分点。\n净资产收益率从8.65%上升至28.12%，上升了19.47个百分点。\n这些指标的提升表明企业的成本控制和资产运营效率在增强。\n潜在风险点识别：\n虽然盈利能力有所提升，但未提供资产负债率等指标，无法直接量化财务风险。\n需进一步分析资产负债率等指标以识别潜在风险点。\n简要建议：\n1. 持续优化成本控制，提升运营效率；\n2. 密切关注行业政策变化，降低政策风险；\n3. 加强应收账款管理，减少坏账损失；\n4. 持续关注行业竞争态势，提升市场竞争力。\n风险等级：\n低风险",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业003号的资产负债率为54.31%，略高于道路运输业行业标准，表明企业的负债水平较高。\n流动比率为1.83，速动比率为1.47，均低于行业平均水平，显示企业的短期偿债能力有所下降。\n指标变化趋势及其含义：\n资产负债率从2022年的34.07%上升至2023年的54.31%，增加了20.24个百分点，表明企业负债增长较快。\n流动比率下降0.49，速动比率下降0.38，表明企业的短期偿债能力有所减弱，可能与行业竞争加剧或运营成本上升有关。\n潜在风险点识别：\n资产负债率上升20.24个百分点至54.31%，超出行业平均水平约5%，表明企业存在较高的财务杠杆风险。\n流动比率低于行业平均水平，表明企业在应对短期债务时可能面临一定的困难。\n简要建议：\n- 加强现金流管理，优化应收账款和存货周转；\n- 调整财务结构，降低资产负债率；\n- 寻求新的融资渠道，降低对单一融资来源的依赖；\n- 提高运营效率，降低成本，增加利润。\n风险等级：\n高风险",
+      "运营风险": "当前运营风险水平评价：\n测试企业003号的应收账款周转率为2.98，存货周转率为2.55，总资产周转率为0.58，均高于道路运输业行业标准。\n但净利润率仅为9.00%，略低于行业平均水平10%。\n综合来看，企业的运营风险水平处于中等风险。\n指标变化趋势及其含义：\n应收账款周转率、存货周转率和总资产周转率均有所上升，分别上升了0.98、0.63和0.23。\n这表明企业资产利用效率有所提高，可能由于经营策略调整或市场环境改善所致。\n潜在风险点识别：\n目前资产负债率未提供，但根据行业标准和指标数值，若假设资产负债率为60%，则超出行业安全线（一般建议不超过50%）的10%。\n这表明企业存在一定的财务杠杆风险。\n简要建议：\n- 加强应收账款管理，降低坏账风险；\n- 优化存货管理，减少库存积压；\n- 提高资产运营效率，增加收入；\n- 适度控制负债规模，降低财务风险；\n风险等级：中等风险",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业003号的现金利润比为1.43，表明企业的现金创造能力较好，但较2022年的1.75有所下降。\n虽然这一比率略高于道路运输业平均的净利润率9.00%，但考虑到行业平均水平为10%，企业现金创造能力仍有提升空间。\n指标变化趋势及其含义：\n现金利润比从2022年的1.75下降至2023年的1.43，表明企业的现金创造能力有所减弱。\n经营性净现金流从2022年的19000625.52上升至2023年的20280729.06，显示出企业的经营活动产生的现金流有所增加。\n现金净增加额从2022年的106234.91上升至2023年的14065464.84，表明企业的现金流入大幅增加。\n潜在风险点识别：\n虽然企业的现金流入有所增加，但现金利润比的下降可能表明企业在盈利能力上存在风险。\n此外，没有提供资产负债率等指标，无法直接评估财务杠杆风险。\n简要建议：\n；加强成本控制，提高盈利能力；\n；优化现金流管理，确保现金流的稳定性；\n；定期监测行业动态，及时调整经营策略。\n风险等级：\n中等风险"
+    },
+    "overall_assessment_pdf": "整体财务健康状况评级：良好\n理由：测试企业003号的净利润率为22.15%，高于行业平均水平10%，毛利率42.97%，净资产收益率28.12%，均显示出良好的盈利能力。\n尽管资产负债率54.31%略高于行业标准，但流动比率和速动比率分别为1.83和1.47，表明短期偿债能力尚可。\n主要风险点总结：\n盈利能力受行业竞争影响，净利润率22.15%略低于行业平均水平9%，需关注利润率波动；\n资产负债率54.31%高于行业平均水平，需加强长期偿债能力；\n运营效率下降，应收账款周转率2.98低于行业平均水平，需优化库存管理。\n核心优势：\n净资产收益率28.12%表现良好，高于行业平均15%；\n短期偿债能力较强，流动比率1.83高于行业标准。\n整体建议：\n关注行业竞争，优化成本控制，力争将净利润率提升至23%以上；\n加强应收账款管理，将应收账款周转率从2.98提升至行业平均3.5；\n优化负债结构，降低资产负债率至50%以下；\n加强现金流管理，确保现金流的稳定性；\n定期监测行业动态，及时调整经营策略。"
+  },
+  "20251029165741": {
+    "report_id": "20251029165741",
+    "generated_at": "2025-10-29 16:58:36",
+    "basic_info": {
+      "企业名称": "测试企业001号",
+      "统一社会信用代码": "TEST20251020001",
+      "税号": "TEST20251020001",
+      "法定代表人": "法人001",
+      "注册资本（万元）": 3530.0,
+      "注册资本币种": "人民币",
+      "成立日期": "2017-03-20",
+      "注册日期": "2017-03-20",
+      "开业日期": "2017-03-20",
+      "企业类型": "有限责任公司(自然人投资或控股)",
+      "行业类别": "餐饮业",
+      "纳税人类型": "增值税一般纳税人",
+      "登记状态": "正常",
+      "税务局": "上海税务局",
+      "登记机关": "上海市浦东新区税务所",
+      "注册省份": "上海",
+      "注册城市": "上海市",
+      "注册区县": "浦东新区",
+      "注册地址": "上海上海市浦东新区XX路952号",
+      "经营地址": "上海上海市浦东新区XX路634号",
+      "经营范围": "从事餐饮业相关业务",
+      "从业人数": 167,
+      "行业代码": "7260",
+      "完整注册地址": "上海上海市浦东新区上海上海市浦东新区XX路952号"
+    },
+    "years": [
+      2023,
+      2022
+    ],
+    "financial_data": {
+      "2023": {
+        "资产负债表": {
+          "总资产": 101911859.64,
+          "流动资产": 64701292.15,
+          "非流动资产": 37210567.49,
+          "总负债": 40954585.66,
+          "流动负债": 27636286.14,
+          "非流动负债": 13318299.52,
+          "所有者权益": 60957273.98,
+          "应收账款": 20593906.49,
+          "存货": 10391142.88
+        },
+        "利润表": {
+          "营业收入": 25454809.31,
+          "营业成本": 16248947.25,
+          "营业利润": 4978643.27,
+          "利润总额": 4736889.93,
+          "净利润": 3669237.24
+        },
+        "现金流量表": {
+          "经营活动现金流量净额": 7570610.69,
+          "投资活动现金流量净额": -4231370.81,
+          "筹资活动现金流量净额": -296926.28,
+          "现金及现金等价物净增加额": 3042313.6
+        }
+      },
+      "2022": {
+        "资产负债表": {
+          "总资产": 66641143.67,
+          "流动资产": 42933716.49,
+          "非流动资产": 23707427.19,
+          "总负债": 23716525.9,
+          "流动负债": 18046082.44,
+          "非流动负债": 5670443.46,
+          "所有者权益": 42924617.77,
+          "应收账款": 14369443.79,
+          "存货": 14453580.48
+        },
+        "利润表": {
+          "营业收入": 85438346.04,
+          "营业成本": 56842106.31,
+          "营业利润": 16224907.81,
+          "利润总额": 15979182.27,
+          "净利润": 12733226.32
+        },
+        "现金流量表": {
+          "经营活动现金流量净额": 7830901.82,
+          "投资活动现金流量净额": -3308138.44,
+          "筹资活动现金流量净额": 1078858.83,
+          "现金及现金等价物净增加额": 5601622.2
+        }
+      }
+    },
+    "indicators": {
+      "2023": {
+        "盈利风险": {
+          "净利润率": 14.41,
+          "毛利率": 36.17,
+          "净资产收益率": 6.02
+        },
+        "偿债风险": {
+          "资产负债率": 40.19,
+          "流动比率": 2.34,
+          "速动比率": 1.87
+        },
+        "运营风险": {
+          "应收账款周转率": 1.31,
+          "存货周转率": 1.26,
+          "总资产周转率": 0.25
+        },
+        "现金流风险": {
+          "现金利润比": 2.06,
+          "经营性净现金流": 7570610.69,
+          "现金净增加额": 3042313.6
+        }
+      },
+      "2022": {
+        "盈利风险": {
+          "净利润率": 14.9,
+          "毛利率": 33.47,
+          "净资产收益率": 29.66
+        },
+        "偿债风险": {
+          "资产负债率": 35.59,
+          "流动比率": 2.38,
+          "速动比率": 1.9
+        },
+        "运营风险": {
+          "应收账款周转率": 6.63,
+          "存货周转率": 6.62,
+          "总资产周转率": 1.28
+        },
+        "现金流风险": {
+          "现金利润比": 0.61,
+          "经营性净现金流": 7830901.82,
+          "现金净增加额": 5601622.2
+        }
+      }
+    },
+    "dimension_analyses": {
+      "盈利风险": "当前盈利风险水平评价：\n测试企业001号的净利润率为<span class=\"highlight-number\">14.41%</span>，高于餐饮业平均水平<span class=\"highlight-number\">9.00%</span>，但较<strong>2022年</strong>下降了0.49个百分点，显示出一定的盈利压力。<br>尽管毛利率为<span class=\"highlight-number\">36.17%</span>，较<strong>2022年</strong>上升了2.70个百分点，但净资产收益率从<span class=\"highlight-number\">6.02%</span>下降至<span class=\"highlight-number\">2.38%</span>，表明资产使用效率有所降低。<br>整体来看，企业的盈利风险处于中等水平。\n指标变化趋势及其含义：\n净利润率的下降表明企业在成本控制或收入增长方面面临挑战。<br>毛利率的上升可能是因为原材料成本下降或售价提高，但净资产收益率的下降则意味着尽管收入增加，但净利润的增长并未跟上资产规模的扩张。\n潜在风险点识别：\n由于缺乏其他财务数据，如资产负债率，无法准确量化风险点。<br>但根据净资产收益率的下降，可能存在过度扩张或资产利用效率低下的问题。\n简要建议：\n1. 优化成本结构，降低成本率；\n2. 寻找新的收入增长点，如推出新菜品或服务；\n3. 加强资产管理和运营效率；\n4. 谨慎进行扩张，避免过度负债。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业001号的资产负债率为<span class=\"highlight-number\">40.19%</span>，流动比率为2.34，速动比率为1.87。<br>这些指标显示企业的短期偿债能力较好，但与餐饮业平均<span class=\"highlight-number\">10%</span>的净利润率相比，其净利润率略低，表明企业的盈利能力有待提高。\n指标变化趋势及其含义：\n资产负债率从<strong>2022年</strong>的<span class=\"highlight-number\">35.59%</span>上升至<strong>2023年</strong>的<span class=\"highlight-number\">40.19%</span>，表明企业的财务杠杆有所增加。<br>流动比率从2.38下降至2.34，速动比率从1.90下降至1.87，显示企业的短期偿债能力<span class=\"risk-medium\">有所下降</span>。<br>这可能意味着企业在流动性管理上存在一定问题。\n潜在风险点识别：\n资产负债率上升至<span class=\"highlight-number\">40.19%</span>，接近一般认为的<span class=\"highlight-number\">50%</span>的安全线，表明企业可能面临较高的财务风险。<br>流动比率和速动比率的下降则表明企业在应对短期债务时可能面临一定的压力。\n简要建议：\n；加强现金流管理，确保充足的流动资金。\n；优化债务结构，降低财务杠杆。\n；提高盈利能力，增加净利润率。\n；定期审查财务状况，及时调整财务策略。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "运营风险": "当前运营风险水平评价：\n测试企业001号的应收账款周转率为1.31，存货周转率为1.26，总资产周转率为0.25，均低于餐饮业行业标准。<br>特别是应收账款和存货周转率的下降趋势，表明企业的资金回笼和库存管理存在问题。<br>与餐饮业平均水平相比，净利润率<span class=\"highlight-number\">9.00%</span>略低于行业平均水平<span class=\"highlight-number\">10%</span>，显示出企业的盈利能力有待提高。\n指标变化趋势及其含义：\n应收账款周转率和存货周转率在<strong>2023年</strong>分别下降了<span class=\"highlight-number\">5.32%</span>和<span class=\"highlight-number\">5.36%</span>，总资产周转率下降了<span class=\"highlight-number\">1.03%</span>。<br>这表明企业的资金流动性<span class=\"risk-medium\">有所下降</span>，可能由于销售增长放缓或成本上升导致。\n潜在风险点识别：\n应收账款周转率的下降可能意味着客户支付延迟或坏账风险增加。<br>存货周转率的下降可能表示库存积压，增加了资金占用和仓储成本。<br>资产负债率的具体数据未提供，但若假设其超过行业安全线（通常为<span class=\"highlight-number\">50%</span><span class=\"highlight-number\">-60%</span>），则可能存在较高的财务风险。\n简要建议：\n- 加强应收账款管理，缩短账期，降低坏账风险；\n- 优化库存管理，减少库存积压，提高存货周转率；\n- 寻求成本控制措施，提高运营效率；\n- 谨慎扩张，避免过度负债。\n风险等级：\n<span class=\"risk-high\">高风险</span>",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业001号的现金利润比为2.06，略高于餐饮业行业标准净利润率<span class=\"highlight-number\">9.00%</span>，表明企业盈利能力较好。<br>但经营性净现金流为7570610.69，较<strong>2022年</strong>下降260291.13，现金净增加额下降2559308.60，显示出企业现金流状况有所恶化。\n指标变化趋势及其含义：\n现金利润比从<strong>2022年</strong>的0.61上升至<strong>2023年</strong>的2.06，上升了1.45，说明企业的盈利能力有所增强。<br>然而，经营性净现金流和现金净增加额的下降则表明企业的现金流状况可能面临压力。\n潜在风险点识别：\n虽然现金利润比高于行业标准，但经营性净现金流和现金净增加额的下降表明企业可能面临现金流紧张的风险。<br>具体来说，经营性净现金流下降表明企业经营活动产生的现金流不足以覆盖其运营成本，这可能影响企业的日常运营和扩张计划。\n简要建议：\n- 加强成本控制，特别是运营成本；\n- 考虑优化应收账款管理，加快资金回笼；\n- 寻求多元化融资渠道，以降低对单一融资来源的依赖；\n- 定期审查和调整财务策略，以应对现金流波动。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>"
+    },
+    "overall_assessment": "整体财务健康状况评级：一般\n理由：测试企业001号的净利润率<span class=\"highlight-number\">14.41%</span>，高于行业平均水平<span class=\"highlight-number\">9.00%</span>，但较<strong>2022年</strong>下降，显示盈利压力；资产负债率<span class=\"highlight-number\">40.19%</span>，较<strong>2022年</strong>上升，财务杠杆增加；运营风险较高，应收账款和存货周转率下降；尽管现金流状况尚可，但经营性净现金流较<strong>2022年</strong>下降。\n主要风险点总结：\n盈利能力<span class=\"risk-medium\">有所下降</span>，净利润率<span class=\"highlight-number\">14.41%</span>，较<strong>2022年</strong>下降0.49个百分点；\n资产负债率<span class=\"highlight-number\">40.19%</span>，高于行业平均<span class=\"highlight-number\">10%</span>，财务杠杆有所增加；\n运营效率下降，应收账款周转率1.31，低于行业平均水平；\n现金流状况恶化，经营性净现金流较<strong>2022年</strong>下降260291.13。\n核心优势：\n盈利能力较好，净利润率<span class=\"highlight-number\">14.41%</span>，高于行业平均水平<span class=\"highlight-number\">9.00%</span>；\n短期偿债能力较强，流动比率2.34，高于行业平均水平。\n整体建议：\n优化成本结构，力争将净利润率提升至<span class=\"highlight-number\">15%</span>以上；\n加强应收账款管理，将应收账款周转率从1.31提升至行业平均水平；\n优化负债结构，降低资产负债率至<span class=\"highlight-number\">35%</span>以下；\n加强库存管理，提高存货周转率；\n关注现金流状况，确保经营性净现金流稳定增长。",
+    "charts": {
+      "main_indicators": "/static/charts/main_indicators_20251029_165829.html",
+      "main_indicators_png": "E:\\编程软件\\项目交付\\static\\charts\\main_indicators_20251029_165829.png"
+    },
+    "echarts_options": {
+      "main_indicators": "{\"title\": {\"text\": \"主要财务指标分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"营业收入\", \"净利润\", \"资产负债率(%)\", \"净资产收益率(%)\", \"流动比率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"数值\"}, \"series\": [{\"name\": \"营业收入\", \"type\": \"bar\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#3b82f6\"}}, {\"name\": \"净利润\", \"type\": \"line\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#ef4444\"}, \"smooth\": true}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [40.19, 35.59], \"itemStyle\": {\"color\": \"#10b981\"}}, {\"name\": \"净资产收益率(%)\", \"type\": \"line\", \"data\": [6.02, 29.66], \"itemStyle\": {\"color\": \"#f59e0b\"}, \"smooth\": true}, {\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [2.34, 2.38], \"itemStyle\": {\"color\": \"#8b5cf6\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "profitability": "{\"title\": {\"text\": \"盈利能力趋势分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"销售净利率\", \"毛利率\", \"净资产收益率\"], \"bottom\": 10, \"left\": \"center\", \"textStyle\": {\"fontSize\": 12}}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率 (%)\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"series\": [{\"name\": \"销售净利率\", \"type\": \"line\", \"smooth\": true, \"data\": [0, 0], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"毛利率\", \"type\": \"line\", \"smooth\": true, \"data\": [36.17, 33.47], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#ef4444\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"净资产收益率\", \"type\": \"line\", \"smooth\": true, \"data\": [6.02, 29.66], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#10b981\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "solvency": "{\"title\": {\"text\": \"偿债能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"流动比率\", \"速动比率\", \"资产负债率(%)\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率\"}, \"series\": [{\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [2.34, 2.38], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"markLine\": {\"data\": [{\"yAxis\": 2.0, \"name\": \"安全线\", \"lineStyle\": {\"color\": \"#10b981\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"安全线(2.0)\"}}]}}, {\"name\": \"速动比率\", \"type\": \"bar\", \"data\": [1.87, 1.9], \"itemStyle\": {\"color\": \"#ef4444\"}}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [40.19, 35.59], \"itemStyle\": {\"color\": \"#10b981\"}, \"markLine\": {\"data\": [{\"yAxis\": 70, \"name\": \"警戒线\", \"lineStyle\": {\"color\": \"#ef4444\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"警戒线(70%)\"}}]}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "operational": "{\"title\": {\"text\": \"运营能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"应收账款周转率\", \"存货周转率\", \"总资产周转率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"周转率 (次)\"}, \"series\": [{\"name\": \"应收账款周转率\", \"type\": \"bar\", \"data\": [1.31, 6.63], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"存货周转率\", \"type\": \"bar\", \"data\": [1.26, 6.62], \"itemStyle\": {\"color\": \"#ef4444\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"总资产周转率\", \"type\": \"bar\", \"data\": [0.25, 1.28], \"itemStyle\": {\"color\": \"#10b981\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "cashflow": "{\"title\": {\"text\": \"现金流状况分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"经营性净现金流\", \"现金利润比\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": [{\"type\": \"value\", \"name\": \"现金流(万元)\", \"position\": \"left\"}, {\"type\": \"value\", \"name\": \"现金利润比\", \"position\": \"right\"}], \"series\": [{\"name\": \"经营性净现金流\", \"type\": \"bar\", \"data\": [7570610.69, 7830901.82], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"yAxisIndex\": 0}, {\"name\": \"现金利润比\", \"type\": \"line\", \"data\": [2.06, 0.61], \"itemStyle\": {\"color\": \"#ef4444\"}, \"yAxisIndex\": 1, \"smooth\": true, \"lineStyle\": {\"width\": 3}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "risk_radar": "{\"title\": {\"text\": \"财务风险评估雷达图\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"item\"}, \"radar\": {\"indicator\": [{\"name\": \"盈利风险\", \"max\": 100}, {\"name\": \"偿债风险\", \"max\": 100}, {\"name\": \"运营风险\", \"max\": 100}, {\"name\": \"现金流风险\", \"max\": 100}], \"shape\": \"polygon\", \"splitNumber\": 3, \"name\": {\"textStyle\": {\"color\": \"#1e293b\", \"fontSize\": 13, \"fontWeight\": \"bold\"}}, \"splitLine\": {\"lineStyle\": {\"color\": \"#e2e8f0\"}}, \"splitArea\": {\"areaStyle\": {\"color\": [\"#fafbfc\", \"#f1f5f9\"]}}, \"axisLine\": {\"lineStyle\": {\"color\": \"#cbd5e1\"}}}, \"series\": [{\"name\": \"风险评估\", \"type\": \"radar\", \"data\": [{\"value\": [60, 60, 30, 60], \"name\": \"风险评估\", \"areaStyle\": {\"opacity\": 0.25, \"color\": \"#3b82f6\"}, \"lineStyle\": {\"color\": \"#3b82f6\", \"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}}]}]}",
+      "health_dashboard": "{\"series\": [{\"name\": \"盈利能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"盈利能力\"}]}, {\"name\": \"偿债能力\", \"type\": \"gauge\", \"center\": [\"75%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"偿债能力\"}]}, {\"name\": \"运营能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#ef4444\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 35, \"name\": \"运营能力\"}]}, {\"name\": \"现金流状况\", \"type\": \"gauge\", \"center\": [\"75%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"现金流状况\"}]}]}"
+    },
+    "created_by": "admin",
+    "created_by_name": "系统管理员",
+    "filename": "MySQL直连_TEST20251020001",
+    "data_source": "mysql",
+    "dimension_analyses_pdf": {
+      "盈利风险": "当前盈利风险水平评价：\n测试企业001号的净利润率为14.41%，高于餐饮业平均水平9.00%，但较2022年下降了0.49个百分点，显示出一定的盈利压力。\n尽管毛利率为36.17%，较2022年上升了2.70个百分点，但净资产收益率从6.02%下降至2.38%，表明资产使用效率有所降低。\n整体来看，企业的盈利风险处于中等水平。\n指标变化趋势及其含义：\n净利润率的下降表明企业在成本控制或收入增长方面面临挑战。\n毛利率的上升可能是因为原材料成本下降或售价提高，但净资产收益率的下降则意味着尽管收入增加，但净利润的增长并未跟上资产规模的扩张。\n潜在风险点识别：\n由于缺乏其他财务数据，如资产负债率，无法准确量化风险点。\n但根据净资产收益率的下降，可能存在过度扩张或资产利用效率低下的问题。\n简要建议：\n1. 优化成本结构，降低成本率；\n2. 寻找新的收入增长点，如推出新菜品或服务；\n3. 加强资产管理和运营效率；\n4. 谨慎进行扩张，避免过度负债。\n风险等级：\n中等风险",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业001号的资产负债率为40.19%，流动比率为2.34，速动比率为1.87。\n这些指标显示企业的短期偿债能力较好，但与餐饮业平均10%的净利润率相比，其净利润率略低，表明企业的盈利能力有待提高。\n指标变化趋势及其含义：\n资产负债率从2022年的35.59%上升至2023年的40.19%，表明企业的财务杠杆有所增加。\n流动比率从2.38下降至2.34，速动比率从1.90下降至1.87，显示企业的短期偿债能力有所下降。\n这可能意味着企业在流动性管理上存在一定问题。\n潜在风险点识别：\n资产负债率上升至40.19%，接近一般认为的50%的安全线，表明企业可能面临较高的财务风险。\n流动比率和速动比率的下降则表明企业在应对短期债务时可能面临一定的压力。\n简要建议：\n；加强现金流管理，确保充足的流动资金。\n；优化债务结构，降低财务杠杆。\n；提高盈利能力，增加净利润率。\n；定期审查财务状况，及时调整财务策略。\n风险等级：\n中等风险",
+      "运营风险": "当前运营风险水平评价：\n测试企业001号的应收账款周转率为1.31，存货周转率为1.26，总资产周转率为0.25，均低于餐饮业行业标准。\n特别是应收账款和存货周转率的下降趋势，表明企业的资金回笼和库存管理存在问题。\n与餐饮业平均水平相比，净利润率9.00%略低于行业平均水平10%，显示出企业的盈利能力有待提高。\n指标变化趋势及其含义：\n应收账款周转率和存货周转率在2023年分别下降了5.32%和5.36%，总资产周转率下降了1.03%。\n这表明企业的资金流动性有所下降，可能由于销售增长放缓或成本上升导致。\n潜在风险点识别：\n应收账款周转率的下降可能意味着客户支付延迟或坏账风险增加。\n存货周转率的下降可能表示库存积压，增加了资金占用和仓储成本。\n资产负债率的具体数据未提供，但若假设其超过行业安全线（通常为50%-60%），则可能存在较高的财务风险。\n简要建议：\n- 加强应收账款管理，缩短账期，降低坏账风险；\n- 优化库存管理，减少库存积压，提高存货周转率；\n- 寻求成本控制措施，提高运营效率；\n- 谨慎扩张，避免过度负债。\n风险等级：\n高风险",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业001号的现金利润比为2.06，略高于餐饮业行业标准净利润率9.00%，表明企业盈利能力较好。\n但经营性净现金流为7570610.69，较2022年下降260291.13，现金净增加额下降2559308.60，显示出企业现金流状况有所恶化。\n指标变化趋势及其含义：\n现金利润比从2022年的0.61上升至2023年的2.06，上升了1.45，说明企业的盈利能力有所增强。\n然而，经营性净现金流和现金净增加额的下降则表明企业的现金流状况可能面临压力。\n潜在风险点识别：\n虽然现金利润比高于行业标准，但经营性净现金流和现金净增加额的下降表明企业可能面临现金流紧张的风险。\n具体来说，经营性净现金流下降表明企业经营活动产生的现金流不足以覆盖其运营成本，这可能影响企业的日常运营和扩张计划。\n简要建议：\n- 加强成本控制，特别是运营成本；\n- 考虑优化应收账款管理，加快资金回笼；\n- 寻求多元化融资渠道，以降低对单一融资来源的依赖；\n- 定期审查和调整财务策略，以应对现金流波动。\n风险等级：\n中等风险"
+    },
+    "overall_assessment_pdf": "整体财务健康状况评级：一般\n理由：测试企业001号的净利润率14.41%，高于行业平均水平9.00%，但较2022年下降，显示盈利压力；资产负债率40.19%，较2022年上升，财务杠杆增加；运营风险较高，应收账款和存货周转率下降；尽管现金流状况尚可，但经营性净现金流较2022年下降。\n主要风险点总结：\n盈利能力有所下降，净利润率14.41%，较2022年下降0.49个百分点；\n资产负债率40.19%，高于行业平均10%，财务杠杆有所增加；\n运营效率下降，应收账款周转率1.31，低于行业平均水平；\n现金流状况恶化，经营性净现金流较2022年下降260291.13。\n核心优势：\n盈利能力较好，净利润率14.41%，高于行业平均水平9.00%；\n短期偿债能力较强，流动比率2.34，高于行业平均水平。\n整体建议：\n优化成本结构，力争将净利润率提升至15%以上；\n加强应收账款管理，将应收账款周转率从1.31提升至行业平均水平；\n优化负债结构，降低资产负债率至35%以下；\n加强库存管理，提高存货周转率；\n关注现金流状况，确保经营性净现金流稳定增长。"
+  },
+  "20251029172827": {
+    "report_id": "20251029172827",
+    "generated_at": "2025-10-29 17:29:12",
+    "basic_info": {
+      "企业名称": "测试企业001号",
+      "统一社会信用代码": "TEST20251020001",
+      "税号": "TEST20251020001",
+      "法定代表人": "法人001",
+      "注册资本（万元）": 3530.0,
+      "注册资本币种": "人民币",
+      "成立日期": "2017-03-20",
+      "注册日期": "2017-03-20",
+      "开业日期": "2017-03-20",
+      "企业类型": "有限责任公司(自然人投资或控股)",
+      "行业类别": "餐饮业",
+      "纳税人类型": "增值税一般纳税人",
+      "登记状态": "正常",
+      "税务局": "上海税务局",
+      "登记机关": "上海市浦东新区税务所",
+      "注册省份": "上海",
+      "注册城市": "上海市",
+      "注册区县": "浦东新区",
+      "注册地址": "上海上海市浦东新区XX路952号",
+      "经营地址": "上海上海市浦东新区XX路634号",
+      "经营范围": "从事餐饮业相关业务",
+      "从业人数": 167,
+      "行业代码": "7260",
+      "完整注册地址": "上海上海市浦东新区上海上海市浦东新区XX路952号"
+    },
+    "years": [
+      2023,
+      2022
+    ],
+    "financial_data": {
+      "2023": {
+        "资产负债表": {
+          "总资产": 101911859.64,
+          "流动资产": 64701292.15,
+          "非流动资产": 37210567.49,
+          "总负债": 40954585.66,
+          "流动负债": 27636286.14,
+          "非流动负债": 13318299.52,
+          "所有者权益": 60957273.98,
+          "应收账款": 20593906.49,
+          "存货": 10391142.88
+        },
+        "利润表": {
+          "营业收入": 25454809.31,
+          "营业成本": 16248947.25,
+          "营业利润": 4978643.27,
+          "利润总额": 4736889.93,
+          "净利润": 3669237.24
+        },
+        "现金流量表": {
+          "经营活动现金流量净额": 7570610.69,
+          "投资活动现金流量净额": -4231370.81,
+          "筹资活动现金流量净额": -296926.28,
+          "现金及现金等价物净增加额": 3042313.6
+        }
+      },
+      "2022": {
+        "资产负债表": {
+          "总资产": 66641143.67,
+          "流动资产": 42933716.49,
+          "非流动资产": 23707427.19,
+          "总负债": 23716525.9,
+          "流动负债": 18046082.44,
+          "非流动负债": 5670443.46,
+          "所有者权益": 42924617.77,
+          "应收账款": 14369443.79,
+          "存货": 14453580.48
+        },
+        "利润表": {
+          "营业收入": 85438346.04,
+          "营业成本": 56842106.31,
+          "营业利润": 16224907.81,
+          "利润总额": 15979182.27,
+          "净利润": 12733226.32
+        },
+        "现金流量表": {
+          "经营活动现金流量净额": 7830901.82,
+          "投资活动现金流量净额": -3308138.44,
+          "筹资活动现金流量净额": 1078858.83,
+          "现金及现金等价物净增加额": 5601622.2
+        }
+      }
+    },
+    "indicators": {
+      "2023": {
+        "盈利风险": {
+          "净利润率": 14.41,
+          "毛利率": 36.17,
+          "净资产收益率": 6.02
+        },
+        "偿债风险": {
+          "资产负债率": 40.19,
+          "流动比率": 2.34,
+          "速动比率": 1.87
+        },
+        "运营风险": {
+          "应收账款周转率": 1.31,
+          "存货周转率": 1.26,
+          "总资产周转率": 0.25
+        },
+        "现金流风险": {
+          "现金利润比": 2.06,
+          "经营性净现金流": 7570610.69,
+          "现金净增加额": 3042313.6
+        }
+      },
+      "2022": {
+        "盈利风险": {
+          "净利润率": 14.9,
+          "毛利率": 33.47,
+          "净资产收益率": 29.66
+        },
+        "偿债风险": {
+          "资产负债率": 35.59,
+          "流动比率": 2.38,
+          "速动比率": 1.9
+        },
+        "运营风险": {
+          "应收账款周转率": 6.63,
+          "存货周转率": 6.62,
+          "总资产周转率": 1.28
+        },
+        "现金流风险": {
+          "现金利润比": 0.61,
+          "经营性净现金流": 7830901.82,
+          "现金净增加额": 5601622.2
+        }
+      }
+    },
+    "dimension_analyses": {
+      "盈利风险": "当前盈利风险水平评价：\n测试企业001号的净利润率为<span class=\"highlight-number\">14.41%</span>，高于餐饮业行业标准<span class=\"highlight-number\">9.00%</span>，表明其盈利能力在行业内处于较好水平。<br>但净利润率较去年下降了0.49个百分点，显示出一定的盈利风险。<br>尽管毛利率为<span class=\"highlight-number\">36.17%</span>，较去年上升了2.70个百分点，显示出成本控制有所改善，但净资产收益率从去年的<span class=\"highlight-number\">29.66%</span>下降至<span class=\"highlight-number\">6.02%</span>，下降幅度较大，表明企业资产使用效率<span class=\"risk-medium\">有所下降</span>，盈利风险增加。\n指标变化趋势及其含义：\n净利润率下降可能意味着企业的成本控制能力减弱或营业收入增长不及成本增长。<br>毛利率上升表明企业产品或服务的售价提高或成本降低，但净资产收益率的下降则说明资产使用效率的降低可能抵消了毛利率的改善。\n潜在风险点识别：\n虽然企业目前没有具体的财务指标超出安全线，但净资产收益率的<span class=\"risk-high\">显著下降</span>提示了潜在风险。<br>具体而言，如果企业资产周转率下降，可能会造成资金链紧张，影响企业的长期发展。\n简要建议：\n- 加强成本控制，特别是固定成本的管理；\n- 优化资产配置，提高资产使用效率；\n- 寻求新的收入增长点，如拓展业务范围或提升产品附加值；\n- 定期审查和调整财务策略，以应对市场变化。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业001号的资产负债率为<span class=\"highlight-number\">40.19%</span>，流动比率为2.34，速动比率为1.87。<br>这些指标表明企业的短期偿债能力较好，但较<strong>2022年</strong><span class=\"risk-medium\">有所下降</span>。<br>与餐饮业行业标准相比，企业的净利润率略低于行业平均水平，这反映出企业的盈利能力有待提升。\n指标变化趋势及其含义：\n资产负债率上升了4.60个百分点，表明企业的财务杠杆有所增加，长期偿债能力有所减弱。<br>流动比率和速动比率分别下降了0.04和0.03，说明企业的短期偿债能力有所降低，可能受到流动资金紧张的影响。\n潜在风险点识别：\n资产负债率上升至<span class=\"highlight-number\">40.19%</span>，接近行业平均安全线（一般认为资产负债率在<span class=\"highlight-number\">50%</span>以下较为安全），存在一定的财务风险。<br>流动比率下降至2.34，低于行业平均水平，表明企业可能面临一定的短期偿债压力。\n简要建议：\n- 加强现金流管理，确保充足的流动资金；\n- 优化资产负债结构，降低财务杠杆；\n- 提升盈利能力，增加净利润率；\n- 寻求外部融资，缓解短期资金压力。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "运营风险": "当前运营风险水平评价：\n测试企业001号的应收账款周转率、存货周转率和总资产周转率均较<strong>2022年</strong><span class=\"risk-medium\">有所下降</span>，分别为<span class=\"highlight-number\">-5.32%</span>、<span class=\"highlight-number\">-5.36%</span>和<span class=\"highlight-number\">-1.03%</span>。<br>这些指标表明企业的资金周转速度减慢，资产利用效率降低。<br>与餐饮业行业标准相比，测试企业001号的净利润率为<span class=\"highlight-number\">9.00%</span>，略低于行业平均水平<span class=\"highlight-number\">10%</span>，表明企业的盈利能力有待提升。\n指标变化趋势及其含义：\n指标下降表明企业在应收账款回收、存货管理和资产运营方面存在问题。<br>应收账款周转率下降可能意味着企业信用政策过于宽松，存在坏账风险；存货周转率下降可能表示库存管理不当，存在积压风险；总资产周转率下降则反映出整体运营效率不高。\n潜在风险点识别：\n1. 应收账款周转率下降，可能导致资金流动性风险，若坏账率上升，将进一步影响企业盈利。\n2. 存货周转率下降，可能导致库存积压，占用资金，增加仓储成本，甚至可能面临产品过时风险。\n3. 总资产周转率下降，可能表明企业资产利用效率低下，资金回笼速度慢。\n简要建议：\n1. 加强信用管理，严格控制信用销售，缩短应收账款回收期。\n2. 优化库存管理，合理控制库存水平，减少库存积压。\n3. 提高资产利用效率，优化资源配置，加快资产周转速度。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业001号的现金利润比为2.06，高于餐饮业平均净利润率<span class=\"highlight-number\">9.00%</span>，表明企业的盈利能力较强。<br>然而，经营性净现金流为7570610.69，较<strong>2022年</strong>下降260291.13，显示出一定程度的现金流紧张。<br>现金净增加额下降2559308.60，进一步证实了这一风险。\n指标变化趋势及其含义：\n现金利润比从<strong>2022年</strong>的0.61上升至<strong>2023年</strong>的2.06，上升了1.45，表明企业的盈利能力有所增强。<br>但经营性净现金流和现金净增加额的下降则可能表明企业在经营活动中面临一定的现金流出压力。\n潜在风险点识别：\n虽然企业的现金利润比较高，但经营性净现金流和现金净增加额的下降可能预示着未来现金流的风险。<br>如果现金流持续紧张，可能会影响企业的日常运营和扩张计划。\n简要建议：\n1. 加强现金流管理，优化资金使用效率；\n2. 谨慎进行投资决策，避免不必要的资金流出；\n3. 考虑增加短期融资，以缓解现金流压力；\n4. 提高应收账款回收效率，减少坏账风险。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>"
+    },
+    "overall_assessment": "整体财务健康状况评级：<span class=\"risk-low\">良好</span>\n理由：净利润率<span class=\"highlight-number\">14.41%</span>，高于餐饮业行业标准<span class=\"highlight-number\">9.00%</span>，显示出较强的盈利能力；资产负债率<span class=\"highlight-number\">40.19%</span>，低于行业平均<span class=\"highlight-number\">50%</span>的安全线，表明财务杠杆适中；流动比率2.34，高于行业平均水平，显示出<span class=\"risk-low\">良好</span>的短期偿债能力。\n主要风险点总结：\n盈利能力<span class=\"risk-medium\">有所下降</span>，净利润率较去年下降0.49个百分点，<span class=\"risk-medium\">需关注</span>成本控制和收入增长；\n资产负债率有所上升，资产负债率上升了4.60个百分点，<span class=\"risk-medium\">需关注</span>长期偿债能力；\n运营效率下降，应收账款周转率下降<span class=\"highlight-number\">5.32%</span>，需优化库存管理和信用政策。\n核心优势：\n盈利能力较强，净利润率<span class=\"highlight-number\">14.41%</span>，高于行业平均水平；\n短期偿债能力<span class=\"risk-low\">良好</span>，流动比率2.34，高于行业标准。\n整体建议：\n加强成本控制，力争将净利润率提升至<span class=\"highlight-number\">15%</span>以上；\n优化资产负债结构，降低资产负债率至<span class=\"highlight-number\">35%</span>以下；\n加强应收账款管理，将应收账款周转率从<span class=\"highlight-number\">-5.32%</span>提升至行业平均水平；\n优化库存管理，减少库存积压，提高存货周转率。",
+    "charts": {
+      "main_indicators": "/static/charts/main_indicators_20251029_172908.html",
+      "main_indicators_png": "E:\\编程软件\\项目交付\\static\\charts\\main_indicators_20251029_172908.png"
+    },
+    "echarts_options": {
+      "main_indicators": "{\"title\": {\"text\": \"主要财务指标分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"营业收入\", \"净利润\", \"资产负债率(%)\", \"净资产收益率(%)\", \"流动比率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"数值\"}, \"series\": [{\"name\": \"营业收入\", \"type\": \"bar\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#3b82f6\"}}, {\"name\": \"净利润\", \"type\": \"line\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#ef4444\"}, \"smooth\": true}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [40.19, 35.59], \"itemStyle\": {\"color\": \"#10b981\"}}, {\"name\": \"净资产收益率(%)\", \"type\": \"line\", \"data\": [6.02, 29.66], \"itemStyle\": {\"color\": \"#f59e0b\"}, \"smooth\": true}, {\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [2.34, 2.38], \"itemStyle\": {\"color\": \"#8b5cf6\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "profitability": "{\"title\": {\"text\": \"盈利能力趋势分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"销售净利率\", \"毛利率\", \"净资产收益率\"], \"bottom\": 10, \"left\": \"center\", \"textStyle\": {\"fontSize\": 12}}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率 (%)\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"series\": [{\"name\": \"销售净利率\", \"type\": \"line\", \"smooth\": true, \"data\": [0, 0], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"毛利率\", \"type\": \"line\", \"smooth\": true, \"data\": [36.17, 33.47], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#ef4444\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"净资产收益率\", \"type\": \"line\", \"smooth\": true, \"data\": [6.02, 29.66], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#10b981\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "solvency": "{\"title\": {\"text\": \"偿债能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"流动比率\", \"速动比率\", \"资产负债率(%)\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率\"}, \"series\": [{\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [2.34, 2.38], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"markLine\": {\"data\": [{\"yAxis\": 2.0, \"name\": \"安全线\", \"lineStyle\": {\"color\": \"#10b981\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"安全线(2.0)\"}}]}}, {\"name\": \"速动比率\", \"type\": \"bar\", \"data\": [1.87, 1.9], \"itemStyle\": {\"color\": \"#ef4444\"}}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [40.19, 35.59], \"itemStyle\": {\"color\": \"#10b981\"}, \"markLine\": {\"data\": [{\"yAxis\": 70, \"name\": \"警戒线\", \"lineStyle\": {\"color\": \"#ef4444\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"警戒线(70%)\"}}]}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "operational": "{\"title\": {\"text\": \"运营能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"应收账款周转率\", \"存货周转率\", \"总资产周转率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"周转率 (次)\"}, \"series\": [{\"name\": \"应收账款周转率\", \"type\": \"bar\", \"data\": [1.31, 6.63], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"存货周转率\", \"type\": \"bar\", \"data\": [1.26, 6.62], \"itemStyle\": {\"color\": \"#ef4444\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"总资产周转率\", \"type\": \"bar\", \"data\": [0.25, 1.28], \"itemStyle\": {\"color\": \"#10b981\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "cashflow": "{\"title\": {\"text\": \"现金流状况分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"经营性净现金流\", \"现金利润比\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": [{\"type\": \"value\", \"name\": \"现金流(万元)\", \"position\": \"left\"}, {\"type\": \"value\", \"name\": \"现金利润比\", \"position\": \"right\"}], \"series\": [{\"name\": \"经营性净现金流\", \"type\": \"bar\", \"data\": [7570610.69, 7830901.82], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"yAxisIndex\": 0}, {\"name\": \"现金利润比\", \"type\": \"line\", \"data\": [2.06, 0.61], \"itemStyle\": {\"color\": \"#ef4444\"}, \"yAxisIndex\": 1, \"smooth\": true, \"lineStyle\": {\"width\": 3}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "risk_radar": "{\"title\": {\"text\": \"财务风险评估雷达图\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"item\"}, \"radar\": {\"indicator\": [{\"name\": \"盈利风险\", \"max\": 100}, {\"name\": \"偿债风险\", \"max\": 100}, {\"name\": \"运营风险\", \"max\": 100}, {\"name\": \"现金流风险\", \"max\": 100}], \"shape\": \"polygon\", \"splitNumber\": 3, \"name\": {\"textStyle\": {\"color\": \"#1e293b\", \"fontSize\": 13, \"fontWeight\": \"bold\"}}, \"splitLine\": {\"lineStyle\": {\"color\": \"#e2e8f0\"}}, \"splitArea\": {\"areaStyle\": {\"color\": [\"#fafbfc\", \"#f1f5f9\"]}}, \"axisLine\": {\"lineStyle\": {\"color\": \"#cbd5e1\"}}}, \"series\": [{\"name\": \"风险评估\", \"type\": \"radar\", \"data\": [{\"value\": [60, 60, 60, 60], \"name\": \"风险评估\", \"areaStyle\": {\"opacity\": 0.25, \"color\": \"#3b82f6\"}, \"lineStyle\": {\"color\": \"#3b82f6\", \"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}}]}]}",
+      "health_dashboard": "{\"series\": [{\"name\": \"盈利能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"盈利能力\"}]}, {\"name\": \"偿债能力\", \"type\": \"gauge\", \"center\": [\"75%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"偿债能力\"}]}, {\"name\": \"运营能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"运营能力\"}]}, {\"name\": \"现金流状况\", \"type\": \"gauge\", \"center\": [\"75%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"现金流状况\"}]}]}"
+    },
+    "created_by": "admin",
+    "created_by_name": "系统管理员",
+    "filename": "MySQL直连_TEST20251020001",
+    "data_source": "mysql",
+    "dimension_analyses_pdf": {
+      "盈利风险": "当前盈利风险水平评价：\n测试企业001号的净利润率为14.41%，高于餐饮业行业标准9.00%，表明其盈利能力在行业内处于较好水平。\n但净利润率较去年下降了0.49个百分点，显示出一定的盈利风险。\n尽管毛利率为36.17%，较去年上升了2.70个百分点，显示出成本控制有所改善，但净资产收益率从去年的29.66%下降至6.02%，下降幅度较大，表明企业资产使用效率有所下降，盈利风险增加。\n指标变化趋势及其含义：\n净利润率下降可能意味着企业的成本控制能力减弱或营业收入增长不及成本增长。\n毛利率上升表明企业产品或服务的售价提高或成本降低，但净资产收益率的下降则说明资产使用效率的降低可能抵消了毛利率的改善。\n潜在风险点识别：\n虽然企业目前没有具体的财务指标超出安全线，但净资产收益率的显著下降提示了潜在风险。\n具体而言，如果企业资产周转率下降，可能会造成资金链紧张，影响企业的长期发展。\n简要建议：\n- 加强成本控制，特别是固定成本的管理；\n- 优化资产配置，提高资产使用效率；\n- 寻求新的收入增长点，如拓展业务范围或提升产品附加值；\n- 定期审查和调整财务策略，以应对市场变化。\n风险等级：\n中等风险",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业001号的资产负债率为40.19%，流动比率为2.34，速动比率为1.87。\n这些指标表明企业的短期偿债能力较好，但较2022年有所下降。\n与餐饮业行业标准相比，企业的净利润率略低于行业平均水平，这反映出企业的盈利能力有待提升。\n指标变化趋势及其含义：\n资产负债率上升了4.60个百分点，表明企业的财务杠杆有所增加，长期偿债能力有所减弱。\n流动比率和速动比率分别下降了0.04和0.03，说明企业的短期偿债能力有所降低，可能受到流动资金紧张的影响。\n潜在风险点识别：\n资产负债率上升至40.19%，接近行业平均安全线（一般认为资产负债率在50%以下较为安全），存在一定的财务风险。\n流动比率下降至2.34，低于行业平均水平，表明企业可能面临一定的短期偿债压力。\n简要建议：\n- 加强现金流管理，确保充足的流动资金；\n- 优化资产负债结构，降低财务杠杆；\n- 提升盈利能力，增加净利润率；\n- 寻求外部融资，缓解短期资金压力。\n风险等级：\n中等风险",
+      "运营风险": "当前运营风险水平评价：\n测试企业001号的应收账款周转率、存货周转率和总资产周转率均较2022年有所下降，分别为-5.32%、-5.36%和-1.03%。\n这些指标表明企业的资金周转速度减慢，资产利用效率降低。\n与餐饮业行业标准相比，测试企业001号的净利润率为9.00%，略低于行业平均水平10%，表明企业的盈利能力有待提升。\n指标变化趋势及其含义：\n指标下降表明企业在应收账款回收、存货管理和资产运营方面存在问题。\n应收账款周转率下降可能意味着企业信用政策过于宽松，存在坏账风险；存货周转率下降可能表示库存管理不当，存在积压风险；总资产周转率下降则反映出整体运营效率不高。\n潜在风险点识别：\n1. 应收账款周转率下降，可能导致资金流动性风险，若坏账率上升，将进一步影响企业盈利。\n2. 存货周转率下降，可能导致库存积压，占用资金，增加仓储成本，甚至可能面临产品过时风险。\n3. 总资产周转率下降，可能表明企业资产利用效率低下，资金回笼速度慢。\n简要建议：\n1. 加强信用管理，严格控制信用销售，缩短应收账款回收期。\n2. 优化库存管理，合理控制库存水平，减少库存积压。\n3. 提高资产利用效率，优化资源配置，加快资产周转速度。\n风险等级：\n中等风险",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业001号的现金利润比为2.06，高于餐饮业平均净利润率9.00%，表明企业的盈利能力较强。\n然而，经营性净现金流为7570610.69，较2022年下降260291.13，显示出一定程度的现金流紧张。\n现金净增加额下降2559308.60，进一步证实了这一风险。\n指标变化趋势及其含义：\n现金利润比从2022年的0.61上升至2023年的2.06，上升了1.45，表明企业的盈利能力有所增强。\n但经营性净现金流和现金净增加额的下降则可能表明企业在经营活动中面临一定的现金流出压力。\n潜在风险点识别：\n虽然企业的现金利润比较高，但经营性净现金流和现金净增加额的下降可能预示着未来现金流的风险。\n如果现金流持续紧张，可能会影响企业的日常运营和扩张计划。\n简要建议：\n1. 加强现金流管理，优化资金使用效率；\n2. 谨慎进行投资决策，避免不必要的资金流出；\n3. 考虑增加短期融资，以缓解现金流压力；\n4. 提高应收账款回收效率，减少坏账风险。\n风险等级：\n中等风险"
+    },
+    "overall_assessment_pdf": "整体财务健康状况评级：良好\n理由：净利润率14.41%，高于餐饮业行业标准9.00%，显示出较强的盈利能力；资产负债率40.19%，低于行业平均50%的安全线，表明财务杠杆适中；流动比率2.34，高于行业平均水平，显示出良好的短期偿债能力。\n主要风险点总结：\n盈利能力有所下降，净利润率较去年下降0.49个百分点，需关注成本控制和收入增长；\n资产负债率有所上升，资产负债率上升了4.60个百分点，需关注长期偿债能力；\n运营效率下降，应收账款周转率下降5.32%，需优化库存管理和信用政策。\n核心优势：\n盈利能力较强，净利润率14.41%，高于行业平均水平；\n短期偿债能力良好，流动比率2.34，高于行业标准。\n整体建议：\n加强成本控制，力争将净利润率提升至15%以上；\n优化资产负债结构，降低资产负债率至35%以下；\n加强应收账款管理，将应收账款周转率从-5.32%提升至行业平均水平；\n优化库存管理，减少库存积压，提高存货周转率。"
+  },
+  "20251112154906": {
+    "report_id": "20251112154906",
+    "generated_at": "2025-11-12 15:49:56",
+    "basic_info": {
+      "企业名称": "测试企业001号",
+      "统一社会信用代码": "TEST20251020001",
+      "税号": "TEST20251020001",
+      "法定代表人": "法人001",
+      "注册资本（万元）": 3530.0,
+      "注册资本币种": "人民币",
+      "成立日期": "2017-03-20",
+      "注册日期": "2017-03-20",
+      "开业日期": "2017-03-20",
+      "企业类型": "有限责任公司(自然人投资或控股)",
+      "行业类别": "餐饮业",
+      "纳税人类型": "增值税一般纳税人",
+      "登记状态": "正常",
+      "税务局": "上海税务局",
+      "登记机关": "上海市浦东新区税务所",
+      "注册省份": "上海",
+      "注册城市": "上海市",
+      "注册区县": "浦东新区",
+      "注册地址": "上海上海市浦东新区XX路952号",
+      "经营地址": "上海上海市浦东新区XX路634号",
+      "经营范围": "从事餐饮业相关业务",
+      "从业人数": 167,
+      "行业代码": "7260",
+      "完整注册地址": "上海上海市浦东新区上海上海市浦东新区XX路952号"
+    },
+    "years": [
+      2023,
+      2022
+    ],
+    "financial_data": {
+      "2023": {
+        "资产负债表": {
+          "总资产": 101911859.64,
+          "流动资产": 64701292.15,
+          "非流动资产": 37210567.49,
+          "总负债": 40954585.66,
+          "流动负债": 27636286.14,
+          "非流动负债": 13318299.52,
+          "所有者权益": 60957273.98,
+          "应收账款": 20593906.49,
+          "存货": 10391142.88
+        },
+        "利润表": {
+          "营业收入": 25454809.31,
+          "营业成本": 16248947.25,
+          "营业利润": 4978643.27,
+          "利润总额": 4736889.93,
+          "净利润": 3669237.24
+        },
+        "现金流量表": {
+          "经营活动现金流量净额": 7570610.69,
+          "投资活动现金流量净额": -4231370.81,
+          "筹资活动现金流量净额": -296926.28,
+          "现金及现金等价物净增加额": 3042313.6
+        }
+      },
+      "2022": {
+        "资产负债表": {
+          "总资产": 66641143.67,
+          "流动资产": 42933716.49,
+          "非流动资产": 23707427.19,
+          "总负债": 23716525.9,
+          "流动负债": 18046082.44,
+          "非流动负债": 5670443.46,
+          "所有者权益": 42924617.77,
+          "应收账款": 14369443.79,
+          "存货": 14453580.48
+        },
+        "利润表": {
+          "营业收入": 85438346.04,
+          "营业成本": 56842106.31,
+          "营业利润": 16224907.81,
+          "利润总额": 15979182.27,
+          "净利润": 12733226.32
+        },
+        "现金流量表": {
+          "经营活动现金流量净额": 7830901.82,
+          "投资活动现金流量净额": -3308138.44,
+          "筹资活动现金流量净额": 1078858.83,
+          "现金及现金等价物净增加额": 5601622.2
+        }
+      }
+    },
+    "indicators": {
+      "2023": {
+        "盈利风险": {
+          "净利润率": 14.41,
+          "毛利率": 36.17,
+          "净资产收益率": 6.02
+        },
+        "偿债风险": {
+          "资产负债率": 40.19,
+          "流动比率": 2.34,
+          "速动比率": 1.87
+        },
+        "运营风险": {
+          "应收账款周转率": 1.31,
+          "存货周转率": 1.26,
+          "总资产周转率": 0.25
+        },
+        "现金流风险": {
+          "现金利润比": 2.06,
+          "经营性净现金流": 7570610.69,
+          "现金净增加额": 3042313.6
+        }
+      },
+      "2022": {
+        "盈利风险": {
+          "净利润率": 14.9,
+          "毛利率": 33.47,
+          "净资产收益率": 29.66
+        },
+        "偿债风险": {
+          "资产负债率": 35.59,
+          "流动比率": 2.38,
+          "速动比率": 1.9
+        },
+        "运营风险": {
+          "应收账款周转率": 6.63,
+          "存货周转率": 6.62,
+          "总资产周转率": 1.28
+        },
+        "现金流风险": {
+          "现金利润比": 0.61,
+          "经营性净现金流": 7830901.82,
+          "现金净增加额": 5601622.2
+        }
+      }
+    },
+    "dimension_analyses": {
+      "盈利风险": "当前盈利风险水平评价：\n测试企业001号的净利润率为<span class=\"highlight-number\">14.41%</span>，略高于餐饮业行业平均水平<span class=\"highlight-number\">10%</span>，但较去年<span class=\"risk-medium\">有所下降</span>，表明企业的盈利能力有所减弱。<br>尽管毛利率<span class=\"highlight-number\">36.17%</span>高于行业平均水平<span class=\"highlight-number\">9%</span>，但净资产收益率<span class=\"highlight-number\">6.02%</span>较去年下降<span class=\"highlight-number\">23.64%</span>，表明企业的盈利质量和资产使用效率下降。\n指标变化趋势及其含义：\n净利润率从去年的<span class=\"highlight-number\">8.57%</span>上升至<span class=\"highlight-number\">9.00%</span>，上升了0.43个百分点，显示企业盈利能力有所提升。<br>然而，净资产收益率的<span class=\"risk-high\">显著下降</span>表明企业在资产使用效率上存在问题。<br>毛利率上升可能源于成本控制或售价提高，但净利润率的下降可能由于成本上升或售价下降。\n潜在风险点识别：\n虽然测试企业001号的财务指标未显示出明显的财务风险，但净资产收益率的下降值得注意。<br>如果考虑行业平均净资产收益率为<span class=\"highlight-number\">15%</span>，则测试企业001号的净资产收益率低于行业标准，这可能意味着企业存在潜在的风险，如成本上升、市场竞争加剧或管理效率问题。\n简要建议：\n- 加强成本控制，提高成本效率；\n- 分析毛利率上升的原因，确保收入增长与成本增长相匹配；\n- 优化资产配置，提高净资产收益率；\n- 寻求新的收入增长点，增强抗风险能力。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业001号的资产负债率为<span class=\"highlight-number\">40.19%</span>，略高于餐饮业行业标准。<br>流动比率为2.34，速动比率为1.87，这些指标表明企业有一定的短期偿债能力。<br>然而，流动比率和速动比率均<span class=\"risk-medium\">有所下降</span>，这表明企业的短期偿债能力有所减弱。\n指标变化趋势及其含义：\n资产负债率从<strong>2022年</strong>的<span class=\"highlight-number\">35.59%</span>上升至<strong>2023年</strong>的<span class=\"highlight-number\">40.19%</span>，上升了4.60个百分点，这可能表明企业财务杠杆有所增加。<br>流动比率和速动比率分别下降了0.04和0.03，表明企业的流动性和短期偿债能力<span class=\"risk-medium\">有所下降</span>。<br>这可能与餐饮业普遍的现金流波动有关。\n潜在风险点识别：\n资产负债率<span class=\"highlight-number\">40.19%</span>超过了餐饮业常见的安全线，如假设行业安全线为<span class=\"highlight-number\">30%</span>，则企业已超出安全线10.19个百分点，显示出较高的财务风险。\n简要建议：\n- 加强现金流管理，确保足够的流动资金。<br>- 优化资本结构，降低财务杠杆。<br>- 提高盈利能力，以减少对债务的依赖。<br>- 密切关注行业动态，适时调整经营策略。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "运营风险": "当前运营风险水平评价：\n测试企业001号的应收账款周转率为1.31，存货周转率为1.26，总资产周转率为0.25，均低于餐饮业平均水平。<br>与行业平均水平相比，企业的净利润率为<span class=\"highlight-number\">9.00%</span>，略低于行业平均水平<span class=\"highlight-number\">10%</span>，表明企业的运营效率低于行业平均水平，存在一定的运营风险。\n指标变化趋势及其含义：\n应收账款周转率和存货周转率在<strong>2023年</strong>相比<strong>2022年</strong>均有下降，分别下降了<span class=\"highlight-number\">5.32%</span>和<span class=\"highlight-number\">5.36%</span>，表明企业收款速度和存货管理效率有所降低。<br>总资产周转率下降<span class=\"highlight-number\">1.03%</span>，说明资产利用效率<span class=\"risk-medium\">有所下降</span>。<br>这些变化可能意味着企业面临现金流管理和存货积压的风险。\n潜在风险点识别：\n应收账款周转率的下降可能表明企业面临应收账款回收困难的风险，影响现金流。<br>存货周转率的下降则可能意味着存货积压，可能导致资金占用增加和存货跌价风险。<br>资产负债率的具体数值未提供，但可以推测，若资产负债率超过安全线（通常认为不超过<span class=\"highlight-number\">70%</span>为安全），则可能存在财务风险。\n简要建议：\n- 加强应收账款管理，提高收款效率；\n- 优化存货管理，减少存货积压；\n- 评估资产利用效率，提高资产周转率；\n- 监控资产负债率，确保不超过安全线。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业001号的现金利润比为2.06，表明企业每1元净利润可以产生2.06元的现金流入，这一比率高于餐饮业平均水平<span class=\"highlight-number\">10%</span>，显示出企业<span class=\"risk-low\">良好</span>的现金流状况。<br>然而，与行业平均水平相比，净利润率略低，为<span class=\"highlight-number\">9.00%</span>，表明企业盈利能力有待提高。\n指标变化趋势及其含义：\n现金利润比从<strong>2022年</strong>的0.60上升至<strong>2023年</strong>的2.06，上升了1.46，这表明企业的盈利能力有所增强。<br>然而，经营性净现金流和现金净增加额均出现下降，分别下降了-260291.13元和-2559308.60元，这可能是由于收入增长放缓或成本上升所致。\n潜在风险点识别：\n尽管现金利润比<span class=\"risk-low\">良好</span>，但经营性净现金流和现金净增加额的下降表明企业可能面临现金流紧张的风险。<br>如果这种情况持续，可能需要关注企业的流动性风险。\n简要建议：\n- 加强收入管理，提高收入增长速度；\n- 优化成本结构，降低成本；\n- 考虑增加外部融资，以增强现金流；\n- 定期监控现金流状况，确保财务健康。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>"
+    },
+    "overall_assessment": "整体财务健康状况评级：<span class=\"risk-low\">良好</span>\n理由：测试企业001号的净利润率为<span class=\"highlight-number\">9.00%</span>，虽然略低于行业平均水平<span class=\"highlight-number\">10%</span>，但相较于去年的<span class=\"highlight-number\">8.57%</span>有所提升，显示出一定的盈利能力。<br>资产负债率为<span class=\"highlight-number\">40.19%</span>，略高于行业标准，但流动比率和速动比率分别为2.34和1.87，显示出一定的短期偿债能力。<br>现金流状况<span class=\"risk-low\">良好</span>，现金利润比为2.06，高于行业平均水平。\n主要风险点总结：\n- 盈利能力有所减弱，净利润率<span class=\"highlight-number\">9.00%</span>，较去年<span class=\"risk-medium\">有所下降</span>，<span class=\"risk-medium\">需关注</span>盈利能力波动；\n- 资产负债率<span class=\"highlight-number\">40.19%</span>，高于行业平均水平<span class=\"highlight-number\">30%</span>，需加强长期偿债能力；\n- 运营效率下降，应收账款周转率1.31，低于行业平均水平，需优化库存管理；\n- 现金流紧张，经营性净现金流和现金净增加额均出现下降，需加强现金流管理。\n核心优势：\n- 净资产收益率<span class=\"highlight-number\">6.02%</span>，高于行业平均<span class=\"highlight-number\">15%</span>，显示出<span class=\"risk-low\">良好</span>的资产使用效率；\n- 短期偿债能力较强，流动比率2.34，高于行业标准。\n整体建议：\n- 加强成本控制，力争将净利润率提升至<span class=\"highlight-number\">10%</span>以上；\n- 加强应收账款管理，将应收账款周转率从1.31提升至行业平均；\n- 优化负债结构，降低资产负债率至<span class=\"highlight-number\">40%</span>以下；\n- 加强现金流管理，确保财务健康。",
+    "charts": {
+      "main_indicators": "/static/charts/main_indicators_20251112_154953.html",
+      "main_indicators_png": "E:\\编程软件\\项目交付\\static\\charts\\main_indicators_20251112_154953.png"
+    },
+    "echarts_options": {
+      "main_indicators": "{\"title\": {\"text\": \"主要财务指标分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"营业收入\", \"净利润\", \"资产负债率(%)\", \"净资产收益率(%)\", \"流动比率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"数值\"}, \"series\": [{\"name\": \"营业收入\", \"type\": \"bar\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#3b82f6\"}}, {\"name\": \"净利润\", \"type\": \"line\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#ef4444\"}, \"smooth\": true}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [40.19, 35.59], \"itemStyle\": {\"color\": \"#10b981\"}}, {\"name\": \"净资产收益率(%)\", \"type\": \"line\", \"data\": [6.02, 29.66], \"itemStyle\": {\"color\": \"#f59e0b\"}, \"smooth\": true}, {\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [2.34, 2.38], \"itemStyle\": {\"color\": \"#8b5cf6\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "profitability": "{\"title\": {\"text\": \"盈利能力趋势分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"销售净利率\", \"毛利率\", \"净资产收益率\"], \"bottom\": 10, \"left\": \"center\", \"textStyle\": {\"fontSize\": 12}}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率 (%)\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"series\": [{\"name\": \"销售净利率\", \"type\": \"line\", \"smooth\": true, \"data\": [0, 0], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"毛利率\", \"type\": \"line\", \"smooth\": true, \"data\": [36.17, 33.47], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#ef4444\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"净资产收益率\", \"type\": \"line\", \"smooth\": true, \"data\": [6.02, 29.66], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#10b981\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "solvency": "{\"title\": {\"text\": \"偿债能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"流动比率\", \"速动比率\", \"资产负债率(%)\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率\"}, \"series\": [{\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [2.34, 2.38], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"markLine\": {\"data\": [{\"yAxis\": 2.0, \"name\": \"安全线\", \"lineStyle\": {\"color\": \"#10b981\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"安全线(2.0)\"}}]}}, {\"name\": \"速动比率\", \"type\": \"bar\", \"data\": [1.87, 1.9], \"itemStyle\": {\"color\": \"#ef4444\"}}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [40.19, 35.59], \"itemStyle\": {\"color\": \"#10b981\"}, \"markLine\": {\"data\": [{\"yAxis\": 70, \"name\": \"警戒线\", \"lineStyle\": {\"color\": \"#ef4444\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"警戒线(70%)\"}}]}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "operational": "{\"title\": {\"text\": \"运营能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"应收账款周转率\", \"存货周转率\", \"总资产周转率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"周转率 (次)\"}, \"series\": [{\"name\": \"应收账款周转率\", \"type\": \"bar\", \"data\": [1.31, 6.63], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"存货周转率\", \"type\": \"bar\", \"data\": [1.26, 6.62], \"itemStyle\": {\"color\": \"#ef4444\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"总资产周转率\", \"type\": \"bar\", \"data\": [0.25, 1.28], \"itemStyle\": {\"color\": \"#10b981\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "cashflow": "{\"title\": {\"text\": \"现金流状况分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"经营性净现金流\", \"现金利润比\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": [{\"type\": \"value\", \"name\": \"现金流(万元)\", \"position\": \"left\"}, {\"type\": \"value\", \"name\": \"现金利润比\", \"position\": \"right\"}], \"series\": [{\"name\": \"经营性净现金流\", \"type\": \"bar\", \"data\": [7570610.69, 7830901.82], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"yAxisIndex\": 0}, {\"name\": \"现金利润比\", \"type\": \"line\", \"data\": [2.06, 0.61], \"itemStyle\": {\"color\": \"#ef4444\"}, \"yAxisIndex\": 1, \"smooth\": true, \"lineStyle\": {\"width\": 3}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "risk_radar": "{\"title\": {\"text\": \"财务风险评估雷达图\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"item\"}, \"radar\": {\"indicator\": [{\"name\": \"盈利风险\", \"max\": 100}, {\"name\": \"偿债风险\", \"max\": 100}, {\"name\": \"运营风险\", \"max\": 100}, {\"name\": \"现金流风险\", \"max\": 100}], \"shape\": \"polygon\", \"splitNumber\": 3, \"name\": {\"textStyle\": {\"color\": \"#1e293b\", \"fontSize\": 13, \"fontWeight\": \"bold\"}}, \"splitLine\": {\"lineStyle\": {\"color\": \"#e2e8f0\"}}, \"splitArea\": {\"areaStyle\": {\"color\": [\"#fafbfc\", \"#f1f5f9\"]}}, \"axisLine\": {\"lineStyle\": {\"color\": \"#cbd5e1\"}}}, \"series\": [{\"name\": \"风险评估\", \"type\": \"radar\", \"data\": [{\"value\": [60, 60, 60, 60], \"name\": \"风险评估\", \"areaStyle\": {\"opacity\": 0.25, \"color\": \"#3b82f6\"}, \"lineStyle\": {\"color\": \"#3b82f6\", \"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}}]}]}",
+      "health_dashboard": "{\"series\": [{\"name\": \"盈利能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"盈利能力\"}]}, {\"name\": \"偿债能力\", \"type\": \"gauge\", \"center\": [\"75%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"偿债能力\"}]}, {\"name\": \"运营能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"运营能力\"}]}, {\"name\": \"现金流状况\", \"type\": \"gauge\", \"center\": [\"75%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"现金流状况\"}]}]}"
+    },
+    "created_by": "admin",
+    "created_by_name": "系统管理员",
+    "filename": "MySQL直连_TEST20251020001",
+    "data_source": "mysql",
+    "dimension_analyses_pdf": {
+      "盈利风险": "当前盈利风险水平评价：\n测试企业001号的净利润率为14.41%，略高于餐饮业行业平均水平10%，但较去年有所下降，表明企业的盈利能力有所减弱。\n尽管毛利率36.17%高于行业平均水平9%，但净资产收益率6.02%较去年下降23.64%，表明企业的盈利质量和资产使用效率下降。\n指标变化趋势及其含义：\n净利润率从去年的8.57%上升至9.00%，上升了0.43个百分点，显示企业盈利能力有所提升。\n然而，净资产收益率的显著下降表明企业在资产使用效率上存在问题。\n毛利率上升可能源于成本控制或售价提高，但净利润率的下降可能由于成本上升或售价下降。\n潜在风险点识别：\n虽然测试企业001号的财务指标未显示出明显的财务风险，但净资产收益率的下降值得注意。\n如果考虑行业平均净资产收益率为15%，则测试企业001号的净资产收益率低于行业标准，这可能意味着企业存在潜在的风险，如成本上升、市场竞争加剧或管理效率问题。\n简要建议：\n- 加强成本控制，提高成本效率；\n- 分析毛利率上升的原因，确保收入增长与成本增长相匹配；\n- 优化资产配置，提高净资产收益率；\n- 寻求新的收入增长点，增强抗风险能力。\n风险等级：\n中等风险",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业001号的资产负债率为40.19%，略高于餐饮业行业标准。\n流动比率为2.34，速动比率为1.87，这些指标表明企业有一定的短期偿债能力。\n然而，流动比率和速动比率均有所下降，这表明企业的短期偿债能力有所减弱。\n指标变化趋势及其含义：\n资产负债率从2022年的35.59%上升至2023年的40.19%，上升了4.60个百分点，这可能表明企业财务杠杆有所增加。\n流动比率和速动比率分别下降了0.04和0.03，表明企业的流动性和短期偿债能力有所下降。\n这可能与餐饮业普遍的现金流波动有关。\n潜在风险点识别：\n资产负债率40.19%超过了餐饮业常见的安全线，如假设行业安全线为30%，则企业已超出安全线10.19个百分点，显示出较高的财务风险。\n简要建议：\n- 加强现金流管理，确保足够的流动资金。\n- 优化资本结构，降低财务杠杆。\n- 提高盈利能力，以减少对债务的依赖。\n- 密切关注行业动态，适时调整经营策略。\n风险等级：\n中等风险",
+      "运营风险": "当前运营风险水平评价：\n测试企业001号的应收账款周转率为1.31，存货周转率为1.26，总资产周转率为0.25，均低于餐饮业平均水平。\n与行业平均水平相比，企业的净利润率为9.00%，略低于行业平均水平10%，表明企业的运营效率低于行业平均水平，存在一定的运营风险。\n指标变化趋势及其含义：\n应收账款周转率和存货周转率在2023年相比2022年均有下降，分别下降了5.32%和5.36%，表明企业收款速度和存货管理效率有所降低。\n总资产周转率下降1.03%，说明资产利用效率有所下降。\n这些变化可能意味着企业面临现金流管理和存货积压的风险。\n潜在风险点识别：\n应收账款周转率的下降可能表明企业面临应收账款回收困难的风险，影响现金流。\n存货周转率的下降则可能意味着存货积压，可能导致资金占用增加和存货跌价风险。\n资产负债率的具体数值未提供，但可以推测，若资产负债率超过安全线（通常认为不超过70%为安全），则可能存在财务风险。\n简要建议：\n- 加强应收账款管理，提高收款效率；\n- 优化存货管理，减少存货积压；\n- 评估资产利用效率，提高资产周转率；\n- 监控资产负债率，确保不超过安全线。\n风险等级：\n中等风险",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业001号的现金利润比为2.06，表明企业每1元净利润可以产生2.06元的现金流入，这一比率高于餐饮业平均水平10%，显示出企业良好的现金流状况。\n然而，与行业平均水平相比，净利润率略低，为9.00%，表明企业盈利能力有待提高。\n指标变化趋势及其含义：\n现金利润比从2022年的0.60上升至2023年的2.06，上升了1.46，这表明企业的盈利能力有所增强。\n然而，经营性净现金流和现金净增加额均出现下降，分别下降了-260291.13元和-2559308.60元，这可能是由于收入增长放缓或成本上升所致。\n潜在风险点识别：\n尽管现金利润比良好，但经营性净现金流和现金净增加额的下降表明企业可能面临现金流紧张的风险。\n如果这种情况持续，可能需要关注企业的流动性风险。\n简要建议：\n- 加强收入管理，提高收入增长速度；\n- 优化成本结构，降低成本；\n- 考虑增加外部融资，以增强现金流；\n- 定期监控现金流状况，确保财务健康。\n风险等级：\n中等风险"
+    },
+    "overall_assessment_pdf": "整体财务健康状况评级：良好\n理由：测试企业001号的净利润率为9.00%，虽然略低于行业平均水平10%，但相较于去年的8.57%有所提升，显示出一定的盈利能力。\n资产负债率为40.19%，略高于行业标准，但流动比率和速动比率分别为2.34和1.87，显示出一定的短期偿债能力。\n现金流状况良好，现金利润比为2.06，高于行业平均水平。\n主要风险点总结：\n- 盈利能力有所减弱，净利润率9.00%，较去年有所下降，需关注盈利能力波动；\n- 资产负债率40.19%，高于行业平均水平30%，需加强长期偿债能力；\n- 运营效率下降，应收账款周转率1.31，低于行业平均水平，需优化库存管理；\n- 现金流紧张，经营性净现金流和现金净增加额均出现下降，需加强现金流管理。\n核心优势：\n- 净资产收益率6.02%，高于行业平均15%，显示出良好的资产使用效率；\n- 短期偿债能力较强，流动比率2.34，高于行业标准。\n整体建议：\n- 加强成本控制，力争将净利润率提升至10%以上；\n- 加强应收账款管理，将应收账款周转率从1.31提升至行业平均；\n- 优化负债结构，降低资产负债率至40%以下；\n- 加强现金流管理，确保财务健康。"
+  },
+  "20251112182818": {
+    "report_id": "20251112182818",
+    "generated_at": "2025-11-12 18:29:01",
+    "basic_info": {
+      "企业名称": "测试企业003号",
+      "统一社会信用代码": "TEST20251020003",
+      "税号": "TEST20251020003",
+      "法定代表人": "法人003",
+      "注册资本（万元）": 3216.0,
+      "注册资本币种": "人民币",
+      "成立日期": "2015-04-12",
+      "注册日期": "2015-04-12",
+      "开业日期": "2015-04-12",
+      "企业类型": "股份有限公司",
+      "行业类别": "道路运输业",
+      "纳税人类型": "增值税一般纳税人",
+      "登记状态": "正常",
+      "税务局": "四川税务局",
+      "登记机关": "成都市武侯区税务所",
+      "注册省份": "四川",
+      "注册城市": "成都市",
+      "注册区县": "武侯区",
+      "注册地址": "四川成都市武侯区XX路680号",
+      "经营地址": "四川成都市武侯区XX路582号",
+      "经营范围": "从事道路运输业相关业务",
+      "从业人数": 280,
+      "行业代码": "3483",
+      "完整注册地址": "四川成都市武侯区四川成都市武侯区XX路680号"
+    },
+    "years": [
+      2023,
+      2022
+    ],
+    "financial_data": {
+      "2023": {
+        "资产负债表": {
+          "总资产": 110341130.8,
+          "流动资产": 71677253.57,
+          "非流动资产": 38663877.24,
+          "总负债": 59924561.34,
+          "流动负债": 39133386.27,
+          "非流动负债": 20791175.07,
+          "所有者权益": 50416569.47,
+          "应收账款": 18164727.15,
+          "存货": 17802629.39
+        },
+        "利润表": {
+          "营业收入": 64006305.04,
+          "营业成本": 36501934.44,
+          "营业利润": 17657159.62,
+          "利润总额": 17947083.73,
+          "净利润": 14177710.44
+        },
+        "现金流量表": {
+          "经营活动现金流量净额": 20280729.06,
+          "投资活动现金流量净额": -4960517.85,
+          "筹资活动现金流量净额": -1254746.36,
+          "现金及现金等价物净增加额": 14065464.84
+        }
+      },
+      "2022": {
+        "资产负债表": {
+          "总资产": 79258291.26,
+          "流动资产": 46407872.66,
+          "非流动资产": 32850418.6,
+          "总负债": 27001723.15,
+          "流动负债": 20026496.01,
+          "非流动负债": 6975227.13,
+          "所有者权益": 52256568.12,
+          "应收账款": 15098775.02,
+          "存货": 9654304.46
+        },
+        "利润表": {
+          "营业收入": 27892606.5,
+          "营业成本": 17809291.88,
+          "营业利润": 6015259.56,
+          "利润总额": 5793135.22,
+          "净利润": 4520259.53
+        },
+        "现金流量表": {
+          "经营活动现金流量净额": 19000125.52,
+          "投资活动现金流量净额": -6558478.55,
+          "筹资活动现金流量净额": 1282511.94,
+          "现金及现金等价物净增加额": 13724158.91
+        }
+      }
+    },
+    "indicators": {
+      "2023": {
+        "盈利风险": {
+          "净利润率": 22.15,
+          "毛利率": 42.97,
+          "净资产收益率": 28.12
+        },
+        "偿债风险": {
+          "资产负债率": 54.31,
+          "流动比率": 1.83,
+          "速动比率": 1.47
+        },
+        "运营风险": {
+          "应收账款周转率": 2.98,
+          "存货周转率": 2.55,
+          "总资产周转率": 0.58
+        },
+        "现金流风险": {
+          "现金利润比": 1.43,
+          "经营性净现金流": 20280729.06,
+          "现金净增加额": 14065464.84
+        }
+      },
+      "2022": {
+        "盈利风险": {
+          "净利润率": 16.21,
+          "毛利率": 36.15,
+          "净资产收益率": 8.65
+        },
+        "偿债风险": {
+          "资产负债率": 34.07,
+          "流动比率": 2.32,
+          "速动比率": 1.85
+        },
+        "运营风险": {
+          "应收账款周转率": 2.0,
+          "存货周转率": 1.92,
+          "总资产周转率": 0.35
+        },
+        "现金流风险": {
+          "现金利润比": 4.2,
+          "经营性净现金流": 19000125.52,
+          "现金净增加额": 13724158.91
+        }
+      }
+    },
+    "dimension_analyses": {
+      "盈利风险": "当前盈利风险水平评价：\n测试企业003号的净利润率为<span class=\"highlight-number\">22.15%</span>，毛利率为<span class=\"highlight-number\">42.97%</span>，净资产收益率为<span class=\"highlight-number\">28.12%</span>，均高于行业平均水平。<br>净利润率高于行业平均水平<span class=\"highlight-number\">10%</span>，显示出<span class=\"risk-low\">良好</span>的盈利能力。<br>但与行业平均水平对比，净利润率略低，表明企业盈利风险处于中等水平。\n指标变化趋势及其含义：\n净利润率从<strong>2022年</strong>的<span class=\"highlight-number\">16.21%</span>上升至<strong>2023年</strong>的<span class=\"highlight-number\">22.15%</span>，上升了5.94个百分点，表明企业盈利能力显著增强。<br>毛利率从<strong>2022年</strong>的<span class=\"highlight-number\">36.15%</span>上升至<span class=\"highlight-number\">42.97%</span>，上升了6.82个百分点，说明成本控制有效，收入结构优化。<br>净资产收益率从<strong>2022年</strong>的<span class=\"highlight-number\">8.65%</span>上升至<span class=\"highlight-number\">28.12%</span>，上升了19.47个百分点，显示出企业利用自有资本的效率<span class=\"risk-low\">大幅提升</span>。\n潜在风险点识别：\n由于未提供资产负债率等相关数据，无法准确判断潜在风险点。<br>但根据盈利指标上升，可能存在过度依赖高收入项目或成本控制措施可能逆转的风险。\n简要建议：\n；加强成本控制，避免毛利率下降；\n；持续关注行业动态，应对市场竞争；\n；优化收入结构，降低对单一业务的依赖；\n；定期进行财务风险评估，及时调整经营策略。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业003号的资产负债率为<span class=\"highlight-number\">54.31%</span>，略高于道路运输业平均水平，但流动比率1.83和速动比率1.47表明企业的短期偿债能力尚可。<br>然而，资产负债率的上升和流动比率的下降表明企业的偿债压力有所增加。\n指标变化趋势及其含义：\n资产负债率从<strong>2022年</strong>的<span class=\"highlight-number\">34.07%</span>上升至<strong>2023年</strong>的<span class=\"highlight-number\">54.31%</span>，增长了<span class=\"highlight-number\">20.24%</span>，这可能意味着企业依赖债务融资的比例增加。<br>流动比率从2.32下降至1.83，速动比率从1.85下降至1.47，显示出企业的短期偿债能力有所减弱。<br>这可能反映了企业的流动性风险在增加。\n潜在风险点识别：\n资产负债率高于行业平均水平，且上升幅度较大，可能表明企业存在较高的财务杠杆风险。<br>流动比率和速动比率的下降也表明企业在应对短期债务时可能存在困难。<br>风险程度较高，资产负债率超出安全线约<span class=\"highlight-number\">20%</span>。\n简要建议：\n；提高内部资金积累，减少对外部融资的依赖；\n；优化资产负债结构，降低资产负债率；\n；加强现金流管理，提高流动比率和速动比率；\n；审慎进行投资决策，避免不必要的资金占用。\n风险等级：\n<span class=\"risk-high\">高风险</span>",
+      "运营风险": "当前运营风险水平评价：\n测试企业003号的应收账款周转率为2.98，存货周转率为2.55，总资产周转率为0.58。<br>这些指标相较于道路运输业平均的净利润率<span class=\"highlight-number\">9.00%</span>略低，表明企业的运营效率有待提高。<br>特别是总资产周转率仅为0.58，远低于行业平均水平，说明企业资产利用效率较低。\n指标变化趋势及其含义：\n应收账款周转率从<strong>2022年</strong>的2.00上升至<strong>2023年</strong>的2.98，存货周转率从1.92上升至2.55，总资产周转率从0.35上升至0.58。<br>这些指标的上升表明企业在提高应收账款和存货管理效率，以及优化资产使用方面取得了一定成效。\n潜在风险点识别：\n尽管周转率有所上升，但应收账款周转率仍低于行业平均水平，可能存在应收账款回收风险。<br>此外，资产负债率如果超过行业安全线，则可能存在财务风险。<br>目前没有提供资产负债率的具体数据，因此无法直接量化风险程度。\n简要建议：\n；加强应收账款管理，缩短账期，降低坏账风险。\n；优化库存管理，减少库存积压，提高资金周转效率。\n；提高资产利用效率，增加资产运营收入。\n；关注行业动态，及时调整经营策略。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业003号的现金利润比为1.43，略高于道路运输业行业平均水平<span class=\"highlight-number\">10%</span>的净利润率，表明企业的盈利能力较强。<br>然而，与<strong>2022年</strong>相比，现金利润比下降了2.77，这可能表明企业的现金流状况有所恶化。<br>尽管如此，经营性净现金流为20280729.06，现金净增加额为14065464.84，这些数值均表明企业有一定的现金流储备。\n指标变化趋势及其含义：\n现金利润比从<strong>2022年</strong>的4.20下降至<strong>2023年</strong>的1.43，表明企业的盈利能力<span class=\"risk-medium\">有所下降</span>。<br>这可能意味着企业的收入增长速度低于成本增长速度，或者成本控制出现问题。<br>经营性净现金流和现金净增加额的上升表明企业的经营活动能够产生足够的现金流来支持其运营和投资。\n潜在风险点识别：\n虽然没有提供资产负债率等指标，但需要关注的是现金利润比的下降。<br>如果企业的负债水平较高，这可能意味着企业的偿债压力较大，存在一定的财务风险。\n简要建议：\n- 加强成本控制，提高盈利能力；\n- 监控债务水平，确保负债结构合理；\n- 优化现金流管理，确保足够的流动性；\n- 定期进行财务风险评估，及时调整风险应对策略。\n风险等级：\n<span class=\"risk-medium\">中等风险</span>"
+    },
+    "overall_assessment": "1. 整体财务健康状况评级：<span class=\"risk-low\">良好</span>\n理由：测试企业003号的净利润率<span class=\"highlight-number\">22.15%</span>，毛利率<span class=\"highlight-number\">42.97%</span>，净资产收益率<span class=\"highlight-number\">28.12%</span>，均高于行业平均水平，显示出<span class=\"risk-low\">良好</span>的盈利能力。<br>尽管资产负债率<span class=\"highlight-number\">54.31%</span>略高于行业平均水平，但流动比率1.83和速动比率1.47表明企业的短期偿债能力尚可。\n2. 主要风险点总结：\n盈利能力下降，现金利润比从<strong>2022年</strong>的4.20下降至<strong>2023年</strong>的1.43，盈利能力<span class=\"risk-medium\">有所下降</span>；资产负债率<span class=\"highlight-number\">54.31%</span>高于行业平均水平，需加强长期偿债能力；运营效率有待提高，总资产周转率0.58远低于行业平均水平；现金流状况有所恶化，现金利润比下降。\n3. 核心优势：\n净资产收益率<span class=\"highlight-number\">28.12%</span>，<span class=\"risk-low\">表现良好</span>，高于行业平均<span class=\"highlight-number\">15%</span>；短期偿债能力较强，流动比率1.83高于行业标准。\n4. 整体建议：\n加强成本控制，提高盈利能力，力争将现金利润比提升至4.00以上；优化负债结构，降低资产负债率至<span class=\"highlight-number\">50%</span>以下；加强应收账款管理，将应收账款周转率从2.98提升至行业平均3.00；优化库存管理，提高总资产周转率至行业平均0.70以上。",
+    "charts": {
+      "main_indicators": "/static/charts/main_indicators_20251112_182859.html",
+      "main_indicators_png": "E:\\编程软件\\项目交付\\static\\charts\\main_indicators_20251112_182859.png"
+    },
+    "echarts_options": {
+      "main_indicators": "{\"title\": {\"text\": \"主要财务指标分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"营业收入\", \"净利润\", \"资产负债率(%)\", \"净资产收益率(%)\", \"流动比率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"数值\"}, \"series\": [{\"name\": \"营业收入\", \"type\": \"bar\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#3b82f6\"}}, {\"name\": \"净利润\", \"type\": \"line\", \"data\": [0, 0], \"itemStyle\": {\"color\": \"#ef4444\"}, \"smooth\": true}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [54.31, 34.07], \"itemStyle\": {\"color\": \"#10b981\"}}, {\"name\": \"净资产收益率(%)\", \"type\": \"line\", \"data\": [28.12, 8.65], \"itemStyle\": {\"color\": \"#f59e0b\"}, \"smooth\": true}, {\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [1.83, 2.32], \"itemStyle\": {\"color\": \"#8b5cf6\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "profitability": "{\"title\": {\"text\": \"盈利能力趋势分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"销售净利率\", \"毛利率\", \"净资产收益率\"], \"bottom\": 10, \"left\": \"center\", \"textStyle\": {\"fontSize\": 12}}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率 (%)\", \"nameTextStyle\": {\"fontWeight\": \"bold\"}}, \"series\": [{\"name\": \"销售净利率\", \"type\": \"line\", \"smooth\": true, \"data\": [0, 0], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"毛利率\", \"type\": \"line\", \"smooth\": true, \"data\": [42.97, 36.15], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#ef4444\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}, {\"name\": \"净资产收益率\", \"type\": \"line\", \"smooth\": true, \"data\": [28.12, 8.65], \"lineStyle\": {\"width\": 3}, \"itemStyle\": {\"color\": \"#10b981\"}, \"areaStyle\": {\"opacity\": 0.1}, \"emphasis\": {\"focus\": \"series\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "solvency": "{\"title\": {\"text\": \"偿债能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"流动比率\", \"速动比率\", \"资产负债率(%)\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"比率\"}, \"series\": [{\"name\": \"流动比率\", \"type\": \"bar\", \"data\": [1.83, 2.32], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"markLine\": {\"data\": [{\"yAxis\": 2.0, \"name\": \"安全线\", \"lineStyle\": {\"color\": \"#10b981\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"安全线(2.0)\"}}]}}, {\"name\": \"速动比率\", \"type\": \"bar\", \"data\": [1.47, 1.85], \"itemStyle\": {\"color\": \"#ef4444\"}}, {\"name\": \"资产负债率(%)\", \"type\": \"bar\", \"data\": [54.31, 34.07], \"itemStyle\": {\"color\": \"#10b981\"}, \"markLine\": {\"data\": [{\"yAxis\": 70, \"name\": \"警戒线\", \"lineStyle\": {\"color\": \"#ef4444\", \"type\": \"dashed\"}, \"label\": {\"formatter\": \"警戒线(70%)\"}}]}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "operational": "{\"title\": {\"text\": \"运营能力分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"shadow\"}}, \"legend\": {\"data\": [\"应收账款周转率\", \"存货周转率\", \"总资产周转率\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": {\"type\": \"value\", \"name\": \"周转率 (次)\"}, \"series\": [{\"name\": \"应收账款周转率\", \"type\": \"bar\", \"data\": [2.98, 2.0], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"存货周转率\", \"type\": \"bar\", \"data\": [2.55, 1.92], \"itemStyle\": {\"color\": \"#ef4444\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}, {\"name\": \"总资产周转率\", \"type\": \"bar\", \"data\": [0.58, 0.35], \"itemStyle\": {\"color\": \"#10b981\"}, \"label\": {\"show\": true, \"position\": \"top\", \"formatter\": \"{c}\"}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "cashflow": "{\"title\": {\"text\": \"现金流状况分析\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"axis\", \"axisPointer\": {\"type\": \"cross\"}}, \"legend\": {\"data\": [\"经营性净现金流\", \"现金利润比\"], \"bottom\": 10, \"left\": \"center\"}, \"grid\": {\"left\": \"3%\", \"right\": \"4%\", \"bottom\": \"15%\", \"top\": \"15%\", \"containLabel\": true}, \"xAxis\": {\"type\": \"category\", \"data\": [\"2023年\", \"2022年\"], \"name\": \"年份\"}, \"yAxis\": [{\"type\": \"value\", \"name\": \"现金流(万元)\", \"position\": \"left\"}, {\"type\": \"value\", \"name\": \"现金利润比\", \"position\": \"right\"}], \"series\": [{\"name\": \"经营性净现金流\", \"type\": \"bar\", \"data\": [20280729.06, 19000125.52], \"itemStyle\": {\"color\": \"#3b82f6\"}, \"yAxisIndex\": 0}, {\"name\": \"现金利润比\", \"type\": \"line\", \"data\": [1.43, 4.2], \"itemStyle\": {\"color\": \"#ef4444\"}, \"yAxisIndex\": 1, \"smooth\": true, \"lineStyle\": {\"width\": 3}}], \"color\": [\"#3b82f6\", \"#ef4444\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\", \"#14b8a6\"]}",
+      "risk_radar": "{\"title\": {\"text\": \"财务风险评估雷达图\", \"left\": \"center\", \"textStyle\": {\"fontSize\": 18, \"fontWeight\": \"bold\", \"color\": \"#1e3a8a\"}}, \"tooltip\": {\"trigger\": \"item\"}, \"radar\": {\"indicator\": [{\"name\": \"盈利风险\", \"max\": 100}, {\"name\": \"偿债风险\", \"max\": 100}, {\"name\": \"运营风险\", \"max\": 100}, {\"name\": \"现金流风险\", \"max\": 100}], \"shape\": \"polygon\", \"splitNumber\": 3, \"name\": {\"textStyle\": {\"color\": \"#1e293b\", \"fontSize\": 13, \"fontWeight\": \"bold\"}}, \"splitLine\": {\"lineStyle\": {\"color\": \"#e2e8f0\"}}, \"splitArea\": {\"areaStyle\": {\"color\": [\"#fafbfc\", \"#f1f5f9\"]}}, \"axisLine\": {\"lineStyle\": {\"color\": \"#cbd5e1\"}}}, \"series\": [{\"name\": \"风险评估\", \"type\": \"radar\", \"data\": [{\"value\": [60, 30, 60, 60], \"name\": \"风险评估\", \"areaStyle\": {\"opacity\": 0.25, \"color\": \"#3b82f6\"}, \"lineStyle\": {\"color\": \"#3b82f6\", \"width\": 3}, \"itemStyle\": {\"color\": \"#3b82f6\"}}]}]}",
+      "health_dashboard": "{\"series\": [{\"name\": \"盈利能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"盈利能力\"}]}, {\"name\": \"偿债能力\", \"type\": \"gauge\", \"center\": [\"75%\", \"30%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#ef4444\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 35, \"name\": \"偿债能力\"}]}, {\"name\": \"运营能力\", \"type\": \"gauge\", \"center\": [\"25%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"运营能力\"}]}, {\"name\": \"现金流状况\", \"type\": \"gauge\", \"center\": [\"75%\", \"70%\"], \"radius\": \"35%\", \"startAngle\": 200, \"endAngle\": -20, \"min\": 0, \"max\": 100, \"splitNumber\": 5, \"itemStyle\": {\"color\": \"#f59e0b\"}, \"progress\": {\"show\": true, \"width\": 15}, \"pointer\": {\"show\": false}, \"axisLine\": {\"lineStyle\": {\"width\": 15, \"color\": [[1, \"#e2e8f0\"]]}}, \"axisTick\": {\"show\": false}, \"splitLine\": {\"show\": false}, \"axisLabel\": {\"show\": false}, \"detail\": {\"valueAnimation\": true, \"formatter\": \"{value}\", \"color\": \"#1e293b\", \"fontSize\": 32, \"fontWeight\": \"bold\", \"offsetCenter\": [0, \"-10%\"]}, \"title\": {\"show\": true, \"offsetCenter\": [0, \"75%\"], \"fontSize\": 16, \"color\": \"#1e3a8a\", \"fontWeight\": \"bold\"}, \"data\": [{\"value\": 60, \"name\": \"现金流状况\"}]}]}"
+    },
+    "created_by": "admin",
+    "created_by_name": "系统管理员",
+    "filename": "MySQL直连_TEST20251020003",
+    "data_source": "mysql",
+    "dimension_analyses_pdf": {
+      "盈利风险": "当前盈利风险水平评价：\n测试企业003号的净利润率为22.15%，毛利率为42.97%，净资产收益率为28.12%，均高于行业平均水平。\n净利润率高于行业平均水平10%，显示出良好的盈利能力。\n但与行业平均水平对比，净利润率略低，表明企业盈利风险处于中等水平。\n指标变化趋势及其含义：\n净利润率从2022年的16.21%上升至2023年的22.15%，上升了5.94个百分点，表明企业盈利能力显著增强。\n毛利率从2022年的36.15%上升至42.97%，上升了6.82个百分点，说明成本控制有效，收入结构优化。\n净资产收益率从2022年的8.65%上升至28.12%，上升了19.47个百分点，显示出企业利用自有资本的效率大幅提升。\n潜在风险点识别：\n由于未提供资产负债率等相关数据，无法准确判断潜在风险点。\n但根据盈利指标上升，可能存在过度依赖高收入项目或成本控制措施可能逆转的风险。\n简要建议：\n；加强成本控制，避免毛利率下降；\n；持续关注行业动态，应对市场竞争；\n；优化收入结构，降低对单一业务的依赖；\n；定期进行财务风险评估，及时调整经营策略。\n风险等级：\n中等风险",
+      "偿债风险": "当前偿债风险水平评价：\n测试企业003号的资产负债率为54.31%，略高于道路运输业平均水平，但流动比率1.83和速动比率1.47表明企业的短期偿债能力尚可。\n然而，资产负债率的上升和流动比率的下降表明企业的偿债压力有所增加。\n指标变化趋势及其含义：\n资产负债率从2022年的34.07%上升至2023年的54.31%，增长了20.24%，这可能意味着企业依赖债务融资的比例增加。\n流动比率从2.32下降至1.83，速动比率从1.85下降至1.47，显示出企业的短期偿债能力有所减弱。\n这可能反映了企业的流动性风险在增加。\n潜在风险点识别：\n资产负债率高于行业平均水平，且上升幅度较大，可能表明企业存在较高的财务杠杆风险。\n流动比率和速动比率的下降也表明企业在应对短期债务时可能存在困难。\n风险程度较高，资产负债率超出安全线约20%。\n简要建议：\n；提高内部资金积累，减少对外部融资的依赖；\n；优化资产负债结构，降低资产负债率；\n；加强现金流管理，提高流动比率和速动比率；\n；审慎进行投资决策，避免不必要的资金占用。\n风险等级：\n高风险",
+      "运营风险": "当前运营风险水平评价：\n测试企业003号的应收账款周转率为2.98，存货周转率为2.55，总资产周转率为0.58。\n这些指标相较于道路运输业平均的净利润率9.00%略低，表明企业的运营效率有待提高。\n特别是总资产周转率仅为0.58，远低于行业平均水平，说明企业资产利用效率较低。\n指标变化趋势及其含义：\n应收账款周转率从2022年的2.00上升至2023年的2.98，存货周转率从1.92上升至2.55，总资产周转率从0.35上升至0.58。\n这些指标的上升表明企业在提高应收账款和存货管理效率，以及优化资产使用方面取得了一定成效。\n潜在风险点识别：\n尽管周转率有所上升，但应收账款周转率仍低于行业平均水平，可能存在应收账款回收风险。\n此外，资产负债率如果超过行业安全线，则可能存在财务风险。\n目前没有提供资产负债率的具体数据，因此无法直接量化风险程度。\n简要建议：\n；加强应收账款管理，缩短账期，降低坏账风险。\n；优化库存管理，减少库存积压，提高资金周转效率。\n；提高资产利用效率，增加资产运营收入。\n；关注行业动态，及时调整经营策略。\n风险等级：\n中等风险",
+      "现金流风险": "当前现金流风险水平评价：\n测试企业003号的现金利润比为1.43，略高于道路运输业行业平均水平10%的净利润率，表明企业的盈利能力较强。\n然而，与2022年相比，现金利润比下降了2.77，这可能表明企业的现金流状况有所恶化。\n尽管如此，经营性净现金流为20280729.06，现金净增加额为14065464.84，这些数值均表明企业有一定的现金流储备。\n指标变化趋势及其含义：\n现金利润比从2022年的4.20下降至2023年的1.43，表明企业的盈利能力有所下降。\n这可能意味着企业的收入增长速度低于成本增长速度，或者成本控制出现问题。\n经营性净现金流和现金净增加额的上升表明企业的经营活动能够产生足够的现金流来支持其运营和投资。\n潜在风险点识别：\n虽然没有提供资产负债率等指标，但需要关注的是现金利润比的下降。\n如果企业的负债水平较高，这可能意味着企业的偿债压力较大，存在一定的财务风险。\n简要建议：\n- 加强成本控制，提高盈利能力；\n- 监控债务水平，确保负债结构合理；\n- 优化现金流管理，确保足够的流动性；\n- 定期进行财务风险评估，及时调整风险应对策略。\n风险等级：\n中等风险"
+    },
+    "overall_assessment_pdf": "1. 整体财务健康状况评级：良好\n理由：测试企业003号的净利润率22.15%，毛利率42.97%，净资产收益率28.12%，均高于行业平均水平，显示出良好的盈利能力。\n尽管资产负债率54.31%略高于行业平均水平，但流动比率1.83和速动比率1.47表明企业的短期偿债能力尚可。\n2. 主要风险点总结：\n盈利能力下降，现金利润比从2022年的4.20下降至2023年的1.43，盈利能力有所下降；资产负债率54.31%高于行业平均水平，需加强长期偿债能力；运营效率有待提高，总资产周转率0.58远低于行业平均水平；现金流状况有所恶化，现金利润比下降。\n3. 核心优势：\n净资产收益率28.12%，表现良好，高于行业平均15%；短期偿债能力较强，流动比率1.83高于行业标准。\n4. 整体建议：\n加强成本控制，提高盈利能力，力争将现金利润比提升至4.00以上；优化负债结构，降低资产负债率至50%以下；加强应收账款管理，将应收账款周转率从2.98提升至行业平均3.00；优化库存管理，提高总资产周转率至行业平均0.70以上。"
   }
 }

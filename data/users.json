@@ -16,5 +16,15 @@
     "role": "user",
     "status": "active",
     "created_at": "2024-01-01 00:00:00"
+  },
+  "asda": {
+    "username": "asda",
+    "password": "scrypt:32768:8:1$IjjFOU6JmazbId2A$f543f9326703fe120d321843293be14422ed554675a792f3a9d9f22bee3e661daf6a88289622d3442941047e820d82ec7f1ef8636b4f9f75fc670f3663285663",
+    "email": "adada@qq.com",
+    "fullname": "asda",
+    "role": "user",
+    "status": "active",
+    "ai_model": "gpt-4-turbo",
+    "created_at": "2025-10-29 15:15:26"
   }
 }

@@ -97,15 +97,24 @@ class ReportGenerator:
             print(f"图表生成失败: {str(e)}")
             charts = {}
         
-        # 8. 组装报告数据
+        # 8. 为PDF生成纯文本版本的分析（移除HTML标签）
+        dimension_analyses_pdf = {}
+        for dimension, analysis in dimension_analyses.items():
+            dimension_analyses_pdf[dimension] = self.ai_analyzer.format_for_pdf(analysis)
+        
+        overall_assessment_pdf = self.ai_analyzer.format_for_pdf(overall_assessment)
+        
+        # 9. 组装报告数据
         self.report_data = {
             'generated_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'basic_info': basic_info,
             'years': years,
             'financial_data': financial_data,
             'indicators': all_indicators,
-            'dimension_analyses': dimension_analyses,
-            'overall_assessment': overall_assessment,
+            'dimension_analyses': dimension_analyses,  # 用于网页显示（带HTML标签）
+            'dimension_analyses_pdf': dimension_analyses_pdf,  # 用于PDF导出（纯文本）
+            'overall_assessment': overall_assessment,  # 用于网页显示（带HTML标签）
+            'overall_assessment_pdf': overall_assessment_pdf,  # 用于PDF导出（纯文本）
             'validation_errors': errors if errors else [],
             'charts': charts  # 添加图表数据
         }

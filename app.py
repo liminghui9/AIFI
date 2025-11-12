@@ -34,9 +34,13 @@ report_storage = {}
 # 操作记录
 operation_logs = []
 
+# 下载记录
+download_records = []
+
 # 报告持久化存储文件
 REPORTS_STORAGE_FILE = os.path.join(Config.DATA_FOLDER, 'reports_storage.json')
 USERS_STORAGE_FILE = os.path.join(Config.DATA_FOLDER, 'users.json')
+DOWNLOAD_RECORDS_FILE = os.path.join(Config.DATA_FOLDER, 'download_records.json')
 
 # 加载历史报告
 def load_reports():
@@ -77,6 +81,30 @@ def save_reports():
         print(f"✗ 保存报告失败: {str(e)}")
         import traceback
         traceback.print_exc()
+        return False
+
+# 加载下载记录
+def load_download_records():
+    """从文件加载下载记录"""
+    global download_records
+    if os.path.exists(DOWNLOAD_RECORDS_FILE):
+        try:
+            with open(DOWNLOAD_RECORDS_FILE, 'r', encoding='utf-8') as f:
+                download_records = json.load(f)
+            print(f"✓ 已加载 {len(download_records)} 条下载记录")
+        except Exception as e:
+            print(f"✗ 加载下载记录失败: {str(e)}")
+            download_records = []
+
+# 保存下载记录
+def save_download_records():
+    """保存下载记录到文件"""
+    try:
+        with open(DOWNLOAD_RECORDS_FILE, 'w', encoding='utf-8') as f:
+            json.dump(download_records, f, ensure_ascii=False, indent=2)
+        return True
+    except Exception as e:
+        print(f"✗ 保存下载记录失败: {str(e)}")
         return False
 
 # 用户数据存储（实际生产环境应使用数据库）
@@ -399,6 +427,37 @@ def upload_file():
     return jsonify({'success': False, 'error': '不支持的文件格式'})
 
 
+def normalize_report_data(report_data):
+    """
+    规范化报告数据，确保兼容性
+    修复旧报告的数据格式问题
+    """
+    # 确保years是列表
+    if 'years' in report_data and report_data['years']:
+        # 转换为整数列表
+        report_data['years'] = [int(y) if isinstance(y, str) else y for y in report_data['years']]
+    
+    # 确保indicators字典的键是字符串
+    if 'indicators' in report_data:
+        new_indicators = {}
+        for year, data in report_data['indicators'].items():
+            # 将年份键统一转为字符串
+            year_str = str(year)
+            new_indicators[year_str] = data
+        report_data['indicators'] = new_indicators
+    
+    # 确保financial_data字典的键是字符串
+    if 'financial_data' in report_data:
+        new_financial_data = {}
+        for year, data in report_data['financial_data'].items():
+            # 将年份键统一转为字符串
+            year_str = str(year)
+            new_financial_data[year_str] = data
+        report_data['financial_data'] = new_financial_data
+    
+    return report_data
+
+
 @app.route('/report/<report_id>')
 @login_required
 def view_report(report_id):
@@ -407,6 +466,9 @@ def view_report(report_id):
         return "报告不存在", 404
     
     report_data = report_storage[report_id]
+    
+    # 规范化报告数据，确保兼容性
+    report_data = normalize_report_data(report_data)
     
     # 检查权限：管理员可以查看所有报告，普通用户只能查看自己的报告
     if session.get('role') != 'admin' and report_data.get('created_by') != session.get('username'):
@@ -442,6 +504,9 @@ def export_report(report_id, format):
         return "报告不存在", 404
     
     report_data = report_storage[report_id]
+    
+    # 规范化报告数据，确保兼容性
+    report_data = normalize_report_data(report_data)
     
     # 检查权限
     if session.get('role') != 'admin' and report_data.get('created_by') != session.get('username'):
@@ -484,7 +549,7 @@ def export_report(report_id, format):
         if not success:
             return "导出失败", 500
         
-        # 记录操作
+        # 记录操作日志
         operation_logs.append({
             'type': f'报告导出({format.upper()})',
             'report_id': report_id,
@@ -493,6 +558,21 @@ def export_report(report_id, format):
             'fullname': session.get('fullname'),
             'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         })
+        
+        # 记录下载记录
+        download_records.append({
+            'report_id': report_id,
+            'company_name': company_name,
+            'format': format.upper(),
+            'filename': filename,
+            'username': session.get('username'),
+            'fullname': session.get('fullname'),
+            'download_time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'file_size': os.path.getsize(filepath) if os.path.exists(filepath) else 0
+        })
+        
+        # 保存下载记录到文件
+        save_download_records()
         
         # 发送文件
         return send_file(
@@ -1229,6 +1309,7 @@ def generate_mysql_report(taxpayer_id):
         from modules.indicator_calculator import IndicatorCalculator
         from modules.ai_analyzer import AIAnalyzer
         from modules.chart_generator import ChartGenerator
+        from modules.echarts_generator import EChartsGenerator
         
         # 计算财务指标
         indicator_calculator = IndicatorCalculator(financial_data)
@@ -1261,7 +1342,11 @@ def generate_mysql_report(taxpayer_id):
             dimension_analyses, all_indicators.get(years[0], {}), basic_info
         )
         
-        # 生成图表
+        # 生成图表 - 使用ECharts替代Plotly
+        echarts_generator = EChartsGenerator()
+        echarts_options = echarts_generator.generate_all_charts(years, all_indicators, dimension_analyses)
+        
+        # 保留Plotly图表生成用于PDF导出
         chart_generator = ChartGenerator()
         temp_report_data = {
             'years': years,
@@ -1282,6 +1367,7 @@ def generate_mysql_report(taxpayer_id):
             'dimension_analyses': dimension_analyses,
             'overall_assessment': overall_assessment,
             'charts': charts,
+            'echarts_options': echarts_options,  # 添加ECharts配置
             'created_by': session.get('username'),
             'created_by_name': session.get('fullname'),
             'filename': f'MySQL直连_{taxpayer_id}',
@@ -1585,6 +1671,7 @@ if __name__ == '__main__':
     # 加载历史报告和用户数据
     load_reports()
     load_users()
+    load_download_records()
     
     print("=" * 50)
     print("AIFI 智能财报系统启动中...")
@@ -1593,6 +1680,7 @@ if __name__ == '__main__':
     print(f"AI功能状态: {'已启用' if Config.OPENAI_API_KEY else '未配置（将使用默认分析）'}")
     print(f"历史报告: {len(report_storage)} 个")
     print(f"系统用户: {len(users_db)} 个")
+    print(f"下载记录: {len(download_records)} 条")
     print("=" * 50)
     app.run(debug=True, host='0.0.0.0', port=5000)
 

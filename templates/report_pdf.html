@@ -28,7 +28,7 @@
         .cover-page {
             page-break-after: always;
             height: 29.7cm;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+            background: #1e40af;
             color: white;
             position: relative;
             overflow: hidden;
@@ -44,7 +44,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.03) 35px, rgba(255,255,255,.03) 70px);
+            background: transparent;
             z-index: 0;
         }
         
@@ -149,7 +149,7 @@
             color: #1e3a8a;
             margin: 25pt 0 18pt;
             padding: 15pt 20pt;
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            background: #dbeafe;
             border-left: 5pt solid #3b82f6;
             border-radius: 0 8pt 8pt 0;
             page-break-after: avoid;
@@ -201,16 +201,17 @@
         }
         
         .overall-assessment {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            color: white;
+            background: #ffffff;
+            color: #1e293b;
             padding: 25pt;
             border-radius: 12pt;
-            box-shadow: 0 4pt 20pt rgba(59, 130, 246, 0.3);
+            box-shadow: 0 4pt 20pt rgba(59, 130, 246, 0.1);
+            border: 1pt solid rgba(59, 130, 246, 0.15);
             page-break-inside: auto;  /* 允许内部分页 */
         }
         
         .overall-assessment h1 {
-            color: white;
+            color: #1e3a8a;
             background: transparent;
             border: none;
             padding: 0;
@@ -218,22 +219,21 @@
         }
         
         .overall-assessment h3 {
-            color: white;
+            color: #1e3a8a;
         }
         
         .overall-assessment h5 {
-            color: rgba(255, 255, 255, 0.95);
+            color: #1e293b;
         }
         
         .overall-assessment .chart-container {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: #f8fafc;
+            border-color: #e2e8f0;
         }
         
         .overall-assessment .chart-container h3,
         .overall-assessment .chart-container h5 {
-            color: white;
+            color: #1e3a8a;
         }
         
         .dimension-card {
@@ -264,7 +264,7 @@
         }
         
         thead {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            background: #1e40af;
             color: white;
         }
         
@@ -292,11 +292,11 @@
         
         /* AI分析文本 */
         .analysis-text {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            background: #f8f9ff;
             border-left: 4pt solid #3b82f6;
-            padding: 15pt 18pt;
+            padding: 18pt 20pt;
             margin: 15pt 0;
-            line-height: 2;
+            line-height: 1.9;
             border-radius: 0 8pt 8pt 0;
         }
         
@@ -304,6 +304,51 @@
             color: #1e3a8a;
             font-weight: 700;
             font-size: 11pt;
+            display: inline-block;
+            margin-bottom: 8pt;
+        }
+        
+        .analysis-text p {
+            margin-bottom: 8pt;
+        }
+        
+        .analysis-text br {
+            display: block;
+            margin: 6pt 0;
+            content: "";
+        }
+        
+        /* AI分析中的数据高亮样式 */
+        .analysis-text .highlight-number {
+            color: #dc2626;
+            font-weight: 700;
+            background: rgba(220, 38, 38, 0.1);
+            padding: 1pt 4pt;
+            border-radius: 2pt;
+        }
+        
+        .analysis-text .risk-high {
+            color: #dc2626;
+            font-weight: 700;
+            background: rgba(220, 38, 38, 0.12);
+            padding: 1pt 5pt;
+            border-radius: 2pt;
+        }
+        
+        .analysis-text .risk-medium {
+            color: #f59e0b;
+            font-weight: 700;
+            background: rgba(245, 158, 11, 0.12);
+            padding: 1pt 5pt;
+            border-radius: 2pt;
+        }
+        
+        .analysis-text .risk-low {
+            color: #059669;
+            font-weight: 700;
+            background: rgba(5, 150, 105, 0.12);
+            padding: 1pt 5pt;
+            border-radius: 2pt;
         }
         
         /* 图表容器 */
@@ -376,17 +421,17 @@
         }
         
         .alert-badge.success {
-            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            background: #d1fae5;
             color: #065f46;
         }
         
         .alert-badge.warning {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            background: #fef3c7;
             color: #92400e;
         }
         
         .alert-badge.danger {
-            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            background: #fee2e2;
             color: #991b1b;
         }
         
@@ -486,7 +531,7 @@
         <!-- 二、总体风险评估 -->
         <div class="report-card overall-assessment">
             <h1>二、总体风险评估</h1>
-            <div style="white-space: pre-line; line-height: 1.8;">{{ report.overall_assessment }}</div>
+            <div style="white-space: pre-line; line-height: 1.8;">{{ report.get('overall_assessment_pdf', report.overall_assessment) }}</div>
             
             <!-- 总览图表 -->
             {% if report.charts %}
@@ -540,7 +585,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% set current_year = report.years[0] %}
+                        {% set current_year = report.years[0]|string %}
                         {% set indicators = report.indicators[current_year][dimension] %}
                         
                         {% for indicator_name, value in indicators.items() %}
@@ -561,7 +606,7 @@
                             </td>
                             
                             {% if report.years|length >= 2 %}
-                            {% set prev_year = report.years[1] %}
+                            {% set prev_year = report.years[1]|string %}
                             {% set prev_value = report.indicators[prev_year][dimension][indicator_name] %}
                             <td>
                                 {% if prev_value is not none %}
@@ -686,7 +731,7 @@
                 <!-- AI分析 -->
                 <div class="analysis-text">
                     <strong>🤖 AI分析：</strong><br>
-                    {{ report.dimension_analyses[dimension] }}
+                    {{ report.get('dimension_analyses_pdf', {}).get(dimension, report.dimension_analyses[dimension]) }}
                 </div>
                 
                 <!-- 维度图表 -->
@@ -709,7 +754,7 @@
 
         <!-- 四、财务报表数据 -->
         <div class="report-card">
-            <h1>四、财务报表数据（精简版）</h1>
+            <h1>四、财务报表数据</h1>
             
             <!-- 资产负债表 -->
             <h2>4.1 资产负债表</h2>
@@ -725,13 +770,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% set balance_data = report.financial_data[report.years[0]]['资产负债表'] %}
+                    {% set balance_data = report.financial_data[report.years[0]|string]['资产负债表'] %}
                     {% for item, value in balance_data.items() %}
                     <tr>
                         <td>{{ item }}</td>
                         <td>{{ "{:,.2f}".format(value) if value is not none else '-' }}</td>
                         {% if report.years|length >= 2 %}
-                        {% set prev_value = report.financial_data[report.years[1]]['资产负债表'].get(item) %}
+                        {% set prev_value = report.financial_data[report.years[1]|string]['资产负债表'].get(item) %}
                         <td>{{ "{:,.2f}".format(prev_value) if prev_value is not none else '-' }}</td>
                         {% endif %}
                     </tr>
@@ -754,13 +799,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% set income_data = report.financial_data[report.years[0]]['利润表'] %}
+                    {% set income_data = report.financial_data[report.years[0]|string]['利润表'] %}
                     {% for item, value in income_data.items() %}
                     <tr>
                         <td>{{ item }}</td>
                         <td>{{ "{:,.2f}".format(value) if value is not none else '-' }}</td>
                         {% if report.years|length >= 2 %}
-                        {% set prev_value = report.financial_data[report.years[1]]['利润表'].get(item) %}
+                        {% set prev_value = report.financial_data[report.years[1]|string]['利润表'].get(item) %}
                         <td>{{ "{:,.2f}".format(prev_value) if prev_value is not none else '-' }}</td>
                         {% endif %}
                     </tr>
@@ -783,13 +828,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% set cashflow_data = report.financial_data[report.years[0]]['现金流量表'] %}
+                    {% set cashflow_data = report.financial_data[report.years[0]|string]['现金流量表'] %}
                     {% for item, value in cashflow_data.items() %}
                     <tr>
                         <td>{{ item }}</td>
                         <td>{{ "{:,.2f}".format(value) if value is not none else '-' }}</td>
                         {% if report.years|length >= 2 %}
-                        {% set prev_value = report.financial_data[report.years[1]]['现金流量表'].get(item) %}
+                        {% set prev_value = report.financial_data[report.years[1]|string]['现金流量表'].get(item) %}
                         <td>{{ "{:,.2f}".format(prev_value) if prev_value is not none else '-' }}</td>
                         {% endif %}
                     </tr>
