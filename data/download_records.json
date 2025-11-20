@@ -1,25 +1,5 @@
 [
   {
-    "report_id": "20251027231938",
-    "company_name": "测试企业001号",
-    "format": "WORD",
-    "filename": "测试企业001号_财务分析报告_20251027231938.docx",
-    "username": "user",
-    "fullname": "",
-    "download_time": "2025-10-27 23:28:17",
-    "file_size": 42908
-  },
-  {
-    "report_id": "20251027233459",
-    "company_name": "测试企业005号",
-    "format": "PDF_HTML",
-    "filename": "测试企业005号_财务分析报告_20251027233459.pdf",
-    "username": "user",
-    "fullname": "",
-    "download_time": "2025-10-27 23:37:46",
-    "file_size": 125477
-  },
-  {
     "report_id": "20251027233459",
     "company_name": "测试企业005号",
     "format": "PDF_HTML",
@@ -158,5 +138,395 @@
     "fullname": "系统管理员",
     "download_time": "2025-11-12 18:35:42",
     "file_size": 221543
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-12 19:45:23",
+    "file_size": 215193
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "WORD",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.docx",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-12 19:45:26",
+    "file_size": 42395
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-12 19:45:59",
+    "file_size": 215193
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-12 19:46:48",
+    "file_size": 215193
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-13 10:13:29",
+    "file_size": 215193
+  },
+  {
+    "report_id": "20251112182818",
+    "company_name": "测试企业003号",
+    "format": "PDF_HTML",
+    "filename": "测试企业003号_财务分析报告_20251112182818.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-18 19:48:24",
+    "file_size": 221543
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-18 22:40:44",
+    "file_size": 215193
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-18 22:44:54",
+    "file_size": 215193
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-18 22:45:44",
+    "file_size": 215193
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-18 22:46:35",
+    "file_size": 215193
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-18 23:30:22",
+    "file_size": 270408
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-18 23:32:35",
+    "file_size": 264953
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-18 23:34:05",
+    "file_size": 163036
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-18 23:49:40",
+    "file_size": 156102
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-18 23:55:39",
+    "file_size": 144121
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-19 00:16:51",
+    "file_size": 142414
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-19 00:17:33",
+    "file_size": 142414
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-19 00:21:10",
+    "file_size": 759412
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 00:15:11",
+    "file_size": 110233
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 00:19:53",
+    "file_size": 111802
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 00:23:27",
+    "file_size": 115102
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 00:29:29",
+    "file_size": 118593
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 00:34:16",
+    "file_size": 120196
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 00:37:16",
+    "file_size": 119491
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 00:44:20",
+    "file_size": 124128
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 00:47:22",
+    "file_size": 123015
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 09:55:51",
+    "file_size": 123015
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 09:58:51",
+    "file_size": 123015
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 10:01:43",
+    "file_size": 123015
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 10:07:20",
+    "file_size": 123015
+  },
+  {
+    "report_id": "20251112193648",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251112193648.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 10:08:07",
+    "file_size": 123015
+  },
+  {
+    "report_id": "20251120100939",
+    "company_name": "某科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "某科技股份有限公司_财务分析报告_20251120100939.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 10:10:50",
+    "file_size": 123814
+  },
+  {
+    "report_id": "20251120114258",
+    "company_name": "未来科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "未来科技股份有限公司_财务分析报告_20251120114258.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 11:46:23",
+    "file_size": 128094
+  },
+  {
+    "report_id": "20251120114258",
+    "company_name": "未来科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "未来科技股份有限公司_财务分析报告_20251120114258.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 14:36:35",
+    "file_size": 128094
+  },
+  {
+    "report_id": "20251120114258",
+    "company_name": "未来科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "未来科技股份有限公司_财务分析报告_20251120114258.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 15:25:11",
+    "file_size": 128094
+  },
+  {
+    "report_id": "20251120114258",
+    "company_name": "未来科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "未来科技股份有限公司_财务分析报告_20251120114258.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 15:27:45",
+    "file_size": 128094
+  },
+  {
+    "report_id": "20251120114258",
+    "company_name": "未来科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "未来科技股份有限公司_财务分析报告_20251120114258.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 15:29:38",
+    "file_size": 128150
+  },
+  {
+    "report_id": "20251120112824",
+    "company_name": "未来科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "未来科技股份有限公司_财务分析报告_20251120112824.pdf",
+    "username": "admin",
+    "fullname": "系统管理员",
+    "download_time": "2025-11-20 15:30:39",
+    "file_size": 123751
+  },
+  {
+    "report_id": "20251120160155",
+    "company_name": "未来科技股份有限公司",
+    "format": "PDF_HTML",
+    "filename": "未来科技股份有限公司_财务分析报告_20251120160155.pdf",
+    "username": "qgy",
+    "fullname": "GUANGYANG",
+    "download_time": "2025-11-20 16:03:17",
+    "file_size": 115074
   }
 ]

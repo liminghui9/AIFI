@@ -7,6 +7,13 @@ FIELD_DICTIONARY = {
     '成立日期': 'establishment_date',
     '行业类别': 'industry_category',
     '法定代表人': 'legal_representative',
+    '法定代表人持股比例': 'legal_rep_shareholding',
+    '注册地址': 'registered_address',
+    '注册资本币种': 'registered_capital_currency',
+    '登记状态': 'registration_status',
+    '登记机关': 'registration_authority',
+    '企业类型': 'company_type',
+    '经营范围': 'business_scope',
     
     # 2023年资产负债表
     '总资产_2023': 'total_assets_2023',
@@ -55,7 +62,8 @@ FIELD_DICTIONARY = {
 
 # 字段分类字典
 FIELD_CATEGORIES = {
-    'basic_info': ['企业名称', '统一社会信用代码', '注册资本（万元）', '成立日期', '行业类别', '法定代表人'],
+    'basic_info': ['企业名称', '统一社会信用代码', '注册资本（万元）', '成立日期', '行业类别', '法定代表人',
+                   '法定代表人持股比例', '注册地址', '注册资本币种', '登记状态', '登记机关', '企业类型', '经营范围'],
     
     'balance_sheet_2023': [
         '总资产_2023', '流动资产_2023', '非流动资产_2023',
@@ -97,7 +105,14 @@ FIELD_TYPES = {
     '注册资本（万元）': 'numeric',
     '成立日期': 'date',
     '行业类别': 'string',
-    '法定代表人': 'string'
+    '法定代表人': 'string',
+    '法定代表人持股比例': 'string',
+    '注册地址': 'string',
+    '注册资本币种': 'string',
+    '登记状态': 'string',
+    '登记机关': 'string',
+    '企业类型': 'string',
+    '经营范围': 'string'
 }
 
 # 为所有财务字段添加numeric类型

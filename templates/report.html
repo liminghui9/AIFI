@@ -379,8 +379,10 @@
             padding: 25px;
             border-radius: 12px;
             margin-top: 15px;
-            line-height: 1.8;
+            line-height: 2.0;
             border-left: 4px solid #3b82f6;
+            white-space: pre-line;
+            word-break: break-word;
         }
         
         .analysis-text strong {
@@ -983,8 +985,8 @@
         <ul class="sidebar-menu">
             <li>
                 <a href="/index">
-                    <i class="bi bi-speedometer2"></i>
-                    <span>仪表板</span>
+                    <i class="bi bi-house-door"></i>
+                    <span>首页</span>
                 </a>
             </li>
             <li>
@@ -997,26 +999,6 @@
                 <a href="/downloads">
                     <i class="bi bi-download"></i>
                     <span>下载记录</span>
-                </a>
-            </li>
-            <li>
-                <a href="/mysql_enterprises">
-                    <i class="bi bi-building"></i>
-                    <span>企业数据</span>
-                </a>
-            </li>
-            {% if user.role == 'admin' %}
-            <li>
-                <a href="/admin/users">
-                    <i class="bi bi-people"></i>
-                    <span>用户管理</span>
-                </a>
-            </li>
-            {% endif %}
-            <li>
-                <a href="/settings">
-                    <i class="bi bi-gear"></i>
-                    <span>系统设置</span>
                 </a>
             </li>
             <li>
@@ -1197,25 +1179,9 @@
             <div class="mt-4">
                 <h5 class="mb-3"><i class="bi bi-speedometer2"></i> 财务健康度总览</h5>
                 <div id="health_dashboard_chart" class="echarts-dashboard"></div>
-                </div>
-                {% endif %}
-                
-            <!-- 主要指标对比图表 - ECharts版本 -->
-            {% if report.echarts_options and report.echarts_options.main_indicators %}
-            <div class="mt-4">
-                <h5 class="mb-3"><i class="bi bi-bar-chart"></i> 主要指标对比</h5>
-                <div id="main_indicators_chart" class="echarts-container"></div>
-                </div>
-                {% endif %}
-                
-            <!-- 风险雷达图 - ECharts版本 -->
-            {% if report.echarts_options and report.echarts_options.risk_radar %}
-            <div class="mt-4">
-                <h5 class="mb-3"><i class="bi bi-radar"></i> 风险雷达图</h5>
-                <div id="risk_radar_chart" class="echarts-container" style="height: 650px;"></div>
-                    </div>
+            </div>
             {% endif %}
-                </div>
+        </div>
                 </div>
             <!-- 总览Tab结束 -->
 
@@ -1369,16 +1335,8 @@
                 <div class="analysis-text">
                     <strong><i class="bi bi-robot"></i> AI分析：</strong><br>
                     {{ report.dimension_analyses['盈利风险'] | safe }}
-                    </div>
-                
-                <!-- 可视化图表 - ECharts版本 -->
-                {% if report.echarts_options and report.echarts_options.profitability %}
-                <div class="mt-4">
-                    <h5 class="mb-3"><i class="bi bi-graph-up"></i> 数据可视化</h5>
-                    <div id="profitability_chart" class="echarts-container"></div>
                 </div>
-                {% endif %}
-                    </div>
+            </div>
                 </div>
             <!-- 盈利风险Tab结束 -->
 
@@ -1523,15 +1481,7 @@
                 <div class="analysis-text">
                     <strong><i class="bi bi-robot"></i> AI分析：</strong><br>
                     {{ report.dimension_analyses['偿债风险'] | safe }}
-                    </div>
-                
-                <!-- 可视化图表 - ECharts版本 -->
-                {% if report.echarts_options and report.echarts_options.solvency %}
-                <div class="mt-4">
-                    <h5 class="mb-3"><i class="bi bi-graph-up"></i> 数据可视化</h5>
-                    <div id="solvency_chart" class="echarts-container"></div>
                 </div>
-                {% endif %}
             </div>
         </div>
             <!-- 偿债风险Tab结束 -->
@@ -1669,14 +1619,6 @@
                     <strong><i class="bi bi-robot"></i> AI分析：</strong><br>
                     {{ report.dimension_analyses['运营风险'] | safe }}
                 </div>
-                
-                <!-- 可视化图表 -->
-                {% if report.echarts_options and report.echarts_options.operational %}
-                <div class="mt-4">
-                    <h5 class="mb-3"><i class="bi bi-graph-up"></i> 数据可视化</h5>
-                    <div id="operational_chart" class="echarts-container"></div>
-                </div>
-                {% endif %}
             </div>
         </div>
             <!-- 运营风险Tab结束 -->
@@ -1814,14 +1756,6 @@
                     <strong><i class="bi bi-robot"></i> AI分析：</strong><br>
                     {{ report.dimension_analyses['现金流风险'] | safe }}
                 </div>
-                
-                <!-- 可视化图表 - ECharts版本 -->
-                {% if report.echarts_options and report.echarts_options.cashflow %}
-                <div class="mt-4">
-                    <h5 class="mb-3"><i class="bi bi-graph-up"></i> 数据可视化</h5>
-                    <div id="cashflow_chart" class="echarts-container"></div>
-            </div>
-                {% endif %}
         </div>
             </div>
             <!-- 现金流风险Tab结束 -->
@@ -1867,6 +1801,7 @@
                         <tbody>
                             {% set balance_data = report.financial_data[report.years[0]|string]['资产负债表'] %}
                             {% for item, value in balance_data.items() %}
+                            {% if item not in ['应收账款', '存货'] %}
                             <tr>
                                 <td>{{ item }}</td>
                                 <td>
@@ -1887,6 +1822,7 @@
                                 </td>
                                 {% endif %}
                             </tr>
+                            {% endif %}
                             {% endfor %}
                         </tbody>
                     </table>

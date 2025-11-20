@@ -346,8 +346,12 @@ class ChartGenerator:
                 fillcolor=f'rgba{tuple(list(int(colors[i][j:j+2], 16) for j in (1, 3, 5)) + [0.1])}'.replace('[', '(').replace(']', ')')
             ))
         
+        # 移除layout_config中的title，避免冲突
+        layout_config = self.layout_config.copy()
+        layout_config.pop('title', None)
+        
         fig.update_layout(
-            **self.layout_config,
+            **layout_config,
             title=dict(
                 text='<b>📈 盈利能力趋势分析</b>',
                 x=0.5,
@@ -427,8 +431,12 @@ class ChartGenerator:
         fig.add_hline(y=70, line_dash="dash", line_color="red", 
                       annotation_text="资产负债率警戒线(70%)", row=1, col=2)
         
+        # 移除layout_config中的title，避免冲突
+        layout_config = self.layout_config.copy()
+        layout_config.pop('title', None)
+        
         fig.update_layout(
-            **self.layout_config,
+            **layout_config,
             title=dict(
                 text="<b>💰 偿债能力分析</b>",
                 x=0.5,
@@ -494,8 +502,12 @@ class ChartGenerator:
                 hovertemplate=f'<b>{metric}</b><br>年份: %{{x}}<br>周转率: %{{y:.2f}}次<extra></extra>'
             ))
         
+        # 移除layout_config中的title，避免冲突
+        layout_config = self.layout_config.copy()
+        layout_config.pop('title', None)
+        
         fig.update_layout(
-            **self.layout_config,
+            **layout_config,
             title=dict(
                 text='<b>⚡ 运营能力分析</b>',
                 x=0.5,
@@ -583,8 +595,12 @@ class ChartGenerator:
             automargin=True
         )
         
+        # 移除layout_config中的title，避免冲突
+        layout_config = self.layout_config.copy()
+        layout_config.pop('title', None)
+        
         fig.update_layout(
-            **self.layout_config,
+            **layout_config,
             title=dict(
                 text="<b>💵 现金流状况分析</b>",
                 x=0.5,
@@ -659,8 +675,12 @@ class ChartGenerator:
             marker=dict(size=10, color='#3b82f6', line=dict(width=2, color='white'))
         ))
         
+        # 移除layout_config中的title，避免冲突
+        layout_config = self.layout_config.copy()
+        layout_config.pop('title', None)
+        
         fig.update_layout(
-            **self.layout_config,
+            **layout_config,
             polar=dict(
                 bgcolor='#fafbfc',
                 radialaxis=dict(

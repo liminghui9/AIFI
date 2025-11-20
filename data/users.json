@@ -10,21 +10,12 @@
   },
   "user": {
     "username": "user",
-    "password": "scrypt:32768:8:1$MJ0EFWxf3fEGZMSj$a48627dea6b5c431e9540a001a104af4aa64f0eae0b14230a08f615c1ef9155a806b38d02dbd1fca7ae86f5bdd89599a5195285fdce1307aa95f5b79773c4a1a",
-    "email": "user@aifi.com",
-    "fullname": "",
+    "password": "scrypt:32768:8:1$MoMTWsHIetY3YCxG$0ea11a3b69a244ea5c38aebf82c5c520ff73055bbb549c5958499dd3f6854b701ba06118ea79b5d0b7b4fff43d10709a6e93fd2d0d749d4c795bb8f2a3656558",
+    "email": "2143775102@qq.com",
+    "fullname": "lmh",
     "role": "user",
     "status": "active",
-    "created_at": "2024-01-01 00:00:00"
-  },
-  "asda": {
-    "username": "asda",
-    "password": "scrypt:32768:8:1$IjjFOU6JmazbId2A$f543f9326703fe120d321843293be14422ed554675a792f3a9d9f22bee3e661daf6a88289622d3442941047e820d82ec7f1ef8636b4f9f75fc670f3663285663",
-    "email": "adada@qq.com",
-    "fullname": "asda",
-    "role": "user",
-    "status": "active",
-    "ai_model": "gpt-4-turbo",
-    "created_at": "2025-10-29 15:15:26"
+    "ai_model": "glm-4",
+    "created_at": "2025-11-20 16:42:47"
   }
 }

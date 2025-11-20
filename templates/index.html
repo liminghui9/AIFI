@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIFI 智能财报系统</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-color: #3b82f6;
@@ -22,20 +24,20 @@
             --gradient-warning: #f59e0b;
             --gradient-info: #0891b2;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Poppins', 'Segoe UI', sans-serif;
             background: #ffffff;
             overflow-x: hidden;
             min-height: 100vh;
         }
-        
+
         /* 侧边栏样式 */
         .sidebar {
             position: fixed;
@@ -62,7 +64,7 @@
             background: rgba(255, 255, 255, 0.3);
             border-radius: 3px;
         }
-        
+
         .sidebar-brand {
             padding: 30px 25px;
             color: white;
@@ -79,16 +81,16 @@
             display: block;
             margin-bottom: 10px;
         }
-        
+
         .sidebar-menu {
             list-style: none;
             padding: 10px 0;
         }
-        
+
         .sidebar-menu li {
             margin: 3px 15px;
         }
-        
+
         .sidebar-menu a {
             display: flex;
             align-items: center;
@@ -111,11 +113,11 @@
             background: white;
             transform: scaleY(0);
         }
-        
+
         .sidebar-menu a:hover {
             background: rgba(255, 255, 255, 0.2);
             color: white;
-            
+
         }
 
         .sidebar-menu a.active {
@@ -127,7 +129,7 @@
         .sidebar-menu a.active::before {
             transform: scaleY(1);
         }
-        
+
         .sidebar-menu i {
             font-size: 1.3rem;
             margin-right: 15px;
@@ -139,9 +141,9 @@
         .sidebar a[href="/logout"]:hover {
             background: rgba(255, 255, 255, 0.15) !important;
             color: white !important;
-            
+
         }
-        
+
         /* 顶部导航栏 */
         .top-navbar {
             position: fixed;
@@ -159,7 +161,7 @@
             z-index: 999;
             border-bottom: 1px solid rgba(59, 130, 246, 0.1);
         }
-        
+
         .page-title {
             font-size: 1.6rem;
             font-weight: 700;
@@ -172,13 +174,13 @@
         .page-title i {
             color: var(--primary-color);
         }
-        
+
         .user-info-box {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-        
+
         .user-info-box .user-avatar {
             width: 45px;
             height: 45px;
@@ -194,10 +196,10 @@
         }
 
         .user-info-box .user-avatar:hover {
-            
+
             box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
         }
-        
+
         /* 主内容区域 */
         .main-content {
             margin-left: 260px;
@@ -205,11 +207,12 @@
             padding: 35px;
             min-height: calc(100vh - 70px);
         }
-            to {
-                opacity: 1;
-            }
+
+        to {
+            opacity: 1;
         }
-        
+        }
+
         /* 信息卡片 */
         .info-card {
             background: white;
@@ -232,16 +235,16 @@
             background: var(--gradient-primary);
             transform: scaleX(0);
         }
-        
+
         .info-card:hover {
-            
+
             box-shadow: 0 12px 30px rgba(30, 58, 138, 0.15);
         }
 
         .info-card:hover::before {
             transform: scaleX(1);
         }
-        
+
         .info-card-icon {
             width: 70px;
             height: 70px;
@@ -257,33 +260,33 @@
         .info-card:hover .info-card-icon {
             transform: scale(1.1) rotate(5deg);
         }
-        
+
         .icon-primary {
             background: var(--gradient-primary);
             color: white;
         }
-        
+
         .icon-success {
             background: var(--gradient-success);
             color: white;
         }
-        
+
         .icon-warning {
             background: var(--gradient-warning);
             color: white;
         }
-        
+
         .icon-info {
             background: var(--gradient-info);
             color: white;
         }
-        
+
         .info-card-title {
             color: #7f8c8d;
             font-size: 0.9rem;
             margin-bottom: 8px;
         }
-        
+
         .info-card-value {
             font-size: 2.5rem;
             font-weight: 800;
@@ -294,12 +297,12 @@
             margin-bottom: 8px;
             letter-spacing: -1px;
         }
-        
+
         .info-card-subtitle {
             color: #95a5a6;
             font-size: 0.85rem;
         }
-        
+
         /* 上传区域 */
         .upload-section {
             background: white;
@@ -313,7 +316,7 @@
         .upload-section:hover {
             box-shadow: 0 8px 25px rgba(30, 58, 138, 0.12);
         }
-        
+
         .section-header {
             font-size: 1.4rem;
             font-weight: 700;
@@ -324,13 +327,13 @@
             padding-bottom: 15px;
             border-bottom: 2px solid rgba(59, 130, 246, 0.1);
         }
-        
+
         .section-header i {
             margin-right: 12px;
             color: var(--primary-color);
             font-size: 1.6rem;
         }
-        
+
         .upload-area {
             border: 3px dashed #cbd5e1;
             border-radius: 16px;
@@ -352,31 +355,31 @@
             background: rgba(59, 130, 246, 0.05);
             opacity: 0;
         }
-        
+
         .upload-area:hover {
             background: #eff6ff;
             border-color: var(--primary-color);
-            
+
             box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
         }
 
         .upload-area:hover::before {
             opacity: 1;
         }
-        
+
         .upload-area.dragover {
             background: #dbeafe;
             border-color: var(--primary-color);
             border-style: solid;
             box-shadow: 0 15px 40px rgba(59, 130, 246, 0.3);
         }
-        
+
         .upload-icon {
             font-size: 5rem;
             color: var(--gradient-primary);
             margin-bottom: 25px;
         }
-        
+
         .upload-area h4 {
             color: #1e293b;
             font-weight: 700;
@@ -385,7 +388,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .btn-primary {
             background: var(--gradient-primary);
             border: none;
@@ -412,9 +415,9 @@
         .btn-primary:hover::before {
             left: 100%;
         }
-        
+
         .btn-primary:hover {
-            
+
             box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
 
@@ -430,23 +433,23 @@
         }
 
         .btn-success:hover {
-            
+
             box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
         }
-        
+
         .btn-outline-light {
             border: 2px solid rgba(255, 255, 255, 0.3);
             color: white;
             padding: 8px 20px;
             border-radius: 20px;
         }
-        
+
         .btn-outline-light:hover {
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border-color: white;
         }
-        
+
         /* 功能特点卡片 */
         .feature-grid {
             display: grid;
@@ -454,7 +457,7 @@
             gap: 25px;
             margin-top: 30px;
         }
-        
+
         .feature-card {
             background: white;
             border-radius: 16px;
@@ -476,16 +479,16 @@
             background: var(--gradient-primary);
             transform: scaleX(0);
         }
-        
+
         .feature-card:hover {
-            
+
             box-shadow: 0 12px 35px rgba(30, 58, 138, 0.15);
         }
 
         .feature-card:hover::before {
             transform: scaleX(1);
         }
-        
+
         .feature-icon {
             font-size: 3.5rem;
             background: var(--gradient-primary);
@@ -499,24 +502,24 @@
         .feature-card:hover .feature-icon {
             transform: scale(1.2) rotate(5deg);
         }
-        
+
         .feature-card h5 {
             color: #1e293b;
             font-weight: 700;
             margin-bottom: 12px;
             font-size: 1.2rem;
         }
-        
+
         .progress-container {
             display: none;
             margin-top: 20px;
         }
-        
+
         .spinner-border {
             width: 3rem;
             height: 3rem;
         }
-        
+
         /* 加载遮罩层 */
         .loading-overlay {
             display: none;
@@ -529,11 +532,11 @@
             z-index: 9998;
             backdrop-filter: blur(8px);
         }
-        
+
         .loading-overlay.active {
             display: block;
         }
-        
+
         .loading-content {
             position: fixed;
             top: 50%;
@@ -547,32 +550,33 @@
             text-align: center;
             border: 1px solid rgba(59, 130, 246, 0.1);
         }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
+
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
         }
-        
+        }
+
         .loading-content .spinner-border {
             color: var(--primary-color);
             width: 4rem;
             height: 4rem;
             border-width: 0.4rem;
         }
-        
+
         .loading-content h5 {
             margin-top: 25px;
             color: #1e293b;
             font-weight: 700;
             font-size: 1.3rem;
         }
-        
+
         .loading-content p {
             color: #7f8c8d;
             margin-top: 10px;
             margin-bottom: 20px;
         }
-        
+
         .loading-content .cancel-btn {
             background: #f1f5f9;
             border: 2px solid #cbd5e1;
@@ -583,13 +587,13 @@
             font-size: 0.95rem;
             font-weight: 600;
         }
-        
+
         .loading-content .cancel-btn:hover {
             background: #e2e8f0;
             border-color: #94a3b8;
-            
+
         }
-        
+
         .alert {
             border-radius: 12px;
             border: none;
@@ -612,7 +616,7 @@
             background: #fef3c7;
             color: #92400e;
         }
-        
+
         /* 图表区域 */
         .chart-card {
             background: white;
@@ -622,13 +626,13 @@
             margin-top: 30px;
             border: 1px solid rgba(59, 130, 246, 0.08);
         }
-        
+
         .chart-placeholder {
             text-align: center;
             padding: 40px;
             color: #95a5a6;
         }
-        
+
         /* 操作步骤引导样式 */
         .steps-guide-section {
             background: white;
@@ -640,7 +644,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .steps-guide-section::before {
             content: '';
             position: absolute;
@@ -650,12 +654,12 @@
             height: 5px;
             background: var(--gradient-primary);
         }
-        
+
         .steps-title {
             text-align: center;
             margin-bottom: 15px;
         }
-        
+
         .steps-title h2 {
             font-size: 2rem;
             font-weight: 800;
@@ -663,13 +667,13 @@
             margin-bottom: 10px;
             letter-spacing: -0.5px;
         }
-        
+
         .steps-title p {
             color: #64748b;
             font-size: 1rem;
             line-height: 1.6;
         }
-        
+
         .steps-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -677,7 +681,7 @@
             margin-top: 50px;
             position: relative;
         }
-        
+
         /* 连接线 */
         .steps-container::before {
             content: '';
@@ -689,13 +693,13 @@
             background: rgba(59, 130, 246, 0.5);
             z-index: 0;
         }
-        
+
         .step-item {
             text-align: center;
             position: relative;
             z-index: 1;
         }
-        
+
         .step-number {
             width: 120px;
             height: 120px;
@@ -712,7 +716,7 @@
             box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
             position: relative;
         }
-        
+
         .step-icon {
             position: absolute;
             bottom: -10px;
@@ -728,33 +732,34 @@
             font-size: 1.2rem;
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
         }
-        
+
         .step-title {
             font-size: 1.3rem;
             font-weight: 700;
             color: #1e293b;
             margin-bottom: 15px;
         }
-        
+
         .step-description {
             color: #64748b;
             font-size: 0.95rem;
             line-height: 1.6;
             padding: 0 10px;
         }
-        
+
         @media (max-width: 992px) {
             .steps-container {
                 grid-template-columns: 1fr;
                 gap: 50px;
             }
-            
+
             .steps-container::before {
                 display: none;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- 左侧侧边栏 -->
     <div class="sidebar">
@@ -764,8 +769,8 @@
         <ul class="sidebar-menu">
             <li>
                 <a href="/index" class="active">
-                    <i class="bi bi-speedometer2"></i>
-                    <span>仪表板</span>
+                    <i class="bi bi-house-door"></i>
+                    <span>首页</span>
                 </a>
             </li>
             <li>
@@ -778,26 +783,6 @@
                 <a href="/downloads">
                     <i class="bi bi-download"></i>
                     <span>下载记录</span>
-                </a>
-            </li>
-            <li>
-                <a href="/mysql_enterprises">
-                    <i class="bi bi-building"></i>
-                    <span>企业数据</span>
-                </a>
-            </li>
-            {% if user.role == 'admin' %}
-            <li>
-                <a href="/admin/users">
-                    <i class="bi bi-people"></i>
-                    <span>用户管理</span>
-                </a>
-            </li>
-            {% endif %}
-            <li>
-                <a href="/settings">
-                    <i class="bi bi-gear"></i>
-                    <span>系统设置</span>
                 </a>
             </li>
             <li>
@@ -854,9 +839,9 @@
         <div class="steps-guide-section">
             <div class="steps-title">
                 <h2>简单三步，生成专业报告</h2>
-                <p>我们简化设计每个环节，只需三步即可生成专业财务分析报告</p>
+                <p>导入数据、自动分析、一键导出，让财务分析更简单高效</p>
             </div>
-            
+
             <div class="steps-container">
                 <!-- 第一步 -->
                 <div class="step-item">
@@ -866,12 +851,12 @@
                             <i class="bi bi-check-lg"></i>
                         </div>
                     </div>
-                    <h3 class="step-title">选择模板</h3>
+                    <h3 class="step-title">导入数据</h3>
                     <p class="step-description">
-                        从多种专业模板中选择适合的业务和服务场景的财务报告模板
+                        上传您的财务数据Excel文件，系统自动识别并解析财务数据
                     </p>
                 </div>
-                
+
                 <!-- 第二步 -->
                 <div class="step-item">
                     <div class="step-number">
@@ -880,12 +865,12 @@
                             <i class="bi bi-check-lg"></i>
                         </div>
                     </div>
-                    <h3 class="step-title">导入数据</h3>
+                    <h3 class="step-title">生成报告</h3>
                     <p class="step-description">
-                        上传您的财务数据文件，系统将自动抽取并整理数据信息库中
+                        AI智能分析财务数据，自动生成专业的财务分析报告
                     </p>
                 </div>
-                
+
                 <!-- 第三步 -->
                 <div class="step-item">
                     <div class="step-number">
@@ -894,21 +879,21 @@
                             <i class="bi bi-check-lg"></i>
                         </div>
                     </div>
-                    <h3 class="step-title">生成报告</h3>
+                    <h3 class="step-title">报告导出</h3>
                     <p class="step-description">
-                        一键生成业务报告，支持多种格式导出和分享给对应节点导出分享
+                        支持在线预览和多种格式导出，随时随地分享您的分析报告
                     </p>
                 </div>
             </div>
         </div>
-        
+
         <!-- 上传区域 -->
         <div class="upload-section" id="uploadSection">
             <div class="section-header">
                 <i class="bi bi-cloud-upload"></i>
                 上传Excel财务数据
             </div>
-            
+
             <div class="upload-area" id="uploadArea">
                 <i class="bi bi-file-earmark-excel upload-icon"></i>
                 <h4>点击或拖拽 Excel 文件到这里</h4>
@@ -917,11 +902,12 @@
                     <small style="opacity: 0.8;">自动解析财务数据，智能生成分析报告</small>
                 </p>
                 <input type="file" id="fileInput" accept=".xlsx,.xls" style="display: none;">
-                <button class="btn btn-primary mt-4" onclick="document.getElementById('fileInput').click()">
+                <button class="btn btn-primary mt-4"
+                    onclick="event.stopPropagation(); document.getElementById('fileInput').click();">
                     <i class="bi bi-folder2-open me-2"></i> 选择文件
                 </button>
             </div>
-            
+
             <div class="progress-container" id="progressContainer">
                 <div class="text-center">
                     <div class="spinner-border text-primary" role="status">
@@ -930,77 +916,10 @@
                     <p class="mt-3" id="progressText">正在分析数据，请稍候...</p>
                 </div>
             </div>
-            
+
             <div id="messageArea" class="mt-3"></div>
         </div>
-        
-        <!-- 数据源选择 -->
-        <div class="upload-section" style="margin-bottom: 25px;">
-            <div class="section-header">
-                <i class="bi bi-box-arrow-in-down"></i>
-                选择数据源
-            </div>
-            
-            <div class="row g-4">
-                <!-- MySQL直连 -->
-                <div class="col-md-6">
-                    <div class="info-card" style="cursor: pointer; height: auto;" onclick="window.location.href='/mysql_enterprises'">
-                        <div class="info-card-icon icon-primary">
-                            <i class="bi bi-database"></i>
-                        </div>
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 15px; font-size: 1.3rem;">MySQL 数据库直连</h5>
-                        <p class="text-muted mb-4" style="line-height: 1.6;">直接从 MySQL 数据库读取企业财务数据，实时同步分析</p>
-                        <button class="btn btn-primary" style="width: 100%;">
-                            <i class="bi bi-arrow-right-circle"></i> 查看企业列表
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Excel上传 -->
-                <div class="col-md-6">
-                    <div class="info-card" style="cursor: pointer; height: auto;" onclick="document.getElementById('uploadSection').scrollIntoView({behavior: 'smooth'})">
-                        <div class="info-card-icon icon-success">
-                            <i class="bi bi-file-earmark-excel"></i>
-                        </div>
-                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 15px; font-size: 1.3rem;">Excel 文件上传</h5>
-                        <p class="text-muted mb-4" style="line-height: 1.6;">上传 Excel 格式的企业财务报表文件，一键生成报告</p>
-                        <button class="btn btn-success" style="width: 100%;">
-                            <i class="bi bi-cloud-upload"></i> 上传 Excel 文件
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 功能特点 -->
-        <div class="chart-card" id="reports">
-            <div class="section-header">
-                <i class="bi bi-star"></i>
-                系统特点
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <i class="bi bi-lightning-charge-fill feature-icon"></i>
-                    <h5>⚡ 快速分析</h5>
-                    <p class="text-muted">一键上传 Excel 文件，秒级生成专业财务分析报告，大幅提升工作效率</p>
-                </div>
-                <div class="feature-card">
-                    <i class="bi bi-robot feature-icon"></i>
-                    <h5>🤖 AI 智能驱动</h5>
-                    <p class="text-muted">基于大语言模型技术，深度解读财务数据，提供智能化风险评估与建议</p>
-                </div>
-                <div class="feature-card">
-                    <i class="bi bi-diagram-3-fill feature-icon"></i>
-                    <h5>📊 多维度评估</h5>
-                    <p class="text-muted">从盈利能力、偿债能力、运营效率、现金流量四个维度全面分析企业</p>
-                </div>
-                <div class="feature-card">
-                    <i class="bi bi-file-earmark-arrow-down-fill feature-icon"></i>
-                    <h5>📄 灵活导出</h5>
-                    <p class="text-muted">支持 Word 和 PDF 双格式导出，满足不同场景的报告分享需求</p>
-                </div>
-            </div>
-        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -1010,44 +929,44 @@
         const progressContainer = document.getElementById('progressContainer');
         const messageArea = document.getElementById('messageArea');
         const loadingOverlay = document.getElementById('loadingOverlay');
-        
+
         let uploadAbortController = null;
-        
+
         // 点击上传区域
-        uploadArea.addEventListener('click', function(e) {
+        uploadArea.addEventListener('click', function (e) {
             if (e.target !== fileInput) {
                 fileInput.click();
             }
         });
-        
+
         // 拖拽上传
-        uploadArea.addEventListener('dragover', function(e) {
+        uploadArea.addEventListener('dragover', function (e) {
             e.preventDefault();
             uploadArea.classList.add('dragover');
         });
-        
-        uploadArea.addEventListener('dragleave', function(e) {
+
+        uploadArea.addEventListener('dragleave', function (e) {
             uploadArea.classList.remove('dragover');
         });
-        
-        uploadArea.addEventListener('drop', function(e) {
+
+        uploadArea.addEventListener('drop', function (e) {
             e.preventDefault();
             uploadArea.classList.remove('dragover');
-            
+
             const files = e.dataTransfer.files;
             if (files.length > 0) {
                 fileInput.files = files;
                 handleFileUpload(files[0]);
             }
         });
-        
+
         // 文件选择
-        fileInput.addEventListener('change', function(e) {
+        fileInput.addEventListener('change', function (e) {
             if (e.target.files.length > 0) {
                 handleFileUpload(e.target.files[0]);
             }
         });
-        
+
         // 处理文件上传
         function handleFileUpload(file) {
             // 验证文件类型
@@ -1056,55 +975,55 @@
                 showMessage('请上传Excel文件（.xlsx 或 .xls）', 'danger');
                 return;
             }
-            
+
             // 验证文件大小
             if (file.size > 16 * 1024 * 1024) {
                 showMessage('文件大小不能超过16MB', 'danger');
                 return;
             }
-            
+
             // 显示加载遮罩层（不阻止用户点击其他区域）
             loadingOverlay.classList.add('active');
             messageArea.innerHTML = '';
-            
+
             // 创建FormData
             const formData = new FormData();
             formData.append('file', file);
-            
+
             // 创建AbortController用于取消请求
             uploadAbortController = new AbortController();
-            
+
             // 上传文件
             fetch('/upload', {
                 method: 'POST',
                 body: formData,
                 signal: uploadAbortController.signal
             })
-            .then(response => response.json())
-            .then(data => {
-                loadingOverlay.classList.remove('active');
-                
-                if (data.success) {
-                    showMessage('报告生成成功！正在跳转...', 'success');
-                    setTimeout(() => {
-                        window.location.href = `/report/${data.report_id}`;
-                    }, 1000);
-                } else {
-                    showMessage(`错误: ${data.error}`, 'danger');
-                }
-            })
-            .catch(error => {
-                loadingOverlay.classList.remove('active');
-                
-                if (error.name === 'AbortError') {
-                    showMessage('上传已取消', 'warning');
-                } else {
-                    showMessage('上传失败，请稍后重试', 'danger');
-                    console.error('Error:', error);
-                }
-            });
+                .then(response => response.json())
+                .then(data => {
+                    loadingOverlay.classList.remove('active');
+
+                    if (data.success) {
+                        showMessage('报告生成成功！正在跳转...', 'success');
+                        setTimeout(() => {
+                            window.location.href = `/report/${data.report_id}`;
+                        }, 1000);
+                    } else {
+                        showMessage(`错误: ${data.error}`, 'danger');
+                    }
+                })
+                .catch(error => {
+                    loadingOverlay.classList.remove('active');
+
+                    if (error.name === 'AbortError') {
+                        showMessage('上传已取消', 'warning');
+                    } else {
+                        showMessage('上传失败，请稍后重试', 'danger');
+                        console.error('Error:', error);
+                    }
+                });
         }
-        
+
         // 取消上传
         function cancelUpload() {
             if (uploadAbortController) {
@@ -1113,9 +1032,9 @@
             }
             loadingOverlay.classList.remove('active');
         }
-        
+
         // 点击遮罩层外部关闭（可选，如果希望用户可以点击其他地方）
-        loadingOverlay.addEventListener('click', function(e) {
+        loadingOverlay.addEventListener('click', function (e) {
             // 如果点击的是遮罩层本身（不是内容区域），则允许关闭
             if (e.target === loadingOverlay) {
                 // 这里可以选择是否允许点击外部取消上传
@@ -1123,7 +1042,7 @@
                 // cancelUpload();
             }
         });
-        
+
         // 显示消息
         function showMessage(message, type) {
             messageArea.innerHTML = `
@@ -1132,11 +1051,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             `;
-            
+
             // 滚动到消息区域
             messageArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     </script>
 </body>
-</html>
 
+</html>

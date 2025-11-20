@@ -333,8 +333,8 @@
         <ul class="sidebar-menu">
             <li>
                 <a href="/index">
-                    <i class="bi bi-speedometer2"></i>
-                    <span>仪表板</span>
+                    <i class="bi bi-house-door"></i>
+                    <span>首页</span>
                 </a>
             </li>
             <li>
@@ -347,26 +347,6 @@
                 <a href="/downloads" class="active">
                     <i class="bi bi-download"></i>
                     <span>下载记录</span>
-                </a>
-            </li>
-            <li>
-                <a href="/mysql_enterprises">
-                    <i class="bi bi-building"></i>
-                    <span>企业数据</span>
-                </a>
-            </li>
-            {% if user.role == 'admin' %}
-            <li>
-                <a href="/admin/users">
-                    <i class="bi bi-people"></i>
-                    <span>用户管理</span>
-                </a>
-            </li>
-            {% endif %}
-            <li>
-                <a href="/settings">
-                    <i class="bi bi-gear"></i>
-                    <span>系统设置</span>
                 </a>
             </li>
             <li>
@@ -386,30 +366,6 @@
                 <i class="bi bi-download"></i>
                 下载记录
             </h1>
-        </div>
-
-        <!-- 统计卡片 -->
-        <div class="stats-cards">
-            <div class="stat-card">
-                <i class="bi bi-download"></i>
-                <h3>总下载次数</h3>
-                <div class="stat-value" id="totalDownloads">-</div>
-            </div>
-            <div class="stat-card">
-                <i class="bi bi-file-earmark-pdf"></i>
-                <h3>PDF格式</h3>
-                <div class="stat-value" id="pdfCount">-</div>
-            </div>
-            <div class="stat-card">
-                <i class="bi bi-file-earmark-word"></i>
-                <h3>Word格式</h3>
-                <div class="stat-value" id="wordCount">-</div>
-            </div>
-            <div class="stat-card">
-                <i class="bi bi-hdd"></i>
-                <h3>总文件大小</h3>
-                <div class="stat-value" id="totalSize">-</div>
-            </div>
         </div>
 
         <!-- 表格 -->
@@ -443,7 +399,6 @@
                 if (result.success) {
                     allRecords = result.data;
                     renderRecords(allRecords);
-                    updateStats(allRecords);
                 } else {
                     showError('加载失败');
                 }
@@ -496,19 +451,6 @@
             `;
             
             tableContent.innerHTML = html;
-        }
-
-        // 更新统计数据
-        function updateStats(records) {
-            const totalDownloads = records.length;
-            const pdfCount = records.filter(r => r.format === 'PDF' || r.format === 'PDF_HTML').length;
-            const wordCount = records.filter(r => r.format === 'WORD').length;
-            const totalSize = records.reduce((sum, r) => sum + (r.file_size || 0), 0);
-            
-            document.getElementById('totalDownloads').textContent = totalDownloads;
-            document.getElementById('pdfCount').textContent = pdfCount;
-            document.getElementById('wordCount').textContent = wordCount;
-            document.getElementById('totalSize').textContent = formatFileSize(totalSize);
         }
 
         // 格式化文件大小
